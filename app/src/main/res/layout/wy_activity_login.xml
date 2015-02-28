@@ -1,0 +1,106 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:custom="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.syw.weiyu.activity.ProfileBaseActivity"
+                android:background="@drawable/wy_bg_login">
+
+    <include
+        android:id="@+id/login_header"
+        layout="@layout/wy_header_withoutswitcher"
+        android:layout_width="fill_parent"
+        android:layout_height="54dip"/>
+
+    <LinearLayout
+        android:id="@+id/login_layout_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/login_header"
+        android:layout_centerHorizontal="true">
+
+        <EditText
+            android:background="@drawable/edittext_default"
+            android:layout_margin="@dimen/px_to_dip_20"
+            android:id="@+id/et_name"
+            android:layout_width="256dp"
+            android:layout_height="wrap_content"
+            android:hint="一句话介绍你自己吧"
+            android:textSize="@dimen/px_to_dip_54"
+            android:maxLength="16"/>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/px_to_dip_20"
+                android:text="性别"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/px_to_dip_54"/>
+
+            <include
+                android:id="@+id/switcher_gender"
+                layout="@layout/wy_switcher_wrapper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/px_to_dip_20"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_hobby"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/px_to_dip_20"
+                android:text="爱好"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/px_to_dip_54"/>
+
+            <include
+                android:id="@+id/switcher_hobby"
+                layout="@layout/wy_switcher_wrapper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/px_to_dip_20"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_below="@id/login_header"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <com.dd.processbutton.iml.ActionProcessButton
+                android:id="@+id/btnSignIn"
+                android:layout_width="256dip"
+                android:layout_height="wrap_content"
+                android:text="微遇"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/px_to_dip_54"
+                custom:pb_colorComplete="@color/green_complete"
+                custom:pb_colorError="@color/red_error"
+                custom:pb_colorNormal="@color/blue_normal"
+                custom:pb_colorPressed="@color/blue_pressed"
+                custom:pb_colorProgress="@color/purple_progress"
+                custom:pb_textComplete="成功"
+                custom:pb_textError="出现错误"
+                custom:pb_textProgress="正在开启微遇"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

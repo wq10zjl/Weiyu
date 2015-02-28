@@ -1,0 +1,13 @@
+D:\AndroidStudioWorkSpace\Weiyu\app\build\intermediates\classes\release
+D:\AndroidStudioWorkSpace\Weiyu\app\build\intermediates\pre-dexed\release\support-annotations-21.0.3-83c3e9582323603dae128b4e3e5b59441e09096b.jar
+D:\AndroidStudioWorkSpace\Weiyu\app\build\intermediates\pre-dexed\release\classes-bd08aea9f3613c451655af6a99b7728b5c8ae261.jar
+D:\AndroidStudioWorkSpace\Weiyu\app\build\intermediates\pre-dexed\release\commons-codec-1.4-2b6beea3b1bac0d5b6635ef6fa91fea4dec25753.jar
+D:\AndroidStudioWorkSpace\Weiyu\app\build\intermediates\pre-dexed\release\classes-8ca084c82f533559793739008a0dd81afd096b5d.jar
+D:\AndroidStudioWorkSpace\Weiyu\app\build\intermediates\pre-dexed\release\internal_impl-21.0.3-6ea6db482b7cfd7a490d1beefd56da80f334f09f.jar
+D:\AndroidStudioWorkSpace\Weiyu\app\build\intermediates\pre-dexed\release\afinal_0.5.1_bin-e55b12dd76f0e641385925f875665b67676dcf26.jar
+D:\AndroidStudioWorkSpace\Weiyu\app\build\intermediates\pre-dexed\release\locSDK_5.01-3d38479459b6c67dfd3b72163e151c69a86cdab5.jar
+D:\AndroidStudioWorkSpace\Weiyu\app\build\intermediates\pre-dexed\release\gdt_mob_release_v4.3.472-d59b1aa7cd9004f759dc751ebaa9725c2d8988d9.jar
+D:\AndroidStudioWorkSpace\Weiyu\app\build\intermediates\pre-dexed\release\fastjson-1.1.45.android-a80c15e1626661c210ebfa8e00198164fc541b42.jar
+D:\AndroidStudioWorkSpace\Weiyu\app\build\intermediates\pre-dexed\release\classes-b43e565c292f7dfbcc4cf1c944e713ac081155f1.jar
+D:\AndroidStudioWorkSpace\Weiyu\app\build\intermediates\pre-dexed\release\classes-6c58dba7fda3f43f651666bac34fb1de9ef86016.jar
+D:\AndroidStudioWorkSpace\Weiyu\app\build\intermediates\pre-dexed\release\Rong_IMKit_v1_3_4-fedd93d9aa0a185c4372391b332aebcbb49ceaf2.jar

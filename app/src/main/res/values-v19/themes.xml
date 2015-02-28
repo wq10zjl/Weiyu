@@ -1,0 +1,7 @@
+<resources>
+
+    <style name="WeiyuAppTheme" parent="AppBaseTheme">
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/sessionlist_header"
+        layout="@layout/wy_header_withoutswitcher"
+        android:layout_width="fill_parent"
+        android:layout_height="42dip"/>
+
+    <FrameLayout
+        android:id="@+id/sessionlist_layout_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/sessionlist_header"
+        android:fadingEdge="none"
+        android:gravity="center" />
+
+</RelativeLayout><!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/layout/wy_activity_sessionlist.xml -->

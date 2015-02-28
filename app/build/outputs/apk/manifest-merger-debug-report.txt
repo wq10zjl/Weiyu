@@ -1,0 +1,335 @@
+-- Merging decision tree log ---
+manifest
+ADDED from AndroidManifest.xml:2:1
+	xmlns:android
+		ADDED from AndroidManifest.xml:2:11
+	package
+		ADDED from AndroidManifest.xml:3:5
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+	android:versionName
+		ADDED from AndroidManifest.xml:5:5
+	android:versionCode
+		ADDED from AndroidManifest.xml:4:5
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+uses-sdk
+ADDED from AndroidManifest.xml:7:5
+MERGED from com.android.support:support-v4:21.0.3:15:5
+MERGED from com.android.support:appcompat-v7:21.0.3:15:5
+MERGED from com.android.support:support-v4:21.0.3:15:5
+MERGED from com.github.dmytrodanylyk.android-process-button:library:1.0.3:8:5
+MERGED from com.android.support:support-v4:21.0.3:15:5
+MERGED from in.srain.cube:ultra-ptr:1.0.8.1-SNAPSHOT:7:5
+	android:targetSdkVersion
+		ADDED from AndroidManifest.xml:9:9
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+	android:minSdkVersion
+		ADDED from AndroidManifest.xml:8:9
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from AndroidManifest.xml:13:5
+	android:name
+		ADDED from AndroidManifest.xml:13:22
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from AndroidManifest.xml:15:5
+	android:name
+		ADDED from AndroidManifest.xml:15:22
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from AndroidManifest.xml:17:5
+	android:name
+		ADDED from AndroidManifest.xml:17:22
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from AndroidManifest.xml:19:5
+	android:name
+		ADDED from AndroidManifest.xml:19:22
+uses-permission#android.permission.CHANGE_WIFI_STATE
+ADDED from AndroidManifest.xml:21:5
+	android:name
+		ADDED from AndroidManifest.xml:21:22
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from AndroidManifest.xml:23:5
+	android:name
+		ADDED from AndroidManifest.xml:23:22
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from AndroidManifest.xml:25:5
+	android:name
+		ADDED from AndroidManifest.xml:25:22
+uses-permission#android.permission.INTERNET
+ADDED from AndroidManifest.xml:27:5
+	android:name
+		ADDED from AndroidManifest.xml:27:22
+uses-permission#android.permission.MOUNT_UNMOUNT_FILESYSTEMS
+ADDED from AndroidManifest.xml:29:5
+	android:name
+		ADDED from AndroidManifest.xml:29:22
+uses-permission#android.permission.READ_LOGS
+ADDED from AndroidManifest.xml:31:5
+	android:name
+		ADDED from AndroidManifest.xml:31:22
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from AndroidManifest.xml:34:5
+	android:name
+		ADDED from AndroidManifest.xml:34:22
+uses-permission#android.permission.GET_TASKS
+ADDED from AndroidManifest.xml:35:5
+	android:name
+		ADDED from AndroidManifest.xml:35:22
+uses-permission#android.permission.WAKE_LOCK
+ADDED from AndroidManifest.xml:36:5
+	android:name
+		ADDED from AndroidManifest.xml:36:22
+uses-permission#android.permission.MODIFY_AUDIO_SETTINGS
+ADDED from AndroidManifest.xml:37:5
+	android:name
+		ADDED from AndroidManifest.xml:37:22
+uses-permission#android.permission.VIBRATE
+ADDED from AndroidManifest.xml:38:5
+	android:name
+		ADDED from AndroidManifest.xml:38:22
+uses-permission#android.permission.CAMERA
+ADDED from AndroidManifest.xml:39:5
+	android:name
+		ADDED from AndroidManifest.xml:39:22
+uses-permission#android.permission.WRITE_SETTINGS
+ADDED from AndroidManifest.xml:40:5
+	android:name
+		ADDED from AndroidManifest.xml:40:22
+uses-permission#android.permission.ACCESS_COARSE_UPDATES
+ADDED from AndroidManifest.xml:43:5
+	android:name
+		ADDED from AndroidManifest.xml:43:22
+application
+ADDED from AndroidManifest.xml:48:5
+MERGED from com.android.support:support-v4:21.0.3:16:5
+MERGED from com.android.support:appcompat-v7:21.0.3:16:5
+MERGED from com.android.support:support-v4:21.0.3:16:5
+MERGED from com.android.support:support-v4:21.0.3:16:5
+	android:label
+		ADDED from AndroidManifest.xml:53:9
+	android:debuggable
+		ADDED from AndroidManifest.xml:51:9
+	android:allowBackup
+		ADDED from AndroidManifest.xml:50:9
+	android:icon
+		ADDED from AndroidManifest.xml:52:9
+	android:theme
+		ADDED from AndroidManifest.xml:54:9
+	android:name
+		ADDED from AndroidManifest.xml:49:9
+meta-data#com.baidu.lbsapi.API_KEY
+ADDED from AndroidManifest.xml:57:9
+	android:name
+		ADDED from AndroidManifest.xml:58:13
+	android:value
+		ADDED from AndroidManifest.xml:59:13
+service#com.baidu.location.f
+ADDED from AndroidManifest.xml:61:9
+	android:process
+		ADDED from AndroidManifest.xml:64:13
+	android:enabled
+		ADDED from AndroidManifest.xml:63:13
+	android:name
+		ADDED from AndroidManifest.xml:62:13
+service#com.qq.e.comm.DownloadService
+ADDED from AndroidManifest.xml:73:9
+	android:exported
+		ADDED from AndroidManifest.xml:75:13
+	android:name
+		ADDED from AndroidManifest.xml:74:13
+activity#com.qq.e.ads.AdActivity
+ADDED from AndroidManifest.xml:78:9
+	android:configChanges
+		ADDED from AndroidManifest.xml:80:13
+	android:theme
+		ADDED from AndroidManifest.xml:81:13
+	android:name
+		ADDED from AndroidManifest.xml:79:13
+meta-data#RONG_CLOUD_APP_KEY
+ADDED from AndroidManifest.xml:110:9
+	android:name
+		ADDED from AndroidManifest.xml:111:13
+	android:value
+		ADDED from AndroidManifest.xml:112:13
+activity#io.rong.imkit.RongActivity
+ADDED from AndroidManifest.xml:114:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:116:13
+	android:name
+		ADDED from AndroidManifest.xml:115:13
+intent-filter#android.intent.action.VIEW+android.intent.category.DEFAULT
+ADDED from AndroidManifest.xml:117:13
+action#android.intent.action.VIEW
+ADDED from AndroidManifest.xml:118:17
+	android:name
+		ADDED from AndroidManifest.xml:118:25
+category#android.intent.category.DEFAULT
+ADDED from AndroidManifest.xml:120:17
+	android:name
+		ADDED from AndroidManifest.xml:120:27
+data
+ADDED from AndroidManifest.xml:122:17
+	android:host
+		ADDED from AndroidManifest.xml:123:21
+	android:pathPrefix
+		ADDED from AndroidManifest.xml:124:21
+	android:scheme
+		ADDED from AndroidManifest.xml:125:21
+activity#io.rong.imkit.RongSingleActivity
+ADDED from AndroidManifest.xml:158:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:161:13
+	android:name
+		ADDED from AndroidManifest.xml:159:13
+	android:launchMode
+		ADDED from AndroidManifest.xml:160:13
+activity#io.rong.imkit.RongSecActivity
+ADDED from AndroidManifest.xml:173:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:176:13
+	android:name
+		ADDED from AndroidManifest.xml:174:13
+	android:launchMode
+		ADDED from AndroidManifest.xml:175:13
+activity#io.rong.voipkit.activity.CallSideActivity
+ADDED from AndroidManifest.xml:188:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:190:13
+	android:name
+		ADDED from AndroidManifest.xml:189:13
+activity#io.rong.voipkit.activity.CalledSideActivity
+ADDED from AndroidManifest.xml:191:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:194:13
+	android:excludeFromRecents
+		ADDED from AndroidManifest.xml:193:13
+	android:name
+		ADDED from AndroidManifest.xml:192:13
+intent-filter#android.intent.category.DEFAULT+io.rong.voipkit.calledSideActivity.action
+ADDED from AndroidManifest.xml:195:13
+action#io.rong.voipkit.calledSideActivity.action
+ADDED from AndroidManifest.xml:196:17
+	android:name
+		ADDED from AndroidManifest.xml:196:25
+service#io.rong.imkit.service.RongIMService
+ADDED from AndroidManifest.xml:207:9
+	android:priority
+		ADDED from AndroidManifest.xml:211:13
+	android:exported
+		ADDED from AndroidManifest.xml:210:13
+	android:enabled
+		ADDED from AndroidManifest.xml:209:13
+	android:name
+		ADDED from AndroidManifest.xml:208:13
+service#io.rong.imlib.push.PushService
+ADDED from AndroidManifest.xml:212:9
+	android:process
+		ADDED from AndroidManifest.xml:214:13
+	android:name
+		ADDED from AndroidManifest.xml:213:13
+intent-filter#android.intent.category.DEFAULT+io.rong.push
+ADDED from AndroidManifest.xml:215:13
+action#io.rong.push
+ADDED from AndroidManifest.xml:218:17
+	android:name
+		ADDED from AndroidManifest.xml:218:25
+service#io.rong.imlib.push.CommandService
+ADDED from AndroidManifest.xml:221:9
+	android:process
+		ADDED from AndroidManifest.xml:223:13
+	android:name
+		ADDED from AndroidManifest.xml:222:13
+intent-filter#android.intent.category.DEFAULT+io.rong.command
+ADDED from AndroidManifest.xml:224:13
+action#io.rong.command
+ADDED from AndroidManifest.xml:227:17
+	android:name
+		ADDED from AndroidManifest.xml:227:25
+receiver#io.rong.imlib.push.PushReceiver
+ADDED from AndroidManifest.xml:231:9
+	android:process
+		ADDED from AndroidManifest.xml:233:13
+	android:name
+		ADDED from AndroidManifest.xml:232:13
+intent-filter#io.rong.imlib.action.push.heartbeat
+ADDED from AndroidManifest.xml:234:13
+action#io.rong.imlib.action.push.heartbeat
+ADDED from AndroidManifest.xml:235:17
+	android:name
+		ADDED from AndroidManifest.xml:235:25
+intent-filter#android.net.conn.CONNECTIVITY_CHANGE
+ADDED from AndroidManifest.xml:237:13
+action#android.net.conn.CONNECTIVITY_CHANGE
+ADDED from AndroidManifest.xml:238:17
+	android:name
+		ADDED from AndroidManifest.xml:238:25
+intent-filter#android.intent.action.BOOT_COMPLETED
+ADDED from AndroidManifest.xml:240:13
+action#android.intent.action.BOOT_COMPLETED
+ADDED from AndroidManifest.xml:241:17
+	android:name
+		ADDED from AndroidManifest.xml:241:25
+receiver#io.rong.imlib.push.PushMessageReceiver
+ADDED from AndroidManifest.xml:244:9
+	android:name
+		ADDED from AndroidManifest.xml:244:19
+intent-filter#io.rong.push.message
+ADDED from AndroidManifest.xml:245:13
+action#io.rong.push.message
+ADDED from AndroidManifest.xml:246:17
+	android:name
+		ADDED from AndroidManifest.xml:246:25
+service#io.rong.imlib.RongService
+ADDED from AndroidManifest.xml:250:9
+	android:name
+		ADDED from AndroidManifest.xml:250:18
+activity#com.syw.weiyu.activity.TestsActivity
+ADDED from AndroidManifest.xml:253:9
+	android:label
+		ADDED from AndroidManifest.xml:255:13
+	android:name
+		ADDED from AndroidManifest.xml:254:13
+activity#com.syw.weiyu.activity.LauncherActivity
+ADDED from AndroidManifest.xml:259:9
+	android:name
+		ADDED from AndroidManifest.xml:259:19
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from AndroidManifest.xml:260:13
+action#android.intent.action.MAIN
+ADDED from AndroidManifest.xml:261:17
+	android:name
+		ADDED from AndroidManifest.xml:261:25
+category#android.intent.category.LAUNCHER
+ADDED from AndroidManifest.xml:263:17
+	android:name
+		ADDED from AndroidManifest.xml:263:27
+activity#com.syw.weiyu.activity.MainTabsActivity
+ADDED from AndroidManifest.xml:268:9
+	android:name
+		ADDED from AndroidManifest.xml:268:19
+activity#com.syw.weiyu.activity.maintabs.NearByActivity
+ADDED from AndroidManifest.xml:271:9
+	android:name
+		ADDED from AndroidManifest.xml:271:19
+activity#com.syw.weiyu.activity.maintabs.SessionListActivity
+ADDED from AndroidManifest.xml:274:9
+	android:name
+		ADDED from AndroidManifest.xml:274:19
+activity#com.syw.weiyu.activity.maintabs.ExploreActivity
+ADDED from AndroidManifest.xml:277:9
+	android:name
+		ADDED from AndroidManifest.xml:277:19
+activity#com.syw.weiyu.activity.LoginActivity
+ADDED from AndroidManifest.xml:280:9
+	android:name
+		ADDED from AndroidManifest.xml:280:19
+activity#com.syw.weiyu.activity.ProfileActivity
+ADDED from AndroidManifest.xml:283:9
+	android:name
+		ADDED from AndroidManifest.xml:283:19
+activity#com.syw.weiyu.activity.AboutInfoActivity
+ADDED from AndroidManifest.xml:286:9
+	android:name
+		ADDED from AndroidManifest.xml:286:19

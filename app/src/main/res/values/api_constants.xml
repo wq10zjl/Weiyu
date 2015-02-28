@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Rong Cloud-->
+    <string name="rongcloud_app_key">uwd1c0sxdj831</string>
+    <string name="rongcloud_app_secret">s3RAbMx2TkaUl</string>
+    <string name="rongcloud_app_key_debug">pvxdm17jx5n8r</string>
+    <string name="rongcloud_app_secret_debug">zFfxVu2WUusvL</string>
+    <!--urls-->
+    <string name="url_user_gettoken">https://api.cn.rong.io/user/getToken.json</string>
+    <string name="url_user_refresh">https://api.cn.rong.io/user/refresh.json</string>
+    <!--自定义的客户端常量-->
+    <string name="RC_ACTION_RECEIVE_MESSAGE">rc_action_receive_message</string>
+    <string name="RC_UNREAD_COUNT">rc_unread_count</string>
+
+    <!--Baidu LocSDK-->
+    <string name="locsdk_ak">mUv2tjv4ZdI06Enf9E6GEsZ6</string>
+
+    <!--Baidu LBSyun-->
+    <string name="lbsyun_ak">pzRrx7tXVcoAlxQRGAiMBfVq</string>
+    <string name="geotable_id">93391</string>
+    <string name="coord_type">3</string>
+    <!--默认的“附近”检索的半径【开始先设置5000公里，基本可以覆盖整个中国任意两点】[300公里，大约是芜湖到上海的距离]-->
+    <string name="default_radius">5000000</string>
+    <!-- 默认地址信息，定位失败时使用 -->
+    <string name="address_default">北京市东城区东长安街</string>
+    <string name="city_default">北京</string>
+    <string name="province_default">北京</string>
+    <string name="district_default">东城区</string>
+    <string name="longitude_default">116.4038740000</string>
+    <string name="latitude_default">39.9148890000</string>
+    
+    <!--多盟AD-->
+    <string name="domob_publisher_id">56OJxWDYuN6xEe8UJo</string>
+    <string name="domob_adid_splash">16TLeDJaApKp1NUOqe7cGRNz</string>
+    <string name="domob_adid_feeds">16TLeDJaApKp1NUOaf4Pb9ei</string>
+    <string name="domob_adid_inline">16TLeDJaApKp1NUddd5nfp0s</string>
+
+    <!--广点通AD-->
+    <string name="gdt_app_id">1104263737</string>
+    <string name="gdt_adid_appwall">9070301114369474</string>
+    <string name="gdt_adid_splash">3010209184065415</string>
+    <string name="gdt_adid_banner">3050209155131150</string>
+
+    <!--豌豆荚AD-->
+    <string name="wdj_ads_app_id">100022837</string>
+    <string name="wdj_ads_app_secret_key">aa06d240dee1d9c27bf2d81febc21139</string>
+    <string name="wdj_adid_appwall">dbc7a4d62403389d38f6431ca7187e4d</string>
+    <string name="wdj_adid_banner">ad55a1ab5dbbfb7dc7cda8a13b18d0d0</string>
+
+
+    <!--LBSyun urls-->
+    <!-- table options -->
+    <string name="url_create_table">http://api.map.baidu.com/geodata/v3/geotable/create</string>
+    <string name="url_list_table">http://api.map.baidu.com/geodata/v3/geotable/list</string>
+    <string name="url_detail_table">http://api.map.baidu.com/geodata/v3/geotable/detail</string>
+    <string name="url_update_table">http://api.map.baidu.com/geodata/v3/geotable/update</string>
+    <string name="url_delete_table">http://api.map.baidu.com/geodata/v3/geotable/delete</string>
+
+    <!-- column options -->
+    <string name="url_create_column">http://api.map.baidu.com/geodata/v3/column/create</string>
+    <string name="url_list_column">http://api.map.baidu.com/geodata/v3/column/list</string>
+    <string name="url_detail_column">http://api.map.baidu.com/geodata/v3/column/detail</string>
+    <string name="url_update_column">http://api.map.baidu.com/geodata/v3/column/update</string>
+    <string name="url_delete_column">http://api.map.baidu.com/geodata/v3/column/delete</string>
+
+    <!-- poi options -->
+    <string name="url_create_poi">http://api.map.baidu.com/geodata/v3/poi/create</string>
+    <string name="url_list_poi">http://api.map.baidu.com/geodata/v3/poi/list</string>
+    <string name="url_detail_poi">http://api.map.baidu.com/geodata/v3/poi/detail</string>
+    <string name="url_update_poi">http://api.map.baidu.com/geodata/v3/poi/update</string>
+    <string name="url_delete_poi">http://api.map.baidu.com/geodata/v3/poi/delete</string>
+    <string name="url_upload_poi">http://api.map.baidu.com/geodata/v3/poi/upload</string>
+
+    <!-- job options -->
+    <string name="url_listimportdata_job">http://api.map.baidu.com/geodata/v3/job/listimportdata</string>
+    <string name="url_list_job">http://api.map.baidu.com/geodata/v3/job/list</string>
+    <string name="url_detail_job">http://api.map.baidu.com/geodata/v3/job/detail</string>
+
+    <!-- search -->
+    <string name="url_local_search">http://api.map.baidu.com/geosearch/v3/local</string>
+    <string name="url_nearby_search">http://api.map.baidu.com/geosearch/v3/nearby</string>
+    <string name="url_bound_search">http://api.map.baidu.com/geosearch/v3/bound</string>
+    <string name="url_detail_search">http://api.map.baidu.com/geosearch/v3/detail</string>
+
+</resources>

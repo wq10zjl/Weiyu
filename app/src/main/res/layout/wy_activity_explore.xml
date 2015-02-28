@@ -1,0 +1,115 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent">
+
+    <include
+        layout="@layout/wy_header_withoutswitcher"
+        android:layout_width="fill_parent"
+        android:layout_height="42dip"/>
+
+    <RelativeLayout
+        android:id="@+id/explore_item_appwall"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="58dip"
+        android:padding="8dip">
+        <!--android:background="@drawable/wy_single_item"        -->
+
+        <ImageView
+            android:id="@+id/lv_icon_portrait"
+            android:layout_width="62dip"
+            android:layout_height="fill_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/wy_icon_appwall"/>
+
+        <TextView
+            android:id="@+id/lv_tv_name"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignWithParentIfMissing="true"
+            android:layout_toRightOf="@id/lv_icon_portrait"
+            android:gravity="center_vertical"
+            android:text="精品游戏和应用"
+            android:textSize="@dimen/px_to_dip_36"/>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/wy_bg_cell_divider_line"/>
+
+    <RelativeLayout
+        android:id="@+id/explore_item_profile"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="58dip"
+        android:padding="8dip">
+        <!--android:background="@drawable/wy_single_item"        -->
+
+        <ImageView
+            android:id="@+id/lv_icon_profile"
+            android:layout_width="62dip"
+            android:layout_height="fill_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/wy_icon_profile"/>
+
+        <TextView
+            android:id="@+id/lv_tv_profile"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_above="@+id/lv_tv_profile"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignWithParentIfMissing="true"
+            android:layout_toRightOf="@id/lv_icon_profile"
+            android:gravity="center_vertical"
+            android:text="个人资料设置"
+            android:textSize="@dimen/px_to_dip_36"/>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/wy_bg_cell_divider_line"/>
+
+
+    <RelativeLayout
+        android:id="@+id/explore_item_aboutinfo"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="58dip"
+        android:padding="8dip">
+
+        <ImageView
+            android:id="@+id/lv_icon_aboutinfo"
+            android:layout_width="62dip"
+            android:layout_height="fill_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/wy_icon_aboutinfo"/>
+
+        <TextView
+            android:id="@+id/lv_tv_aboutinfo"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignWithParentIfMissing="true"
+            android:layout_toRightOf="@id/lv_icon_aboutinfo"
+            android:gravity="center_vertical"
+            android:text="关于"
+            android:textSize="@dimen/px_to_dip_36"/>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/wy_bg_cell_divider_line"/>
+
+</LinearLayout>

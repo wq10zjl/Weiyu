@@ -1,0 +1,49 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:custom="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.syw.weiyu.activity.AboutInfoActivity"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/aboutinfo_header"
+        layout="@layout/wy_header_withoutswitcher"
+        android:layout_width="fill_parent"
+        android:layout_height="54dip"/>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/wy_bg_aboutinfo"
+                    android:orientation="vertical" >
+
+        <TextView
+            android:text="微遇\n遇见你的新世界\n\n这里\n没有繁复的资料\n没有缭乱的头像\n只有纯粹的聊天\n\n遇见了风趣幽默的人\n就约出来见面吧"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:textColor="#FFFFFF"
+            android:textSize="28.0sp"
+            android:textStyle="bold"
+            android:layout_marginTop="39dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/textView2"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textSize="16.0sp"
+            android:textStyle="bold"
+            android:text="微遇beta\nsongyouwei.github.com\n&#169;2015 芜湖博旺凌网络CO.,LTD"
+            android:id="@+id/textView3"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+
+    </RelativeLayout>
+
+</LinearLayout><!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/layout/activity_about_info.xml -->

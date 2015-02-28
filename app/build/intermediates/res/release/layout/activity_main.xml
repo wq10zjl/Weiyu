@@ -1,0 +1,95 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="chat"
+        android:id="@+id/button_chat"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="chat" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="conversations"
+        android:id="@+id/button_conversation_list"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/button_chat"
+        android:layout_toEndOf="@+id/button_chat"
+        android:onClick="conversations" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="locate"
+        android:id="@+id/button_locate"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/button_conversation_list"
+        android:layout_toEndOf="@+id/button_conversation_list"
+        android:onClick="locate" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SlidingPagers"
+        android:id="@+id/button_pagers"
+        android:layout_alignBottom="@+id/button_locate"
+        android:layout_toRightOf="@+id/button_locate"
+        android:layout_toEndOf="@+id/button_locate"
+        android:onClick="openPagerSlidingTabs" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="datasave"
+        android:id="@+id/datasave"
+        android:layout_below="@+id/button_chat"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="datasave" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="dataget"
+        android:id="@+id/dataget"
+        android:layout_alignTop="@+id/datasave"
+        android:layout_toRightOf="@+id/datasave"
+        android:layout_toEndOf="@+id/datasave"
+        android:onClick="dataget" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="launcher"
+        android:id="@+id/launcher"
+        android:layout_alignTop="@+id/dataget"
+        android:layout_toRightOf="@+id/dataget"
+        android:layout_toEndOf="@+id/dataget"
+        android:onClick="launcher" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="maintabs"
+        android:id="@+id/maintabs"
+        android:layout_alignTop="@+id/launcher"
+        android:layout_toRightOf="@+id/launcher"
+        android:layout_toEndOf="@+id/launcher"
+        android:onClick="maintabs"/>
+
+</RelativeLayout><!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/layout/activity_main.xml -->
