@@ -6,4 +6,4 @@
     <item android:state_enabled="false" android:drawable="@drawable/btn_small_normal_disable" />
     <item android:drawable="@drawable/btn_small_normal_normal" />
 </selector>
-<!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/drawable/btn_small_default.xml -->
+<!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/drawable/btn_small_default.xml -->

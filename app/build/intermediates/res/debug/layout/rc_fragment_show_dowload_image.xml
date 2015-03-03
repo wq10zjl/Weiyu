@@ -14,4 +14,4 @@
         android:contentDescription="@string/content_description" >
     </uk.co.senab.photoview.PhotoView>
 
-</LinearLayout><!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/layout/rc_fragment_show_dowload_image.xml -->
+</LinearLayout><!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/layout/rc_fragment_show_dowload_image.xml -->

@@ -9,4 +9,4 @@
     <!-- Pressed -->
     <item android:drawable="@drawable/rc_call_answer_down" android:state_pressed="true"/>
 
-</selector><!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/drawable/rc_btn_answer_selector.xml -->
+</selector><!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/drawable/rc_btn_answer_selector.xml -->

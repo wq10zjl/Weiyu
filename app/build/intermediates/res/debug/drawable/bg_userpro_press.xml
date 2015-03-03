@@ -4,4 +4,4 @@
     <item android:state_pressed="true" android:drawable="@drawable/ic_userpro_bind_press" />
     <item android:drawable="@color/transparent" />
 </selector>
-<!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/drawable/bg_userpro_press.xml -->
+<!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/drawable/bg_userpro_press.xml -->

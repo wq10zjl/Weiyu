@@ -5,4 +5,4 @@
     android:pivotY="50%"
 	android:fromDegrees="0"    
  	android:toDegrees="360">
-</animated-rotate><!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/drawable/rc_progress_round.xml -->
+</animated-rotate><!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/drawable/rc_progress_round.xml -->

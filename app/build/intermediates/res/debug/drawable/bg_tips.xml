@@ -4,4 +4,4 @@
     <item android:state_pressed="true" android:drawable="@color/bg_tips_press" />
     <item android:drawable="@color/bg_tips_normal" />
 </selector>
-<!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/drawable/bg_tips.xml -->
+<!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/drawable/bg_tips.xml -->

@@ -9,4 +9,4 @@
     <item android:state_focused="true" android:drawable="@drawable/btn_chatbtn2_press" />
     <item android:drawable="@drawable/btn_chatbtn2_normal" />
 </selector>
-<!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/drawable/btn_chatbtn2.xml -->
+<!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/drawable/btn_chatbtn2.xml -->

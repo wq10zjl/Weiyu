@@ -10,4 +10,4 @@
     <item android:state_window_focused="false" android:drawable="@color/transparent" />
     <item android:drawable="@color/transparent" />
 </selector>
-<!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/drawable/list_selector_transition.xml -->
+<!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/drawable/list_selector_transition.xml -->

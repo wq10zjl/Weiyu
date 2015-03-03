@@ -4,4 +4,4 @@
     <item android:state_pressed="true" android:drawable="@drawable/bg_msgbox_receive_press" />
     <item android:drawable="@drawable/bg_msgbox_receive_normal" />
 </selector>
-<!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/drawable/bg_message_box_receive.xml -->
+<!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/drawable/bg_message_box_receive.xml -->

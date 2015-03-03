@@ -63,4 +63,4 @@
         android:layout_height="match_parent"
         android:background="@android:color/black"></FrameLayout>
 
-</io.rong.imkit.view.CoverFrameLayout><!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/layout/rc_fragment_conversation.xml -->
+</io.rong.imkit.view.CoverFrameLayout><!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/layout/rc_fragment_conversation.xml -->

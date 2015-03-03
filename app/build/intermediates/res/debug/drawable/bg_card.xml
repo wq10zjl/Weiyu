@@ -4,4 +4,4 @@
     <item android:state_pressed="true" android:drawable="@drawable/bg_card_press" />
     <item android:drawable="@drawable/bg_card_normal" />
 </selector>
-<!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/drawable/bg_card.xml -->
+<!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/drawable/bg_card.xml -->

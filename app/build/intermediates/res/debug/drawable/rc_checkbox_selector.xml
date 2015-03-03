@@ -6,4 +6,4 @@
     <item android:drawable="@drawable/rc_multi_choice_normal" android:state_checked="false"/>
     <item android:drawable="@drawable/rc_multi_choice_hover" android:state_checked="true"/>
 
-</selector><!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/drawable/rc_checkbox_selector.xml -->
+</selector><!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/drawable/rc_checkbox_selector.xml -->

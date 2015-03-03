@@ -5,4 +5,4 @@
     <item android:drawable="@color/bg_headerbar_spinner_selected" android:state_selected="true"/>
     <item android:drawable="@color/bg_headerbar_spinner_normal"/>
 
-</selector><!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/drawable/bg_headerbar_spinner.xml -->
+</selector><!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/drawable/bg_headerbar_spinner.xml -->

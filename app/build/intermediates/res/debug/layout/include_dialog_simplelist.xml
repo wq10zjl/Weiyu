@@ -16,4 +16,4 @@
         android:listSelector="@drawable/list_selector_transition"
         android:scrollingCache="false" />
 
-</LinearLayout><!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/layout/include_dialog_simplelist.xml -->
+</LinearLayout><!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/layout/include_dialog_simplelist.xml -->

@@ -4,4 +4,4 @@
     <solid android:color="@color/round_corner_filter_border" />
     <corners android:radius="4.0dip" />
 </shape>
-<!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/drawable/round_corner_filter_gray.xml -->
+<!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/drawable/round_corner_filter_gray.xml -->

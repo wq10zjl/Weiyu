@@ -8,4 +8,4 @@
     <item android:state_enabled="true" android:state_selected="true" android:drawable="@drawable/bg_tab_bluelight_selected" />
     <item android:drawable="@drawable/transparent" />
 </selector>
-<!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/drawable/bg_maintab_item_lightblue.xml -->
+<!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/drawable/bg_maintab_item_lightblue.xml -->

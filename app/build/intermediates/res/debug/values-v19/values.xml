@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values-v19/themes.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values-v19/themes.xml -->
     <eat-comment/>
     <style name="WeiyuAppTheme" parent="AppBaseTheme">
         <item name="android:windowTranslucentStatus">true</item>

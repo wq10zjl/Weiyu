@@ -4,4 +4,4 @@
     <solid android:color="@color/transparent" />
     <stroke android:width="0.6dip" android:color="@color/msg_photo_border" />
 </shape>
-<!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/drawable/bg_message_photo.xml -->
+<!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/drawable/bg_message_photo.xml -->

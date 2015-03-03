@@ -2,4 +2,4 @@
     xmlns:tools="http://schemas.android.com/tools" android:id="@+id/pager"
     android:layout_width="match_parent" android:layout_height="match_parent"
     tools:context="com.syw.weiyu.activity.WelcomeTabsActivity" />
-<!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/layout/activity_welcome_tabs.xml -->
+<!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/layout/activity_welcome_tabs.xml -->

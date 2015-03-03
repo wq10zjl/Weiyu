@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values-v11/themes.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values-v11/themes.xml -->
     <eat-comment/>
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@color/background_window</item>
@@ -10,7 +10,7 @@
         <item name="colorAccent">@color/banana</item>
         <item name="android:textColorPrimary">@android:color/white</item>
     </style>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values-v11/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values-v11/values.xml -->
     <eat-comment/>
     <style name="Base.TextAppearance.AppCompat.Inverse">
         <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
@@ -364,7 +364,7 @@
         <item name="android:listChoiceIndicatorSingle">@drawable/abc_btn_radio_material</item>
         <item name="android:listChoiceIndicatorMultiple">@drawable/abc_btn_check_material</item>
     </style>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values-v11/themes.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values-v11/themes.xml -->
     <eat-comment/>
     <style name="WeiyuAppTheme" parent="AppBaseTheme">
 

@@ -4,4 +4,4 @@
     <item android:state_pressed="true" android:drawable="@drawable/ic_profilebar_unfollow_normal" />
     <item android:drawable="@drawable/ic_profilebar_unfollow_normal" />
 </selector>
-<!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/drawable/btn_profile_bottom_icon_unfollow.xml -->
+<!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/drawable/btn_profile_bottom_icon_unfollow.xml -->

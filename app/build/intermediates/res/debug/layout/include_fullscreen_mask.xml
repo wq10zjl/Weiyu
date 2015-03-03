@@ -5,4 +5,4 @@
     android:layout_height="fill_parent"
     android:background="@color/transparent"
     android:visibility="gone" />
-<!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/layout/include_fullscreen_mask.xml -->
+<!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/layout/include_fullscreen_mask.xml -->

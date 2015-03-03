@@ -160,4 +160,4 @@
         android:background="@drawable/bg_topbar_shadow"
         android:focusable="false" />
 
-</RelativeLayout><!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/layout/activity_resetpwdphone.xml -->
+</RelativeLayout><!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/layout/activity_resetpwdphone.xml -->

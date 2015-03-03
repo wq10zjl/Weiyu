@@ -24,4 +24,4 @@
         android:src="@drawable/ic_dropmenu_selector"
         android:visibility="gone" />
 
-</LinearLayout><!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/layout/listitem_dialog.xml -->
+</LinearLayout><!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/layout/listitem_dialog.xml -->

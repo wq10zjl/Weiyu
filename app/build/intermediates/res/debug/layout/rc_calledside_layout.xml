@@ -148,4 +148,4 @@
         android:background="#88000000"
 		android:clickable="true"
 		android:visibility="gone"/>
-</RelativeLayout><!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/layout/rc_calledside_layout.xml -->
+</RelativeLayout><!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/layout/rc_calledside_layout.xml -->

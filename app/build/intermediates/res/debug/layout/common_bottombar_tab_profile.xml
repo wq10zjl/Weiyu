@@ -31,4 +31,4 @@
         android:minWidth="20dip"
         android:src="@drawable/bg_msgtip_point" />
 
-</RelativeLayout><!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/layout/common_bottombar_tab_profile.xml -->
+</RelativeLayout><!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/layout/common_bottombar_tab_profile.xml -->

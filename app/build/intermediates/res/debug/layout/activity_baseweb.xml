@@ -26,4 +26,4 @@
         layout="@layout/include_loading_indicator"
         android:visibility="gone" />
 
-</RelativeLayout><!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/layout/activity_baseweb.xml -->
+</RelativeLayout><!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/layout/activity_baseweb.xml -->

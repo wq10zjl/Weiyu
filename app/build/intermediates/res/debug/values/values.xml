@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/arrays.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/arrays.xml -->
     <eat-comment/>
     <string-array name="chat_audio_type">
         <item>智能切换</item>
@@ -248,7 +248,7 @@
         <item>@drawable/index_content_4</item>
         <item>@drawable/index_content_5</item>
     </array>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/strings_activity_settings.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/strings_activity_settings.xml -->
     <eat-comment/>
     <string-array name="pref_example_list_titles">
         <item>Always</item>
@@ -276,7 +276,7 @@
         <item>360</item>
         <item>-1</item>
     </string-array>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/rc_expression_arrays.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/rc_expression_arrays.xml -->
     <eat-comment/>
     <array name="rc_emoji_array">
         <item>@drawable/u1f60a</item>
@@ -668,7 +668,7 @@
         <item>"128640"</item>
         <item>"9203"</item>
     </array>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/rc_arrays.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/rc_arrays.xml -->
     <eat-comment/>
     <string-array name="rc_search_letters">
         <item>""#""</item>
@@ -699,7 +699,7 @@
         <item>""Y""</item>
         <item>""Z""</item>
     </string-array>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/arrays.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/arrays.xml -->
     <eat-comment/>
     <string-array name="reportfeed_items">
         <item>骚扰信息</item>
@@ -723,25 +723,25 @@
         <item>24,7,12,0,</item>
         <item>0,7,12,0,</item>
     </string-array>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/rc_attrs.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/rc_attrs.xml -->
     <eat-comment/>
     <attr format="boolean" name="centered_"/>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <attr format="reference" name="drawerArrowStyle"/>
     <attr format="dimension" name="height"/>
     <attr format="boolean" name="isLightTheme"/>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/rc_attrs.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/rc_attrs.xml -->
     <eat-comment/>
     <attr format="color" name="selectedColor_"/>
     <attr format="dimension" name="strokeWidth_"/>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <attr format="string" name="title"/>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/rc_attrs.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/rc_attrs.xml -->
     <eat-comment/>
     <attr format="color" name="unselectedColor_"/>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <bool name="abc_action_bar_embed_tabs">true</bool>
     <bool name="abc_action_bar_embed_tabs_pre_jb">false</bool>
@@ -749,14 +749,14 @@
     <bool name="abc_config_actionMenuItemAllCaps">true</bool>
     <bool name="abc_config_allowActionMenuItemTextWithIcon">false</bool>
     <bool name="abc_config_showMenuShortcutsWhenKeyboardPresent">false</bool>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/rc_defaults.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/rc_defaults.xml -->
     <eat-comment/>
     <bool name="default_circle_indicator_centered">true</bool>
     <bool name="default_circle_indicator_snap">false</bool>
     <bool name="default_line_indicator_centered">true</bool>
     <bool name="default_title_indicator_selected_bold">true</bool>
     <bool name="default_underline_indicator_fades">true</bool>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <color name="abc_input_method_navigation_guard">@android:color/black</color>
     <color name="abc_search_url_text_normal">#7fa87f</color>
@@ -764,18 +764,18 @@
     <color name="abc_search_url_text_selected">@android:color/black</color>
     <color name="accent_material_dark">@color/material_deep_teal_200</color>
     <color name="accent_material_light">@color/material_deep_teal_500</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="actionbutton_divider_color">#997abae3</color>
     <color name="avatar_border">#ff92a3aa</color>
     <color name="background_dark">#ffd4ccc0</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <color name="background_floating_material_dark">#ff424242</color>
     <color name="background_floating_material_light">#ffeeeeee</color>
     <color name="background_material_dark">#ff303030</color>
     <color name="background_material_light">#ffeeeeee</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="background_normal">#fffffbf0</color>
     <color name="background_normal_press">#ffece7da</color>
@@ -802,11 +802,11 @@
     <color name="bg_tips_press">#ffccc8bc</color>
     <color name="black">#ff000000</color>
     <color name="blue">#ff0f81d9</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.github.dmytrodanylyk.android-process-button/library/1.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.github.dmytrodanylyk.android-process-button/library/1.0.3/res/values/values.xml -->
     <eat-comment/>
     <color name="blue_normal">#ff33b5e5</color>
     <color name="blue_pressed">#ff0099cc</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <color name="bright_foreground_disabled_material_dark">#80ffffff</color>
     <color name="bright_foreground_disabled_material_light">#80000000</color>
@@ -814,21 +814,21 @@
     <color name="bright_foreground_inverse_material_light">@color/bright_foreground_material_dark</color>
     <color name="bright_foreground_material_dark">@android:color/white</color>
     <color name="bright_foreground_material_light">@android:color/black</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="btn_triangle_normal">#00efefef</color>
     <color name="btn_triangle_pressed">#ffdde8ed</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <color name="button_material_dark">#ff5a595b</color>
     <color name="button_material_light">#ffd6d7d7</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="chat_tab_stroke">#ff999999</color>
     <color name="contact_indicator_color">#ff33b5e5</color>
     <color name="dark_gray">#ff999999</color>
     <color name="dark_red">#ff8c1c1c</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/rc_defaults.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/rc_defaults.xml -->
     <eat-comment/>
     <color name="default_circle_indicator_fill_color">#FFFFFFFF</color>
     <color name="default_circle_indicator_page_color">#00000000</color>
@@ -839,26 +839,26 @@
     <color name="default_title_indicator_selected_color">#FFFFFFFF</color>
     <color name="default_title_indicator_text_color">#BBFFFFFF</color>
     <color name="default_underline_indicator_selected_color">#FF33B5E5</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="devideline">#ffd0c9b8</color>
     <color name="devideline_listview">#ffe5e2d4</color>
     <color name="devideline_undercard">#ffc7c2b0</color>
     <color name="dialog_backgroud_full">#6d000000</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/rc_colors.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/rc_colors.xml -->
     <eat-comment/>
     <color name="dialog_conversation_line_color">#3498db</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="dialog_divider">#ffbfcbd3</color>
     <color name="dialog_listitem_press">#ffd0dce4</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <color name="dim_foreground_disabled_material_dark">#80bebebe</color>
     <color name="dim_foreground_disabled_material_light">#80323232</color>
     <color name="dim_foreground_material_dark">#ffbebebe</color>
     <color name="dim_foreground_material_light">#ff323232</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="download_progressbar_bg">#4c000000</color>
     <color name="dropbar_backgroud_color">#ffececec</color>
@@ -879,10 +879,10 @@
     <color name="greenDark">#3E5F22</color>
     <color name="green_btn_off_end_gradient">#ff679726</color>
     <color name="green_btn_off_start_gradient">#ff8dd511</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.github.dmytrodanylyk.android-process-button/library/1.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.github.dmytrodanylyk.android-process-button/library/1.0.3/res/values/values.xml -->
     <eat-comment/>
     <color name="green_complete">#ff99cc00</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="grey_btn_off_end_gradient">#ffaaaaaa</color>
     <color name="grey_btn_off_start_gradient">#ffffffff</color>
@@ -894,40 +894,40 @@
     <color name="header_divider_color">#997abae3</color>
     <color name="hi_message_bg_normal">#ffefefef</color>
     <color name="hi_message_bg_select">#ffe2e2e2</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <color name="highlighted_text_material_dark">#6680cbc4</color>
     <color name="highlighted_text_material_light">#66009688</color>
     <color name="hint_foreground_material_dark">@color/bright_foreground_disabled_material_dark</color>
     <color name="hint_foreground_material_light">@color/bright_foreground_disabled_material_light</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.github.dmytrodanylyk.android-process-button/library/1.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.github.dmytrodanylyk.android-process-button/library/1.0.3/res/values/values.xml -->
     <eat-comment/>
     <color name="holo_blue_bright">#ff00ddff</color>
     <color name="holo_green_light">#ff99cc00</color>
     <color name="holo_orange_light">#ffffbb33</color>
     <color name="holo_red_light">#ffff4444</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="light_gray">#ffececec</color>
     <color name="light_notes_color">#ff999999</color>
     <color name="light_yellow">#fffff99e</color>
     <color name="link_color">#ff4abad7</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <color name="link_text_material_dark">@color/material_deep_teal_200</color>
     <color name="link_text_material_light">@color/material_deep_teal_500</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="maintab_text_normal">#ffc1c1c1</color>
     <color name="maintab_text_selected_color">#ffffffff</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <color name="material_blue_grey_800">#ff37474f</color>
     <color name="material_blue_grey_900">#ff263238</color>
     <color name="material_blue_grey_950">#ff21272b</color>
     <color name="material_deep_teal_200">#ff80cbc4</color>
     <color name="material_deep_teal_500">#ff009688</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="menu_backgroud">#f2ebedee</color>
     <color name="menu_border">#ffdddddd</color>
@@ -952,7 +952,7 @@
     <color name="msg_status_sent">#ffeb7837</color>
     <color name="notes_color">#ff777777</color>
     <color name="orange">#ffefa600</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <color name="primary_dark_material_dark">#ff000000</color>
     <color name="primary_dark_material_light">#ff757575</color>
@@ -962,7 +962,7 @@
     <color name="primary_text_default_material_light">#de000000</color>
     <color name="primary_text_disabled_material_dark">#4Dffffff</color>
     <color name="primary_text_disabled_material_light">#39000000</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="profile_add_avater_normal">#ffb2ab93</color>
     <color name="profile_add_avater_pressed">#ff8e8876</color>
@@ -973,10 +973,10 @@
     <color name="profile_bottom_pressed">#ff262626</color>
     <color name="profile_info_block_bg">#fff0f0f0</color>
     <color name="profile_photo_bg">#ffd8d4c5</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.github.dmytrodanylyk.android-process-button/library/1.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.github.dmytrodanylyk.android-process-button/library/1.0.3/res/values/values.xml -->
     <eat-comment/>
     <color name="purple_progress">#ffaa66cc</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/rc_colors.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/rc_colors.xml -->
     <eat-comment/>
     <color name="rc_bg_highlight">#d3d3d3</color>
     <color name="rc_bg_toolbar">#dee0e2</color>
@@ -1003,37 +1003,37 @@
     <color name="rc_text_color_tertiary_inverse">@android:color/white</color>
     <color name="rc_text_color_warning">#99ff0000</color>
     <color name="rc_title_bg">#252525</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="red">#ffff0000</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.github.dmytrodanylyk.android-process-button/library/1.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.github.dmytrodanylyk.android-process-button/library/1.0.3/res/values/values.xml -->
     <eat-comment/>
     <color name="red_error">#ffff4444</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <color name="ripple_material_dark">#40ffffff</color>
     <color name="ripple_material_light">#40000000</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="round_corner_filter_border">#ff000000</color>
     <color name="round_corner_filter_green">#ff66ccff</color>
     <color name="round_normal">#ffbfbfbf</color>
     <color name="round_selected">#ff555555</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <color name="secondary_text_default_material_dark">#b3ffffff</color>
     <color name="secondary_text_default_material_light">#8a000000</color>
     <color name="secondary_text_disabled_material_dark">#36ffffff</color>
     <color name="secondary_text_disabled_material_light">#24000000</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="sharecard_bg">#ffffefb8</color>
     <color name="silver">#ffecebe8</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <color name="switch_thumb_normal_material_dark">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_light">#fff1f1f1</color>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="text_color">#ff434343</color>
     <color name="text_color_blue">#ff6699cc</color>
@@ -1088,7 +1088,7 @@
     <declare-styleable name="View"><attr format="dimension" name="paddingStart"/><attr format="dimension" name="paddingEnd"/><attr name="android:focusable"/></declare-styleable>
     <declare-styleable name="ViewPagerIndicator"><attr format="reference" name="vpiCirclePageIndicatorStyle"/><attr format="reference" name="vpiIconPageIndicatorStyle"/><attr format="reference" name="vpiLinePageIndicatorStyle"/><attr format="reference" name="vpiTitlePageIndicatorStyle"/><attr format="reference" name="vpiTabPageIndicatorStyle"/><attr format="reference" name="vpiUnderlinePageIndicatorStyle"/></declare-styleable>
     <declare-styleable name="ViewStubCompat"><attr name="android:layout"/><attr name="android:inflatedId"/><attr name="android:id"/></declare-styleable>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <dimen name="abc_action_bar_default_height_material">56dp</dimen>
     <dimen name="abc_action_bar_default_padding_material">4dp</dimen>
@@ -1127,14 +1127,14 @@
     <dimen name="abc_text_size_subtitle_material_toolbar">16dp</dimen>
     <dimen name="abc_text_size_title_material">20sp</dimen>
     <dimen name="abc_text_size_title_material_toolbar">20dp</dimen>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/dimens.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.github.dmytrodanylyk.android-process-button/library/1.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.github.dmytrodanylyk.android-process-button/library/1.0.3/res/values/values.xml -->
     <eat-comment/>
     <dimen name="corner_radius">2dp</dimen>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/rc_defaults.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/rc_defaults.xml -->
     <eat-comment/>
     <dimen name="default_circle_indicator_radius">@dimen/px_to_dip_8</dimen>
     <dimen name="default_circle_indicator_stroke_width">1dp</dimen>
@@ -1149,7 +1149,7 @@
     <dimen name="default_title_indicator_text_size">15dp</dimen>
     <dimen name="default_title_indicator_title_padding">5dp</dimen>
     <dimen name="default_title_indicator_top_padding">7dp</dimen>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <item name="dialog_fixed_height_major" type="dimen">80%</item>
     <item name="dialog_fixed_height_minor" type="dimen">100%</item>
@@ -1157,10 +1157,10 @@
     <item name="dialog_fixed_width_minor" type="dimen">320dp</item>
     <item format="float" name="disabled_alpha_material_dark" type="dimen">0.30</item>
     <item format="float" name="disabled_alpha_material_light" type="dimen">0.26</item>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.github.dmytrodanylyk.android-process-button/library/1.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.github.dmytrodanylyk.android-process-button/library/1.0.3/res/values/values.xml -->
     <eat-comment/>
     <dimen name="layer_padding">3dp</dimen>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/rc_dimens.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/rc_dimens.xml -->
     <eat-comment/>
     <dimen name="px_to_dip_0">0.00dp</dimen>
     <dimen name="px_to_dip_1">0.50dp</dimen>
@@ -2018,12 +2018,12 @@
     <dimen name="px_to_sp_23">15.33dp</dimen>
     <dimen name="px_to_sp_24">16sp</dimen>
     <dimen name="px_to_sp_26">17.33sp</dimen>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/drawables.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/drawables.xml -->
     <eat-comment/>
     <item name="draw_temp" type="drawable">#fff4f4f4</item>
     <drawable name="list_backgroud_normal">@color/white</drawable>
     <drawable name="transparent">@color/transparent</drawable>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <item name="action_bar_activity_content" type="id"/>
     <item name="action_bar_spinner" type="id"/>
@@ -2032,7 +2032,7 @@
     <item name="home" type="id"/>
     <item name="progress_circular" type="id"/>
     <item name="progress_horizontal" type="id"/>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/rc_ids.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/rc_ids.xml -->
     <eat-comment/>
     <item name="rc_actionbar" type="id"/>
     <item name="rc_back" type="id"/>
@@ -2051,26 +2051,26 @@
     <item name="rc_new" type="id"/>
     <item name="rc_title" type="id"/>
     <item name="rc_title_layout" type="id"/>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <item name="split_action_bar" type="id"/>
     <item name="up" type="id"/>
     <integer name="abc_max_action_buttons">2</integer>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/rc_defaults.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/rc_defaults.xml -->
     <eat-comment/>
     <integer name="default_circle_indicator_orientation">0</integer>
     <integer name="default_title_indicator_footer_indicator_style">2</integer>
     <integer name="default_title_indicator_line_position">0</integer>
     <integer name="default_underline_indicator_fade_delay">300</integer>
     <integer name="default_underline_indicator_fade_length">400</integer>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/rc_config.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/rc_config.xml -->
     <eat-comment/>
     <integer name="discussion_member_max_count">50</integer>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/api_constants.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/api_constants.xml -->
     <eat-comment/>
     <string name="RC_ACTION_RECEIVE_MESSAGE">rc_action_receive_message</string>
     <string name="RC_UNREAD_COUNT">rc_unread_count</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <string name="abc_action_bar_home_description">Navigate home</string>
     <string name="abc_action_bar_home_description_format">%1$s, %2$s</string>
@@ -2088,23 +2088,23 @@
     <string name="abc_shareactionprovider_share_with">Share with</string>
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="action_settings">Settings</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/api_constants.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/api_constants.xml -->
     <eat-comment/>
     <string name="address_default">北京市东城区东长安街</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/rc_strings.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/rc_strings.xml -->
     <eat-comment/>
     <string name="alter_dialog_cancel">"取消"</string>
     <string name="alter_dialog_confirm">"确定"</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="app_name">微遇</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/api_constants.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/api_constants.xml -->
     <eat-comment/>
     <string name="city_default">北京</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/rc_strings.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/rc_strings.xml -->
     <eat-comment/>
     <string name="connect_auto_fail">自动重连失败</string>
     <string name="connect_auto_reconnect">自动连接中...</string>
@@ -2130,10 +2130,10 @@
     <string name="conversation_setting_notify">"新消息通知"</string>
     <string name="conversation_setting_set_bg">"设置当前聊天背景"</string>
     <string name="conversation_setting_title">"聊天设置"</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/api_constants.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/api_constants.xml -->
     <eat-comment/>
     <string name="coord_type">3</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/in.srain.cube/ultra-ptr/1.0.8.1-SNAPSHOT/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/in.srain.cube/ultra-ptr/1.0.8.1-SNAPSHOT/res/values/values.xml -->
     <eat-comment/>
     <string name="cube_ptr_hours_ago"> hours ago</string>
     <string name="cube_ptr_last_update">last update: </string>
@@ -2144,17 +2144,17 @@
     <string name="cube_ptr_refreshing">Updating...</string>
     <string name="cube_ptr_release_to_refresh">Release To Refresh</string>
     <string name="cube_ptr_seconds_ago"> seconds ago</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/rc_strings.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/rc_strings.xml -->
     <eat-comment/>
     <string name="default_discussion_name">"讨论组"</string>
     <string name="default_name">"用户名"</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/api_constants.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/api_constants.xml -->
     <eat-comment/>
     <string name="default_radius">5000000</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.github.dmytrodanylyk.android-process-button/library/1.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.github.dmytrodanylyk.android-process-button/library/1.0.3/res/values/values.xml -->
     <eat-comment/>
     <string name="define_processbutton">processbutton</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/rc_strings.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/rc_strings.xml -->
     <eat-comment/>
     <string name="dialog_converastion_cope_message">"复制消息"</string>
     <string name="dialog_converastion_delete_message">"删除消息"</string>
@@ -2165,36 +2165,36 @@
     <string name="discussion_create_failure">"创建讨论组失败"</string>
     <string name="discussion_create_loading_title">"正在创建讨论组"</string>
     <string name="discussion_remove_member_failure">"删除成员失败"</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/api_constants.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/api_constants.xml -->
     <eat-comment/>
     <string name="district_default">东城区</string>
     <string name="domob_adid_feeds">16TLeDJaApKp1NUOaf4Pb9ei</string>
     <string name="domob_adid_inline">16TLeDJaApKp1NUddd5nfp0s</string>
     <string name="domob_adid_splash">16TLeDJaApKp1NUOqe7cGRNz</string>
     <string name="domob_publisher_id">56OJxWDYuN6xEe8UJo</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/rc_strings.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/rc_strings.xml -->
     <eat-comment/>
     <string name="friend_list_multi_choice_comfirt_btn">"确定(%1$s)"</string>
     <string name="friend_list_multi_choice_title">"选择好友"</string>
     <string name="friend_multi_choice_people_max_prompt">"讨论组人数上限为%1$d人"</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/api_constants.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/api_constants.xml -->
     <eat-comment/>
     <string name="gdt_adid_appwall">9070301114369474</string>
     <string name="gdt_adid_banner">3050209155131150</string>
     <string name="gdt_adid_splash">3010209184065415</string>
     <string name="gdt_app_id">1104263737</string>
     <string name="geotable_id">93391</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="hello_world">Hello world!</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/rc_strings.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/rc_strings.xml -->
     <eat-comment/>
     <string name="image_out_of_memeroy">"内存低"</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/api_constants.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/api_constants.xml -->
     <eat-comment/>
     <string name="latitude_default">39.9148890000</string>
     <string name="lbsyun_ak">pzRrx7tXVcoAlxQRGAiMBfVq</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.github.dmytrodanylyk.android-process-button/library/1.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.github.dmytrodanylyk.android-process-button/library/1.0.3/res/values/values.xml -->
     <eat-comment/>
     <string name="library_processbutton_author">Dmytro Danylyk</string>
     <string name="library_processbutton_authorWebsite">http://dmytrodanylyk.com/</string>
@@ -2205,15 +2205,15 @@
     <string name="library_processbutton_libraryWebsite">http://dmytrodanylyk.com/pages/portfolio/portfolio-process-button.html</string>
     <string name="library_processbutton_licenseId">mit</string>
     <string name="library_processbutton_repositoryLink">https://github.com/dmytrodanylyk/android-process-button</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/rc_strings.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/rc_strings.xml -->
     <eat-comment/>
     <string name="list_converastion_emtpy_prompt">"暂时没有会话"</string>
     <string name="loading">"正在加载中\.\.\."</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/api_constants.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/api_constants.xml -->
     <eat-comment/>
     <string name="locsdk_ak">mUv2tjv4ZdI06Enf9E6GEsZ6</string>
     <string name="longitude_default">116.4038740000</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/rc_strings.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/rc_strings.xml -->
     <eat-comment/>
     <string name="message_image_send_fail">图片发送失败，请重试。</string>
     <string name="message_type_draft_content">"[草稿]"</string>
@@ -2235,7 +2235,7 @@
     <string name="notification_new_message_mang_p">"%1$s个联系人发来%2$s条消息"</string>
     <string name="notification_new_message_one_p">"发来了%1$s条消息"</string>
     <string name="notification_new_message_one_p_one">"%1$s发来一条消息"</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/strings_activity_settings.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/strings_activity_settings.xml -->
     <eat-comment/>
     <string name="pref_default_display_name">John Smith</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact
@@ -2253,10 +2253,10 @@
     <string name="pref_title_sync_frequency">Sync frequency</string>
     <string name="pref_title_system_sync_settings">System sync settings</string>
     <string name="pref_title_vibrate">Vibrate</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/api_constants.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/api_constants.xml -->
     <eat-comment/>
     <string name="province_default">北京</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/rc_strings.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/rc_strings.xml -->
     <eat-comment/>
     <string name="rc_conversation_setting_add_discussion_member_failure">"添加讨论组成员失败"</string>
     <string name="rc_conversation_setting_clear_messages_prompt">"你确定清空聊天记录？"</string>
@@ -2275,13 +2275,13 @@
     <string name="rc_image_load_fail">图片加载失败</string>
     <string name="rc_location_fail">"处理失败"</string>
     <string name="rc_location_handler">"处理中"</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/rc_notification_string.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/rc_notification_string.xml -->
     <eat-comment/>
     <string name="rc_notification_contact">个联系人</string>
     <string name="rc_notification_msg">条消息</string>
     <string name="rc_notification_send">发来了</string>
     <string name="rc_notification_ticker_text">您有了一条新消息</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/rc_strings.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/rc_strings.xml -->
     <eat-comment/>
     <string name="rc_public_data_process">"数据处理中···"</string>
     <string name="rc_rejected_by_blacklist_prompt">您的消息已经发出，但被对方拒收</string>
@@ -2291,13 +2291,13 @@
     <string name="rich_icon_location_txt">"位置"</string>
     <string name="rich_icon_phone_txt">"语音通话"</string>
     <string name="rich_icon_take_photo_txt">"拍照"</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/api_constants.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/api_constants.xml -->
     <eat-comment/>
     <string name="rongcloud_app_key">uwd1c0sxdj831</string>
     <string name="rongcloud_app_key_debug">pvxdm17jx5n8r</string>
     <string name="rongcloud_app_secret">s3RAbMx2TkaUl</string>
     <string name="rongcloud_app_secret_debug">zFfxVu2WUusvL</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/rc_strings.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/rc_strings.xml -->
     <eat-comment/>
     <string name="show_download_image_loading">"图片加载中...."</string>
     <string name="show_download_image_title">"查看大图"</string>
@@ -2309,14 +2309,14 @@
     <string name="show_image_save_success">"保存成功"</string>
     <string name="sys_resource_dir">"RongCloud"</string>
     <string name="tag_id">tagId</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="title_activity_about_info">AboutInfoActivity</string>
     <string name="title_activity_login">LoginActivity</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/strings_activity_settings.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/strings_activity_settings.xml -->
     <eat-comment/>
     <string name="title_activity_settings">Settings</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/api_constants.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/api_constants.xml -->
     <eat-comment/>
     <string name="url_bound_search">http://api.map.baidu.com/geosearch/v3/bound</string>
     <string name="url_create_column">http://api.map.baidu.com/geodata/v3/column/create</string>
@@ -2343,7 +2343,7 @@
     <string name="url_upload_poi">http://api.map.baidu.com/geodata/v3/poi/upload</string>
     <string name="url_user_gettoken">https://api.cn.rong.io/user/getToken.json</string>
     <string name="url_user_refresh">https://api.cn.rong.io/user/refresh.json</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/rc_strings.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/rc_strings.xml -->
     <eat-comment/>
     <string name="view_message_bar_send">"发送"</string>
     <string name="view_message_bar_voice_speak">"按住 说话"</string>
@@ -2352,19 +2352,19 @@
     <string name="voice_dialog_collect">"手指上滑，取消发送"</string>
     <string name="voice_dialog_time_short">"说话时间太短"</string>
     <string name="voice_length">"%1$s''"</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/api_constants.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/api_constants.xml -->
     <eat-comment/>
     <string name="wdj_adid_appwall">dbc7a4d62403389d38f6431ca7187e4d</string>
     <string name="wdj_adid_banner">ad55a1ab5dbbfb7dc7cda8a13b18d0d0</string>
     <string name="wdj_ads_app_id">100022837</string>
     <string name="wdj_ads_app_secret_key">aa06d240dee1d9c27bf2d81febc21139</string>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="Animation.Dialog" parent="@android:style/Animation">
         <item name="android:windowEnterAnimation">@anim/dialog_enter</item>
         <item name="android:windowExitAnimation">@anim/dialog_exit</item>
     </style>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/themes.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/themes.xml -->
     <eat-comment/>
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@color/background_window</item>
@@ -2374,7 +2374,7 @@
         <item name="colorAccent">@color/banana</item>
         <item name="android:textColorPrimary">@android:color/white</item>
     </style>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <style name="Base.TextAppearance.AppCompat" parent="android:TextAppearance">
         <item name="android:textColor">?android:textColorPrimary</item>
@@ -3128,7 +3128,7 @@
         <item name="android:scaleType">center</item>
         <item name="android:background">?attr/selectableItemBackground</item>
     </style>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="BaseDialog" parent="@android:style/Theme.Dialog"/>
     <style name="ButtonStyle" parent="@android:style/Widget.Button">
@@ -3143,7 +3143,7 @@
         <item name="android:cursorVisible">true</item>
         <item name="android:textCursorDrawable">@null</item>
     </style>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <style name="Platform.AppCompat" parent="android:Theme">
         <item name="android:windowNoTitle">true</item>
@@ -3270,7 +3270,7 @@
         <item name="android:listChoiceIndicatorMultiple">@drawable/abc_btn_check_material</item>
     </style>
     <style name="Platform.AppCompat.Light.Dialog" parent="Platform.AppCompat.Dialog"/>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="Popup_Animation_Alpha" parent="@android:style/Animation">
         <item name="android:windowEnterAnimation">@anim/layout_alpha_in</item>
@@ -3300,7 +3300,7 @@
         <item name="android:windowEnterAnimation">@anim/enter_dropup</item>
         <item name="android:windowExitAnimation">@anim/exit_dropdown</item>
     </style>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/rc_theme.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/rc_theme.xml -->
     <eat-comment/>
     <style name="RcDialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
@@ -3370,7 +3370,7 @@
     <style name="RcTheme.Toolbar">
         <item name="android:background">@color/rc_bg_toolbar</item>
     </style>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <style name="RtlOverlay.Widget.AppCompat.ActionBar.TitleItem" parent="android:Widget">
         <item name="android:layout_gravity">center_vertical|left</item>
@@ -3413,7 +3413,7 @@
     <style name="RtlOverlay.Widget.AppCompat.SearchView.MagIcon" parent="android:Widget">
         <item name="android:layout_marginLeft">@dimen/abc_dropdownitem_text_padding_left</item>
     </style>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="Style_Dialog_Button">
         <item name="android:textSize">16.0dip</item>
@@ -3423,7 +3423,7 @@
         <item name="android:layout_marginRight">6.0dip</item>
         <item name="android:minHeight">40.0dip</item>
     </style>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <style name="TextAppearance.AppCompat" parent="Base.TextAppearance.AppCompat"/>
     <style name="TextAppearance.AppCompat.Body1" parent="Base.TextAppearance.AppCompat.Body1"/>
@@ -3469,7 +3469,7 @@
     <style name="TextAppearance.Widget.AppCompat.ExpandedMenu.Item" parent="Base.TextAppearance.Widget.AppCompat.ExpandedMenu.Item"/>
     <style name="TextAppearance.Widget.AppCompat.Toolbar.Subtitle" parent="Base.TextAppearance.Widget.AppCompat.Toolbar.Subtitle"/>
     <style name="TextAppearance.Widget.AppCompat.Toolbar.Title" parent="Base.TextAppearance.Widget.AppCompat.Toolbar.Title"/>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="TextViewStyle" parent="@android:style/Widget.TextView">
         <item name="android:textColor">@color/font_value</item>
@@ -3487,7 +3487,7 @@
         <item name="android:textViewStyle">@style/TextViewStyle</item>
         <item name="android:textColorLink">@color/link_color</item>
     </style>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <style name="Theme.AppCompat" parent="Base.Theme.AppCompat"/>
     <style name="Theme.AppCompat.CompactMenu" parent="Base.Theme.AppCompat.CompactMenu"/>
@@ -3505,7 +3505,7 @@
         <item name="windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
     </style>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="Theme.Light.CustomDialog" parent="@android:style/Theme.Light.NoTitleBar">
         <item name="android:windowBackground">@drawable/transparent</item>
@@ -3529,19 +3529,19 @@
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:windowSoftInputMode">adjustPan</item>
     </style>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <style name="ThemeOverlay.AppCompat" parent="Base.ThemeOverlay.AppCompat"/>
     <style name="ThemeOverlay.AppCompat.ActionBar" parent="Base.ThemeOverlay.AppCompat.ActionBar"/>
     <style name="ThemeOverlay.AppCompat.Dark" parent="Base.ThemeOverlay.AppCompat.Dark"/>
     <style name="ThemeOverlay.AppCompat.Dark.ActionBar" parent="Base.ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="ThemeOverlay.AppCompat.Light" parent="Base.ThemeOverlay.AppCompat.Light"/>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values/themes.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/themes.xml -->
     <eat-comment/>
     <style name="WeiyuAppTheme" parent="AppBaseTheme">
 
     </style>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <style name="Widget.AppCompat.ActionBar" parent="Base.Widget.AppCompat.ActionBar"/>
     <style name="Widget.AppCompat.ActionBar.Solid" parent="Base.Widget.AppCompat.ActionBar.Solid"/>
