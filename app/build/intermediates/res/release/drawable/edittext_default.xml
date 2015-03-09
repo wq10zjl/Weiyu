@@ -7,4 +7,4 @@
     <item android:state_enabled="false" android:drawable="@drawable/edittext_normal_normal" />
     <item android:state_enabled="true" android:drawable="@drawable/edittext_normal_normal" />
 </selector>
-<!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/drawable/edittext_default.xml -->
+<!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/drawable/edittext_default.xml -->

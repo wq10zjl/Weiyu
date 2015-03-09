@@ -13,4 +13,4 @@
         android:drawable="@drawable/rc_to_play_voice_three"
         android:duration="300"/>
 
-</animation-list><!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/drawable/rc_send_voice_anim.xml -->
+</animation-list><!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/drawable/rc_send_voice_anim.xml -->

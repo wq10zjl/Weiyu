@@ -26,4 +26,4 @@
         android:paddingBottom="@dimen/px_to_dip_20"
         android:orientation="horizontal"/>
 
-</FrameLayout><!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/layout/rc_view_emotion.xml -->
+</FrameLayout><!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/layout/rc_view_emotion.xml -->

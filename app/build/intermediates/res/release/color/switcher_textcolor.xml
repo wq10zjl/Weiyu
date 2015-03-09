@@ -4,4 +4,4 @@
     <item android:state_selected="true" android:color="@color/white" />
     <item android:color="#66ffffff" />
 </selector>
-<!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/color/switcher_textcolor.xml -->
+<!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/color/switcher_textcolor.xml -->

@@ -25,4 +25,4 @@
         app:pinned_item="@layout/rc_pinned_item"
         app:pinned_item_array="@array/rc_search_letters" />
 
-</RelativeLayout><!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/layout/rc_fragment_friend_list.xml -->
+</RelativeLayout><!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/layout/rc_fragment_friend_list.xml -->

@@ -31,4 +31,4 @@
         android:layout_toRightOf="@+id/header_spinner_htv_text"
         android:scaleType="centerInside"
         android:src="@drawable/ic_topbar_dropdown_arrow" />
-</RelativeLayout><!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/layout/common_headerbar_spinner.xml -->
+</RelativeLayout><!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/layout/common_headerbar_spinner.xml -->

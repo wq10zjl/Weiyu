@@ -4,4 +4,4 @@
     <item android:state_enabled="true" android:state_checked="true" android:drawable="@drawable/bg_tabselector2_center_select" />
     <item android:state_enabled="true" android:state_checked="false" android:drawable="@drawable/bg_tabselector2_center_normal" />
 </selector>
-<!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/drawable/bg_tab_center.xml -->
+<!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/drawable/bg_tab_center.xml -->

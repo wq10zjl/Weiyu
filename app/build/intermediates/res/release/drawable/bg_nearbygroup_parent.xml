@@ -4,4 +4,4 @@
     <item android:state_pressed="true" android:drawable="@color/bg_sitespan_press" />
     <item android:drawable="@color/bg_sitespan" />
 </selector>
-<!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/drawable/bg_nearbygroup_parent.xml -->
+<!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/drawable/bg_nearbygroup_parent.xml -->

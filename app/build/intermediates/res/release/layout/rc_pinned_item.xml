@@ -7,4 +7,4 @@
     android:paddingRight="3dp"
     android:textColor="@color/rc_switch_text_selector"
     android:textSize="12sp" />
-<!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/layout/rc_pinned_item.xml -->
+<!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/layout/rc_pinned_item.xml -->

@@ -6,4 +6,4 @@
     <item android:state_enabled="false" android:drawable="@drawable/btn_big_submit_disable" />
     <item android:drawable="@drawable/btn_big_submit_normal" />
 </selector>
-<!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/drawable/btn_default_submit.xml -->
+<!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/drawable/btn_default_submit.xml -->

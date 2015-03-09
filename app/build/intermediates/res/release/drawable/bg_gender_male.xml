@@ -4,4 +4,4 @@
     <solid android:color="@color/gender_male" />
     <corners android:radius="5dip" />
 </shape>
-<!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/drawable/bg_gender_male.xml -->
+<!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/drawable/bg_gender_male.xml -->

@@ -15,8 +15,8 @@
         android:shadowDx="0.0"
         android:shadowDy="-1.0"
         android:shadowRadius="1.0"
-        android:text="发现"
+        android:text="更多"
         android:textColor="@color/maintab_text_color"
         android:textSize="11sp" />
 
-</RelativeLayout><!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/layout/common_bottombar_tab_explore.xml -->
+</RelativeLayout><!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/layout/common_bottombar_tab_explore.xml -->

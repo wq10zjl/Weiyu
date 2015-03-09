@@ -4,4 +4,4 @@
     android:fromAlpha="1.0"
     android:interpolator="@android:anim/accelerate_interpolator"
     android:toAlpha="0.0" />
-<!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/anim/layout_alpha_out.xml -->
+<!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/anim/layout_alpha_out.xml -->

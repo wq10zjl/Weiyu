@@ -2,88 +2,88 @@
 <items version="2" >
 
     <item
-        jar="D:\AndroidStudioWorkSpace\Weiyu\app\libs\Rong_IMKit_v1_3_4.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="5322594f2a4fce439bc6a41c42a33fb4e782c0ec">
-        <dex dex="D:\AndroidStudioWorkSpace\Weiyu\app\build\intermediates\pre-dexed\debug\Rong_IMKit_v1_3_4-fedd93d9aa0a185c4372391b332aebcbb49ceaf2.jar" />
-    </item>
-    <item
-        jar="D:\AndroidStudioWorkSpace\Weiyu\app\build\intermediates\exploded-aar\com.github.dmytrodanylyk.android-process-button\library\1.0.3\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="d4f9afe8a7955c6b8322f63ced894a9e752eb31d">
-        <dex dex="D:\AndroidStudioWorkSpace\Weiyu\app\build\intermediates\pre-dexed\debug\classes-bd08aea9f3613c451655af6a99b7728b5c8ae261.jar" />
-    </item>
-    <item
-        jar="D:\AndroidStudioWorkSpace\Weiyu\app\libs\afinal_0.5.1_bin.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="ae398c74701392473b9cb488c76a92576d6f548c">
-        <dex dex="D:\AndroidStudioWorkSpace\Weiyu\app\build\intermediates\pre-dexed\debug\afinal_0.5.1_bin-e55b12dd76f0e641385925f875665b67676dcf26.jar" />
-    </item>
-    <item
-        jar="D:\AndroidStudioWorkSpace\Weiyu\app\build\intermediates\exploded-aar\in.srain.cube\ultra-ptr\1.0.8.1-SNAPSHOT\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="2c30f917e5fb4adaf4e734dbe00571744e83076a">
-        <dex dex="D:\AndroidStudioWorkSpace\Weiyu\app\build\intermediates\pre-dexed\debug\classes-8ca084c82f533559793739008a0dd81afd096b5d.jar" />
-    </item>
-    <item
-        jar="D:\AndroidStudioWorkSpace\Weiyu\app\libs\gdt_mob_release_v4.3.472.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="aba5f295352169cae62bd5040cf16e2b8afb4dc0">
-        <dex dex="D:\AndroidStudioWorkSpace\Weiyu\app\build\intermediates\pre-dexed\debug\gdt_mob_release_v4.3.472-d59b1aa7cd9004f759dc751ebaa9725c2d8988d9.jar" />
-    </item>
-    <item
-        jar="D:\AndroidStudioWorkSpace\Weiyu\app\libs\fastjson-1.1.45.android.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4d5140a0c8f5e4d0f263cac44dbac1019a908474">
-        <dex dex="D:\AndroidStudioWorkSpace\Weiyu\app\build\intermediates\pre-dexed\debug\fastjson-1.1.45.android-a80c15e1626661c210ebfa8e00198164fc541b42.jar" />
-    </item>
-    <item
-        jar="D:\AndroidStudioWorkSpace\Weiyu\app\libs\locSDK_5.01.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="8854f80a1a63f6348276dd5c8e96b9096784a513">
-        <dex dex="D:\AndroidStudioWorkSpace\Weiyu\app\build\intermediates\pre-dexed\debug\locSDK_5.01-3d38479459b6c67dfd3b72163e151c69a86cdab5.jar" />
-    </item>
-    <item
-        jar="D:\AndroidStudioWorkSpace\Weiyu\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jar="D:\GitHub\Weiyu\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="D:\AndroidStudioWorkSpace\Weiyu\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-6ea6db482b7cfd7a490d1beefd56da80f334f09f.jar" />
+        <dex dex="D:\GitHub\Weiyu\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-1aa0c69de2b566fd16b500befd2ff0aedeb20e11.jar" />
     </item>
     <item
-        jar="D:\AndroidStudioWorkSpace\Weiyu\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
+        jar="D:\GitHub\Weiyu\app\build\intermediates\exploded-aar\in.srain.cube\ultra-ptr\1.0.8.1-SNAPSHOT\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="D:\AndroidStudioWorkSpace\Weiyu\app\build\intermediates\pre-dexed\debug\classes-b43e565c292f7dfbcc4cf1c944e713ac081155f1.jar" />
+        sha1="2c30f917e5fb4adaf4e734dbe00571744e83076a">
+        <dex dex="D:\GitHub\Weiyu\app\build\intermediates\pre-dexed\debug\classes-49232b72dfbdeb9b9f49b81ff431b2abeb7b9310.jar" />
     </item>
     <item
-        jar="D:\AndroidStudioWorkSpace\Weiyu\app\libs\commons-codec-1.4.jar"
+        jar="D:\GitHub\Weiyu\app\libs\commons-codec-1.4.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="4216af16d38465bbab0f3dff8efa14204f7a399a">
-        <dex dex="D:\AndroidStudioWorkSpace\Weiyu\app\build\intermediates\pre-dexed\debug\commons-codec-1.4-2b6beea3b1bac0d5b6635ef6fa91fea4dec25753.jar" />
+        <dex dex="D:\GitHub\Weiyu\app\build\intermediates\pre-dexed\debug\commons-codec-1.4-396df325137ab53585371518c125bac1cbf4430a.jar" />
+    </item>
+    <item
+        jar="D:\GitHub\Weiyu\app\libs\Rong_IMKit_v1_3_4.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="5322594f2a4fce439bc6a41c42a33fb4e782c0ec">
+        <dex dex="D:\GitHub\Weiyu\app\build\intermediates\pre-dexed\debug\Rong_IMKit_v1_3_4-0d69bf4042b532ccd2d750865079e94fec1f2d56.jar" />
+    </item>
+    <item
+        jar="D:\GitHub\Weiyu\app\libs\fastjson-1.1.45.android.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4d5140a0c8f5e4d0f263cac44dbac1019a908474">
+        <dex dex="D:\GitHub\Weiyu\app\build\intermediates\pre-dexed\debug\fastjson-1.1.45.android-bca6ba01e0d984b3751447cb7b480efcdfd2b6a5.jar" />
+    </item>
+    <item
+        jar="D:\GitHub\Weiyu\app\build\intermediates\exploded-aar\com.github.dmytrodanylyk.android-process-button\library\1.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d4f9afe8a7955c6b8322f63ced894a9e752eb31d">
+        <dex dex="D:\GitHub\Weiyu\app\build\intermediates\pre-dexed\debug\classes-cf36a2e086ac0012746d7949ff0b5e3c76757a6b.jar" />
     </item>
     <item
         jar="W:\Users\songyouwei\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="D:\AndroidStudioWorkSpace\Weiyu\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-83c3e9582323603dae128b4e3e5b59441e09096b.jar" />
+        <dex dex="D:\GitHub\Weiyu\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-83c3e9582323603dae128b4e3e5b59441e09096b.jar" />
     </item>
     <item
-        jar="D:\AndroidStudioWorkSpace\Weiyu\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jar="D:\GitHub\Weiyu\app\libs\Baidu_MobAds_SDK.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="91bdd3a71c5bb222db4b7a9685ed8583813bc4b0">
+        <dex dex="D:\GitHub\Weiyu\app\build\intermediates\pre-dexed\debug\Baidu_MobAds_SDK-06eac9af36d1a8016cb1e63fa3044c8a244927ef.jar" />
+    </item>
+    <item
+        jar="D:\GitHub\Weiyu\app\libs\afinal_0.5.1_bin.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="ae398c74701392473b9cb488c76a92576d6f548c">
+        <dex dex="D:\GitHub\Weiyu\app\build\intermediates\pre-dexed\debug\afinal_0.5.1_bin-42a0f02df455e2cf5fcd7c74054cf91fb83fafa8.jar" />
+    </item>
+    <item
+        jar="D:\GitHub\Weiyu\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="D:\AndroidStudioWorkSpace\Weiyu\app\build\intermediates\pre-dexed\debug\classes-6c58dba7fda3f43f651666bac34fb1de9ef86016.jar" />
+        <dex dex="D:\GitHub\Weiyu\app\build\intermediates\pre-dexed\debug\classes-8214f3a4a8ff2b4ffc20d79ea784e71446df4d3b.jar" />
+    </item>
+    <item
+        jar="D:\GitHub\Weiyu\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="D:\GitHub\Weiyu\app\build\intermediates\pre-dexed\debug\classes-2607faaecddd8e90a6c53d08c1fb680ef6b2004a.jar" />
+    </item>
+    <item
+        jar="D:\GitHub\Weiyu\app\libs\locSDK_5.01.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="8854f80a1a63f6348276dd5c8e96b9096784a513">
+        <dex dex="D:\GitHub\Weiyu\app\build\intermediates\pre-dexed\debug\locSDK_5.01-c22e533a8f273ab094906ed591a9bbf20943bfc1.jar" />
     </item>
 
 </items>

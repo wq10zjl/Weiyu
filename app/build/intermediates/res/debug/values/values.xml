@@ -2103,6 +2103,7 @@
     <string name="app_name">微遇</string>
     <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/api_constants.xml -->
     <eat-comment/>
+    <string name="baidu_mobad_appid">db3458d5</string>
     <string name="city_default">北京</string>
     <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values/rc_strings.xml -->
     <eat-comment/>

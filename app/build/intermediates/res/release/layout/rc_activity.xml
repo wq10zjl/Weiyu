@@ -15,4 +15,4 @@
         android:id="@id/rc_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-</LinearLayout><!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/layout/rc_activity.xml -->
+</LinearLayout><!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/layout/rc_activity.xml -->

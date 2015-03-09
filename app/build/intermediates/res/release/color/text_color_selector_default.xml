@@ -5,4 +5,4 @@
     <item android:state_selected="false" android:state_pressed="true" android:color="@color/text_press_color" />
     <item android:state_selected="true" android:color="@color/text_selected_color" />
 </selector>
-<!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/color/text_color_selector_default.xml -->
+<!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/color/text_color_selector_default.xml -->

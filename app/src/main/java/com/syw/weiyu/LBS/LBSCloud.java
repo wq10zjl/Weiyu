@@ -80,13 +80,23 @@ public class LBSCloud {
         params.put("userId", AppContext.getInstance().getUser().getUserId());
         params.put("latitude", AppContext.getInstance().getLocation().getLatitude());
         params.put("longitude", AppContext.getInstance().getLocation().getLongitude());
-        params.put("address", AppContext.getInstance().getLocation().getAddress());
-        //postSync
+        params.put("address",AppContext.getInstance().getLocation().getAddress());
+
+        Log.d("Weiyu","updateUserLocation params: "+params.getParamString());
+        //post
         String url = context.getString(R.string.url_update_poi);
         FinalHttp http = new FinalHttp();
-        http.postSync(url, params);
+        http.post(url, params, new AjaxCallBack<String>() {
+            @Override
+            public void onSuccess(String s) {
+                Log.d("Weiyu","updateUserLocation onSuccess: "+s);
+            }
 
-        Log.d("Weiyu","updateUserLocation");
+            @Override
+            public void onFailure(Throwable t, int errorNo, String strMsg) {
+                Log.d("Weiyu","updateUserLocation onFailure: "+strMsg);
+            }
+        });
     }
 
     /**
@@ -108,44 +118,44 @@ public class LBSCloud {
         }
     }
 
-    /**
-     * 本地检索
-     * @param q
-     * @param region
-     * @param tags
-     * @param sortby
-     * @param callBack
-     */
-    public void localSearch(String q,String region,String tags,String sortby,AjaxCallBack<String> callBack) {
-        String url = context.getString(R.string.url_local_search);
-
-        AjaxParams params = getInitializedParams();
-        params.put("q",q);
-        params.put("region",region);
-        params.put("tags",tags);
-        params.put("sortby",sortby);
-        params.put("page_size","30");
-        //get
-        FinalHttp http = new FinalHttp();
-        http.get(url, params, callBack);
-
-        Log.d("Weiyu","localSearch params: "+params.getParamString());
-    }
-
-    /**
-     * 检索本地（同城）
-     * 开始用户数量少，男女通吃，都显示
-     * @param callBack
-     */
-    public void localSearch(AjaxCallBack<String> callBack) {
-
-        localSearch(
-                null,//男女通吃
-                AppContext.getInstance().getLocation().getCity(),
-                null,
-                "distance:1",
-                callBack);
-    }
+//    /**
+//     * 本地检索
+//     * @param q
+//     * @param region
+//     * @param tags
+//     * @param sortby
+//     * @param callBack
+//     */
+//    public void localSearch(String q,String region,String tags,String sortby,AjaxCallBack<String> callBack) {
+//        String url = context.getString(R.string.url_local_search);
+//
+//        AjaxParams params = getInitializedParams();
+//        params.put("q",q);
+//        params.put("region",region);
+//        params.put("tags",tags);
+//        params.put("sortby",sortby);
+//        params.put("page_size","30");
+//        //get
+//        FinalHttp http = new FinalHttp();
+//        http.get(url, params, callBack);
+//
+//        Log.d("Weiyu","localSearch params: "+params.getParamString());
+//    }
+//
+//    /**
+//     * 检索本地（同城）
+//     * 开始用户数量少，男女通吃，都显示
+//     * @param callBack
+//     */
+//    public void localSearch(AjaxCallBack<String> callBack) {
+//
+//        localSearch(
+//                null,//男女通吃
+//                AppContext.getInstance().getLocation().getCity(),
+//                null,
+//                "distance:1",
+//                callBack);
+//    }
 
     /**
      * 周边检索
@@ -165,7 +175,7 @@ public class LBSCloud {
         params.put("tags",tags);
         params.put("radius",radius);
         params.put("sortby",sortby);
-        params.put("page_size","30");
+        params.put("page_size","50");
         //get
         FinalHttp http = new FinalHttp();
         http.get(url, params, callBack);

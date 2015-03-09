@@ -17,4 +17,4 @@
         layout="@layout/include_loading_indicator"
         android:visibility="visible" />
 
-</RelativeLayout><!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/layout/include_dialog_web.xml -->
+</RelativeLayout><!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/layout/include_dialog_web.xml -->

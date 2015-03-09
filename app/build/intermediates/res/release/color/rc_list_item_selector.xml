@@ -9,4 +9,4 @@
     <!-- Pressed -->
     <item android:drawable="@color/rc_list_item_hover_color" android:state_pressed="true"/>
 
-</selector><!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/color/rc_list_item_selector.xml -->
+</selector><!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/color/rc_list_item_selector.xml -->

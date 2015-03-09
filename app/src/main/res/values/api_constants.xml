@@ -29,7 +29,10 @@
     <string name="district_default">东城区</string>
     <string name="longitude_default">116.4038740000</string>
     <string name="latitude_default">39.9148890000</string>
-    
+
+    <!--百度联盟AD-->
+    <string name="baidu_mobad_appid">db3458d5</string>
+
     <!--多盟AD-->
     <string name="domob_publisher_id">56OJxWDYuN6xEe8UJo</string>
     <string name="domob_adid_splash">16TLeDJaApKp1NUOqe7cGRNz</string>

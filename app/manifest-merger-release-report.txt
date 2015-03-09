@@ -131,203 +131,207 @@ ADDED from AndroidManifest.xml:60:9
 		ADDED from AndroidManifest.xml:62:13
 	android:name
 		ADDED from AndroidManifest.xml:61:13
-service#com.qq.e.comm.DownloadService
-ADDED from AndroidManifest.xml:72:9
-	android:exported
-		ADDED from AndroidManifest.xml:74:13
+meta-data#BaiduMobAd_APP_ID
+ADDED from AndroidManifest.xml:67:9
 	android:name
-		ADDED from AndroidManifest.xml:73:13
-activity#com.qq.e.ads.AdActivity
-ADDED from AndroidManifest.xml:77:9
-	android:configChanges
-		ADDED from AndroidManifest.xml:79:13
-	android:theme
-		ADDED from AndroidManifest.xml:80:13
-	android:name
-		ADDED from AndroidManifest.xml:78:13
-meta-data#RONG_CLOUD_APP_KEY
-ADDED from AndroidManifest.xml:109:9
-	android:name
-		ADDED from AndroidManifest.xml:110:13
+		ADDED from AndroidManifest.xml:67:20
 	android:value
-		ADDED from AndroidManifest.xml:111:13
+		ADDED from AndroidManifest.xml:67:53
+meta-data#BaiduMobAd_APP_SEC
+ADDED from AndroidManifest.xml:68:9
+	android:name
+		ADDED from AndroidManifest.xml:68:20
+	android:value
+		ADDED from AndroidManifest.xml:68:54
+activity#com.baidu.mobads.AppActivity
+ADDED from AndroidManifest.xml:70:9
+	android:configChanges
+		ADDED from AndroidManifest.xml:71:19
+	android:name
+		ADDED from AndroidManifest.xml:70:19
+meta-data#RONG_CLOUD_APP_KEY
+ADDED from AndroidManifest.xml:116:9
+	android:name
+		ADDED from AndroidManifest.xml:117:13
+	android:value
+		ADDED from AndroidManifest.xml:118:13
 activity#io.rong.imkit.RongActivity
-ADDED from AndroidManifest.xml:113:9
+ADDED from AndroidManifest.xml:120:9
 	android:screenOrientation
-		ADDED from AndroidManifest.xml:115:13
+		ADDED from AndroidManifest.xml:122:13
 	android:name
-		ADDED from AndroidManifest.xml:114:13
+		ADDED from AndroidManifest.xml:121:13
 intent-filter#android.intent.action.VIEW+android.intent.category.DEFAULT
-ADDED from AndroidManifest.xml:116:13
+ADDED from AndroidManifest.xml:123:13
 action#android.intent.action.VIEW
-ADDED from AndroidManifest.xml:117:17
+ADDED from AndroidManifest.xml:124:17
 	android:name
-		ADDED from AndroidManifest.xml:117:25
+		ADDED from AndroidManifest.xml:124:25
 category#android.intent.category.DEFAULT
-ADDED from AndroidManifest.xml:119:17
+ADDED from AndroidManifest.xml:126:17
 	android:name
-		ADDED from AndroidManifest.xml:119:27
+		ADDED from AndroidManifest.xml:126:27
 data
-ADDED from AndroidManifest.xml:121:17
+ADDED from AndroidManifest.xml:128:17
 	android:host
-		ADDED from AndroidManifest.xml:122:21
+		ADDED from AndroidManifest.xml:129:21
 	android:pathPrefix
-		ADDED from AndroidManifest.xml:123:21
+		ADDED from AndroidManifest.xml:130:21
 	android:scheme
-		ADDED from AndroidManifest.xml:124:21
+		ADDED from AndroidManifest.xml:131:21
 activity#io.rong.imkit.RongSingleActivity
-ADDED from AndroidManifest.xml:157:9
+ADDED from AndroidManifest.xml:164:9
 	android:screenOrientation
-		ADDED from AndroidManifest.xml:160:13
+		ADDED from AndroidManifest.xml:167:13
 	android:name
-		ADDED from AndroidManifest.xml:158:13
+		ADDED from AndroidManifest.xml:165:13
 	android:launchMode
-		ADDED from AndroidManifest.xml:159:13
+		ADDED from AndroidManifest.xml:166:13
 activity#io.rong.imkit.RongSecActivity
-ADDED from AndroidManifest.xml:172:9
+ADDED from AndroidManifest.xml:179:9
 	android:screenOrientation
-		ADDED from AndroidManifest.xml:175:13
+		ADDED from AndroidManifest.xml:182:13
 	android:name
-		ADDED from AndroidManifest.xml:173:13
+		ADDED from AndroidManifest.xml:180:13
 	android:launchMode
-		ADDED from AndroidManifest.xml:174:13
+		ADDED from AndroidManifest.xml:181:13
 activity#io.rong.voipkit.activity.CallSideActivity
-ADDED from AndroidManifest.xml:187:9
+ADDED from AndroidManifest.xml:194:9
 	android:screenOrientation
-		ADDED from AndroidManifest.xml:189:13
+		ADDED from AndroidManifest.xml:196:13
 	android:name
-		ADDED from AndroidManifest.xml:188:13
+		ADDED from AndroidManifest.xml:195:13
 activity#io.rong.voipkit.activity.CalledSideActivity
-ADDED from AndroidManifest.xml:190:9
+ADDED from AndroidManifest.xml:197:9
 	android:screenOrientation
-		ADDED from AndroidManifest.xml:193:13
+		ADDED from AndroidManifest.xml:200:13
 	android:excludeFromRecents
-		ADDED from AndroidManifest.xml:192:13
+		ADDED from AndroidManifest.xml:199:13
 	android:name
-		ADDED from AndroidManifest.xml:191:13
+		ADDED from AndroidManifest.xml:198:13
 intent-filter#android.intent.category.DEFAULT+io.rong.voipkit.calledSideActivity.action
-ADDED from AndroidManifest.xml:194:13
+ADDED from AndroidManifest.xml:201:13
 action#io.rong.voipkit.calledSideActivity.action
-ADDED from AndroidManifest.xml:195:17
+ADDED from AndroidManifest.xml:202:17
 	android:name
-		ADDED from AndroidManifest.xml:195:25
+		ADDED from AndroidManifest.xml:202:25
 service#io.rong.imkit.service.RongIMService
-ADDED from AndroidManifest.xml:206:9
+ADDED from AndroidManifest.xml:213:9
 	android:priority
-		ADDED from AndroidManifest.xml:210:13
+		ADDED from AndroidManifest.xml:217:13
 	android:exported
-		ADDED from AndroidManifest.xml:209:13
+		ADDED from AndroidManifest.xml:216:13
 	android:enabled
-		ADDED from AndroidManifest.xml:208:13
+		ADDED from AndroidManifest.xml:215:13
 	android:name
-		ADDED from AndroidManifest.xml:207:13
+		ADDED from AndroidManifest.xml:214:13
 service#io.rong.imlib.push.PushService
-ADDED from AndroidManifest.xml:211:9
+ADDED from AndroidManifest.xml:218:9
 	android:process
-		ADDED from AndroidManifest.xml:213:13
+		ADDED from AndroidManifest.xml:220:13
 	android:name
-		ADDED from AndroidManifest.xml:212:13
+		ADDED from AndroidManifest.xml:219:13
 intent-filter#android.intent.category.DEFAULT+io.rong.push
-ADDED from AndroidManifest.xml:214:13
+ADDED from AndroidManifest.xml:221:13
 action#io.rong.push
-ADDED from AndroidManifest.xml:217:17
+ADDED from AndroidManifest.xml:224:17
 	android:name
-		ADDED from AndroidManifest.xml:217:25
+		ADDED from AndroidManifest.xml:224:25
 service#io.rong.imlib.push.CommandService
-ADDED from AndroidManifest.xml:220:9
+ADDED from AndroidManifest.xml:227:9
 	android:process
-		ADDED from AndroidManifest.xml:222:13
+		ADDED from AndroidManifest.xml:229:13
 	android:name
-		ADDED from AndroidManifest.xml:221:13
+		ADDED from AndroidManifest.xml:228:13
 intent-filter#android.intent.category.DEFAULT+io.rong.command
-ADDED from AndroidManifest.xml:223:13
+ADDED from AndroidManifest.xml:230:13
 action#io.rong.command
-ADDED from AndroidManifest.xml:226:17
+ADDED from AndroidManifest.xml:233:17
 	android:name
-		ADDED from AndroidManifest.xml:226:25
+		ADDED from AndroidManifest.xml:233:25
 receiver#io.rong.imlib.push.PushReceiver
-ADDED from AndroidManifest.xml:230:9
+ADDED from AndroidManifest.xml:237:9
 	android:process
-		ADDED from AndroidManifest.xml:232:13
+		ADDED from AndroidManifest.xml:239:13
 	android:name
-		ADDED from AndroidManifest.xml:231:13
+		ADDED from AndroidManifest.xml:238:13
 intent-filter#io.rong.imlib.action.push.heartbeat
-ADDED from AndroidManifest.xml:233:13
+ADDED from AndroidManifest.xml:240:13
 action#io.rong.imlib.action.push.heartbeat
-ADDED from AndroidManifest.xml:234:17
+ADDED from AndroidManifest.xml:241:17
 	android:name
-		ADDED from AndroidManifest.xml:234:25
+		ADDED from AndroidManifest.xml:241:25
 intent-filter#android.net.conn.CONNECTIVITY_CHANGE
-ADDED from AndroidManifest.xml:236:13
+ADDED from AndroidManifest.xml:243:13
 action#android.net.conn.CONNECTIVITY_CHANGE
-ADDED from AndroidManifest.xml:237:17
+ADDED from AndroidManifest.xml:244:17
 	android:name
-		ADDED from AndroidManifest.xml:237:25
+		ADDED from AndroidManifest.xml:244:25
 intent-filter#android.intent.action.BOOT_COMPLETED
-ADDED from AndroidManifest.xml:239:13
+ADDED from AndroidManifest.xml:246:13
 action#android.intent.action.BOOT_COMPLETED
-ADDED from AndroidManifest.xml:240:17
+ADDED from AndroidManifest.xml:247:17
 	android:name
-		ADDED from AndroidManifest.xml:240:25
+		ADDED from AndroidManifest.xml:247:25
 receiver#io.rong.imlib.push.PushMessageReceiver
-ADDED from AndroidManifest.xml:243:9
+ADDED from AndroidManifest.xml:250:9
 	android:name
-		ADDED from AndroidManifest.xml:243:19
+		ADDED from AndroidManifest.xml:250:19
 intent-filter#io.rong.push.message
-ADDED from AndroidManifest.xml:244:13
+ADDED from AndroidManifest.xml:251:13
 action#io.rong.push.message
-ADDED from AndroidManifest.xml:245:17
+ADDED from AndroidManifest.xml:252:17
 	android:name
-		ADDED from AndroidManifest.xml:245:25
+		ADDED from AndroidManifest.xml:252:25
 service#io.rong.imlib.RongService
-ADDED from AndroidManifest.xml:249:9
+ADDED from AndroidManifest.xml:256:9
 	android:name
-		ADDED from AndroidManifest.xml:249:18
+		ADDED from AndroidManifest.xml:256:18
 activity#com.syw.weiyu.activity.TestsActivity
-ADDED from AndroidManifest.xml:252:9
+ADDED from AndroidManifest.xml:259:9
 	android:label
-		ADDED from AndroidManifest.xml:254:13
+		ADDED from AndroidManifest.xml:261:13
 	android:name
-		ADDED from AndroidManifest.xml:253:13
+		ADDED from AndroidManifest.xml:260:13
 activity#com.syw.weiyu.activity.LauncherActivity
-ADDED from AndroidManifest.xml:258:9
+ADDED from AndroidManifest.xml:265:9
 	android:name
-		ADDED from AndroidManifest.xml:258:19
+		ADDED from AndroidManifest.xml:265:19
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from AndroidManifest.xml:259:13
+ADDED from AndroidManifest.xml:266:13
 action#android.intent.action.MAIN
-ADDED from AndroidManifest.xml:260:17
+ADDED from AndroidManifest.xml:267:17
 	android:name
-		ADDED from AndroidManifest.xml:260:25
+		ADDED from AndroidManifest.xml:267:25
 category#android.intent.category.LAUNCHER
-ADDED from AndroidManifest.xml:262:17
+ADDED from AndroidManifest.xml:269:17
 	android:name
-		ADDED from AndroidManifest.xml:262:27
+		ADDED from AndroidManifest.xml:269:27
 activity#com.syw.weiyu.activity.MainTabsActivity
-ADDED from AndroidManifest.xml:267:9
+ADDED from AndroidManifest.xml:274:9
 	android:name
-		ADDED from AndroidManifest.xml:267:19
+		ADDED from AndroidManifest.xml:274:19
 activity#com.syw.weiyu.activity.maintabs.NearByActivity
-ADDED from AndroidManifest.xml:270:9
+ADDED from AndroidManifest.xml:277:9
 	android:name
-		ADDED from AndroidManifest.xml:270:19
+		ADDED from AndroidManifest.xml:277:19
 activity#com.syw.weiyu.activity.maintabs.SessionListActivity
-ADDED from AndroidManifest.xml:273:9
+ADDED from AndroidManifest.xml:280:9
 	android:name
-		ADDED from AndroidManifest.xml:273:19
+		ADDED from AndroidManifest.xml:280:19
 activity#com.syw.weiyu.activity.maintabs.ExploreActivity
-ADDED from AndroidManifest.xml:276:9
+ADDED from AndroidManifest.xml:283:9
 	android:name
-		ADDED from AndroidManifest.xml:276:19
+		ADDED from AndroidManifest.xml:283:19
 activity#com.syw.weiyu.activity.LoginActivity
-ADDED from AndroidManifest.xml:279:9
+ADDED from AndroidManifest.xml:286:9
 	android:name
-		ADDED from AndroidManifest.xml:279:19
+		ADDED from AndroidManifest.xml:286:19
 activity#com.syw.weiyu.activity.ProfileActivity
-ADDED from AndroidManifest.xml:282:9
+ADDED from AndroidManifest.xml:289:9
 	android:name
-		ADDED from AndroidManifest.xml:282:19
+		ADDED from AndroidManifest.xml:289:19
 activity#com.syw.weiyu.activity.AboutInfoActivity
-ADDED from AndroidManifest.xml:285:9
+ADDED from AndroidManifest.xml:292:9
 	android:name
-		ADDED from AndroidManifest.xml:285:19
+		ADDED from AndroidManifest.xml:292:19

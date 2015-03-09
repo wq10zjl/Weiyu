@@ -4,4 +4,4 @@
     <solid android:color="@color/white" />
     <stroke android:width="1.0dip" android:color="@color/dialog_divider" />
 </shape>
-<!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/drawable/bg_dialog_simplelist.xml -->
+<!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/drawable/bg_dialog_simplelist.xml -->

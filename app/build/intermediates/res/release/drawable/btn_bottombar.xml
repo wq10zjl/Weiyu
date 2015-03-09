@@ -7,4 +7,4 @@
     <item android:state_enabled="true" android:drawable="@drawable/btn_bottombar_normal" />
     <item android:drawable="@drawable/btn_bottombar_disable" />
 </selector>
-<!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/drawable/btn_bottombar.xml -->
+<!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/drawable/btn_bottombar.xml -->

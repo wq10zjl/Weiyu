@@ -19,10 +19,11 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
-import com.qq.e.ads.AdListener;
-import com.qq.e.ads.AdRequest;
-import com.qq.e.ads.AdSize;
-import com.qq.e.ads.AdView;
+//import com.qq.e.ads.AdListener;
+//import com.qq.e.ads.AdRequest;
+//import com.qq.e.ads.AdSize;
+//import com.qq.e.ads.AdView;
+import com.baidu.mobads.AdView;
 import com.syw.weiyu.AppContext;
 import com.syw.weiyu.LBS.LBSCloud;
 import com.syw.weiyu.R;
@@ -56,9 +57,9 @@ public class NearByActivity extends FragmentActivity {
     SimpleAdapter adapter;
 
     //数据类型
-    private int dataType = TYPE_LOCAL;//默认为本地
-    private static final int TYPE_LOCAL = 0;
-    private static final int TYPE_NEARBY = 1;
+//    private int dataType = TYPE_NEARBY;//默认为附近
+//    private static final int TYPE_LOCAL = 0;
+//    private static final int TYPE_NEARBY = 1;
 
     PtrClassicFrameLayout mPtrFrame;
 
@@ -66,6 +67,11 @@ public class NearByActivity extends FragmentActivity {
 //    private AdBanner adBanner;
 //    private View adBannerView;
 
+    //Baidu Banner Ad
+    private AdView adView;
+    private RelativeLayout l;
+
+    //LBS callback
     AjaxCallBack<String> lbsCloudSearchCallback = new LBSCloudSearchCallback();
 
     @Override
@@ -73,12 +79,13 @@ public class NearByActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wy_activity_nearby);
 
-        initHeader();
+//        initHeader();
         initUltraPullToRefresh();
         initListView();
 
-//        prepareFeedsAd();
+        initBaiduBannerAd();
     }
+
 
     @Override
     protected void onResume() {
@@ -99,6 +106,10 @@ public class NearByActivity extends FragmentActivity {
         } else {
             setListViewAdapter();
         }
+
+        //显示banner广告
+        Log.d("Weiyu","showBannerAd");
+        showBaiduMobAdBannerAd();
     }
 
     @Override
@@ -111,30 +122,21 @@ public class NearByActivity extends FragmentActivity {
         super.onStop();
     }
 
+
     /**
-     * 初始化下拉刷新框架
+     * 初始化百度Banner广告
      */
-    private void initUltraPullToRefresh() {
-        mPtrFrame = (PtrClassicFrameLayout) findViewById(R.id.rotate_header_list_view_frame);
-        mPtrFrame.setLastUpdateTimeRelateObject(this);
-        mPtrFrame.setPtrHandler(new PtrHandler() {
-            @Override
-            public void onRefreshBegin(PtrFrameLayout frame) {
-                //显示feeds广告
-//                showFeedsAd();
-                //刷新列表数据
-                updateListData(dataType);
+    private void initBaiduBannerAd() {
+        l = (RelativeLayout)findViewById(R.id.banner_ad_container);
+        adView = new AdView(this);
+    }
 
-                //显示banner广告
-                Log.d("Weiyu","showBannerAd");
-                showGDTBannerAd();
-            }
-
-            @Override
-            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
-                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
-            }
-        });
+    /**
+     * 显示百度Banner广告
+     */
+    private void showBaiduMobAdBannerAd() {
+        l.removeAllViews();
+        l.addView(adView);
     }
 
 
@@ -204,53 +206,53 @@ public class NearByActivity extends FragmentActivity {
     /**
      * 显示Banner广告（腾讯广点通）
      */
-    private void showGDTBannerAd() {
-        RelativeLayout l = (RelativeLayout)findViewById(R.id.banner_ad_container);
-// 创建Banner广告AdView对象
-// appId : 在 http://e.qq.com/dev/ 能看到的app唯一字符串
-// posId : 在 http://e.qq.com/dev/ 生成的数字串，并非 appid 或者 appkey
-        AdView adv = new AdView(this, AdSize.BANNER, getString(R.string.gdt_app_id),getString(R.string.gdt_adid_banner));
-        l.addView(adv);
-// 广告请求数据，可以设置广告轮播时间，默认为30s
-        AdRequest adr = new AdRequest();
-//设置广告刷新时间，为30~120之间的数字，单位为s,0标识不自动刷新
-        adr.setRefresh(30);
-//在banner广告上展示关闭按钮
-        adr. setShowCloseBtn(true);
-//设置空广告和首次收到广告数据回调
-//调用fetchAd方法后会发起广告请求 */
-        adv.setAdListener(new AdListener() {
-
-            @Override
-            public void onNoAd() {
-                Log.i("Weiyu:","Banner AD LoadFail");
-            }
-
-            @Override
-            public void onBannerClosed() {
-                //仅在开启广点通广告关闭按钮时生效
-                Log.i("Weiyu:","Banner AD Closed");
-            }
-
-            @Override
-            public void onAdReceiv() {
-                Log.i("Weiyu:","Banner AD Ready to show");
-            }
-
-            @Override
-            public void onAdExposure() {
-                Log.i("Weiyu:","Banner AD Exposured");
-            }
-
-            @Override
-            public void onAdClicked() {
-                //Banner广告发生点击时回调，由于点击去重等因素不能保证回调数量与联盟最终统计数量一致
-                Log.i("Weiyu:","Banner AD Clicked");
-            }
-        });
-/* 发起广告请求，收到广告数据后会展示数据 */
-        adv.fetchAd(adr);
-    }
+//    private void showGDTBannerAd() {
+//        RelativeLayout l = (RelativeLayout)findViewById(R.id.banner_ad_container);
+//// 创建Banner广告AdView对象
+//// appId : 在 http://e.qq.com/dev/ 能看到的app唯一字符串
+//// posId : 在 http://e.qq.com/dev/ 生成的数字串，并非 appid 或者 appkey
+//        AdView adv = new AdView(this, AdSize.BANNER, getString(R.string.gdt_app_id),getString(R.string.gdt_adid_banner));
+//        l.addView(adv);
+//// 广告请求数据，可以设置广告轮播时间，默认为30s
+//        AdRequest adr = new AdRequest();
+////设置广告刷新时间，为30~120之间的数字，单位为s,0标识不自动刷新
+//        adr.setRefresh(30);
+////在banner广告上展示关闭按钮
+//        adr. setShowCloseBtn(true);
+////设置空广告和首次收到广告数据回调
+////调用fetchAd方法后会发起广告请求 */
+//        adv.setAdListener(new AdListener() {
+//
+//            @Override
+//            public void onNoAd() {
+//                Log.i("Weiyu:","Banner AD LoadFail");
+//            }
+//
+//            @Override
+//            public void onBannerClosed() {
+//                //仅在开启广点通广告关闭按钮时生效
+//                Log.i("Weiyu:","Banner AD Closed");
+//            }
+//
+//            @Override
+//            public void onAdReceiv() {
+//                Log.i("Weiyu:","Banner AD Ready to show");
+//            }
+//
+//            @Override
+//            public void onAdExposure() {
+//                Log.i("Weiyu:","Banner AD Exposured");
+//            }
+//
+//            @Override
+//            public void onAdClicked() {
+//                //Banner广告发生点击时回调，由于点击去重等因素不能保证回调数量与联盟最终统计数量一致
+//                Log.i("Weiyu:","Banner AD Clicked");
+//            }
+//        });
+///* 发起广告请求，收到广告数据后会展示数据 */
+//        adv.fetchAd(adr);
+//    }
 
 
     /**
@@ -272,20 +274,45 @@ public class NearByActivity extends FragmentActivity {
 //    }
 
 
+
     /**
-     * 更新列表数据
-     * @param type 数据类型
+     * 初始化下拉刷新框架
      */
-    private void updateListData(int type) {
-        switch (type) {
-            case TYPE_LOCAL:
-                LBSCloud.getInstance().localSearch(lbsCloudSearchCallback);
-                break;
-            case TYPE_NEARBY:
+    private void initUltraPullToRefresh() {
+        mPtrFrame = (PtrClassicFrameLayout) findViewById(R.id.rotate_header_list_view_frame);
+        mPtrFrame.setLastUpdateTimeRelateObject(this);
+        mPtrFrame.setPtrHandler(new PtrHandler() {
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                //显示feeds广告
+//                showFeedsAd();
+
+                //刷新列表数据
+//                updateListData(dataType);
                 LBSCloud.getInstance().nearbySearch(lbsCloudSearchCallback);
-                break;
-        }
+            }
+
+            @Override
+            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
+            }
+        });
     }
+
+//    /**
+//     * 更新列表数据
+//     * @param type 数据类型
+//     */
+//    private void updateListData(int type) {
+//        switch (type) {
+//            case TYPE_LOCAL:
+//                LBSCloud.getInstance().localSearch(lbsCloudSearchCallback);
+//                break;
+//            case TYPE_NEARBY:
+//                LBSCloud.getInstance().nearbySearch(lbsCloudSearchCallback);
+//                break;
+//        }
+//    }
 
     /**
      * 初始化列表视图
@@ -303,46 +330,46 @@ public class NearByActivity extends FragmentActivity {
     }
 
     /**
-     * 初始化头部视图
+     * 初始化头部视图（已作废，换成只显示附近）
      */
-    private void initHeader() {
-        //切换按钮
-        SwitcherButton switcherButton = (SwitcherButton) findViewById(R.id.header_sb_rightview_switcherbutton);
-        //游标
-        final LinearLayout switcherTab = (LinearLayout) findViewById(R.id.switcher_layout_tab);
-
-        //设置切换按钮文本
-        TextView leftTextView = (TextView) findViewById(R.id.switcher_tv_left_text);
-        TextView rightTextView = (TextView) findViewById(R.id.switcher_tv_right_text);
-        leftTextView.setText("同城");
-        rightTextView.setText("附近");
-
-        //监听切换按钮
-        switcherButton.setOnSwitcherButtonClickListener(new SwitcherButton.onSwitcherButtonClickListener() {
-            @Override
-            public void onClick(SwitcherButton.SwitcherButtonState state) {
-                FragmentTransaction ft = getSupportFragmentManager()
-                        .beginTransaction();
-                ft.setCustomAnimations(R.anim.fragment_fadein,
-                        R.anim.fragment_fadeout);
-                switch (state) {
-                    case LEFT:
-                        //左边是“同城”
-                        switcherTab.setGravity(Gravity.LEFT);
-                        dataType = TYPE_LOCAL;
-                        mPtrFrame.autoRefresh();
-                        break;
-
-                    case RIGHT:
-                        //右边是“附近”
-                        switcherTab.setGravity(Gravity.RIGHT);
-                        dataType = TYPE_NEARBY;
-                        mPtrFrame.autoRefresh();
-                        break;
-                }
-            }
-        });
-    }
+//    private void initHeader() {
+//        //切换按钮
+//        SwitcherButton switcherButton = (SwitcherButton) findViewById(R.id.header_sb_rightview_switcherbutton);
+//        //游标
+//        final LinearLayout switcherTab = (LinearLayout) findViewById(R.id.switcher_layout_tab);
+//
+//        //设置切换按钮文本
+//        TextView leftTextView = (TextView) findViewById(R.id.switcher_tv_left_text);
+//        TextView rightTextView = (TextView) findViewById(R.id.switcher_tv_right_text);
+//        leftTextView.setText("同城");
+//        rightTextView.setText("附近");
+//
+//        //监听切换按钮
+//        switcherButton.setOnSwitcherButtonClickListener(new SwitcherButton.onSwitcherButtonClickListener() {
+//            @Override
+//            public void onClick(SwitcherButton.SwitcherButtonState state) {
+//                FragmentTransaction ft = getSupportFragmentManager()
+//                        .beginTransaction();
+//                ft.setCustomAnimations(R.anim.fragment_fadein,
+//                        R.anim.fragment_fadeout);
+//                switch (state) {
+//                    case LEFT:
+//                        //左边是“同城”
+//                        switcherTab.setGravity(Gravity.LEFT);
+//                        dataType = TYPE_LOCAL;
+//                        mPtrFrame.autoRefresh();
+//                        break;
+//
+//                    case RIGHT:
+//                        //右边是“附近”
+//                        switcherTab.setGravity(Gravity.RIGHT);
+//                        dataType = TYPE_NEARBY;
+//                        mPtrFrame.autoRefresh();
+//                        break;
+//                }
+//            }
+//        });
+//    }
 
     /**
      * 设置列表视图适配器
@@ -388,14 +415,17 @@ public class NearByActivity extends FragmentActivity {
                     map.put("lv_tv_info", poi.getString("address")+"【爱好:"+poi.getString("hobby")+"】");
                     usermapList.add(map);
 
-                    //users(only has userId&name)
+                    //users(only has userId&name&gender)
                     User user = new User();
                     user.setUserId(poi.getString("userId"));
                     user.setName(poi.getString("name"));
+                    user.setGender(poi.getString("gender"));
                     userList.add(user);
 
                     //save userId-name[k-v value] cache
-                    ACache.get(NearByActivity.this).put(user.getUserId(),user.getName());
+//                    ACache.get(NearByActivity.this).put(user.getUserId(),user.getName());
+                    //save userId-json[k-v value] cache
+                    ACache.get(NearByActivity.this).put(user.getUserId(),JSON.toJSONString(user));
 
                     //save result lists into ram
                     AppContext.getInstance().setUsermapList(usermapList);

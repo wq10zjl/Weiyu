@@ -4,4 +4,4 @@
     <item android:state_selected="true" android:color="@android:color/darker_gray"/>
     <item android:state_selected="false" android:color="@android:color/black"/>
 
-</selector><!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/color/rc_switch_text_selector.xml -->
+</selector><!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/color/rc_switch_text_selector.xml -->

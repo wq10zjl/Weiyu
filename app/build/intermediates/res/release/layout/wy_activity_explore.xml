@@ -6,35 +6,35 @@
         android:layout_width="fill_parent"
         android:layout_height="42dip"/>
 
-    <RelativeLayout
-        android:id="@+id/explore_item_appwall"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="58dip"
-        android:padding="8dip">
-        <!--android:background="@drawable/wy_single_item"        -->
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/explore_item_appwall"-->
+        <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="58dip"-->
+        <!--android:padding="8dip">-->
+        <!--&lt;!&ndash;android:background="@drawable/wy_single_item"        &ndash;&gt;-->
 
-        <ImageView
-            android:id="@+id/lv_icon_portrait"
-            android:layout_width="62dip"
-            android:layout_height="fill_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentTop="true"
-            android:src="@drawable/wy_icon_appwall"/>
+        <!--<ImageView-->
+            <!--android:id="@+id/lv_icon_portrait"-->
+            <!--android:layout_width="62dip"-->
+            <!--android:layout_height="fill_parent"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--android:src="@drawable/wy_icon_appwall"/>-->
 
-        <TextView
-            android:id="@+id/lv_tv_name"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignWithParentIfMissing="true"
-            android:layout_toRightOf="@id/lv_icon_portrait"
-            android:gravity="center_vertical"
-            android:text="精品游戏和应用"
-            android:textSize="@dimen/px_to_dip_36"/>
+        <!--<TextView-->
+            <!--android:id="@+id/lv_tv_name"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="fill_parent"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--android:layout_alignWithParentIfMissing="true"-->
+            <!--android:layout_toRightOf="@id/lv_icon_portrait"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:text="精品游戏和应用"-->
+            <!--android:textSize="@dimen/px_to_dip_36"/>-->
 
-    </RelativeLayout>
+    <!--</RelativeLayout>-->
 
     <ImageView
         android:layout_width="fill_parent"
@@ -67,7 +67,7 @@
             android:layout_alignWithParentIfMissing="true"
             android:layout_toRightOf="@id/lv_icon_profile"
             android:gravity="center_vertical"
-            android:text="个人资料设置"
+            android:text="个人资料修改"
             android:textSize="@dimen/px_to_dip_36"/>
 
     </RelativeLayout>
@@ -113,4 +113,4 @@
         android:src="@drawable/wy_bg_cell_divider_line"/>
 
 </LinearLayout>
-<!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/layout/wy_activity_explore.xml -->
+<!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/layout/wy_activity_explore.xml -->

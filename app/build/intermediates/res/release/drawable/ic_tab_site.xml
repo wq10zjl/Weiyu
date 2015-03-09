@@ -5,4 +5,4 @@
     <item android:state_selected="false" android:state_pressed="true" android:drawable="@drawable/ic_nav_2_normal" />
     <item android:state_selected="true" android:drawable="@drawable/ic_nav_2_active" />
 </selector>
-<!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/drawable/ic_tab_site.xml -->
+<!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/drawable/ic_tab_site.xml -->

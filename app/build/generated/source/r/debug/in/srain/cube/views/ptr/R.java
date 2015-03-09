@@ -36,15 +36,15 @@ public final class R {
 		public static final int cube_ptr_simple_loading = 0x7f03003b;
 	}
 	public static final class string {
-		public static final int cube_ptr_hours_ago = 0x7f0b0031;
-		public static final int cube_ptr_last_update = 0x7f0b0032;
-		public static final int cube_ptr_minutes_ago = 0x7f0b0033;
-		public static final int cube_ptr_pull_down = 0x7f0b0034;
-		public static final int cube_ptr_pull_down_to_refresh = 0x7f0b0035;
-		public static final int cube_ptr_refresh_complete = 0x7f0b0036;
-		public static final int cube_ptr_refreshing = 0x7f0b0037;
-		public static final int cube_ptr_release_to_refresh = 0x7f0b0038;
-		public static final int cube_ptr_seconds_ago = 0x7f0b0039;
+		public static final int cube_ptr_hours_ago = 0x7f0b0032;
+		public static final int cube_ptr_last_update = 0x7f0b0033;
+		public static final int cube_ptr_minutes_ago = 0x7f0b0034;
+		public static final int cube_ptr_pull_down = 0x7f0b0035;
+		public static final int cube_ptr_pull_down_to_refresh = 0x7f0b0036;
+		public static final int cube_ptr_refresh_complete = 0x7f0b0037;
+		public static final int cube_ptr_refreshing = 0x7f0b0038;
+		public static final int cube_ptr_release_to_refresh = 0x7f0b0039;
+		public static final int cube_ptr_seconds_ago = 0x7f0b003a;
 	}
 	public static final class styleable {
 		public static final int[] PtrClassicHeader = { 0x7f01004b };

@@ -4,4 +4,4 @@
     <item android:state_checked="true" android:color="@color/light_notes_color" />
     <item android:color="@color/white" />
 </selector>
-<!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/color/radiobutton_text_color.xml -->
+<!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/color/radiobutton_text_color.xml -->

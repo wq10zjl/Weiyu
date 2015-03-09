@@ -6,4 +6,4 @@
     <item android:state_focused="true" android:drawable="@color/background_undercard_press" />
     <item android:drawable="@color/transparent_background" />
 </selector>
-<!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/drawable/bglistitem_selector_feedcomments.xml -->
+<!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/drawable/bglistitem_selector_feedcomments.xml -->

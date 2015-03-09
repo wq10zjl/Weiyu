@@ -89,10 +89,10 @@
     <orderEntry type="library" exported="" name="support-annotations-21.0.3" level="project" />
     <orderEntry type="library" exported="" name="locSDK_5.01" level="project" />
     <orderEntry type="library" exported="" name="support-v4-21.0.3" level="project" />
+    <orderEntry type="library" exported="" name="Baidu_MobAds_SDK" level="project" />
     <orderEntry type="library" exported="" name="Rong_IMKit_v1_3_4" level="project" />
     <orderEntry type="library" exported="" name="fastjson-1.1.45.android" level="project" />
     <orderEntry type="library" exported="" name="afinal_0.5.1_bin" level="project" />
-    <orderEntry type="library" exported="" name="gdt_mob_release_v4.3.472" level="project" />
   </component>
 </module>
 

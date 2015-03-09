@@ -4,4 +4,4 @@
     <item android:state_pressed="true" android:drawable="@drawable/bg_card_inner_bottom_press" />
     <item android:drawable="@drawable/bg_card_inner_bottom_normal" />
 </selector>
-<!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/drawable/bg_card_inner_bottom.xml -->
+<!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/drawable/bg_card_inner_bottom.xml -->

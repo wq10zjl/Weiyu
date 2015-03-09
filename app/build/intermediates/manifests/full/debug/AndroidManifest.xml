@@ -62,23 +62,37 @@
             android:process=":remote" >
         </service>
 
+        <!-- Baidu Mob Union -->
+        <meta-data
+            android:name="BaiduMobAd_APP_ID"
+            android:value="@string/baidu_mobad_appid" />
+        <meta-data
+            android:name="BaiduMobAd_APP_SEC"
+            android:value="@string/baidu_mobad_appid" />
+
+        <activity
+            android:name="com.baidu.mobads.AppActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation" />
+
+        <!-- 广点通SDK 所需Service和Activity声明 -->
+        <!-- <service -->
+        <!-- android:name="com.qq.e.comm.DownloadService" -->
+        <!-- android:exported="false" > -->
+        <!-- </service> -->
+
+
+        <!-- <activity -->
+        <!-- android:name="com.qq.e.ads.AdActivity" -->
+        <!-- android:configChanges="keyboard|keyboardHidden|orientation" -->
+        <!-- android:theme="@android:style/Theme.Translucent" > -->
+        <!-- </activity> -->
+
+
         <!-- for 多盟SDK -->
         <!-- <activity -->
         <!-- android:name="cn.domob.android.ads.DmActivity" -->
         <!-- android:theme="@android:style/Theme.Translucent" /> -->
 
-
-        <!-- 广点通SDK 所需Service和Activity声明 -->
-        <service
-            android:name="com.qq.e.comm.DownloadService"
-            android:exported="false" >
-        </service>
-
-        <activity
-            android:name="com.qq.e.ads.AdActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation"
-            android:theme="@android:style/Theme.Translucent" >
-        </activity>
 
         <!-- For 豌豆荚 AdsSdk. -->
         <!-- <activity -->

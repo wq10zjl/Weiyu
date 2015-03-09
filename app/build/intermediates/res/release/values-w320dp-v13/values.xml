@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/values-w320dp/rc_dimens.xml -->
+    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values-w320dp/rc_dimens.xml -->
     <eat-comment/>
     <dimen name="rc_rich_text_icon_margin">15.00dp</dimen>
 </resources>

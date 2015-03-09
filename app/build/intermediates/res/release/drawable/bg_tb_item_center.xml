@@ -6,4 +6,4 @@
     <item android:state_selected="true" android:drawable="@drawable/bg_bottombar_center_press" />
     <item android:drawable="@drawable/bg_bottombar_center_normal" />
 </selector>
-<!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/drawable/bg_tb_item_center.xml -->
+<!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/drawable/bg_tb_item_center.xml -->

@@ -4,4 +4,4 @@
     android:shape="rectangle">
     <corners android:radius="@dimen/corner_radius" />
     <solid android:color="@color/green_complete" />
-</shape><!-- From: file:/C:/Work/android-projects/android-process-button/library/src/main/res/drawable/rect_complete.xml --><!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/build/intermediates/exploded-aar/com.github.dmytrodanylyk.android-process-button/library/1.0.3/res/drawable/rect_complete.xml -->
+</shape><!-- From: file:/C:/Work/android-projects/android-process-button/library/src/main/res/drawable/rect_complete.xml --><!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.github.dmytrodanylyk.android-process-button/library/1.0.3/res/drawable/rect_complete.xml -->

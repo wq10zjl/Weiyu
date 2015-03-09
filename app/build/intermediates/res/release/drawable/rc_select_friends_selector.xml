@@ -9,4 +9,4 @@
     <!-- Pressed -->
     <item android:drawable="@drawable/rc_select_friend_hover" android:state_pressed="true"/>
     <item android:drawable="@drawable/rc_select_friend_disable" android:state_enabled="false"/>
-</selector><!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/drawable/rc_select_friends_selector.xml -->
+</selector><!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/drawable/rc_select_friends_selector.xml -->

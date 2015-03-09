@@ -4,4 +4,4 @@
     <item android:state_selected="true" android:color="@color/maintab_text_selected_color" />
     <item android:color="@color/maintab_text_normal" />
 </selector>
-<!-- From: file:/D:/AndroidStudioWorkSpace/Weiyu/app/src/main/res/color/maintab_text_color.xml -->
+<!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/color/maintab_text_color.xml -->
