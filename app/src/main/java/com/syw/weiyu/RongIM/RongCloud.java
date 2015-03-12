@@ -71,7 +71,7 @@ public class RongCloud {
         params.put("userId",userId);
         params.put("name",name);
         params.put("portraitUri",portraitUri);
-
+        Log.d("Weiyu","getToken, params:"+params.getParamString());
         getSignedHttp().post(context.getString(R.string.url_user_gettoken), params, callback);
     }
 

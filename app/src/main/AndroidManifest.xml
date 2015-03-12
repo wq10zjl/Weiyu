@@ -115,7 +115,7 @@
         <!-- Begin Rong Cloud -->
         <meta-data
             android:name="RONG_CLOUD_APP_KEY"
-            android:value="pvxdm17jx5n8r" />
+            android:value="@string/rongcloud_app_key" />
 
         <activity
             android:name="io.rong.imkit.RongActivity"
