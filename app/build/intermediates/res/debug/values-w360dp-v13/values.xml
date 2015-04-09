@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- From: file:/D:/GitHub/Weiyu/app/src/main/res/values-w360dp/rc_dimens.xml -->
-    <eat-comment/>
-    <dimen name="rc_rich_text_icon_margin">25.00dp</dimen>
-    <!-- From: file:/D:/GitHub/Weiyu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values-w360dp/values.xml -->
-    <eat-comment/>
-    <integer name="abc_max_action_buttons">3</integer>
-</resources>
