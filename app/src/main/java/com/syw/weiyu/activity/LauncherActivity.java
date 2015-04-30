@@ -7,17 +7,15 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.widget.FrameLayout;
-import android.widget.Toast;
-
-//import com.qq.e.splash.SplashAd;
-//import com.qq.e.splash.SplashAdListener;
-//import com.qq.e.v2.constants.Constants;
-import com.baidu.mobads.SplashAd;
-import com.baidu.mobads.SplashAdListener;
+//import android.widget.FrameLayout;
+//
+//import com.baidu.mobads.SplashAd;
+//import com.baidu.mobads.SplashAdListener;
 import com.syw.weiyu.AppContext;
 import com.syw.weiyu.R;
 import com.syw.weiyu.RongIM.RongCloud;
+import com.syw.weiyu.ad.MoGo;
+import com.syw.weiyu.splash.WeiyuSplashListener;
 
 public class LauncherActivity extends Activity {
 
@@ -52,17 +50,12 @@ public class LauncherActivity extends Activity {
         if (AppContext.getInstance() != null) {
             mainPageHandler.sendEmptyMessage(1);
         } else {
+        //否则，初始化AppContext，并加载开屏广告
             /**
              * 初始化AppContext，读取并缓存运行时数据
              */
             AppContext.init(this);
             Log.d("Weiyu","AppContext.init(this)");
-
-            //2s后进入主页
-//            mainPageHandler.sendEmptyMessageDelayed(1, 2000);
-
-            //1.5s后再显示多盟开屏广告，广告时间3s
-//            initAndShowDomobSplashAd(1500,3000);
 
             //[1s]后加载腾讯开屏广告页
 //            new Handler() {
@@ -73,76 +66,119 @@ public class LauncherActivity extends Activity {
 //            }.sendEmptyMessageDelayed(1,1000);
 
             //[1s]后加载百度开屏广告页
-            new Handler() {
-                @Override
-                public void handleMessage(Message msg) {
-                    initAndShowBaiduSplashAd();
-                }
-            }.sendEmptyMessageDelayed(1,1000);
+//            new Handler() {
+//                @Override
+//                public void handleMessage(Message msg) {
+//                    initAndShowBaiduSplashAd();
+//                }
+//            }.sendEmptyMessageDelayed(1,1000);
+
+            showSplashAd();
+
         }
 
+    }
+
+    private void showSplashAd() {
+        //新用户就不加载开屏广告了
+        if (AppContext.getInstance().getUser() == null) {
+            mainPageHandler.sendEmptyMessageDelayed(1,2000);
+            return;
+        }
+        //[1s]后加载开屏广告页
+        new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                new MoGo(LauncherActivity.this).showSplashAd(new WeiyuSplashListener() {
+                    @Override
+                    public void onSplashClickAd(String s) {
+
+                    }
+
+                    @Override
+                    public void onSplashRealClickAd(String s) {
+
+                    }
+
+                    @Override
+                    public void onSplashError(String s) {
+//                onSplashClose();
+                    }
+
+                    @Override
+                    public void onSplashSucceed() {
+
+                    }
+
+                    @Override
+                    public void onSplashClose() {
+                        mainPageHandler.sendEmptyMessage(1);
+                    }
+                });
+            }
+        }.sendEmptyMessageDelayed(1,1000);
     }
 
     /**
      * 初始化并显示百度联盟开屏广告(实时开屏广告)
      */
-    private void initAndShowBaiduSplashAd() {
-        //准备展示开屏广告的容器
-        FrameLayout container = (FrameLayout) this
-                .findViewById(R.id.splashcontainer);
-        SplashAdListener listener=new SplashAdListener() {
-            @Override
-            public void onAdDismissed() {
-                Log.i("Weiyu", "RSplashAd onAdDismissed");
-                jumpWhenCanClick();// 跳转至您的应用主界面
-            }
-
-            @Override
-            public void onAdFailed(String arg0) {
-                Log.i("Weiyu", "RSplashAd onAdFailed："+arg0);
-                mainPageHandler.sendEmptyMessage(1);
-            }
-
-            @Override
-            public void onAdPresent() {
-                Log.i("Weiyu", "RSplashAd onAdPresent");
-            }
-
-            @Override
-            public void onAdClick() {
-                Log.i("Weiyu", "RSplashAd onAdClick");
-                //设置开屏可接受点击时，该回调可用
-            }
-        };
-        /**
-         * 默认开屏构造函数：
-         * new SplashAd(Context context, ViewGroup adsParent,
-         * 				SplashAdListener listener, SplashType splashType);
-         * 实时开屏默认接受点击，使用样例中的jumpWhenCanClick方法来跳转；
-         */
-//		new SplashAd(this, adsParent, listener, SplashType.REAL_TIME);
-        /**
-         * 实时开屏默认接受点击。如果想让开屏不接受点击，使用以下构造函数：
-         * new SplashAd(Context context, ViewGroup adsParent,
-         * 				SplashAdListener listener,String posId, boolean canClick, SplashType splashType);
-         * 因当前posId（广告位ID）需设置为空，故可使用如下代码进行创建：
-         */
-        new SplashAd(this, container, listener, "", true, SplashAd.SplashType.REAL_TIME);
-    }
-    /**
-     * 当设置开屏可点击时，需要等待跳转页面关闭后，再切换至您的主窗口。故此时需要增加waitingOnRestart判断。
-     * 另外，点击开屏还需要在onRestart中调用jumpWhenCanClick接口。
-     */
-    public boolean waitingOnRestart=false;
-    private void jumpWhenCanClick() {
-        Log.d("test", "this.hasWindowFocus():"+this.hasWindowFocus());
-        if(this.hasWindowFocus()||waitingOnRestart){
-            mainPageHandler.sendEmptyMessage(1);
-        }else{
-            waitingOnRestart=true;
-        }
-
-    }
+//    private void initAndShowBaiduSplashAd() {
+//        //准备展示开屏广告的容器
+//        FrameLayout container = (FrameLayout) this
+//                .findViewById(R.id.splashcontainer);
+//        SplashAdListener listener=new SplashAdListener() {
+//            @Override
+//            public void onAdDismissed() {
+//                Log.i("Weiyu", "RSplashAd onAdDismissed");
+//                jumpWhenCanClick();// 跳转至您的应用主界面
+//            }
+//
+//            @Override
+//            public void onAdFailed(String arg0) {
+//                Log.i("Weiyu", "RSplashAd onAdFailed："+arg0);
+//                mainPageHandler.sendEmptyMessage(1);
+//            }
+//
+//            @Override
+//            public void onAdPresent() {
+//                Log.i("Weiyu", "RSplashAd onAdPresent");
+//            }
+//
+//            @Override
+//            public void onAdClick() {
+//                Log.i("Weiyu", "RSplashAd onAdClick");
+//                //设置开屏可接受点击时，该回调可用
+//            }
+//        };
+//        /**
+//         * 默认开屏构造函数：
+//         * new SplashAd(Context context, ViewGroup adsParent,
+//         * 				SplashAdListener listener, SplashType splashType);
+//         * 实时开屏默认接受点击，使用样例中的jumpWhenCanClick方法来跳转；
+//         */
+////		new SplashAd(this, adsParent, listener, SplashType.REAL_TIME);
+//        /**
+//         * 实时开屏默认接受点击。如果想让开屏不接受点击，使用以下构造函数：
+//         * new SplashAd(Context context, ViewGroup adsParent,
+//         * 				SplashAdListener listener,String posId, boolean canClick, SplashType splashType);
+//         * 因当前posId（广告位ID）需设置为空，故可使用如下代码进行创建：
+//         */
+//        new SplashAd(this, container, listener, "", true, SplashAd.SplashType.REAL_TIME);
+//    }
+//    /**
+//     * 当设置开屏可点击时，需要等待跳转页面关闭后，再切换至您的主窗口。故此时需要增加waitingOnRestart判断。
+//     * 另外，点击开屏还需要在onRestart中调用jumpWhenCanClick接口。
+//     */
+//    public boolean waitingOnRestart=false;
+//    private void jumpWhenCanClick() {
+//        Log.d("test", "this.hasWindowFocus():"+this.hasWindowFocus());
+//        if(this.hasWindowFocus()||waitingOnRestart){
+//            mainPageHandler.sendEmptyMessage(1);
+//        }else{
+//            waitingOnRestart=true;
+//        }
+//
+//    }
 
     /**
      * 初始化并显示腾讯广点通开屏广告(只有实时开屏广告)

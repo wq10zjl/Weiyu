@@ -5,12 +5,13 @@ import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 //import com.qq.e.appwall.GdtAppwall;
-import com.baidu.mobads.IconsAd;
 import com.syw.weiyu.R;
-import com.syw.weiyu.activity.AboutInfoActivity;
-import com.syw.weiyu.activity.ProfileActivity;
+import com.syw.weiyu.activity.explore.AboutInfoActivity;
+import com.syw.weiyu.activity.explore.NearByActivity;
+import com.syw.weiyu.activity.explore.ProfileActivity;
 
 public class ExploreActivity extends FragmentActivity {
 
@@ -31,6 +32,14 @@ public class ExploreActivity extends FragmentActivity {
 //            }
 //        });
 
+        findViewById(R.id.explore_item_shuoshuo).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ExploreActivity.this, NearByActivity.class);
+                startActivity(intent);
+            }
+        });
+
         findViewById(R.id.explore_item_profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,5 +55,8 @@ public class ExploreActivity extends FragmentActivity {
                 startActivity(intent);
             }
         });
+
+        TextView tvTitle = (TextView) findViewById(R.id.header_tv_title);
+        tvTitle.setText("发现");
     }
 }

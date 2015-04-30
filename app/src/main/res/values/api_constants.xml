@@ -18,7 +18,8 @@
 
     <!--Baidu LBSyun-->
     <string name="lbsyun_ak">pzRrx7tXVcoAlxQRGAiMBfVq</string>
-    <string name="geotable_id">93391</string>
+    <string name="geotable_id_user">93391</string>
+    <string name="geotable_id_shuoshuo">99489</string>
     <string name="coord_type">3</string>
     <!--默认的“附近”检索的半径【开始先设置5000公里，基本可以覆盖整个中国任意两点】[300公里，大约是芜湖到上海的距离]-->
     <string name="default_radius">5000000</string>
@@ -29,6 +30,11 @@
     <string name="district_default">东城区</string>
     <string name="longitude_default">116.4038740000</string>
     <string name="latitude_default">39.9148890000</string>
+    <!--默认页大小-->
+    <string name="page_size_default">50</string>
+
+    <!--AdsMoGo-->
+    <string name="adsmogo_appid">5dc8eb0ca17f4663b43dcd7f811fba95</string>
 
     <!--百度联盟AD-->
     <string name="baidu_mobad_appid">db3458d5</string>

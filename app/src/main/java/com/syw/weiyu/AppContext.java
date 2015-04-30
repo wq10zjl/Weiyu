@@ -150,6 +150,20 @@ public final class AppContext {
     //这个UserList只放userId&name，用于开启聊天
     List<User> userList = new ArrayList<>();
 
+    /**
+     * 附近的说说视图中的数据
+     */
+    //用于视图适配器的mapList
+    List<HashMap<String, String>> shuoshuomapList = new ArrayList<>();
+
+    public List<HashMap<String, String>> getShuoshuomapList() {
+        return shuoshuomapList;
+    }
+
+    public void setShuoshuomapList(List<HashMap<String, String>> shuoshuomapList) {
+        this.shuoshuomapList = shuoshuomapList;
+    }
+
     public List<HashMap<String, Object>> getUsermapList() {
         return usermapList;
     }

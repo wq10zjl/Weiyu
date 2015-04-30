@@ -51,7 +51,7 @@
     <color name="header_btn_backgroud_press_color">#7f000000</color>
     <color name="actionbutton_divider_color">#997abae3</color>
     <color name="maintab_text_normal">#ffc1c1c1</color>
-    <color name="maintab_text_selected_color">#ffffffff</color>
+    <color name="maintab_text_selected_color">#ff000000</color>
     <color name="dropbar_backgroud_color">#ffececec</color>
     <color name="dropbar_text_color">#ff434343</color>
     <color name="notes_color">#ff777777</color>

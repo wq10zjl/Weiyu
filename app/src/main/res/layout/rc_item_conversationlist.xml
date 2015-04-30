@@ -114,7 +114,7 @@
         android:layout_height="1dp"
         android:layout_marginLeft="@dimen/px_to_dip_22"
         android:layout_marginRight="@dimen/px_to_dip_22"
-        android:background="#e4e4e4"
+        android:background="#bbbbbb"
         android:contentDescription="@string/content_description" />
 
 </LinearLayout>

@@ -8,10 +8,10 @@ import android.view.View;
 import android.widget.TabHost;
 
 import com.syw.weiyu.R;
-import com.syw.weiyu.RongIM.RongCloud;
 import com.syw.weiyu.activity.maintabs.ExploreActivity;
-import com.syw.weiyu.activity.maintabs.NearByActivity;
 import com.syw.weiyu.activity.maintabs.SessionListActivity;
+import com.syw.weiyu.activity.maintabs.ShuoshuoActivity;
+import com.syw.weiyu.util.WeiyuAppUpdateRemind;
 
 @SuppressWarnings("deprecation")
 public class MainTabsActivity extends TabActivity {
@@ -21,12 +21,18 @@ public class MainTabsActivity extends TabActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.activity_maintabs);
+		setContentView(R.layout.wy_activity_maintabs);
 		initViews();
 		initTabs();
+        
+        checkAppUpdate();
 	}
 
-	private void initViews() {
+    private void checkAppUpdate() {
+        new WeiyuAppUpdateRemind(this,this.getString(R.string.adsmogo_appid)).checkUpdate();
+    }
+
+    private void initViews() {
 		mTabHost = getTabHost();
 	}
 
@@ -34,16 +40,16 @@ public class MainTabsActivity extends TabActivity {
 		LayoutInflater inflater = LayoutInflater.from(MainTabsActivity.this);
 
         /**
-         * 附近
+         * 附近的说说
          */
         //底部指示器视图，上面图标下面文字
 		View nearbyView = inflater.inflate(
-				R.layout.common_bottombar_tab_nearby, null);
+				R.layout.common_bottombar_tab_nearby_shuoshuo, null);
 		TabHost.TabSpec nearbyTabSpec = mTabHost.newTabSpec(
-				NearByActivity.class.getName()).setIndicator(nearbyView);
+				ShuoshuoActivity.class.getName()).setIndicator(nearbyView);
         //设置上面的内容
 		nearbyTabSpec.setContent(new Intent(MainTabsActivity.this,
-				NearByActivity.class));
+                ShuoshuoActivity.class));
         //添加进去
 		mTabHost.addTab(nearbyTabSpec);
 
@@ -70,7 +76,6 @@ public class MainTabsActivity extends TabActivity {
         exploreTabSpec.setContent(new Intent(MainTabsActivity.this,
                 ExploreActivity.class));
         mTabHost.addTab(exploreTabSpec);
-
 
 	}
 }

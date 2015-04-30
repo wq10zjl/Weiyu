@@ -1,19 +1,15 @@
-package com.syw.weiyu.activity.maintabs;
+package com.syw.weiyu.activity.explore;
 
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -23,13 +19,12 @@ import com.alibaba.fastjson.JSONObject;
 //import com.qq.e.ads.AdRequest;
 //import com.qq.e.ads.AdSize;
 //import com.qq.e.ads.AdView;
-import com.baidu.mobads.AdView;
+//import com.baidu.mobads.AdView;
 import com.syw.weiyu.AppContext;
 import com.syw.weiyu.LBS.LBSCloud;
 import com.syw.weiyu.R;
 import com.syw.weiyu.entity.User;
 import com.syw.weiyu.util.ACache;
-import com.syw.weiyu.view.SwitcherButton;
 
 import net.tsz.afinal.http.AjaxCallBack;
 
@@ -68,8 +63,8 @@ public class NearByActivity extends FragmentActivity {
 //    private View adBannerView;
 
     //Baidu Banner Ad
-    private AdView adView;
-    private RelativeLayout l;
+//    private AdView adView;
+//    private RelativeLayout l;
 
     //LBS callback
     AjaxCallBack<String> lbsCloudSearchCallback = new LBSCloudSearchCallback();
@@ -78,19 +73,25 @@ public class NearByActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wy_activity_nearby);
+        findViewById(R.id.header_iv_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
 //        initHeader();
         initUltraPullToRefresh();
         initListView();
 
-        initBaiduBannerAd();
+//        initBaiduBannerAd();
     }
 
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.w("Weiyu","NearByActivity onResume");
+        Log.d("Weiyu","NearByActivity onResume");
 
         //读取缓存的lists
         usermapList = AppContext.getInstance().getUsermapList();
@@ -108,8 +109,8 @@ public class NearByActivity extends FragmentActivity {
         }
 
         //显示banner广告
-        Log.d("Weiyu","showBannerAd");
-        showBaiduMobAdBannerAd();
+//        Log.d("Weiyu","showBannerAd");
+//        showBaiduMobAdBannerAd();
     }
 
     @Override
@@ -123,21 +124,21 @@ public class NearByActivity extends FragmentActivity {
     }
 
 
-    /**
-     * 初始化百度Banner广告
-     */
-    private void initBaiduBannerAd() {
-        l = (RelativeLayout)findViewById(R.id.banner_ad_container);
-        adView = new AdView(this);
-    }
-
-    /**
-     * 显示百度Banner广告
-     */
-    private void showBaiduMobAdBannerAd() {
-        l.removeAllViews();
-        l.addView(adView);
-    }
+//    /**
+//     * 初始化百度Banner广告
+//     */
+//    private void initBaiduBannerAd() {
+//        l = (RelativeLayout)findViewById(R.id.banner_ad_container);
+//        adView = new AdView(this);
+//    }
+//
+//    /**
+//     * 显示百度Banner广告
+//     */
+//    private void showBaiduMobAdBannerAd() {
+//        l.removeAllViews();
+//        l.addView(adView);
+//    }
 
 
 //    /**
@@ -395,6 +396,7 @@ public class NearByActivity extends FragmentActivity {
 
         @Override
         public void onSuccess(String s) {
+            Log.d("Weiyu", " LBSCloud poi search return:" + s);
             //结束下拉刷新
             mPtrFrame.refreshComplete();
             //解析数据并存入
@@ -412,7 +414,7 @@ public class NearByActivity extends FragmentActivity {
                     HashMap<String, Object> map = new HashMap<String, Object>();
                     map.put("lv_icon_portrait", poi.getString("gender").equals("男")?R.drawable.wy_icon_male:R.drawable.wy_icon_female);//加入图片
                     map.put("lv_tv_name", poi.getString("name"));
-                    map.put("lv_tv_info", poi.getString("address")+"【爱好:"+poi.getString("hobby")+"】");
+                    map.put("lv_tv_info", poi.getString("address"));
                     usermapList.add(map);
 
                     //users(only has userId&name&gender)
@@ -434,11 +436,11 @@ public class NearByActivity extends FragmentActivity {
                 //设置适配器
                 setListViewAdapter();
             }
-            Log.d("Weiyu", " LBSCloud poi search return:" + s);
         }
 
         @Override
         public void onFailure(Throwable t, int errorNo, String strMsg) {
+            Log.d("Weiyu", " LBSCloud poi search failure:" + strMsg);
             //结束下拉刷新
             mPtrFrame.refreshComplete();
         }

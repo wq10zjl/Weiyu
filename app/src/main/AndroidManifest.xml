@@ -23,6 +23,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!-- 访问网络，网络定位需要上网 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- SD卡读取权限，用户写入离线定位数据 -->
@@ -52,6 +53,21 @@
         android:label="@string/app_name"
         android:theme="@style/RcTheme" >
 
+        <!-- MoGo MobAd -->
+        <!-- 声明Mogo的Activity -->
+        <activity
+            android:name="com.syw.weiyu.av.WeiyuWebView"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name" />
+        <!-- 注册Service，自主广告不交换广告的应用下载功能所需 -->
+        <service android:name="com.syw.weiyu.controller.service.UpdateService"
+                 android:exported="true"
+                 android:process=":remote" />
+        <!-- 注册Service，安装应用所用 -->
+        <service android:name="com.syw.weiyu.controller.service.CountService"
+                 android:exported="true"
+                 android:process=":remote" />
+
         <!-- Baidu LocSDK -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
@@ -64,23 +80,22 @@
         </service>
 
         <!--Baidu Mob Union-->
-        <meta-data android:name="BaiduMobAd_APP_ID" android:value="@string/baidu_mobad_appid" />
-        <meta-data android:name="BaiduMobAd_APP_SEC" android:value="@string/baidu_mobad_appid" />
-
+        <!--<meta-data android:name="BaiduMobAd_APP_ID" android:value="@string/baidu_mobad_appid" />-->
+        <!--<meta-data android:name="BaiduMobAd_APP_SEC" android:value="@string/baidu_mobad_appid" />-->
         <activity android:name="com.baidu.mobads.AppActivity"
                   android:configChanges="keyboard|keyboardHidden|orientation" />
 
-        <!-- 广点通SDK 所需Service和Activity声明 -->
-        <!--<service-->
-            <!--android:name="com.qq.e.comm.DownloadService"-->
-            <!--android:exported="false" >-->
-        <!--</service>-->
 
-        <!--<activity-->
-            <!--android:name="com.qq.e.ads.AdActivity"-->
-            <!--android:configChanges="keyboard|keyboardHidden|orientation"-->
-            <!--android:theme="@android:style/Theme.Translucent" >-->
-        <!--</activity>-->
+        <!-- 广点通SDK 所需Service和Activity声明 -->
+        <service
+            android:name="com.qq.e.comm.DownloadService"
+            android:exported="false" >
+        </service>
+        <activity
+            android:name="com.qq.e.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:theme="@android:style/Theme.Translucent" >
+        </activity>
 
         <!-- for 多盟SDK -->
         <!--<activity-->
@@ -274,7 +289,7 @@
         <activity android:name=".activity.MainTabsActivity" />
 
         <!-- 附近 -->
-        <activity android:name=".activity.maintabs.NearByActivity" />
+        <activity android:name=".activity.explore.NearByActivity" />
 
         <!-- 消息 -->
         <activity android:name=".activity.maintabs.SessionListActivity" />
@@ -286,10 +301,13 @@
         <activity android:name=".activity.LoginActivity" />
 
         <!-- 修改资料 -->
-        <activity android:name=".activity.ProfileActivity" />
+        <activity android:name=".activity.explore.ProfileActivity" />
 
         <!--关于信息-->
-        <activity android:name=".activity.AboutInfoActivity"/>
+        <activity android:name=".activity.explore.AboutInfoActivity"/>
+
+        <!--附近说说-->
+        <activity android:name=".activity.maintabs.ShuoshuoActivity"/>
 
     </application>
 

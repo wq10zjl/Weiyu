@@ -22,12 +22,10 @@ import net.tsz.afinal.http.AjaxCallBack;
  */
 public class LoginActivity extends ProfileBaseActivity {
     @Override
-    public void doOnClickWork() {
+    public void doOnClickWork(String userId, String name, String gender) {
         //注册or更新资料
-        userId = ((TelephonyManager)getSystemService(TELEPHONY_SERVICE)).getDeviceId();
-        name = String.valueOf(((EditText)findViewById(R.id.et_name)).getText());
         if (name.equals("")) name = "匿名";
-        final User user = new User(userId,name,gender,hobby,null,null,null);
+        final User user = new User(userId,name,gender,null,null,null);
         //拿token
         RongCloud.getInstance(LoginActivity.this).getToken(userId, name, null, new AjaxCallBack<String>() {
             @Override

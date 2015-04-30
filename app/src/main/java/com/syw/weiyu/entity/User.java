@@ -11,17 +11,15 @@ public class User implements Serializable {
     private String userId;
     private String name;
     private String gender;
-    private String hobby;
     private String tags;
     private String organization;
     private MLocation location;
 
     public User() {}
-    public User(String userId, String name, String gender, String hobby, String tags, String organization, MLocation location) {
+    public User(String userId, String name, String gender, String tags, String organization, MLocation location) {
         this.userId = userId;
         this.name = name;
         this.gender = gender;
-        this.hobby = hobby;
         this.tags = tags;
         this.organization = organization;
         this.location = location;
@@ -33,7 +31,6 @@ public class User implements Serializable {
                 "userId='" + userId + '\'' +
                 ", name='" + name + '\'' +
                 ", gender='" + gender + '\'' +
-                ", hobby='" + hobby + '\'' +
                 ", tags='" + tags + '\'' +
                 ", organization='" + organization + '\'' +
                 ", location=" + location +
@@ -70,14 +67,6 @@ public class User implements Serializable {
 
     public void setGender(String gender) {
         this.gender = gender;
-    }
-
-    public String getHobby() {
-        return hobby;
-    }
-
-    public void setHobby(String hobby) {
-        this.hobby = hobby;
     }
 
     public String getTags() {

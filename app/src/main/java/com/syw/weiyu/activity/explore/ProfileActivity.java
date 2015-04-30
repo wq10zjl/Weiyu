@@ -1,5 +1,6 @@
-package com.syw.weiyu.activity;
+package com.syw.weiyu.activity.explore;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -13,6 +14,7 @@ import com.syw.weiyu.AppContext;
 import com.syw.weiyu.LBS.LBSCloud;
 import com.syw.weiyu.R;
 import com.syw.weiyu.RongIM.RongCloud;
+import com.syw.weiyu.activity.ProfileBaseActivity;
 import com.syw.weiyu.entity.User;
 import com.syw.weiyu.util.ACache;
 
@@ -29,7 +31,6 @@ public class ProfileActivity extends ProfileBaseActivity {
         super.onCreate(savedInstanceState);
         //set back icon
         ImageView imageView = (ImageView) findViewById(R.id.header_iv_logo);
-        imageView.setImageResource(R.drawable.wy_icon_back);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,12 +46,10 @@ public class ProfileActivity extends ProfileBaseActivity {
     }
 
     @Override
-    public void doOnClickWork() {
+    public void doOnClickWork(String userId, String name, String gender) {
         Log.d("Weiyu","doOnClickWork");
-        userId = ((TelephonyManager)getSystemService(TELEPHONY_SERVICE)).getDeviceId();
-        name = String.valueOf(((EditText)findViewById(R.id.et_name)).getText());
         if (name.equals("")) name = "匿名";
-        final User newUser = new User(userId,name,gender,hobby,null,null,null);
+        final User newUser = new User(userId,name,gender,null,null,null);
 
         //在LBS云更新POI
         LBSCloud.getInstance().updateUserProfile(newUser,new AjaxCallBack<String>() {

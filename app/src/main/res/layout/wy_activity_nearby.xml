@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:background="#EEEEEE"
     android:orientation="vertical"
     android:id="@+id/nearby_layout_root"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -7,16 +8,16 @@
     android:layout_height="fill_parent">
 
     <include
-        android:id="@+id/nearby_header"
-        layout="@layout/wy_header_withoutswitcher"
+        android:id="@+id/shuoshuo_header"
+        layout="@layout/wy_header_withbackbtn"
         android:layout_width="fill_parent"
-        android:layout_height="42dip"/>
+        android:layout_height="wrap_content"/>
 
-    <RelativeLayout
-        android:id="@+id/banner_ad_container"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-    </RelativeLayout>
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/banner_ad_container"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content" >-->
+    <!--</RelativeLayout>-->
 
     <LinearLayout
         android:id="@+id/nearby_container"
@@ -41,7 +42,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:choiceMode="singleChoice"
-                android:divider="@null"
                 android:fadingEdge="none"
                 android:listSelector="@android:color/transparent"
                 android:paddingLeft="12dp"

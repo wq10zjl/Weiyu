@@ -2,6 +2,7 @@ package com.syw.weiyu.activity.maintabs;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.syw.weiyu.R;
 
@@ -16,6 +17,12 @@ public class SessionListActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wy_activity_sessionlist);
+        initViews();
         getSupportFragmentManager().beginTransaction().replace(R.id.sessionlist_layout_content,new ConversationListFragment()).commit();
+    }
+
+    private void initViews() {
+        TextView tvTitle = (TextView) findViewById(R.id.header_tv_title);
+        tvTitle.setText("消息");
     }
 }

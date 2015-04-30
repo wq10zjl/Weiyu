@@ -22,7 +22,8 @@
     </style>
 
     <style name="RcTheme.ActionBar">
-        <item name="android:background">@color/rc_title_bg</item>
+        <!--<item name="android:background">@color/rc_title_bg</item>-->
+        <item name="android:background">#e91e63</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">50dp</item>
     </style>
@@ -39,13 +40,15 @@
     </style>
 
     <style name="RcTheme.ActionBar.Logo" >
-        <item name="android:src">@drawable/rc_bar_logo</item>
+        <!--<item name="android:src">@drawable/rc_bar_logo</item>-->
+        <item name="android:src">@null</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
     </style>
 
     <style name="RcTheme.ActionBar.Back">
-        <item name="android:src">@drawable/rc_bar_back</item>
+        <!--<item name="android:src">@drawable/rc_bar_back</item>-->
+        <item name="android:src">@drawable/wy_icon_back</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_alignParentLeft">true</item>

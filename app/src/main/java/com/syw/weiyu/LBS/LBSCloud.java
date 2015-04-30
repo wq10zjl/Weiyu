@@ -56,7 +56,6 @@ public class LBSCloud {
         params.put("userId", user.getUserId());
         params.put("name", user.getName());
         params.put("gender", user.getGender());
-        params.put("hobby", user.getHobby());
         params.put("tags", user.getTags());
         params.put("organization", user.getOrganization());
         //location info
@@ -118,6 +117,34 @@ public class LBSCloud {
         }
     }
 
+    /**
+     * 发布说说
+     * @param content
+     */
+    public void publishShuoshuo(String content, AjaxCallBack<String> callBack) {
+        User user = AppContext.getInstance().getUser();
+        MLocation location = AppContext.getInstance().getLocation();
+
+        AjaxParams params = getInitializedParams(context.getString(R.string.geotable_id_shuoshuo));
+        //user info
+        params.put("userId", user.getUserId());
+        params.put("userName", user.getName());
+        //location info
+        params.put("longitude", location.getLongitude());
+        params.put("latitude", location.getLatitude());
+        //content
+        params.put("content",content);
+        //timestamp, same as create_time
+        params.put("timestamp",System.currentTimeMillis()+"");
+
+        //post
+        final String url = context.getString(R.string.url_create_poi);
+        FinalHttp http = new FinalHttp();
+        http.post(url, params, callBack);
+
+        Log.d("Weiyu","publish shuoshuo params: "+params.getParamString());
+    }
+
 //    /**
 //     * 本地检索
 //     * @param q
@@ -175,7 +202,7 @@ public class LBSCloud {
         params.put("tags",tags);
         params.put("radius",radius);
         params.put("sortby",sortby);
-        params.put("page_size","50");
+        params.put("page_size",context.getString(R.string.page_size_default));
         //get
         FinalHttp http = new FinalHttp();
         http.get(url, params, callBack);
@@ -201,6 +228,30 @@ public class LBSCloud {
     }
 
     /**
+     * 检索附近的说说
+     * 检索半径配置在api_constants里
+     * @param callBack
+     */
+    public void nearbyShuoshuoSearch(AjaxCallBack<String> callBack) {
+        String url = context.getString(R.string.url_nearby_search);
+
+        AjaxParams params = getInitializedParams(context.getString(R.string.geotable_id_shuoshuo));
+        params.put("q","");
+        params.put("location",AppContext.getInstance().getLocation().getLongitude()+","+AppContext.getInstance().getLocation().getLatitude());
+        params.put("tags","");
+        params.put("radius",context.getString(R.string.default_radius));
+        //按时间|距离排序，优先显示时间靠前的
+        params.put("sortby","timestamp:-1|distance:1");
+        params.put("page_size",context.getString(R.string.page_size_default));
+        //get
+        FinalHttp http = new FinalHttp();
+        http.get(url, params, callBack);
+
+        Log.d("Weiyu","nearbyShuoshuoSearch params: "+params.getParamString());
+    }
+
+
+    /**
      * 标签检索
      * @param tags
      * @param callBack
@@ -209,7 +260,6 @@ public class LBSCloud {
         String url = context.getString(R.string.url_list_poi);
 
         AjaxParams params = getInitializedParams();
-        params.put("gender",AppContext.getInstance().getUser().getHobby());
         params.put("tags",tags);
 
         //get
@@ -227,7 +277,6 @@ public class LBSCloud {
         String url = context.getString(R.string.url_list_poi);
 
         AjaxParams params = getInitializedParams();
-        params.put("gender",AppContext.getInstance().getUser().getHobby());
         params.put("organization",organization);
 
         //get
@@ -252,11 +301,20 @@ public class LBSCloud {
      * @return 返回设置好的params
      */
     private AjaxParams getInitializedParams() {
+        return getInitializedParams(context.getString(R.string.geotable_id_user));
+    }
+
+    /**
+     * 初始化API请求的固定参数：ak,geotable_id,coord_type
+     * @param geotable_id 指定数据表的ID
+     * @return 返回设置好的params
+     */
+    private AjaxParams getInitializedParams(String geotable_id) {
         //build params
         AjaxParams params = new AjaxParams();
         //api constants
         params.put("ak",context.getString(R.string.lbsyun_ak));
-        params.put("geotable_id",context.getString(R.string.geotable_id));
+        params.put("geotable_id",geotable_id);
         params.put("coord_type",context.getString(R.string.coord_type));
         return params;
     }
@@ -281,10 +339,6 @@ public class LBSCloud {
         if (currentUser.getGender() != null && !currentUser.getGender().equals(updateUser.getGender())){
             isChanged = true;
             originalParams.put("gender", updateUser.getGender());
-        }
-        if (currentUser.getHobby() != null && !currentUser.getHobby().equals(updateUser.getHobby())){
-            isChanged = true;
-            originalParams.put("hobby", updateUser.getHobby());
         }
         if (currentUser.getTags() != null && !currentUser.getTags().equals(updateUser.getTags())){
             isChanged = true;

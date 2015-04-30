@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:background="@android:drawable/picture_frame"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dip">
+
+    <EditText
+        android:hint="和附近的人说说你的秘密"
+        android:id="@+id/et_shuoshuo_content"
+        android:background="@null"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:minLines="5"
+        android:maxLength="314"
+        android:maxLines="27"/>
+
+</LinearLayout>

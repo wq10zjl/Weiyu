@@ -7,7 +7,6 @@
     <!--android:background="@drawable/bg_tb_item_center"-->
 
     <TextView
-        android:id="@+id/tab_chat_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -19,23 +18,5 @@
         android:text="消息"
         android:textColor="@color/maintab_text_color"
         android:textSize="11sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/tab_chat_label"
-        android:layout_marginRight="-14dip"
-        android:layout_marginTop="1dip"
-        android:gravity="center"
-        android:marqueeRepeatLimit="1"
-        android:minWidth="20dip"
-        android:singleLine="true" />
-
-    <!--android:background="@drawable/wy_icon_newtip"-->
-    <!--android:text="6"-->
-    <!--android:textColor="#ffffffff"-->
-    <!--android:textSize="11sp"-->
-    <!--android:textStyle="bold"-->
 
 </RelativeLayout>
