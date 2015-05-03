@@ -1,18 +1,13 @@
 package com.syw.weiyu.LBS;
 
 import android.content.Context;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 
-import com.baidu.location.BDLocation;
 import com.syw.weiyu.AppContext;
 import com.syw.weiyu.R;
 import com.syw.weiyu.entity.MLocation;
 import com.syw.weiyu.entity.User;
-import com.syw.weiyu.util.ACache;
 
-import net.tsz.afinal.FinalDb;
 import net.tsz.afinal.FinalHttp;
 import net.tsz.afinal.http.AjaxCallBack;
 import net.tsz.afinal.http.AjaxParams;
@@ -145,55 +140,18 @@ public class LBSCloud {
         Log.d("Weiyu","publish shuoshuo params: "+params.getParamString());
     }
 
-//    /**
-//     * 本地检索
-//     * @param q
-//     * @param region
-//     * @param tags
-//     * @param sortby
-//     * @param callBack
-//     */
-//    public void localSearch(String q,String region,String tags,String sortby,AjaxCallBack<String> callBack) {
-//        String url = context.getString(R.string.url_local_search);
-//
-//        AjaxParams params = getInitializedParams();
-//        params.put("q",q);
-//        params.put("region",region);
-//        params.put("tags",tags);
-//        params.put("sortby",sortby);
-//        params.put("page_size","30");
-//        //get
-//        FinalHttp http = new FinalHttp();
-//        http.get(url, params, callBack);
-//
-//        Log.d("Weiyu","localSearch params: "+params.getParamString());
-//    }
-//
-//    /**
-//     * 检索本地（同城）
-//     * 开始用户数量少，男女通吃，都显示
-//     * @param callBack
-//     */
-//    public void localSearch(AjaxCallBack<String> callBack) {
-//
-//        localSearch(
-//                null,//男女通吃
-//                AppContext.getInstance().getLocation().getCity(),
-//                null,
-//                "distance:1",
-//                callBack);
-//    }
 
     /**
-     * 周边检索
+     * 检索附近的人
      * @param q
      * @param location
      * @param tags
      * @param radius
      * @param sortby
+     * @param pageIndex 页码，从0开始
      * @param callBack
      */
-    public void nearbySearch(String q,String location,String tags,String radius,String sortby,AjaxCallBack<String> callBack) {
+    public void nearbyUserSearch(String q, String location, String tags, String radius, String sortby,int pageIndex, AjaxCallBack<String> callBack) {
         String url = context.getString(R.string.url_nearby_search);
 
         AjaxParams params = getInitializedParams();
@@ -202,12 +160,13 @@ public class LBSCloud {
         params.put("tags",tags);
         params.put("radius",radius);
         params.put("sortby",sortby);
+        params.put("page_index",pageIndex+"");
         params.put("page_size",context.getString(R.string.page_size_default));
         //get
         FinalHttp http = new FinalHttp();
         http.get(url, params, callBack);
 
-        Log.d("Weiyu","nearbySearch params: "+params.getParamString());
+        Log.d("Weiyu","nearbyUserSearch params: "+params.getParamString());
     }
 
     /**
@@ -215,14 +174,15 @@ public class LBSCloud {
      * 检索半径配置在api_constants里
      * @param callBack
      */
-    public void nearbySearch(AjaxCallBack<String> callBack) {
-        nearbySearch(
+    public void nearbyUserSearch(int pageIndex, AjaxCallBack<String> callBack) {
+        nearbyUserSearch(
                 null,
                 //longitude经度,latitude纬度
-                AppContext.getInstance().getLocation().getLongitude()+","+AppContext.getInstance().getLocation().getLatitude(),
+                AppContext.getInstance().getLocation().getLongitude() + "," + AppContext.getInstance().getLocation().getLatitude(),
                 null,
                 context.getString(R.string.default_radius),
                 "distance:1",
+                pageIndex,
                 callBack
         );
     }
@@ -232,7 +192,7 @@ public class LBSCloud {
      * 检索半径配置在api_constants里
      * @param callBack
      */
-    public void nearbyShuoshuoSearch(AjaxCallBack<String> callBack) {
+    public void nearbyShuoshuoSearch(int pageIndex, AjaxCallBack<String> callBack) {
         String url = context.getString(R.string.url_nearby_search);
 
         AjaxParams params = getInitializedParams(context.getString(R.string.geotable_id_shuoshuo));
@@ -242,6 +202,7 @@ public class LBSCloud {
         params.put("radius",context.getString(R.string.default_radius));
         //按时间|距离排序，优先显示时间靠前的
         params.put("sortby","timestamp:-1|distance:1");
+        params.put("page_index",pageIndex+"");
         params.put("page_size",context.getString(R.string.page_size_default));
         //get
         FinalHttp http = new FinalHttp();

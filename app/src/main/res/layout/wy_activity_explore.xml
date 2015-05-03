@@ -137,7 +137,7 @@
             android:src="@drawable/wy_icon_aboutinfo"/>
 
         <TextView
-            android:id="@+id/lv_tv_aboutinfo"
+            android:id="@+id/nearbyuser_tv_address"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_alignParentRight="true"

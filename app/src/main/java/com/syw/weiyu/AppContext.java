@@ -146,7 +146,7 @@ public final class AppContext {
      * Nearby视图中的数据
      */
     //用于视图适配器的mapList
-    List<HashMap<String, Object>> usermapList = new ArrayList<>();
+    List<HashMap<String, String>> usermapList = new ArrayList<>();
     //这个UserList只放userId&name，用于开启聊天
     List<User> userList = new ArrayList<>();
 
@@ -164,11 +164,11 @@ public final class AppContext {
         this.shuoshuomapList = shuoshuomapList;
     }
 
-    public List<HashMap<String, Object>> getUsermapList() {
+    public List<HashMap<String, String>> getUsermapList() {
         return usermapList;
     }
 
-    public void setUsermapList(List<HashMap<String, Object>> usermapList) {
+    public void setUsermapList(List<HashMap<String, String>> usermapList) {
         this.usermapList = usermapList;
     }
 

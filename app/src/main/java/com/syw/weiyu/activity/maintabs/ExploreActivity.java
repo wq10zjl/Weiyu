@@ -11,7 +11,7 @@ import android.widget.Toast;
 //import com.qq.e.appwall.GdtAppwall;
 import com.syw.weiyu.R;
 import com.syw.weiyu.activity.explore.AboutInfoActivity;
-import com.syw.weiyu.activity.explore.NearByActivity;
+import com.syw.weiyu.activity.explore.NearByUserActivity;
 import com.syw.weiyu.activity.explore.ProfileActivity;
 
 public class ExploreActivity extends FragmentActivity {
@@ -52,7 +52,7 @@ public class ExploreActivity extends FragmentActivity {
         findViewById(R.id.explore_item_shuoshuo).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ExploreActivity.this, NearByActivity.class);
+                Intent intent = new Intent(ExploreActivity.this, NearByUserActivity.class);
                 startActivity(intent);
             }
         });

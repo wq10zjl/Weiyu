@@ -31,7 +31,7 @@
     <string name="longitude_default">116.4038740000</string>
     <string name="latitude_default">39.9148890000</string>
     <!--默认页大小-->
-    <string name="page_size_default">50</string>
+    <string name="page_size_default">20</string>
 
     <!--AdsMoGo-->
     <string name="adsmogo_appid">5dc8eb0ca17f4663b43dcd7f811fba95</string>

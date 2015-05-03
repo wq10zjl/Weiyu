@@ -7,8 +7,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.paging.listview.PagingBaseAdapter;
 import com.syw.weiyu.R;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -16,14 +18,31 @@ import java.util.Random;
 /**
  * Created by songyouwei on 2015/4/27.
  */
-public class ShuoshuoAdapter extends BaseAdapter {
+public class ShuoshuoAdapter extends PagingBaseAdapter<HashMap<String, String>> {
 
+    public enum LOADTYPE {
+        TYPE_REFRESH, TYPE_MORE;
+    }
+
+    public void setData(List<HashMap<String, String>> data) {
+        shuoshuomapList.clear();
+        shuoshuomapList.addAll(data);
+        notifyDataSetChanged();
+    }
+
+    public void addData(List<HashMap<String, String>> data) {
+        shuoshuomapList.addAll(data);
+        notifyDataSetChanged();
+    }
+
+    public List<HashMap<String, String>> getData() {
+        return shuoshuomapList;
+    }
     LayoutInflater mInflater;
-    List<HashMap<String, String>> shuoshuomapList;
+    List<HashMap<String, String>> shuoshuomapList = new ArrayList<>();
 
-    public ShuoshuoAdapter(Context ctx, List<HashMap<String, String>> data) {
+    public ShuoshuoAdapter(Context ctx) {
         mInflater = LayoutInflater.from(ctx);
-        shuoshuomapList = data;
     }
 
     //在外面先定义，ViewHolder静态类

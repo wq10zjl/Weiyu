@@ -26,10 +26,12 @@ import com.alibaba.fastjson.JSONObject;
 //import com.qq.e.ads.AdRequest;
 //import com.qq.e.ads.AdSize;
 //import com.qq.e.ads.AdView;
+import com.paging.listview.PagingListView;
 import com.syw.weiyu.AppContext;
 import com.syw.weiyu.LBS.LBSCloud;
 import com.syw.weiyu.R;
 import com.syw.weiyu.ad.MoGo;
+import com.syw.weiyu.adapter.NearByUserAdapter;
 import com.syw.weiyu.adapter.ShuoshuoAdapter;
 import com.syw.weiyu.adp.WeiyuBannerCustomEventPlatformAdapter;
 import com.syw.weiyu.adp.WeiyuCustomEventPlatformEnum;
@@ -74,7 +76,18 @@ public class ShuoshuoActivity extends FragmentActivity {
     //用于视图适配器的mapList
     List<HashMap<String, String>> shuoshuomapList = new ArrayList<>();
 
-    ListView listView;
+    int pageIndex = 0;
+    int totalPage = 0;
+
+    ShuoshuoAdapter.LOADTYPE loadType;
+    /**
+     * 设置加载类型
+     * @param loadType
+     */
+    public void setLoadType(ShuoshuoAdapter.LOADTYPE loadType) {
+        this.loadType = loadType;
+    }
+    PagingListView listView;
     ShuoshuoAdapter adapter;
 
     PtrClassicFrameLayout mPtrFrame;
@@ -116,7 +129,7 @@ public class ShuoshuoActivity extends FragmentActivity {
                 }
             }.sendEmptyMessageDelayed(1,500);
         } else {
-            setListViewAdapter();
+            adapter.setData(shuoshuomapList);
         }
 
         //add banner ad
@@ -172,7 +185,9 @@ public class ShuoshuoActivity extends FragmentActivity {
 
                 //刷新列表数据
 //                updateListData(dataType);
-                LBSCloud.getInstance().nearbyShuoshuoSearch(lbsCloudSearchCallback);
+                pageIndex = 0;
+                setLoadType(ShuoshuoAdapter.LOADTYPE.TYPE_REFRESH);
+                LBSCloud.getInstance().nearbyShuoshuoSearch(0,lbsCloudSearchCallback);
             }
 
             @Override
@@ -182,54 +197,43 @@ public class ShuoshuoActivity extends FragmentActivity {
         });
     }
 
-//    /**
-//     * 更新列表数据
-//     * @param type 数据类型
-//     */
-//    private void updateListData(int type) {
-//        switch (type) {
-//            case TYPE_LOCAL:
-//                LBSCloud.getInstance().localSearch(lbsCloudSearchCallback);
-//                break;
-//            case TYPE_NEARBY:
-//                LBSCloud.getInstance().nearbySearch(lbsCloudSearchCallback);
-//                break;
-//        }
-//    }
-
     /**
      * 初始化列表视图
      */
     private void initListView() {
-        listView = (ListView) findViewById(R.id.lv_shuoshuo);
+        listView = (PagingListView) findViewById(R.id.lv_shuoshuo);
+        adapter = new ShuoshuoAdapter(this);
+        listView.setAdapter(adapter);
+        listView.setHasMoreItems(false);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                RongIM.getInstance().startPrivateChat(ShuoshuoActivity.this, shuoshuomapList.get(position).get("userId").toString(), shuoshuomapList.get(position).get("shuoshuo_tv_name").toString());
+                RongIM.getInstance().startPrivateChat(
+                        ShuoshuoActivity.this,
+                        adapter.getData().get(position-1).get("userId"),
+                        adapter.getData().get(position-1).get("shuoshuo_tv_name"));
             }
         });
-    }
 
-    /**
-     * 设置列表视图适配器
-     */
-    private void setListViewAdapter() {
-        //set adapter
-        adapter = new ShuoshuoAdapter(this,shuoshuomapList);
-//        adapter = new SimpleAdapter(
-//                ShuoshuoActivity.this,
-//                shuoshuomapList,
-//                R.layout.wy_shuoshuo_lv_item,
-//                new String[]{"shuoshuo_tv_name","shuoshuo_tv_address", "shuoshuo_tv_time", "shuoshuo_tv_content"},
-//                new int[]{ R.id.shuoshuo_tv_name,R.id.shuoshuo_tv_address, R.id.shuoshuo_tv_time, R.id.shuoshuo_tv_content});
-        listView.setAdapter(adapter);
+        listView.setPagingableListener(new PagingListView.Pagingable() {
+            @Override
+            public void onLoadMoreItems() {
+                if (pageIndex + 1 < totalPage) {
+                    setLoadType(ShuoshuoAdapter.LOADTYPE.TYPE_MORE);
+                    LBSCloud.getInstance().nearbyUserSearch(++pageIndex, lbsCloudSearchCallback);
+                } else {
+                    listView.onFinishLoading(false, null);
+                }
+            }
+        });
     }
 
     /**
      * LBS云检索回调
      */
     class LBSCloudSearchCallback extends AjaxCallBack<String> {
+        private List<HashMap<String,String>> newDataList = new ArrayList<>();
         @Override
         public void onStart() {
         }
@@ -237,15 +241,11 @@ public class ShuoshuoActivity extends FragmentActivity {
         @Override
         public void onSuccess(String s) {
             Log.d("Weiyu", " LBSCloud poi search nearby shuoshuo return:" + s);
-            //结束下拉刷新
-            mPtrFrame.refreshComplete();
             //解析数据并存入
             JSONObject result = JSON.parseObject(s);
             if (result.getString("status").equals("0")) {
-                //clear this list
-                shuoshuomapList.clear();
-
                 JSONArray poiArray = result.getJSONArray("contents");
+                newDataList.clear();
                 for (int i=0; i<poiArray.size(); i++) {
                     JSONObject poi = poiArray.getJSONObject(i);
 
@@ -254,15 +254,30 @@ public class ShuoshuoActivity extends FragmentActivity {
                     map.put("userId", poi.getString("userId"));
                     map.put("shuoshuo_tv_name", poi.getString("userName"));
                     map.put("shuoshuo_tv_address", poi.getString("province")+poi.getString("district"));
-                    map.put("shuoshuo_tv_time", new SimpleDateFormat("yyyy-MM-dd kk:mm:ss", Locale.ENGLISH).format(new Timestamp(Long.parseLong(poi.getString("create_time"))*1000)));
+                    map.put("shuoshuo_tv_time", new SimpleDateFormat("yyyy-MM-dd kk:mm:ss", Locale.ENGLISH).format(new Timestamp(Long.parseLong(poi.getString("create_time")) * 1000)));
                     map.put("shuoshuo_tv_content", poi.getString("content"));
-                    shuoshuomapList.add(map);
+                    newDataList.add(map);
+                }
 
-                    //save result lists into ram
-                    AppContext.getInstance().setShuoshuomapList(shuoshuomapList);
+                //set totalPage
+                if (totalPage == 0) {
+                    totalPage = (int)Math.ceil(Double.parseDouble(result.getString("total"))/Double.parseDouble(result.getString("size")));
                 }
                 //设置适配器
-                setListViewAdapter();
+                if (loadType == ShuoshuoAdapter.LOADTYPE.TYPE_REFRESH) {
+                    //结束下拉刷新
+                    mPtrFrame.refreshComplete();
+                    adapter.setData(newDataList);
+                    //set has more page
+                    listView.setHasMoreItems(pageIndex + 1 < totalPage);
+                    //save result lists into ram
+                    AppContext.getInstance().setShuoshuomapList(newDataList);
+                } else if (loadType == ShuoshuoAdapter.LOADTYPE.TYPE_MORE){
+                    adapter.addData(newDataList);
+                    listView.onFinishLoading(pageIndex + 1 < totalPage, null);
+                    //save result lists into ram
+                    AppContext.getInstance().setUsermapList(adapter.getData());
+                }
             }
         }
 

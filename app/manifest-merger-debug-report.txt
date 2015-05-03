@@ -353,7 +353,7 @@ activity#com.syw.weiyu.activity.MainTabsActivity
 ADDED from AndroidManifest.xml:267:9
 	android:name
 		ADDED from AndroidManifest.xml:267:19
-activity#com.syw.weiyu.activity.explore.NearByActivity
+activity#com.syw.weiyu.activity.explore.NearByUserActivity
 ADDED from AndroidManifest.xml:270:9
 	android:name
 		ADDED from AndroidManifest.xml:270:19

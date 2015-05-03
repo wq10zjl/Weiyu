@@ -289,7 +289,7 @@
         <activity android:name=".activity.MainTabsActivity" />
 
         <!-- 附近 -->
-        <activity android:name=".activity.explore.NearByActivity" />
+        <activity android:name=".activity.explore.NearByUserActivity" />
 
         <!-- 消息 -->
         <activity android:name=".activity.maintabs.SessionListActivity" />
