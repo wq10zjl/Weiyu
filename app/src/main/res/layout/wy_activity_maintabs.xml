@@ -16,7 +16,13 @@
                 android:id="@android:id/tabcontent"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_above="@android:id/tabs" />
+                android:layout_above="@android:id/tabs"/>
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#bbbbbb"
+                android:layout_above="@android:id/tabs"/>
 
             <TabWidget
                 android:background="@android:color/white"

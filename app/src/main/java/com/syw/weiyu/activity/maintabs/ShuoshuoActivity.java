@@ -9,8 +9,10 @@ import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -29,6 +31,9 @@ import com.syw.weiyu.LBS.LBSCloud;
 import com.syw.weiyu.R;
 import com.syw.weiyu.ad.MoGo;
 import com.syw.weiyu.adapter.ShuoshuoAdapter;
+import com.syw.weiyu.adp.WeiyuBannerCustomEventPlatformAdapter;
+import com.syw.weiyu.adp.WeiyuCustomEventPlatformEnum;
+import com.syw.weiyu.controller.listener.WeiyuListener;
 
 import net.tsz.afinal.http.AjaxCallBack;
 
@@ -50,34 +55,35 @@ import io.rong.imkit.RongIM;
  */
 public class ShuoshuoActivity extends FragmentActivity {
 
+    private long currentTime=0;
+    private long oldTime=0;
+    /**
+     * 两次返回键退出，间隔2秒
+     */
+    @Override
+    public void onBackPressed() {
+        currentTime = System.currentTimeMillis();
+        if ((currentTime - oldTime) > 2000 || oldTime == 0) {
+            Toast.makeText(this, "再按一次退出", 2000).show();
+            oldTime = currentTime;
+        } else {
+            finish();
+        }
+    }
+
     //用于视图适配器的mapList
     List<HashMap<String, String>> shuoshuomapList = new ArrayList<>();
 
     ListView listView;
     ShuoshuoAdapter adapter;
 
-    //数据类型
-//    private int dataType = TYPE_NEARBY;//默认为附近
-//    private static final int TYPE_LOCAL = 0;
-//    private static final int TYPE_NEARBY = 1;
-
     PtrClassicFrameLayout mPtrFrame;
-
-    //豌豆荚banner广告
-//    private AdBanner adBanner;
-//    private View adBannerView;
-
-    //Baidu Banner Ad
-//    private AdView adView;
-//    private RelativeLayout l;
 
     //AdMoGo
     MoGo moGo;
 
     //LBS callback
     AjaxCallBack<String> lbsCloudSearchCallback = new LBSCloudSearchCallback();
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +95,7 @@ public class ShuoshuoActivity extends FragmentActivity {
         initUltraPullToRefresh();
         initListView();
 
-//        initBaiduBannerAd();
+        //init adsmogo
         moGo = new MoGo(this);
     }
 
@@ -113,11 +119,10 @@ public class ShuoshuoActivity extends FragmentActivity {
             setListViewAdapter();
         }
 
-        //MoGoBanner
-        moGo.showBannerAd();
-        //显示banner广告
-//        Log.d("Weiyu","showBannerAd");
-//        showBaiduMobAdBannerAd();
+        //add banner ad
+        if (listView.getHeaderViewsCount() == 0) {
+            listView.addHeaderView(moGo.getBannerAd());
+        }
     }
 
     @Override
@@ -151,158 +156,6 @@ public class ShuoshuoActivity extends FragmentActivity {
         TextView tvTitle = (TextView) findViewById(R.id.header_tv_title);
         tvTitle.setText("首页");
     }
-
-
-//    /**
-//     * 初始化百度Banner广告
-//     */
-//    private void initBaiduBannerAd() {
-//        l = (RelativeLayout)findViewById(R.id.banner_ad_container);
-//        adView = new AdView(this);
-//    }
-//
-//    /**
-//     * 显示百度Banner广告
-//     */
-//    private void showBaiduMobAdBannerAd() {
-//        l.removeAllViews();
-//        l.addView(adView);
-//    }
-
-
-//    /**
-//     * 筹备信息流顶部广告（多盟）
-//     */
-//    private void prepareFeedsAd() {
-//        feedsAdView = new FeedsAdView(this,this.getString(R.string.domob_publisher_id),this.getString(R.string.domob_adid_feeds));
-//        feedsAdView.loadFeedsAd();
-//        LinearLayout feedsAdContainer = (LinearLayout) findViewById(R.id.ad_container);
-//        feedsAdContainer.addView(feedsAdView,0);
-//        feedsAdView.setFeedsAdListener(new FeedsAdListener() {
-//            @Override
-//            public void onFeedsAdReady() {
-//                Log.d("Weiyu","onFeedsAdReady");
-//            }
-//
-//            @Override
-//            public void onFeedsAdFailed(AdManager.ErrorCode errorCode) {
-//                Log.d("Weiyu","onFeedsAdFailed,errorCode:"+errorCode);
-//            }
-//
-//            @Override
-//            public void onFeedsAdPresent() {
-//                Log.d("Weiyu","onFeedsAdPresent");
-//            }
-//
-//            @Override
-//            public void onFeedsAdDismiss() {
-//                Log.d("Weiyu","onFeedsAdDismiss");
-//                feedsAdView.loadFeedsAd();
-//            }
-//
-//            @Override
-//            public void onLandingPageOpen() {
-//                Log.d("Weiyu","onLandingPageOpen");
-//            }
-//
-//            @Override
-//            public void onLandingPageClose() {
-//                Log.d("Weiyu","onLandingPageClose");
-//            }
-//
-//            @Override
-//            public void onFeedsAdLeaveApplication() {
-//                Log.d("Weiyu","onFeedsAdLeaveApplication");
-//            }
-//
-//            @Override
-//            public void onFeedsAdClicked(FeedsAdView feedsAdView) {
-//                Log.d("Weiyu","onFeedsAdClicked");
-//            }
-//        });
-//    }
-//
-//    /**
-//     * 显示信息流顶部广告（如果可用）,如果不可用则后台加载
-//     */
-//    private void showFeedsAd() {
-//        if (feedsAdView.isFeedsAdReady()) {
-//            feedsAdView.showFeedsAd(this);
-//        } else {
-//            feedsAdView.loadFeedsAd();
-//        }
-//    }
-
-    /**
-     * 显示Banner广告（腾讯广点通）
-     */
-//    private void showGDTBannerAd() {
-//        RelativeLayout l = (RelativeLayout)findViewById(R.id.banner_ad_container);
-//// 创建Banner广告AdView对象
-//// appId : 在 http://e.qq.com/dev/ 能看到的app唯一字符串
-//// posId : 在 http://e.qq.com/dev/ 生成的数字串，并非 appid 或者 appkey
-//        AdView adv = new AdView(this, AdSize.BANNER, getString(R.string.gdt_app_id),getString(R.string.gdt_adid_banner));
-//        l.addView(adv);
-//// 广告请求数据，可以设置广告轮播时间，默认为30s
-//        AdRequest adr = new AdRequest();
-////设置广告刷新时间，为30~120之间的数字，单位为s,0标识不自动刷新
-//        adr.setRefresh(30);
-////在banner广告上展示关闭按钮
-//        adr. setShowCloseBtn(true);
-////设置空广告和首次收到广告数据回调
-////调用fetchAd方法后会发起广告请求 */
-//        adv.setAdListener(new AdListener() {
-//
-//            @Override
-//            public void onNoAd() {
-//                Log.i("Weiyu:","Banner AD LoadFail");
-//            }
-//
-//            @Override
-//            public void onBannerClosed() {
-//                //仅在开启广点通广告关闭按钮时生效
-//                Log.i("Weiyu:","Banner AD Closed");
-//            }
-//
-//            @Override
-//            public void onAdReceiv() {
-//                Log.i("Weiyu:","Banner AD Ready to show");
-//            }
-//
-//            @Override
-//            public void onAdExposure() {
-//                Log.i("Weiyu:","Banner AD Exposured");
-//            }
-//
-//            @Override
-//            public void onAdClicked() {
-//                //Banner广告发生点击时回调，由于点击去重等因素不能保证回调数量与联盟最终统计数量一致
-//                Log.i("Weiyu:","Banner AD Clicked");
-//            }
-//        });
-///* 发起广告请求，收到广告数据后会展示数据 */
-//        adv.fetchAd(adr);
-//    }
-
-
-    /**
-     * 显示豌豆荚Banner广告
-     */
-//    private void showWandoujiaBannerAd() {
-//        ViewGroup containerView = (ViewGroup) findViewById(R.id.banner_ad_container);
-//        if (adBannerView != null && containerView.indexOfChild(adBannerView) >= 0) {
-//            containerView.removeView(adBannerView);
-//        }
-//        adBanner = Ads.showBannerAd(this, (ViewGroup) findViewById(R.id.banner_ad_container),
-//                getString(R.string.wdj_adid_banner),new AdLoadFailerListener() {
-//                    @Override
-//                    public void onLoadFailure() {
-//                        Log.d("Weiyu","Wandoujia Banner AdLoadFail");
-//                    }
-//                });
-//        adBannerView = adBanner.getView();
-//    }
-
 
 
     /**
@@ -357,48 +210,6 @@ public class ShuoshuoActivity extends FragmentActivity {
             }
         });
     }
-
-    /**
-     * 初始化头部视图（已作废，换成只显示附近）
-     */
-//    private void initHeader() {
-//        //切换按钮
-//        SwitcherButton switcherButton = (SwitcherButton) findViewById(R.id.header_sb_rightview_switcherbutton);
-//        //游标
-//        final LinearLayout switcherTab = (LinearLayout) findViewById(R.id.switcher_layout_tab);
-//
-//        //设置切换按钮文本
-//        TextView leftTextView = (TextView) findViewById(R.id.switcher_tv_left_text);
-//        TextView rightTextView = (TextView) findViewById(R.id.switcher_tv_right_text);
-//        leftTextView.setText("同城");
-//        rightTextView.setText("附近");
-//
-//        //监听切换按钮
-//        switcherButton.setOnSwitcherButtonClickListener(new SwitcherButton.onSwitcherButtonClickListener() {
-//            @Override
-//            public void onClick(SwitcherButton.SwitcherButtonState state) {
-//                FragmentTransaction ft = getSupportFragmentManager()
-//                        .beginTransaction();
-//                ft.setCustomAnimations(R.anim.fragment_fadein,
-//                        R.anim.fragment_fadeout);
-//                switch (state) {
-//                    case LEFT:
-//                        //左边是“同城”
-//                        switcherTab.setGravity(Gravity.LEFT);
-//                        dataType = TYPE_LOCAL;
-//                        mPtrFrame.autoRefresh();
-//                        break;
-//
-//                    case RIGHT:
-//                        //右边是“附近”
-//                        switcherTab.setGravity(Gravity.RIGHT);
-//                        dataType = TYPE_NEARBY;
-//                        mPtrFrame.autoRefresh();
-//                        break;
-//                }
-//            }
-//        });
-//    }
 
     /**
      * 设置列表视图适配器

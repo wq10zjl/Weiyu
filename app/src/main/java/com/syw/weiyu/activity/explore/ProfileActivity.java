@@ -31,6 +31,7 @@ public class ProfileActivity extends ProfileBaseActivity {
         super.onCreate(savedInstanceState);
         //set back icon
         ImageView imageView = (ImageView) findViewById(R.id.header_iv_logo);
+        imageView.setImageResource(R.drawable.wy_icon_back);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

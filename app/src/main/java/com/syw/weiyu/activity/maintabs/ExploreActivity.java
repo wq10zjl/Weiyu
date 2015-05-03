@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 //import com.qq.e.appwall.GdtAppwall;
 import com.syw.weiyu.R;
@@ -14,6 +15,22 @@ import com.syw.weiyu.activity.explore.NearByActivity;
 import com.syw.weiyu.activity.explore.ProfileActivity;
 
 public class ExploreActivity extends FragmentActivity {
+
+    private long currentTime=0;
+    private long oldTime=0;
+    /**
+     * 两次返回键退出，间隔2秒
+     */
+    @Override
+    public void onBackPressed() {
+        currentTime = System.currentTimeMillis();
+        if ((currentTime - oldTime) > 2000 || oldTime == 0) {
+            Toast.makeText(this, "再按一次退出", 2000).show();
+            oldTime = currentTime;
+        } else {
+            finish();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

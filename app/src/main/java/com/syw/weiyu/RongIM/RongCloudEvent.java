@@ -2,13 +2,16 @@ package com.syw.weiyu.RongIM;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.syw.weiyu.AppContext;
 import com.syw.weiyu.LBS.LBSCloud;
 import com.syw.weiyu.R;
+import com.syw.weiyu.entity.MLocation;
 import com.syw.weiyu.entity.User;
 import com.syw.weiyu.util.ACache;
 
@@ -324,12 +327,23 @@ public final class RongCloudEvent implements
      * @param callback 回调
      */
     @Override
-    public void onStartLocation(Context context, LocationCallback callback) {
+    public void onStartLocation(Context context, final LocationCallback callback) {
         /**
          * demo 代码  开发者需替换成自己的代码。
          */
 //        DemoContext.getInstance().setLastLocationCallback(callback);
 //        context.startActivity(new Intent(context, LocationActivity.class));//SOSO地图
-        Toast.makeText(mContext,"地图位置显示功能暂未开放",Toast.LENGTH_SHORT);
+        MLocation location = AppContext.getInstance().getLocation();
+        final double lat = Double.parseDouble(location.getLatitude());
+        final double lng = Double.parseDouble(location.getLongitude());
+        final StringBuffer uri = new StringBuffer("http://api.map.baidu.com/staticimage?width=300&height=150&&zoom=11&markers=").append(lng).append(",").append(lat).append("&center=").append(AppContext.getInstance().getLocation().getCity());
+        new Runnable(){
+            @Override
+            public void run() {
+                callback.onSuccess(LocationMessage.obtain(lat, lng,
+                        AppContext.getInstance().getLocation().getAddress(),
+                        Uri.parse(uri.toString())));
+            }
+        }.run();
     }
 }

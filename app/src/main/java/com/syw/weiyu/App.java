@@ -23,18 +23,6 @@ public class App extends Application {
         LBSCloud.init(this);
 
         /**
-         * init Wandoujia Ad SDK
-         */
-//        try {
-//            Ads.init(this, getString(R.string.wdj_ads_app_id), getString(R.string.wdj_ads_app_secret_key));
-//            //preload the ads
-//            Ads.preLoad(this, Fetcher.AdFormat.appwall, "GAME", getString(R.string.wdj_adid_appwall));
-//        } catch (Exception e) {
-//            Log.w("Weiyu"," Wandoujia ADs SDK init exception");
-//            e.printStackTrace();
-//        }
-
-        /**
          * IMKit SDK调用第一步 初始化
          * context上下文
          */
@@ -43,10 +31,18 @@ public class App extends Application {
             RongIM.init(this);
             Log.i("Weiyu", "init RongIM");
         }
+
         /**
          * 融云SDK事件监听处理
          */
         RongCloudEvent.init(this);
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        //低內存臨近被清除時，取消鏈接但接收push
+        RongIM.getInstance().disconnect(true);
     }
 
     private static String getCurProcessName(Context context) {
