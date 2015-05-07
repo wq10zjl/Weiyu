@@ -19,3 +19,8 @@
 <img src="/screenshots/Screenshot_3.png" height="640" width="360" />
 
 <img src="/screenshots/Screenshot_4.png" height="640" width="360" />
+
+<img src="/screenshots/Screenshot_5.png" height="640" width="360" />
+
+<img src="/screenshots/Screenshot_6.png" height="640" width="360" />
+
