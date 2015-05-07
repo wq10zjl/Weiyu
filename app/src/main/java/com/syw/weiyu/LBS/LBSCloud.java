@@ -76,7 +76,7 @@ public class LBSCloud {
         params.put("longitude", AppContext.getInstance().getLocation().getLongitude());
         params.put("address",AppContext.getInstance().getLocation().getAddress());
 
-        Log.d("Weiyu","updateUserLocation params: "+params.getParamString());
+        Log.d("Weiyu", "updateUserLocation params: " + params.getParamString());
         //post
         String url = context.getString(R.string.url_update_poi);
         FinalHttp http = new FinalHttp();
@@ -89,6 +89,29 @@ public class LBSCloud {
             @Override
             public void onFailure(Throwable t, int errorNo, String strMsg) {
                 Log.d("Weiyu","updateUserLocation onFailure: "+strMsg);
+            }
+        });
+    }
+
+    /**
+     * 异步更新最后在线时间
+     */
+    public void updateLastOnlineTime() {
+        //build params
+        AjaxParams params = getInitializedParams();
+        params.put("userId", AppContext.getInstance().getUser().getUserId());
+        //post
+        String url = context.getString(R.string.url_update_poi);
+        FinalHttp http = new FinalHttp();
+        http.post(url, params, new AjaxCallBack<String>() {
+            @Override
+            public void onSuccess(String s) {
+                Log.d("Weiyu", "updateUserLocation onSuccess: " + s);
+            }
+
+            @Override
+            public void onFailure(Throwable t, int errorNo, String strMsg) {
+                Log.d("Weiyu", "updateUserLocation onFailure: " + strMsg);
             }
         });
     }

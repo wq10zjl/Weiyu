@@ -12,7 +12,7 @@
 
     <ImageView
         android:id="@+id/header_iv_back"
-        android:layout_width="wrap_content"
+        android:layout_width="48dip"
         android:layout_height="48dip"
         android:src="@drawable/wy_icon_back"
         android:scaleType="centerInside"

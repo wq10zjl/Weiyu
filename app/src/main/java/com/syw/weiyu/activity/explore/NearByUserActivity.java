@@ -22,6 +22,7 @@ import com.syw.weiyu.ad.MoGo;
 import com.syw.weiyu.adapter.NearByUserAdapter;
 import com.syw.weiyu.entity.User;
 import com.syw.weiyu.util.ACache;
+import com.syw.weiyu.util.WeiyuAppUpdateRemind;
 
 import net.tsz.afinal.http.AjaxCallBack;
 
@@ -80,6 +81,9 @@ public class NearByUserActivity extends FragmentActivity {
 
         //init adsmogo
         moGo = new MoGo(this);
+
+        //check update
+        new WeiyuAppUpdateRemind(this,this.getString(R.string.adsmogo_appid)).checkUpdate();
     }
 
 

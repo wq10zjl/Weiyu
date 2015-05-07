@@ -30,6 +30,7 @@ import com.paging.listview.PagingListView;
 import com.syw.weiyu.AppContext;
 import com.syw.weiyu.LBS.LBSCloud;
 import com.syw.weiyu.R;
+import com.syw.weiyu.activity.BottomPopupWindow;
 import com.syw.weiyu.ad.MoGo;
 import com.syw.weiyu.adapter.NearByUserAdapter;
 import com.syw.weiyu.adapter.ShuoshuoAdapter;
@@ -51,6 +52,7 @@ import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
 import io.rong.imkit.RongIM;
+import io.rong.imlib.RongIMClient;
 
 /**
  * Created by songyouwei on 2015/2/9.
@@ -116,7 +118,7 @@ public class ShuoshuoActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("Weiyu","ShoshuoActivity onResume");
+        Log.d("Weiyu", "ShoshuoActivity onResume");
 
         //读取缓存的lists
         shuoshuomapList = AppContext.getInstance().getShuoshuomapList();
@@ -187,7 +189,7 @@ public class ShuoshuoActivity extends FragmentActivity {
 //                updateListData(dataType);
                 pageIndex = 0;
                 setLoadType(ShuoshuoAdapter.LOADTYPE.TYPE_REFRESH);
-                LBSCloud.getInstance().nearbyShuoshuoSearch(0,lbsCloudSearchCallback);
+                LBSCloud.getInstance().nearbyShuoshuoSearch(0, lbsCloudSearchCallback);
             }
 
             @Override
@@ -208,11 +210,32 @@ public class ShuoshuoActivity extends FragmentActivity {
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view,final int position, long id) {
+                //开启聊天
                 RongIM.getInstance().startPrivateChat(
                         ShuoshuoActivity.this,
-                        adapter.getData().get(position-1).get("userId"),
-                        adapter.getData().get(position-1).get("shuoshuo_tv_name"));
+                        adapter.getData().get(position - 1).get("userId"),
+                        adapter.getData().get(position - 1).get("shuoshuo_tv_name"));
+//                new BottomPopupWindow(ShuoshuoActivity.this, new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        switch (v.getId()) {
+//                            case R.id.btn_1:
+//                                //赞
+//                                RongIM.getInstance().sendTextMessage(RongIMClient.ConversationType.SYSTEM,
+//                                        adapter.getData().get(position -1).get("userId"),
+//                                        "[系统消息：赞了你发的秘密]",null);
+//                                break;
+//                            case R.id.btn_2:
+//                                //开启聊天
+//                                RongIM.getInstance().startPrivateChat(
+//                                        ShuoshuoActivity.this,
+//                                        adapter.getData().get(position - 1).get("userId"),
+//                                        adapter.getData().get(position - 1).get("shuoshuo_tv_name"));
+//                                break;
+//                        }
+//                    }
+//                }).show();
             }
         });
 

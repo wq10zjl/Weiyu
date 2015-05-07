@@ -24,7 +24,7 @@
             android:textColor="#000000"
             android:textSize="16.0sp"
             android:textStyle="bold"
-            android:text="微遇beta\nsongyouwei.github.com\n&#169;2015 芜湖博旺凌网络CO.,LTD"
+            android:text="微遇2.0\nsongyouwei.github.com\n&#169;2015 芜湖博旺凌网络CO.,LTD"
             android:id="@+id/textView3"
             android:layout_marginBottom="81dp"
             android:layout_alignParentBottom="true"

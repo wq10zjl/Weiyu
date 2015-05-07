@@ -24,13 +24,7 @@ public class MainTabsActivity extends TabActivity {
 		setContentView(R.layout.wy_activity_maintabs);
 		initViews();
 		initTabs();
-        
-        checkAppUpdate();
 	}
-
-    private void checkAppUpdate() {
-        new WeiyuAppUpdateRemind(this,this.getString(R.string.adsmogo_appid)).checkUpdate();
-    }
 
     private void initViews() {
 		mTabHost = getTabHost();

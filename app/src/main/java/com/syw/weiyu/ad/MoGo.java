@@ -64,5 +64,6 @@ public class MoGo {
         WeiyuSplash weiyuSplash = new WeiyuSplash(activity,activity.getString(R.string.adsmogo_appid), WeiyuSplashMode.FULLSCREEN);
         //设置开屏广告监听
         weiyuSplash.setWeiyuSplashListener(listener);
+        weiyuSplash.setCloseButtonVisibility(View.VISIBLE);
     }
 }

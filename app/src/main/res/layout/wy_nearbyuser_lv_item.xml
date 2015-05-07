@@ -23,7 +23,7 @@
             android:id="@+id/nearbyuser_iv_portrait"
             android:layout_width="62dip"
             android:layout_height="62dip"
-            android:src="@drawable/ic_launcher"/>
+            android:src="@drawable/wy_ic_launcher"/>
 
         <LinearLayout
             android:layout_marginLeft="12dip"
