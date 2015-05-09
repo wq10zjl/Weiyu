@@ -4,11 +4,14 @@ import android.content.Context;
 import android.util.Log;
 
 import com.baidu.location.BDLocation;
-import com.syw.weiyu.LBS.LBSCloud;
-import com.syw.weiyu.LBS.LocSDK;
-import com.syw.weiyu.RongIM.RongCloud;
-import com.syw.weiyu.entity.MLocation;
-import com.syw.weiyu.entity.User;
+import com.orhanobut.logger.Logger;
+import com.syw.weiyu.api.ad.AdApi;
+import com.syw.weiyu.api.ad.impl.MoGo;
+import com.syw.weiyu.third.lbs.LBSCloud;
+import com.syw.weiyu.third.lbs.LocSDK;
+import com.syw.weiyu.third.rongim.RongCloud;
+import com.syw.weiyu.model.MLocation;
+import com.syw.weiyu.model.User;
 import com.syw.weiyu.util.ACache;
 
 import java.util.ArrayList;
@@ -33,7 +36,13 @@ public final class AppContext {
     public static AppContext getInstance() {
         return self;
     }
+
+
+    /**
+     * 初始化AppContext，读取并缓存运行时数据
+     */
     public static void init(Context ctx) {
+        Logger.d("init AppContext");
         context = ctx;
         if (self == null) {
             synchronized (AppContext.class) {
@@ -43,6 +52,7 @@ public final class AppContext {
 
         self.initilize();
     }
+
 
     /**
      * 从本地初始化,若不为空，则缓存进AppContext中
@@ -179,4 +189,5 @@ public final class AppContext {
     public void setUserList(List<User> userList) {
         this.userList = userList;
     }
+
 }

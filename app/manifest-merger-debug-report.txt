@@ -335,7 +335,7 @@ ADDED from AndroidManifest.xml:252:9
 		ADDED from AndroidManifest.xml:254:13
 	android:name
 		ADDED from AndroidManifest.xml:253:13
-activity#com.syw.weiyu.activity.LauncherActivity
+activity#com.syw.weiyu.ui.main.LauncherActivity
 ADDED from AndroidManifest.xml:258:9
 	android:name
 		ADDED from AndroidManifest.xml:258:19
@@ -349,31 +349,31 @@ category#android.intent.category.LAUNCHER
 ADDED from AndroidManifest.xml:262:17
 	android:name
 		ADDED from AndroidManifest.xml:262:27
-activity#com.syw.weiyu.activity.MainTabsActivity
+activity#com.syw.weiyu.ui.main.MainTabsActivity
 ADDED from AndroidManifest.xml:267:9
 	android:name
 		ADDED from AndroidManifest.xml:267:19
-activity#com.syw.weiyu.activity.explore.NearByUserActivity
+activity#com.syw.weiyu.ui.main.explore.NearByUserActivity
 ADDED from AndroidManifest.xml:270:9
 	android:name
 		ADDED from AndroidManifest.xml:270:19
-activity#com.syw.weiyu.activity.maintabs.SessionListActivity
+activity#com.syw.weiyu.ui.main.SessionListActivity
 ADDED from AndroidManifest.xml:273:9
 	android:name
 		ADDED from AndroidManifest.xml:273:19
-activity#com.syw.weiyu.activity.maintabs.ExploreActivity
+activity#com.syw.weiyu.ui.main.ExploreActivity
 ADDED from AndroidManifest.xml:276:9
 	android:name
 		ADDED from AndroidManifest.xml:276:19
-activity#com.syw.weiyu.activity.LoginActivity
+activity#com.syw.weiyu.ui.main.LoginActivity
 ADDED from AndroidManifest.xml:279:9
 	android:name
 		ADDED from AndroidManifest.xml:279:19
-activity#com.syw.weiyu.activity.explore.ProfileActivity
+activity#com.syw.weiyu.ui.user.ProfileActivity
 ADDED from AndroidManifest.xml:282:9
 	android:name
 		ADDED from AndroidManifest.xml:282:19
-activity#com.syw.weiyu.activity.explore.AboutInfoActivity
+activity#com.syw.weiyu.ui.main.explore.AboutInfoActivity
 ADDED from AndroidManifest.xml:285:9
 	android:name
 		ADDED from AndroidManifest.xml:285:19

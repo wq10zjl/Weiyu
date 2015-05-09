@@ -3,19 +3,26 @@ package com.syw.weiyu;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
-import android.util.Log;
 
-import com.syw.weiyu.LBS.LBSCloud;
-import com.syw.weiyu.RongIM.RongCloudEvent;
+import com.orhanobut.logger.Logger;
+import com.syw.weiyu.third.lbs.LBSCloud;
+import com.syw.weiyu.third.rongim.RongCloudEvent;
 
 import io.rong.imkit.RongIM;
 
 
 public class App extends Application {
 
+    private String TAG = "Weiyu";
+
     @Override
     public void onCreate() {
         super.onCreate();
+
+        /**
+         * init Logger
+         */
+        Logger.init(TAG);
 
         /**
          * 初始化百度云
@@ -29,7 +36,7 @@ public class App extends Application {
         //should not init RongIM in sub process
         if (isMainThread()) {
             RongIM.init(this);
-            Log.i("Weiyu", "init RongIM");
+            Logger.d("init RongIM");
         }
 
         /**
@@ -45,7 +52,7 @@ public class App extends Application {
         RongIM.getInstance().disconnect(true);
     }
 
-    private static String getCurProcessName(Context context) {
+    private String getCurProcessName(Context context) {
         int pid = android.os.Process.myPid();
         ActivityManager activityManager = (ActivityManager) context
                 .getSystemService(Context.ACTIVITY_SERVICE);
@@ -59,6 +66,7 @@ public class App extends Application {
     }
 
     private boolean isMainThread() {
-        return getCurProcessName(this).equals(getPackageName());
+        String curProcessName = getCurProcessName(this);
+        return (curProcessName != null && curProcessName.equals(getPackageName()));
     }
 }

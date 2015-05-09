@@ -271,13 +271,8 @@
         <service android:name="io.rong.imlib.RongService" />
         <!-- End Rong Cloud -->
 
-        <activity
-            android:name=".activity.TestsActivity"
-            android:label="@string/app_name" >
-        </activity>
-
         <!-- 启动页 -->
-        <activity android:name=".activity.LauncherActivity" >
+        <activity android:name=".ui.main.LauncherActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -286,28 +281,28 @@
         </activity>
 
         <!-- 主界面 -->
-        <activity android:name=".activity.MainTabsActivity" />
+        <activity android:name=".ui.main.MainTabsActivity" />
 
         <!-- 附近 -->
-        <activity android:name=".activity.explore.NearByUserActivity" />
+        <activity android:name=".ui.main.explore.NearByUserActivity" />
 
         <!-- 消息 -->
-        <activity android:name=".activity.maintabs.SessionListActivity" />
+        <activity android:name=".ui.main.SessionListActivity" />
 
         <!-- 发现 -->
-        <activity android:name=".activity.maintabs.ExploreActivity" />
+        <activity android:name=".ui.main.ExploreActivity" />
 
         <!-- 登录 -->
-        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".ui.main.LoginActivity" />
 
         <!-- 修改资料 -->
-        <activity android:name=".activity.explore.ProfileActivity" />
+        <activity android:name=".ui.user.ProfileActivity" />
 
         <!--关于信息-->
-        <activity android:name=".activity.explore.AboutInfoActivity"/>
+        <activity android:name=".ui.main.explore.AboutInfoActivity"/>
 
         <!--附近说说-->
-        <activity android:name=".activity.maintabs.ShuoshuoActivity"/>
+        <activity android:name=".ui.main.ShuoshuoActivity"/>
 
     </application>
 

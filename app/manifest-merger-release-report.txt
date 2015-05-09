@@ -326,7 +326,7 @@ ADDED from AndroidManifest.xml:274:9
 		ADDED from AndroidManifest.xml:276:13
 	android:name
 		ADDED from AndroidManifest.xml:275:13
-activity#com.syw.weiyu.activity.LauncherActivity
+activity#com.syw.weiyu.ui.main.LauncherActivity
 ADDED from AndroidManifest.xml:280:9
 	android:name
 		ADDED from AndroidManifest.xml:280:19
@@ -340,35 +340,35 @@ category#android.intent.category.LAUNCHER
 ADDED from AndroidManifest.xml:284:17
 	android:name
 		ADDED from AndroidManifest.xml:284:27
-activity#com.syw.weiyu.activity.MainTabsActivity
+activity#com.syw.weiyu.ui.main.MainTabsActivity
 ADDED from AndroidManifest.xml:289:9
 	android:name
 		ADDED from AndroidManifest.xml:289:19
-activity#com.syw.weiyu.activity.explore.NearByUserActivity
+activity#com.syw.weiyu.ui.main.explore.NearByUserActivity
 ADDED from AndroidManifest.xml:292:9
 	android:name
 		ADDED from AndroidManifest.xml:292:19
-activity#com.syw.weiyu.activity.maintabs.SessionListActivity
+activity#com.syw.weiyu.ui.main.SessionListActivity
 ADDED from AndroidManifest.xml:295:9
 	android:name
 		ADDED from AndroidManifest.xml:295:19
-activity#com.syw.weiyu.activity.maintabs.ExploreActivity
+activity#com.syw.weiyu.ui.main.ExploreActivity
 ADDED from AndroidManifest.xml:298:9
 	android:name
 		ADDED from AndroidManifest.xml:298:19
-activity#com.syw.weiyu.activity.LoginActivity
+activity#com.syw.weiyu.ui.main.LoginActivity
 ADDED from AndroidManifest.xml:301:9
 	android:name
 		ADDED from AndroidManifest.xml:301:19
-activity#com.syw.weiyu.activity.explore.ProfileActivity
+activity#com.syw.weiyu.ui.user.ProfileActivity
 ADDED from AndroidManifest.xml:304:9
 	android:name
 		ADDED from AndroidManifest.xml:304:19
-activity#com.syw.weiyu.activity.explore.AboutInfoActivity
+activity#com.syw.weiyu.ui.main.explore.AboutInfoActivity
 ADDED from AndroidManifest.xml:307:9
 	android:name
 		ADDED from AndroidManifest.xml:307:19
-activity#com.syw.weiyu.activity.maintabs.ShuoshuoActivity
+activity#com.syw.weiyu.ui.main.ShuoshuoActivity
 ADDED from AndroidManifest.xml:310:9
 	android:name
 		ADDED from AndroidManifest.xml:310:19
