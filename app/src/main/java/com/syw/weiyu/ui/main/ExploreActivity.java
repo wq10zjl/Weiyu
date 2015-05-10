@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//import com.qq.e.appwall.GdtAppwall;
 import com.syw.weiyu.R;
 import com.syw.weiyu.ui.main.explore.AboutInfoActivity;
 import com.syw.weiyu.ui.main.explore.NearByUserActivity;

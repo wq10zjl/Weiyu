@@ -8,7 +8,6 @@ import android.widget.Toast;
 import com.syw.weiyu.R;
 
 import io.rong.imkit.fragment.ConversationListFragment;
-import io.rong.imkit.fragment.ConversationSettingFragment;
 
 /**
  * Created by songyouwei on 2015/2/9.

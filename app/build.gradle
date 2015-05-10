@@ -54,10 +54,11 @@ dependencies {
     compile 'in.srain.cube:ultra-ptr:1.0.9@aar'
     compile 'com.github.nicolasjafelle:paginglistview:1.2'
     compile 'com.orhanobut:logger:1.8'
+    compile 'de.greenrobot:eventbus:2.4.0'
 
 //    compile 'org.roboguice:roboguice:3.0.1'
 //    provided 'org.roboguice:roboblender:3.0.1'
 
-    compile 'com.squareup.dagger:dagger:1.2.2'
-    compile 'com.squareup.dagger:dagger-compiler:1.2.2'
+//    compile 'com.squareup.dagger:dagger:1.2.2'
+//    compile 'com.squareup.dagger:dagger-compiler:1.2.2'
 }

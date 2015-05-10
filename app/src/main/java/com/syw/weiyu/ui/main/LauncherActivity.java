@@ -8,16 +8,14 @@ import android.view.KeyEvent;
 import com.orhanobut.logger.Logger;
 import com.syw.weiyu.AppContext;
 import com.syw.weiyu.R;
-import com.syw.weiyu.api.ad.AdApi;
-import com.syw.weiyu.api.ad.AdListener;
-
-import javax.inject.Inject;
+import com.syw.weiyu.api.AdApi;
+import com.syw.weiyu.api.AdListener;
+import com.syw.weiyu.util.IOC;
 
 
 public class LauncherActivity extends Activity {
 
-    @Inject
-    AdApi adApi;
+    AdApi adApi = IOC.getAdApi();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

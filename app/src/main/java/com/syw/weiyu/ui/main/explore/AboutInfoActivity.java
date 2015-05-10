@@ -1,7 +1,7 @@
 package com.syw.weiyu.ui.main.explore;
 
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
 import com.syw.weiyu.R;

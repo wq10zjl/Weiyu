@@ -21,11 +21,12 @@ import com.alibaba.fastjson.JSONObject;
 
 import com.paging.listview.PagingListView;
 import com.syw.weiyu.AppContext;
-import com.syw.weiyu.api.ad.AdApi;
-import com.syw.weiyu.api.ad.impl.MoGo;
+import com.syw.weiyu.api.AdApi;
+import com.syw.weiyu.api.impl.MoGo;
 import com.syw.weiyu.third.lbs.LBSCloud;
 import com.syw.weiyu.R;
 import com.syw.weiyu.ui.adapter.ShuoshuoAdapter;
+import com.syw.weiyu.util.IOC;
 
 import net.tsz.afinal.http.AjaxCallBack;
 
@@ -35,8 +36,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-
-import javax.inject.Inject;
 
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
@@ -84,8 +83,7 @@ public class ShuoshuoActivity extends FragmentActivity {
 
     PtrClassicFrameLayout mPtrFrame;
 
-    @Inject
-    AdApi adApi;
+    AdApi adApi = IOC.getAdApi();
 
     //LBS callback
     AjaxCallBack<String> lbsCloudSearchCallback = new LBSCloudSearchCallback();

@@ -13,8 +13,6 @@ import io.rong.imkit.RongIM;
 
 public class App extends Application {
 
-    private String TAG = "Weiyu";
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -22,6 +20,7 @@ public class App extends Application {
         /**
          * init Logger
          */
+        String TAG = "Weiyu";
         Logger.init(TAG);
 
         /**
@@ -35,8 +34,8 @@ public class App extends Application {
          */
         //should not init RongIM in sub process
         if (isMainThread()) {
-            RongIM.init(this);
             Logger.d("init RongIM");
+            RongIM.init(this);
         }
 
         /**
@@ -69,4 +68,5 @@ public class App extends Application {
         String curProcessName = getCurProcessName(this);
         return (curProcessName != null && curProcessName.equals(getPackageName()));
     }
+
 }

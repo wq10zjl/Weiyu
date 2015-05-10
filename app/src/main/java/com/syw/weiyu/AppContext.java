@@ -5,8 +5,6 @@ import android.util.Log;
 
 import com.baidu.location.BDLocation;
 import com.orhanobut.logger.Logger;
-import com.syw.weiyu.api.ad.AdApi;
-import com.syw.weiyu.api.ad.impl.MoGo;
 import com.syw.weiyu.third.lbs.LBSCloud;
 import com.syw.weiyu.third.lbs.LocSDK;
 import com.syw.weiyu.third.rongim.RongCloud;
