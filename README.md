@@ -1,3 +1,5 @@
+**此分支为重构版，正在进行中，目的在于项目代码架构的调整和结构的优化，增加代码的可读性和可维护性**
+
 # Weiyu
 
 **A location based yuepao android app**
@@ -7,15 +9,3 @@
 </a>
 
 **Licence: The GNU General Public License v3.0**
-
-**Screenshots:**
-
-<img src="/screenshots/Screenshot_0.png" height="640" width="360" />
-
-<img src="/screenshots/Screenshot_1.png" height="640" width="360" />
-
-<img src="/screenshots/Screenshot_2.png" height="640" width="360" />
-
-<img src="/screenshots/Screenshot_3.png" height="640" width="360" />
-
-<img src="/screenshots/Screenshot_4.png" height="640" width="360" />
