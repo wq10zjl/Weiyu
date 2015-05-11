@@ -20,13 +20,13 @@ public interface AdApi {
      * @param listener
      * @return
      */
-    View getBannerAdView(Activity activity,AdListener listener);
+    View getBannerAdView(Activity activity,Listener listener);
 
     /**
      * 显示开屏广告
      * @param activity
      * @param listener
      */
-    void showSplashAd(Activity activity,AdListener listener);
+    void showSplashAd(Activity activity,Listener listener);
 
 }

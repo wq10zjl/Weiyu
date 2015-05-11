@@ -10,25 +10,11 @@ import com.syw.weiyu.R;
 import io.rong.imkit.fragment.ConversationListFragment;
 
 /**
- * Created by songyouwei on 2015/2/9.
+ * author: youwei
+ * date: 2015-05-11
+ * desc: 会话列表（消息）
  */
 public class SessionListActivity extends FragmentActivity {
-
-    private long currentTime=0;
-    private long oldTime=0;
-    /**
-     * 两次返回键退出，间隔2秒
-     */
-    @Override
-    public void onBackPressed() {
-        currentTime = System.currentTimeMillis();
-        if ((currentTime - oldTime) > 2000 || oldTime == 0) {
-            Toast.makeText(this, "再按一次退出", 2000).show();
-            oldTime = currentTime;
-        } else {
-            finish();
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,4 +28,5 @@ public class SessionListActivity extends FragmentActivity {
         TextView tvTitle = (TextView) findViewById(R.id.header_tv_title);
         tvTitle.setText("消息");
     }
+
 }

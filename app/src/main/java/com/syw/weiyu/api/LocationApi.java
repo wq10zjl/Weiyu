@@ -6,4 +6,5 @@ package com.syw.weiyu.api;
 public interface LocationApi {
     void locate();
     void updateUserLocation();
+    void getCachedLocation();
 }

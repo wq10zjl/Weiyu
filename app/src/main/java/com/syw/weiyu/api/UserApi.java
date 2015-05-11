@@ -7,5 +7,8 @@ public interface UserApi {
     void register();
     void login();
     void logout();
-    void updateProfile();
+    boolean isOnline();
+    boolean getLastOnlineTime();
+    void getUserProfile();
+    void updateUserProfile();
 }

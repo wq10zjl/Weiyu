@@ -53,7 +53,7 @@
         android:label="@string/app_name"
         android:theme="@style/RcTheme" >
 
-        <!-- MoGo MobAd -->
+        <!-- AdMoGo MobAd -->
         <!-- 声明Mogo的Activity -->
         <activity
             android:name="com.syw.weiyu.av.WeiyuWebView"

@@ -22,7 +22,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.paging.listview.PagingListView;
 import com.syw.weiyu.AppContext;
 import com.syw.weiyu.api.AdApi;
-import com.syw.weiyu.api.impl.MoGo;
+import com.syw.weiyu.api.impl.AdMoGo;
 import com.syw.weiyu.third.lbs.LBSCloud;
 import com.syw.weiyu.R;
 import com.syw.weiyu.ui.adapter.ShuoshuoAdapter;
@@ -44,25 +44,11 @@ import in.srain.cube.views.ptr.PtrHandler;
 import io.rong.imkit.RongIM;
 
 /**
- * Created by songyouwei on 2015/2/9.
+ * author: youwei
+ * date: 2015-05-11
+ * desc: 说说（首页）
  */
 public class ShuoshuoActivity extends FragmentActivity {
-
-    private long currentTime=0;
-    private long oldTime=0;
-    /**
-     * 两次返回键退出，间隔2秒
-     */
-    @Override
-    public void onBackPressed() {
-        currentTime = System.currentTimeMillis();
-        if ((currentTime - oldTime) > 2000 || oldTime == 0) {
-            Toast.makeText(this, "再按一次退出", 2000).show();
-            oldTime = currentTime;
-        } else {
-            finish();
-        }
-    }
 
     //用于视图适配器的mapList
     List<HashMap<String, String>> shuoshuomapList = new ArrayList<>();
@@ -93,8 +79,6 @@ public class ShuoshuoActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wy_activity_shuoshuo);
         initViews();
-
-//        initHeader();
         initUltraPullToRefresh();
         initListView();
     }
@@ -140,8 +124,8 @@ public class ShuoshuoActivity extends FragmentActivity {
         /**
          * 对于MoGoAd，要作销毁操作
          */
-        if (adApi instanceof MoGo) {
-            MoGo mogo = (MoGo)adApi;
+        if (adApi instanceof AdMoGo) {
+            AdMoGo mogo = (AdMoGo)adApi;
             mogo.onBannerDestory();
         }
         super.onDestroy();
@@ -347,5 +331,22 @@ public class ShuoshuoActivity extends FragmentActivity {
                     }
                 });
         return builder.create();
+    }
+
+
+    /**
+     * 两次返回键退出，间隔2秒
+     */
+    private long currentTime=0;
+    private long oldTime=0;
+    @Override
+    public void onBackPressed() {
+        currentTime = System.currentTimeMillis();
+        if ((currentTime - oldTime) > 2000 || oldTime == 0) {
+            Toast.makeText(this, "再按一次退出", 2000).show();
+            oldTime = currentTime;
+        } else {
+            finish();
+        }
     }
 }

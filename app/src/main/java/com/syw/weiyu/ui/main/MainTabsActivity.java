@@ -16,7 +16,6 @@ public class MainTabsActivity extends TabActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.wy_activity_maintabs);
 		initViews();
 		initTabs();
@@ -26,6 +25,9 @@ public class MainTabsActivity extends TabActivity {
 		mTabHost = getTabHost();
 	}
 
+	/**
+	 * 初始化Tabs
+	 */
 	private void initTabs() {
 		LayoutInflater inflater = LayoutInflater.from(MainTabsActivity.this);
 

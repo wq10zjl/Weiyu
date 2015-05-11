@@ -6,7 +6,7 @@ import android.content.Context;
 
 import com.orhanobut.logger.Logger;
 import com.syw.weiyu.third.lbs.LBSCloud;
-import com.syw.weiyu.third.rongim.RongCloudEvent;
+import com.syw.weiyu.third.im.RongCloudEvent;
 
 import io.rong.imkit.RongIM;
 
@@ -39,7 +39,7 @@ public class App extends Application {
         }
 
         /**
-         * 融云SDK事件监听处理
+         * 初始化融云SDK事件监听处理
          */
         RongCloudEvent.init(this);
     }

@@ -9,7 +9,7 @@ import com.orhanobut.logger.Logger;
 import com.syw.weiyu.AppContext;
 import com.syw.weiyu.R;
 import com.syw.weiyu.api.AdApi;
-import com.syw.weiyu.api.AdListener;
+import com.syw.weiyu.api.Listener;
 import com.syw.weiyu.util.IOC;
 
 
@@ -60,21 +60,21 @@ public class LauncherActivity extends Activity {
 
     private void showSplashAdThenGotoMainPage() {
         //[1s]后加载开屏广告页
-        adApi.showSplashAd(this,new AdListener() {
+        adApi.showSplashAd(this, new Listener() {
             @Override
-            public void onClose() {
-                gotoMainPage();
-            }
-
-            @Override
-            public void onError(String msg) {
-                Logger.d(msg);
-                gotoMainPage();
-            }
-
-            @Override
-            public void onClick(String msg) {
-                Logger.d(msg);
+            public void onCallback(Callback callback,String msg) {
+                switch (callback) {
+                    case onAdError:
+                        Logger.d(msg);
+                        gotoMainPage();
+                        break;
+                    case onAdClick:
+                        Logger.d(msg);
+                        break;
+                    case onAdClose:
+                        gotoMainPage();
+                        break;
+                }
             }
         });
     }
