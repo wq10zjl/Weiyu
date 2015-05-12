@@ -5,7 +5,7 @@ package com.syw.weiyu.api;
  * date: 2015-05-11
  * desc:
  */
-public interface ShuoshuoApi {
+public interface IShuoshuoApi {
     void getNearbyShuoshuo();
     void getShuoshuoDetail();
     void publishShuoshuo();

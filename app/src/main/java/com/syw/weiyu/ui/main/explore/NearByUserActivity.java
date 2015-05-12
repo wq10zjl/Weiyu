@@ -15,11 +15,11 @@ import com.alibaba.fastjson.JSONObject;
 
 import com.paging.listview.PagingListView;
 import com.syw.weiyu.AppContext;
-import com.syw.weiyu.api.AdApi;
+import com.syw.weiyu.api.IAdApi;
 import com.syw.weiyu.third.lbs.LBSCloud;
 import com.syw.weiyu.R;
 import com.syw.weiyu.ui.adapter.NearByUserAdapter;
-import com.syw.weiyu.model.User;
+import com.syw.weiyu.bean.User;
 import com.syw.weiyu.util.ACache;
 import com.syw.weiyu.util.IOC;
 import com.syw.weiyu.util.WeiyuAppUpdateRemind;
@@ -62,7 +62,7 @@ public class NearByUserActivity extends FragmentActivity {
     //LBS callback
     AjaxCallBack<String> lbsCloudSearchCallback = new LBSCloudSearchCallback();
 
-    AdApi adApi = IOC.getAdApi();
+    IAdApi adApi = IOC.getAdApi();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -211,11 +211,11 @@ public class NearByUserActivity extends FragmentActivity {
 
                     //users(only has userId&name&gender)
                     User user = new User();
-                    user.setUserId(poi.getString("userId"));
+                    user.setId(poi.getString("userId"));
                     user.setName(poi.getString("name"));
                     user.setGender(poi.getString("gender"));
                     //save userId-json[k-v value] cache
-                    ACache.get(NearByUserActivity.this).put(user.getUserId(), JSON.toJSONString(user));
+                    ACache.get(NearByUserActivity.this).put(user.getId(), JSON.toJSONString(user));
                 }
                 //set totalPage
                 if (totalPage == 0) {

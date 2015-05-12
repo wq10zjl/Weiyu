@@ -1,6 +1,6 @@
 package com.syw.weiyu.util;
 
-import com.syw.weiyu.api.AdApi;
+import com.syw.weiyu.api.IAdApi;
 import com.syw.weiyu.api.impl.AdMoGo;
 
 /**
@@ -9,8 +9,8 @@ import com.syw.weiyu.api.impl.AdMoGo;
  * desc: 简单的IOC容器，在这里配置接口的具体实现
  */
 public class IOC {
-    private static AdApi adApi;
-    public static AdApi getAdApi() {
+    private static IAdApi adApi;
+    public static IAdApi getAdApi() {
         if (adApi == null) adApi = new AdMoGo();
         return adApi;
     }

@@ -7,9 +7,9 @@ import com.baidu.location.BDLocation;
 import com.orhanobut.logger.Logger;
 import com.syw.weiyu.third.lbs.LBSCloud;
 import com.syw.weiyu.third.lbs.LocSDK;
-import com.syw.weiyu.third.rongim.RongCloud;
-import com.syw.weiyu.model.MLocation;
-import com.syw.weiyu.model.User;
+import com.syw.weiyu.third.im.RongCloud;
+import com.syw.weiyu.bean.MLocation;
+import com.syw.weiyu.bean.User;
 import com.syw.weiyu.util.ACache;
 
 import java.util.ArrayList;

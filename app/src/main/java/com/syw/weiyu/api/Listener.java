@@ -5,23 +5,24 @@ package com.syw.weiyu.api;
  * date: 2015-05-11
  * desc: API的监听接口
  */
-public interface Listener {
+public abstract class Listener {
 
     /**
      * 回调
      * @param callback 回调类型
      * @param msg 包含的消息
      */
-    void onCallback(Callback callback,String msg);
+    public abstract void onCallback(Callback callback, String msg);
 
     /**
      * 回调类型
      */
-    enum Callback {
-        //AdApi
+    public enum Callback {
+        //IAdApi
         onAdError,onAdClick,onAdClose,
-        //UserApi
-        //LocationApi
-        //ShuoshuoApi
+        //IUserApi
+        onUserRegisterSuccess,getOnUserRegisterFailure,
+        //ILocationApi
+        //IShuoshuoApi
     }
 }

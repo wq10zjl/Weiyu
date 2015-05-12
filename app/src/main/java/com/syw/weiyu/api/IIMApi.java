@@ -5,6 +5,6 @@ package com.syw.weiyu.api;
  * date: 2015-05-11
  * desc: IM接口
  */
-public interface IMApi {
+public interface IIMApi {
 
 }

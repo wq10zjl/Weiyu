@@ -1,4 +1,4 @@
-package com.syw.weiyu.model;
+package com.syw.weiyu.bean;
 
 import android.content.Context;
 

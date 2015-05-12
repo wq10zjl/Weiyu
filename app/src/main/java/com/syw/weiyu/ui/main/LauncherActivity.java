@@ -8,14 +8,14 @@ import android.view.KeyEvent;
 import com.orhanobut.logger.Logger;
 import com.syw.weiyu.AppContext;
 import com.syw.weiyu.R;
-import com.syw.weiyu.api.AdApi;
+import com.syw.weiyu.api.IAdApi;
 import com.syw.weiyu.api.Listener;
 import com.syw.weiyu.util.IOC;
 
 
 public class LauncherActivity extends Activity {
 
-    AdApi adApi = IOC.getAdApi();
+    IAdApi adApi = IOC.getAdApi();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +62,7 @@ public class LauncherActivity extends Activity {
         //[1s]后加载开屏广告页
         adApi.showSplashAd(this, new Listener() {
             @Override
-            public void onCallback(Callback callback,String msg) {
+            public void onCallback(Callback callback, String msg) {
                 switch (callback) {
                     case onAdError:
                         Logger.d(msg);
@@ -72,6 +72,7 @@ public class LauncherActivity extends Activity {
                         Logger.d(msg);
                         break;
                     case onAdClose:
+                    default:
                         gotoMainPage();
                         break;
                 }

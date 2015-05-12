@@ -8,8 +8,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.syw.weiyu.AppContext;
 import com.syw.weiyu.third.lbs.LBSCloud;
-import com.syw.weiyu.model.MLocation;
-import com.syw.weiyu.model.User;
+import com.syw.weiyu.bean.MLocation;
+import com.syw.weiyu.bean.User;
 import com.syw.weiyu.util.ACache;
 
 import net.tsz.afinal.http.AjaxCallBack;
@@ -266,7 +266,7 @@ public final class RongCloudEvent implements
 //        Log.d("Begavior", conversationType.getName() + ":" + user.getName());
 //        Intent in = new Intent(context, UserInfoActivity.class);
 //        in.putExtra("user_name", user.getName());
-//        in.putExtra("user_id", user.getUserId());
+//        in.putExtra("user_id", user.getId());
 //        context.startActivity(in);
 
         return false;

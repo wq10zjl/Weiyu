@@ -1,4 +1,4 @@
-package com.syw.weiyu.model;
+package com.syw.weiyu.bean;
 
 import java.io.Serializable;
 
@@ -8,7 +8,7 @@ import java.io.Serializable;
  * 用户对象包含的location为自己的MLocation对象
  */
 public class User implements Serializable {
-    private String userId;
+    private String id;
     private String name;
     private String gender;
     private String tags;
@@ -17,7 +17,7 @@ public class User implements Serializable {
 
     public User() {}
     public User(String userId, String name, String gender, String tags, String organization, MLocation location) {
-        this.userId = userId;
+        this.id = userId;
         this.name = name;
         this.gender = gender;
         this.tags = tags;
@@ -28,7 +28,7 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "User{" +
-                "userId='" + userId + '\'' +
+                "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", gender='" + gender + '\'' +
                 ", tags='" + tags + '\'' +
@@ -45,12 +45,12 @@ public class User implements Serializable {
         this.location = location;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getId() {
+        return id;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {

@@ -8,7 +8,7 @@ import android.widget.AbsListView;
 import com.syw.weiyu.R;
 import com.syw.weiyu.adp.WeiyuBannerCustomEventPlatformAdapter;
 import com.syw.weiyu.adp.WeiyuCustomEventPlatformEnum;
-import com.syw.weiyu.api.AdApi;
+import com.syw.weiyu.api.IAdApi;
 import com.syw.weiyu.api.Listener;
 import com.syw.weiyu.av.WeiyuLayout;
 import com.syw.weiyu.controller.listener.WeiyuListener;
@@ -21,7 +21,7 @@ import com.syw.weiyu.util.WeiyuSplashMode;
  * Created by songyouwei on 2015/4/28.
  * AdMoGo平台
  */
-public class AdMoGo implements AdApi {
+public class AdMoGo implements IAdApi {
 
     //adsmogo
     WeiyuLayout weiyuLayoutCode;
@@ -34,13 +34,14 @@ public class AdMoGo implements AdApi {
         weiyuLayoutCode.clearThread();
     }
 
+    Listener listener;
     @Override
-    public void init() {
-        //此处暂时无初始化操作
+    public void init(Listener listener) {
+        this.listener = listener;
     }
 
     @Override
-    public View getBannerAdView(Activity activity, final Listener listener) {
+    public View getBannerAdView(Activity activity) {
         /**
          * 初始化adsMogoView
          * 参数：第一个activity,第二个mogoID（该值为芒果后台申请的生产的芒果ID，非单一平台ID）,第三个设置广告展示位置,第四个请求广告尺寸,
@@ -103,7 +104,7 @@ public class AdMoGo implements AdApi {
     }
 
     @Override
-    public void showSplashAd(Activity activity,final Listener listener) {
+    public void showSplashAd(Activity activity) {
         WeiyuSplash weiyuSplash = new WeiyuSplash(activity,activity.getString(R.string.adsmogo_appid), WeiyuSplashMode.FULLSCREEN);
         //设置开屏广告监听
         weiyuSplash.setWeiyuSplashListener(new WeiyuSplashListener() {

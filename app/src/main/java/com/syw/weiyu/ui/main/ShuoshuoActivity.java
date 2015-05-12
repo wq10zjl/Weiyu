@@ -21,7 +21,7 @@ import com.alibaba.fastjson.JSONObject;
 
 import com.paging.listview.PagingListView;
 import com.syw.weiyu.AppContext;
-import com.syw.weiyu.api.AdApi;
+import com.syw.weiyu.api.IAdApi;
 import com.syw.weiyu.api.impl.AdMoGo;
 import com.syw.weiyu.third.lbs.LBSCloud;
 import com.syw.weiyu.R;
@@ -69,7 +69,7 @@ public class ShuoshuoActivity extends FragmentActivity {
 
     PtrClassicFrameLayout mPtrFrame;
 
-    AdApi adApi = IOC.getAdApi();
+    IAdApi adApi = IOC.getAdApi();
 
     //LBS callback
     AjaxCallBack<String> lbsCloudSearchCallback = new LBSCloudSearchCallback();

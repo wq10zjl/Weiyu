@@ -8,7 +8,7 @@ import android.view.View;
  * date: 2015-05-07
  * desc: 广告相关API
  */
-public interface AdApi {
+public interface IAdApi {
     /**
      * 初始化操作，设置参数
      */

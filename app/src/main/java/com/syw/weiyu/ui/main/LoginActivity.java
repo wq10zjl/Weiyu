@@ -7,9 +7,9 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.syw.weiyu.AppContext;
 import com.syw.weiyu.third.lbs.LBSCloud;
-import com.syw.weiyu.third.rongim.RongCloud;
+import com.syw.weiyu.third.im.RongCloud;
 import com.syw.weiyu.ui.user.ProfileBaseActivity;
-import com.syw.weiyu.model.User;
+import com.syw.weiyu.bean.User;
 import com.syw.weiyu.util.ACache;
 
 import net.tsz.afinal.http.AjaxCallBack;

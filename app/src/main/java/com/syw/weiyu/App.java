@@ -47,6 +47,7 @@ public class App extends Application {
     @Override
     public void onLowMemory() {
         super.onLowMemory();
+        Logger.d("onLowMemory,do im disconnect");
         //低內存臨近被清除時，取消鏈接但接收push
         RongIM.getInstance().disconnect(true);
     }
