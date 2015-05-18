@@ -1,8 +1,10 @@
 package com.syw.weiyu.api.impl;
 
+import com.syw.weiyu.AppException;
 import com.syw.weiyu.api.IUserApi;
 import com.syw.weiyu.bean.User;
 import com.syw.weiyu.dao.im.GetTokenDao;
+import com.syw.weiyu.dao.location.CreateUserPoiDao;
 import com.syw.weiyu.third.lbs.LBSCloud;
 
 /**
@@ -20,8 +22,12 @@ public class UserApi implements IUserApi {
      */
     @Override
     public void register(User user) {
-        String token = new GetTokenDao().getToken(user.getId(),user.getName(),null);
-
+        try {
+            String token = new GetTokenDao().getToken(user.getId(),user.getName(),null);
+            new CreateUserPoiDao().create(user,null);
+        } catch (AppException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
