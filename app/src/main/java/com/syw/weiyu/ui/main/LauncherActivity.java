@@ -7,9 +7,11 @@ import android.view.KeyEvent;
 
 import com.orhanobut.logger.Logger;
 import com.syw.weiyu.AppContext;
+import com.syw.weiyu.AppException;
 import com.syw.weiyu.R;
 import com.syw.weiyu.api.IAdApi;
 import com.syw.weiyu.api.Listener;
+import com.syw.weiyu.dao.user.AccountDao;
 import com.syw.weiyu.util.IOC;
 
 
@@ -26,12 +28,16 @@ public class LauncherActivity extends Activity {
             //未作初始化时，加载开屏广告，并初始化AppContext
             showSplashAdThenGotoMainPage();
             AppContext.init(this);
+            AppContext.getInstance().initilize();
         } else {
-            //已做过初始化，并且有用户信息，直接进入主页面
-            if (AppContext.getInstance().getUser() != null) {
+//          有用户信息→MainTabs主页面
+//          无用户信息→Login登入页
+            try {
+                //已做过初始化，并且有用户信息，直接进入主页面
+                new AccountDao().get();
                 gotoMainPage();
-            } else {
-                //无用户信息，进登入页
+            } catch (AppException e) {
+                //没有账户信息
                 gotoLoginPage();
             }
         }
@@ -47,8 +53,6 @@ public class LauncherActivity extends Activity {
 
     /**
      * 进入主页
-     *   有用户信息→MainTabs主页面
-     *   无用户信息→Login登入页
      */
     private void gotoMainPage() {
         //进入主页面
@@ -62,14 +66,14 @@ public class LauncherActivity extends Activity {
         //[1s]后加载开屏广告页
         adApi.showSplashAd(this, new Listener() {
             @Override
-            public void onCallback(Callback callback, String msg) {
-                switch (callback) {
+            public <String> void  onCallback(CallbackType callbackType, String msg) {
+                switch (callbackType) {
                     case onAdError:
-                        Logger.d(msg);
+                        Logger.d(msg.toString());
                         gotoMainPage();
                         break;
                     case onAdClick:
-                        Logger.d(msg);
+                        Logger.d(msg.toString());
                         break;
                     case onAdClose:
                     default:

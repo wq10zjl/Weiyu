@@ -44,7 +44,7 @@ public class RongCloud {
      *
      Post请求：userId必选，其余两项可选
      请求示例：
-     POST /user/getToken.json HTTP/1.1
+     POST /user/get.json HTTP/1.1
      Host: api.cn.rong.io
      App-Key: uwd1c0sxdlx2
      Nonce: 14314
@@ -73,7 +73,7 @@ public class RongCloud {
         params.put("userId",userId);
         params.put("name",name);
         params.put("portraitUri",portraitUri);
-        Log.d("Weiyu", "getToken, params:" + params.getParamString());
+        Log.d("Weiyu", "get, params:" + params.getParamString());
         getSignedHttp().post(context.getString(R.string.url_user_gettoken), params, callback);
     }
 

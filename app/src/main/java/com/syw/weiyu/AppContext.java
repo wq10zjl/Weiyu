@@ -5,6 +5,9 @@ import android.util.Log;
 
 import com.baidu.location.BDLocation;
 import com.orhanobut.logger.Logger;
+import com.syw.weiyu.bean.Account;
+import com.syw.weiyu.dao.location.LocationDao;
+import com.syw.weiyu.dao.user.AccountDao;
 import com.syw.weiyu.third.lbs.LBSCloud;
 import com.syw.weiyu.third.lbs.LocSDK;
 import com.syw.weiyu.third.im.RongCloud;
@@ -23,7 +26,7 @@ import java.util.List;
  */
 public final class AppContext {
 
-    //'key's store values in sd card
+    //'key's store values in local
     public static final String USER = "user";
     public static final String LOCATION = "location";
     public static final String TOKEN = "token";
@@ -37,7 +40,7 @@ public final class AppContext {
 
 
     /**
-     * 初始化AppContext，读取并缓存运行时数据
+     * 初始化AppContext
      */
     public static void init(Context ctx) {
         Logger.d("init AppContext");
@@ -47,30 +50,36 @@ public final class AppContext {
                 if (self == null) self = new AppContext();
             }
         }
+    }
 
-        self.initilize();
+    public static Context getCtx() {
+        return context;
     }
 
 
     /**
+     * 读取并缓存运行时数据
      * 从本地初始化,若不为空，则缓存进AppContext中
      * User信息（不包含location信息）
      * Token信息
      * Location信息
      */
-    private void initilize() {
-        //initilize user&token&connect only if the user isn't null
-        User user = (User) ACache.getPermanence(context).getAsObject(USER);
-        if (user != null) {
-            //initilize user
-            setUser(user);
-            //initilize token
-            setToken(ACache.getPermanence(context).getAsString("token"));
-            //connect rong cloud
-            RongCloud.getInstance(context).connectRongCloud();
-        }
-        //initilize location
-        initLocation();
+    public void initilize() {
+        //只初始化地理信息
+        new LocationDao().set();
+
+//        //initilize user&token&connect only if the user isn't null
+//        User user = (User) ACache.getPermanence(context).getAsObject(USER);
+//        if (user != null) {
+//            //initilize user
+//            setUser(user);
+//            //initilize token
+//            setToken(ACache.getPermanence(context).getAsString("token"));
+//            //connect rong cloud
+//            RongCloud.getInstance(context).connectRongCloud();
+//        }
+//        //initilize location
+//        initLocation();
     }
 
     /**
@@ -80,7 +89,7 @@ public final class AppContext {
      * 若失败，且本地没有位置数据，则使用默认的未知数据（北京）
      */
     private void initLocation() {
-        LocSDK.getInstance(context).locate(new LocSDK.OnLocateCompleteListener() {
+        LocSDK.getInstance().locate(new LocSDK.OnLocateCompleteListener() {
             MLocation mLocation;
             @Override
             public void onSuccess(BDLocation location) {
@@ -104,7 +113,7 @@ public final class AppContext {
                 //若本地没有存储的位置信息，构建默认的位置（北京）
                 //不保存在本地，只存放在ram中
                 if (mLocation == null) {
-                    mLocation = new MLocation(context);
+                    mLocation = new MLocation(null);
                 }
             }
         });
@@ -118,7 +127,7 @@ public final class AppContext {
     /**
      * 当前用户的位置,默认“北京”
      */
-    private MLocation location = new MLocation(context);
+    private MLocation location = new MLocation(null);
 
     /**
      * 当前用户的token

@@ -12,7 +12,7 @@ public interface IAdApi {
     /**
      * 初始化操作，设置参数
      */
-    void init();
+    void init(Listener listener);
 
     /**
      * 获取到的BannerAdView

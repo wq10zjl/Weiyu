@@ -41,7 +41,7 @@ public class AdMoGo implements IAdApi {
     }
 
     @Override
-    public View getBannerAdView(Activity activity) {
+    public View getBannerAdView(Activity activity,final Listener listener) {
         /**
          * 初始化adsMogoView
          * 参数：第一个activity,第二个mogoID（该值为芒果后台申请的生产的芒果ID，非单一平台ID）,第三个设置广告展示位置,第四个请求广告尺寸,
@@ -72,17 +72,17 @@ public class AdMoGo implements IAdApi {
 
             @Override
             public void onFailedReceiveAd() {
-                listener.onCallback(Listener.Callback.onAdError,"onFailedReceive");
+                listener.onCallback(Listener.CallbackType.onAdError,"onFailedReceive");
             }
 
             @Override
             public void onClickAd(String s) {
-                listener.onCallback(Listener.Callback.onAdClick,s);
+                listener.onCallback(Listener.CallbackType.onAdClick,s);
             }
 
             @Override
             public boolean onCloseAd() {
-                listener.onCallback(Listener.Callback.onAdClose,"");
+                listener.onCallback(Listener.CallbackType.onAdClose,"");
                 return false;
             }
 
@@ -104,13 +104,13 @@ public class AdMoGo implements IAdApi {
     }
 
     @Override
-    public void showSplashAd(Activity activity) {
+    public void showSplashAd(Activity activity,final Listener listener) {
         WeiyuSplash weiyuSplash = new WeiyuSplash(activity,activity.getString(R.string.adsmogo_appid), WeiyuSplashMode.FULLSCREEN);
         //设置开屏广告监听
         weiyuSplash.setWeiyuSplashListener(new WeiyuSplashListener() {
             @Override
             public void onSplashClickAd(String s) {
-                listener.onCallback(Listener.Callback.onAdClick,s);
+                listener.onCallback(Listener.CallbackType.onAdClick,s);
             }
 
             @Override
@@ -120,7 +120,7 @@ public class AdMoGo implements IAdApi {
 
             @Override
             public void onSplashError(String s) {
-                listener.onCallback(Listener.Callback.onAdError,s);
+                listener.onCallback(Listener.CallbackType.onAdError,s);
             }
 
             @Override
@@ -130,7 +130,7 @@ public class AdMoGo implements IAdApi {
 
             @Override
             public void onSplashClose() {
-                listener.onCallback(Listener.Callback.onAdClose,"");
+                listener.onCallback(Listener.CallbackType.onAdClose,"");
             }
         });
         weiyuSplash.setCloseButtonVisibility(View.VISIBLE);

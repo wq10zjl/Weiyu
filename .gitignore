@@ -13,7 +13,7 @@ bin/
 gen/
 
 # Local configuration file (sdk path, etc)
-local.properties
+/local.properties
 
 # Windows thumbnail db
 Thumbs.db
@@ -34,3 +34,4 @@ Thumbs.db
 /.gradle
 /app/build
 /build
+/*.iml

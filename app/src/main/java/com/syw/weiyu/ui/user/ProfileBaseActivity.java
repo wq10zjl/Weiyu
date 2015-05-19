@@ -10,6 +10,7 @@ import android.widget.RadioGroup;
 
 import com.dd.processbutton.iml.ActionProcessButton;
 import com.syw.weiyu.R;
+import com.syw.weiyu.util.StringUtil;
 
 public abstract class ProfileBaseActivity extends FragmentActivity {
 
@@ -80,90 +81,10 @@ public abstract class ProfileBaseActivity extends FragmentActivity {
 
                 userId = ((TelephonyManager)getSystemService(TELEPHONY_SERVICE)).getDeviceId();
                 name = String.valueOf(((EditText)findViewById(R.id.et_name)).getText());
+                if (StringUtil.isEmpty(name)) name = "匿名";
                 gender = genderRG.getCheckedRadioButtonId()==manRD.getId()?"男":"女";
                 doOnClickWork(userId,name,gender);
             }
         });
     }
-
-//    private void initGenderSwitcher() {
-//        SwitcherButton genderSwitcherButton = (SwitcherButton) findViewById(R.id.switcher_gender).findViewById(R.id.header_sb_rightview_switcherbutton);
-//        final LinearLayout genderSwitcherTab = (LinearLayout) genderSwitcherButton.findViewById(R.id.switcher_layout_tab);
-//
-//        //设置切换按钮文本
-//        TextView leftTextView = (TextView) genderSwitcherButton.findViewById(R.id.switcher_tv_left_text);
-//        TextView rightTextView = (TextView) genderSwitcherButton.findViewById(R.id.switcher_tv_right_text);
-//        leftTextView.setText("男");
-//        rightTextView.setText("女");
-//
-//        FragmentTransaction ft = getSupportFragmentManager()
-//                .beginTransaction();
-//        ft.setCustomAnimations(R.anim.fragment_fadein,
-//                R.anim.fragment_fadeout);
-//
-//        //默认男
-//        genderSwitcherTab.setGravity(Gravity.LEFT);
-//        gender = "男";
-//
-//        //男女监听切换按钮
-//        genderSwitcherButton.setOnSwitcherButtonClickListener(new SwitcherButton.onSwitcherButtonClickListener() {
-//            @Override
-//            public void onClick(SwitcherButton.SwitcherButtonState state) {
-//                switch (state) {
-//                    case LEFT:
-//                        //左边是“男”
-//                        genderSwitcherTab.setGravity(Gravity.LEFT);
-//                        gender = "男";
-//                        break;
-//
-//                    case RIGHT:
-//                        //右边是“女”
-//                        genderSwitcherTab.setGravity(Gravity.RIGHT);
-//                        gender = "女";
-//                        break;
-//                }
-//            }
-//        });
-//    }
-//
-//    private void initHobbySwitcher() {
-//        SwitcherButton hobbySwitcherButton = (SwitcherButton) findViewById(R.id.switcher_hobby).findViewById(R.id.header_sb_rightview_switcherbutton);
-//        final LinearLayout hobbySwitcherTab = (LinearLayout) hobbySwitcherButton.findViewById(R.id.switcher_layout_tab);
-//
-//        //设置切换按钮文本
-//        TextView leftTextView = (TextView) hobbySwitcherButton.findViewById(R.id.switcher_tv_left_text);
-//        TextView rightTextView = (TextView) hobbySwitcherButton.findViewById(R.id.switcher_tv_right_text);
-//        leftTextView.setText("男");
-//        rightTextView.setText("女");
-//
-//        FragmentTransaction ft = getSupportFragmentManager()
-//                .beginTransaction();
-//        ft.setCustomAnimations(R.anim.fragment_fadein,
-//                R.anim.fragment_fadeout);
-//
-//        //默认女
-//        hobbySwitcherTab.setGravity(Gravity.RIGHT);
-//        hobby = "女";
-//
-//        //男女监听切换按钮
-//        hobbySwitcherButton.setOnSwitcherButtonClickListener(new SwitcherButton.onSwitcherButtonClickListener() {
-//            @Override
-//            public void onClick(SwitcherButton.SwitcherButtonState state) {
-//                switch (state) {
-//                    case LEFT:
-//                        //左边是“男”
-//                        hobbySwitcherTab.setGravity(Gravity.LEFT);
-//                        hobby = "男";
-//                        break;
-//
-//                    case RIGHT:
-//                        //右边是“女”
-//                        hobbySwitcherTab.setGravity(Gravity.RIGHT);
-//                        hobby = "女";
-//                        break;
-//                }
-//            }
-//        });
-//    }
-
 }
