@@ -65,7 +65,7 @@ public final class AppContext {
      * Location信息
      */
     public void initilize() {
-        //只初始化地理信息
+        //只初始化位置信息
         new LocationDao().set();
 
 //        //initilize user&token&connect only if the user isn't null

@@ -12,6 +12,15 @@ public class Account {
     private String token;
     private MLocation location;
 
+    public Account() {}
+    public Account(String id, String name, String gender, String token, MLocation location) {
+        this.id = id;
+        this.name = name;
+        this.gender = gender;
+        this.token = token;
+        this.location = location;
+    }
+
     public String getId() {
         return id;
     }

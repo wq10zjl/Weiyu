@@ -3,6 +3,7 @@ package com.syw.weiyu.dao.location;
 import android.support.annotation.NonNull;
 import com.alibaba.fastjson.JSONObject;
 import com.syw.weiyu.App;
+import com.syw.weiyu.AppConstants;
 import com.syw.weiyu.AppException;
 import com.syw.weiyu.R;
 import com.syw.weiyu.bean.MLocation;
@@ -21,7 +22,7 @@ public class CreateUserPoiDao {
     public void create(@NonNull User user,MLocation location) throws AppException {
         if (location == null) location = new MLocation(null);
 
-        AjaxParams params = LBSCloud.getInitializedParams("93391");
+        AjaxParams params = LBSCloud.getInitializedParams(AppConstants.geotable_id_user);
         //user info
         params.put("userId", user.getId());
         params.put("name", user.getName());
@@ -35,13 +36,18 @@ public class CreateUserPoiDao {
         params.put("latitude", location.getLatitude());
 
         //post
-        final String url = "http://api.map.baidu.com/geodata/v3/poi/create";
+        final String url = AppConstants.url_create_poi;
         FinalHttp http = new FinalHttp();
         String jsonResult = (String) http.postSync(url, params);
         if (StringUtil.isEmpty(jsonResult)) throw new AppException("网络异常");
         JSONObject result = JSONObject.parseObject(jsonResult);
-        if (result.getInteger("status") != 0 && result.getInteger("status") == 3002) {
-            throw new AppException("用户POI创建失败");
+        if (result.getInteger("status") == 0) {
+            //创建成功
+        } else if (result.getInteger("status") == 3002) {
+            //这是老用户（主键重复）
+        } else {
+            //创建POI出错
+            throw new AppException("创建用户POI信息出错");
         }
     }
 }

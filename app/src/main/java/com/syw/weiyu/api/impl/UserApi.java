@@ -22,18 +22,16 @@ public class UserApi implements IUserApi {
      * 1.使用账户信息在LBS云创建POI节点
      * 2.获取token
      * 3.设置账户
-     * @param user
+     * @param id
+     * @param name
+     * @param gender
+     * @throws AppException
      */
     @Override
-    public void register(User user) throws AppException {
-        new CreateUserPoiDao().create(user, new LocationDao().get());
-        String token = new TokenDao().get(user.getId(), user.getName(), null);
-        Account account = new Account();
-        account.setId(user.getId());
-        account.setName(user.getName());
-        account.setGender(user.getGender());
-        account.setLocation(new LocationDao().get());
-        account.setToken(token);
+    public void register(String id,String name,String gender) throws AppException {
+        new CreateUserPoiDao().create(new User(id, name, gender), new LocationDao().get());
+        String token = new TokenDao().get(id, name, null);
+        Account account = new Account(id,name,gender,token,new LocationDao().get());
         new AccountDao().set(account);
     }
 

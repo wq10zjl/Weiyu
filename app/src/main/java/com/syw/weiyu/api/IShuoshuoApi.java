@@ -1,5 +1,7 @@
 package com.syw.weiyu.api;
 
+import com.syw.weiyu.bean.Shuoshuo;
+
 /**
  * author: youwei
  * date: 2015-05-11
@@ -7,6 +9,6 @@ package com.syw.weiyu.api;
  */
 public interface IShuoshuoApi {
     void getNearbyShuoshuo();
-    void getShuoshuoDetail();
-    void publishShuoshuo();
+    void getShuoshuoDetail(String id);
+    void publishShuoshuo(Shuoshuo shuoshuo);
 }

@@ -24,6 +24,11 @@ public class User implements Serializable {
         this.organization = organization;
         this.location = location;
     }
+    public User(String id, String name, String gender) {
+        this.id = id;
+        this.name = name;
+        this.gender = gender;
+    }
 
     @Override
     public String toString() {

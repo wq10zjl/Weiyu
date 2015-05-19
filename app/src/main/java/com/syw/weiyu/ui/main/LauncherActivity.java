@@ -11,6 +11,8 @@ import com.syw.weiyu.AppException;
 import com.syw.weiyu.R;
 import com.syw.weiyu.api.IAdApi;
 import com.syw.weiyu.api.Listener;
+import com.syw.weiyu.api.impl.UserApi;
+import com.syw.weiyu.bean.Account;
 import com.syw.weiyu.dao.user.AccountDao;
 import com.syw.weiyu.util.IOC;
 
@@ -35,9 +37,10 @@ public class LauncherActivity extends Activity {
             try {
                 //已做过初始化，并且有用户信息，直接进入主页面
                 new AccountDao().get();
+                new UserApi().login();
                 gotoMainPage();
             } catch (AppException e) {
-                //没有账户信息
+                //没有账户信息，进入登录页
                 gotoLoginPage();
             }
         }
@@ -51,9 +54,6 @@ public class LauncherActivity extends Activity {
         finish();
     }
 
-    /**
-     * 进入主页
-     */
     private void gotoMainPage() {
         //进入主页面
         Intent intent = new Intent(LauncherActivity.this, MainTabsActivity.class);

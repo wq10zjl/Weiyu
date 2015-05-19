@@ -29,8 +29,12 @@ public class LoginActivity extends ProfileBaseActivity {
     public void doOnClickWork(String userId, String name, String gender) {
 
         try {
-            new UserApi().register(new User(userId, name, gender, null, null, null));
-
+            UserApi userApi = new UserApi();
+            //注册
+            userApi.register(userId, name, gender);
+            //登录
+            userApi.login();
+            //进入主页面
             Intent intent = new Intent(LoginActivity.this, MainTabsActivity.class);
             startActivity(intent);
             finish();

@@ -10,7 +10,7 @@ import net.tsz.afinal.FinalDb;
 /**
  * author: youwei
  * date: 2015-05-19
- * desc: 账户数据存取
+ * desc: 账户数据的存取，包含用户信息，Token，和位置信息
  */
 public class AccountDao {
 

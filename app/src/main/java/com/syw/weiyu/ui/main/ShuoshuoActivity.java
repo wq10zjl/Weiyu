@@ -23,6 +23,7 @@ import com.paging.listview.PagingListView;
 import com.syw.weiyu.AppContext;
 import com.syw.weiyu.api.IAdApi;
 import com.syw.weiyu.api.impl.AdMoGo;
+import com.syw.weiyu.bean.ShuoshuoList;
 import com.syw.weiyu.third.lbs.LBSCloud;
 import com.syw.weiyu.R;
 import com.syw.weiyu.ui.adapter.ShuoshuoAdapter;
@@ -50,8 +51,9 @@ import io.rong.imkit.RongIM;
  */
 public class ShuoshuoActivity extends FragmentActivity {
 
-    //用于视图适配器的mapList
-    List<HashMap<String, String>> shuoshuomapList = new ArrayList<>();
+//    //用于视图适配器的mapList
+//    List<HashMap<String, String>> shuoshuomapList = new ArrayList<>();
+    ShuoshuoList shuoshuoList;
 
     int pageIndex = 0;
     int totalPage = 0;
@@ -89,19 +91,19 @@ public class ShuoshuoActivity extends FragmentActivity {
         super.onResume();
         Log.d("Weiyu", "ShoshuoActivity onResume");
 
-        //读取缓存的lists
-        shuoshuomapList = AppContext.getInstance().getShuoshuomapList();
-        //若空，则刷新数据（延迟一秒），否者直接设置适配器
-        if(shuoshuomapList.isEmpty()) {
-            new Handler(){
-                @Override
-                public void handleMessage(Message msg) {
-                    mPtrFrame.autoRefresh();
-                }
-            }.sendEmptyMessageDelayed(1,500);
-        } else {
-            adapter.setData(shuoshuomapList);
-        }
+//        //读取缓存的lists
+//        shuoshuomapList = AppContext.getInstance().getShuoshuomapList();
+//        //若空，则刷新数据（延迟一秒），否者直接设置适配器
+//        if(shuoshuomapList.isEmpty()) {
+//            new Handler(){
+//                @Override
+//                public void handleMessage(Message msg) {
+//                    mPtrFrame.autoRefresh();
+//                }
+//            }.sendEmptyMessageDelayed(1,500);
+//        } else {
+//            adapter.setData(shuoshuomapList);
+//        }
 
         //add banner ad
         if (listView.getHeaderViewsCount() == 0) {
