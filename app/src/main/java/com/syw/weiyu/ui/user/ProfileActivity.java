@@ -11,7 +11,7 @@ import com.dd.processbutton.iml.ActionProcessButton;
 import com.syw.weiyu.AppContext;
 import com.syw.weiyu.third.lbs.LBSCloud;
 import com.syw.weiyu.R;
-import com.syw.weiyu.third.rongim.RongCloud;
+import com.syw.weiyu.third.im.RongCloud;
 import com.syw.weiyu.bean.User;
 import com.syw.weiyu.util.ACache;
 
@@ -45,8 +45,6 @@ public class ProfileActivity extends ProfileBaseActivity {
 
     @Override
     public void doOnClickWork(String userId, String name, String gender) {
-        Log.d("Weiyu","doOnClickWork");
-        if (name.equals("")) name = "匿名";
         final User newUser = new User(userId,name,gender,null,null,null);
 
         //在LBS云更新POI

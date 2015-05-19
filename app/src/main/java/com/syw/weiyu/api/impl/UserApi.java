@@ -2,10 +2,13 @@ package com.syw.weiyu.api.impl;
 
 import com.syw.weiyu.AppException;
 import com.syw.weiyu.api.IUserApi;
+import com.syw.weiyu.bean.Account;
 import com.syw.weiyu.bean.User;
-import com.syw.weiyu.dao.im.GetTokenDao;
+import com.syw.weiyu.dao.im.RongCloud;
+import com.syw.weiyu.dao.im.TokenDao;
 import com.syw.weiyu.dao.location.CreateUserPoiDao;
-import com.syw.weiyu.third.lbs.LBSCloud;
+import com.syw.weiyu.dao.location.LocationDao;
+import com.syw.weiyu.dao.user.AccountDao;
 
 /**
  * author: youwei
@@ -16,30 +19,32 @@ public class UserApi implements IUserApi {
 
     /**
      * 注册接口
-     * 1.在LBS云创建POI节点
-     * 2.连接IM服务器
+     * 1.使用账户信息在LBS云创建POI节点
+     * 2.获取token
+     * 3.设置账户
      * @param user
      */
     @Override
-    public void register(User user) {
-        try {
-            String token = new GetTokenDao().getToken(user.getId(),user.getName(),null);
-            new CreateUserPoiDao().create(user,null);
-        } catch (AppException e) {
-            e.printStackTrace();
-        }
+    public void register(User user) throws AppException {
+        new CreateUserPoiDao().create(user, new LocationDao().get());
+        String token = new TokenDao().get(user.getId(), user.getName(), null);
+        Account account = new Account();
+        account.setId(user.getId());
+        account.setName(user.getName());
+        account.setGender(user.getGender());
+        account.setLocation(new LocationDao().get());
+        account.setToken(token);
+        new AccountDao().set(account);
     }
 
     /**
      * 登录接口
-     * 1.更新POI位置信息
-     * 2.连接IM服务器
-     * @param user
+     * 1.连接IM服务器
      * @return
      */
     @Override
-    public User login(User user) {
-        return null;
+    public void login() throws AppException {
+        RongCloud.connect(new AccountDao().get().getToken());
     }
 
     /**

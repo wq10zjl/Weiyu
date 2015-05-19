@@ -16,13 +16,15 @@ public class LocSDK {
     private static LocSDK locSDK;
     private static Context context;
     private LocSDK() {}
-    public static LocSDK getInstance(Context ctx) {
+    public static void init(Context ctx) {
         context = ctx;
         if (locSDK == null) {
             synchronized (LocSDK.class) {
                 if (locSDK == null) locSDK = new LocSDK();
             }
         }
+    }
+    public static LocSDK getInstance() {
         return locSDK;
     }
 

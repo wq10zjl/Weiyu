@@ -5,8 +5,8 @@ import android.util.Log;
 
 import com.syw.weiyu.AppContext;
 import com.syw.weiyu.R;
-import com.syw.weiyu.model.MLocation;
-import com.syw.weiyu.model.User;
+import com.syw.weiyu.bean.MLocation;
+import com.syw.weiyu.bean.User;
 
 import net.tsz.afinal.FinalHttp;
 import net.tsz.afinal.http.AjaxCallBack;
@@ -48,7 +48,7 @@ public class LBSCloud {
 
         AjaxParams params = getInitializedParams();
         //user info
-        params.put("userId", user.getUserId());
+        params.put("userId", user.getId());
         params.put("name", user.getName());
         params.put("gender", user.getGender());
         params.put("tags", user.getTags());
@@ -71,7 +71,7 @@ public class LBSCloud {
     public void updateUserLocation() {
         //build params
         AjaxParams params = getInitializedParams();
-        params.put("userId", AppContext.getInstance().getUser().getUserId());
+        params.put("userId", AppContext.getInstance().getUser().getId());
         params.put("latitude", AppContext.getInstance().getLocation().getLatitude());
         params.put("longitude", AppContext.getInstance().getLocation().getLongitude());
         params.put("address",AppContext.getInstance().getLocation().getAddress());
@@ -99,7 +99,7 @@ public class LBSCloud {
     public void updateLastOnlineTime() {
         //build params
         AjaxParams params = getInitializedParams();
-        params.put("userId", AppContext.getInstance().getUser().getUserId());
+        params.put("userId", AppContext.getInstance().getUser().getId());
         //post
         String url = context.getString(R.string.url_update_poi);
         FinalHttp http = new FinalHttp();
@@ -145,7 +145,7 @@ public class LBSCloud {
 
         AjaxParams params = getInitializedParams(context.getString(R.string.geotable_id_shuoshuo));
         //user info
-        params.put("userId", user.getUserId());
+        params.put("userId", user.getId());
         params.put("userName", user.getName());
         //location info
         params.put("longitude", location.getLongitude());
@@ -293,7 +293,7 @@ public class LBSCloud {
      * @param geotable_id 指定数据表的ID
      * @return 返回设置好的params
      */
-    private AjaxParams getInitializedParams(String geotable_id) {
+    public static AjaxParams getInitializedParams(String geotable_id) {
         //build params
         AjaxParams params = new AjaxParams();
         //api constants
@@ -314,7 +314,7 @@ public class LBSCloud {
      */
     private AjaxParams getUpdateParamsByCompare(AjaxParams originalParams, User currentUser,  User updateUser) {
         boolean isChanged = false;
-        originalParams.put("userId",updateUser.getUserId());
+        originalParams.put("userId",updateUser.getId());
         if (currentUser.getName() != null && !currentUser.getName().equals(updateUser.getName())){
             isChanged = true;
             originalParams.put("name", updateUser.getName());

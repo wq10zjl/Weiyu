@@ -1,5 +1,7 @@
 package com.syw.weiyu.api;
 
+import java.util.Objects;
+
 /**
  * author: youwei
  * date: 2015-05-11
@@ -9,20 +11,21 @@ public abstract class Listener {
 
     /**
      * 回调
-     * @param callback 回调类型
-     * @param msg 包含的消息
+     * @param callbackType 回调类型
+     * @param message 返回的消息
      */
-    public abstract void onCallback(Callback callback, String msg);
+    public abstract <T> void onCallback(CallbackType callbackType,T message);
 
     /**
      * 回调类型
      */
-    public enum Callback {
+    public enum CallbackType {
         //IAdApi
         onAdError,onAdClick,onAdClose,
         //IUserApi
         onUserRegisterSuccess,getOnUserRegisterFailure,
         //ILocationApi
+        onLocateSuccess,onLocateError,
         //IShuoshuoApi
     }
 }

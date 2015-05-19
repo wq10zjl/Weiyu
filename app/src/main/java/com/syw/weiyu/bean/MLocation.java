@@ -1,9 +1,7 @@
 package com.syw.weiyu.bean;
 
-import android.content.Context;
-
 import com.baidu.location.BDLocation;
-import com.syw.weiyu.R;
+import com.syw.weiyu.AppConstants;
 
 import java.io.Serializable;
 
@@ -14,6 +12,7 @@ import java.io.Serializable;
  * 可由BDLocation对象构造
  */
 public class MLocation implements Serializable {
+    private String id;
     private String address;
     private String city;
     private String province;
@@ -34,25 +33,29 @@ public class MLocation implements Serializable {
     }
 
     public MLocation(BDLocation bdLocation) {
-        this.address = bdLocation.getAddrStr();
-        this.city = bdLocation.getCity();
-        this.province = bdLocation.getProvince();
-        this.district = bdLocation.getDistrict();
-        this.longitude = String.valueOf(bdLocation.getLongitude());
-        this.latitude = String.valueOf(bdLocation.getLatitude());
+        if (bdLocation == null) {
+            //定位失效时使用默认位置
+            this.address = AppConstants.address_default;
+            this.city = AppConstants.city_default;
+            this.province = AppConstants.province_default;
+            this.longitude = AppConstants.longitude_default;
+            this.latitude = AppConstants.latitude_default;
+        } else {
+            this.address = bdLocation.getAddrStr();
+            this.city = bdLocation.getCity();
+            this.province = bdLocation.getProvince();
+            this.district = bdLocation.getDistrict();
+            this.longitude = String.valueOf(bdLocation.getLongitude());
+            this.latitude = String.valueOf(bdLocation.getLatitude());
+        }
     }
-    public MLocation() {}
 
-    /**
-     * 失败时的构造器，构造默认地址（北京天安门）
-     * @param context
-     */
-    public MLocation(Context context) {
-        this.address = context.getString(R.string.address_default);
-        this.city = context.getString(R.string.city_default);
-        this.province = context.getString(R.string.province_default);
-        this.longitude = context.getString(R.string.longitude_default);
-        this.latitude = context.getString(R.string.latitude_default);
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getAddress() {

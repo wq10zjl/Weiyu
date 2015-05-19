@@ -8,9 +8,13 @@ import com.orhanobut.logger.Logger;
 import com.syw.weiyu.third.lbs.LBSCloud;
 import com.syw.weiyu.third.im.RongCloudEvent;
 
+import com.syw.weiyu.third.lbs.LocSDK;
 import io.rong.imkit.RongIM;
 
-
+/**
+ * 自有的Application，程序入口
+ * 做一些基本工具类的初始化
+ */
 public class App extends Application {
 
     @Override
@@ -18,7 +22,7 @@ public class App extends Application {
         super.onCreate();
 
         /**
-         * init Logger
+         * 初始化日志工具类
          */
         String TAG = "Weiyu";
         Logger.init(TAG);
@@ -27,6 +31,10 @@ public class App extends Application {
          * 初始化百度云
          */
         LBSCloud.init(this);
+        /**
+         * 初始化定位SDK
+         */
+        LocSDK.init(this);
 
         /**
          * IMKit SDK调用第一步 初始化
@@ -37,7 +45,6 @@ public class App extends Application {
             Logger.d("init RongIM");
             RongIM.init(this);
         }
-
         /**
          * 初始化融云SDK事件监听处理
          */
@@ -52,9 +59,9 @@ public class App extends Application {
         RongIM.getInstance().disconnect(true);
     }
 
-    private String getCurProcessName(Context context) {
+    private String getCurProcessName() {
         int pid = android.os.Process.myPid();
-        ActivityManager activityManager = (ActivityManager) context
+        ActivityManager activityManager = (ActivityManager) this
                 .getSystemService(Context.ACTIVITY_SERVICE);
         for (ActivityManager.RunningAppProcessInfo appProcess : activityManager
                 .getRunningAppProcesses()) {
@@ -66,7 +73,7 @@ public class App extends Application {
     }
 
     private boolean isMainThread() {
-        String curProcessName = getCurProcessName(this);
+        String curProcessName = getCurProcessName();
         return (curProcessName != null && curProcessName.equals(getPackageName()));
     }
 
