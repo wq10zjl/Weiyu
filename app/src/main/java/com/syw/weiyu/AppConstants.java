@@ -25,6 +25,7 @@ public class AppConstants {
     public static final String lbsyun_ak = "pzRrx7tXVcoAlxQRGAiMBfVq";
     public static final String geotable_id_user = "93391";
     public static final String geotable_id_shuoshuo = "99489";
+    public static final String geotable_id_comment = "104953";
     public static final String coord_type = "3";
 //  默认的“附近”检索的半径【开始先设置5000公里，基本可以覆盖整个中国任意两点】[300公里，大约是芜湖到上海的距离]
     public static final String default_radius = "5000000";

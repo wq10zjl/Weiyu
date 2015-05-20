@@ -254,7 +254,7 @@ public class ShuoshuoActivity extends FragmentActivity {
                     map.put("userId", poi.getString("userId"));
                     map.put("shuoshuo_tv_name", poi.getString("userName"));
                     map.put("shuoshuo_tv_address", poi.getString("province")+poi.getString("district"));
-                    map.put("shuoshuo_tv_time", new SimpleDateFormat("yyyy-MM-dd kk:mm:ss", Locale.ENGLISH).format(new Timestamp(Long.parseLong(poi.getString("create_time")) * 1000)));
+                    map.put("shuoshuo_tv_time", new SimpleDateFormat("yyyy-MM-dd kk:mm:ss", Locale.ENGLISH).format(new Timestamp(poi.getInteger("create_time") * 1000)));
                     map.put("shuoshuo_tv_content", poi.getString("content"));
                     newDataList.add(map);
                 }

@@ -1,5 +1,7 @@
 package com.syw.weiyu.ui.user;
 
+import android.content.Context;
+import android.provider.Settings;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
@@ -11,6 +13,8 @@ import android.widget.RadioGroup;
 import com.dd.processbutton.iml.ActionProcessButton;
 import com.syw.weiyu.R;
 import com.syw.weiyu.util.StringUtil;
+
+import java.util.Random;
 
 public abstract class ProfileBaseActivity extends FragmentActivity {
 
@@ -28,9 +32,6 @@ public abstract class ProfileBaseActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wy_activity_login);
-
-//        initGenderSwitcher();
-//        initHobbySwitcher();
 
         initGenderRadio();
         initSignInButton();
@@ -79,12 +80,26 @@ public abstract class ProfileBaseActivity extends FragmentActivity {
                 btnSignIn.setProgress(1);
                 btnSignIn.setEnabled(false);
 
-                userId = ((TelephonyManager)getSystemService(TELEPHONY_SERVICE)).getDeviceId();
-                name = String.valueOf(((EditText)findViewById(R.id.et_name)).getText());
+                userId = getUniqueID();
                 if (StringUtil.isEmpty(name)) name = "匿名";
-                gender = genderRG.getCheckedRadioButtonId()==manRD.getId()?"男":"女";
-                doOnClickWork(userId,name,gender);
+                gender = genderRG.getCheckedRadioButtonId() == manRD.getId() ? "男" : "女";
+                doOnClickWork(userId, name, gender);
             }
         });
+    }
+
+    /**
+     * 获取设备的唯一识别码
+     * @return
+     */
+    private String getUniqueID(){
+        String myAndroidDeviceId = "";
+        TelephonyManager mTelephony = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        if (mTelephony.getDeviceId() != null){
+            myAndroidDeviceId = mTelephony.getDeviceId();
+        }else{
+            myAndroidDeviceId = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+        }
+        return myAndroidDeviceId;
     }
 }

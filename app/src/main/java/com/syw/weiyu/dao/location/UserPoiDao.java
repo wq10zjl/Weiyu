@@ -18,7 +18,7 @@ import net.tsz.afinal.http.AjaxParams;
  * date: 2015-05-12
  * desc:
  */
-public class CreateUserPoiDao {
+public class UserPoiDao {
     public void create(@NonNull User user,MLocation location) throws AppException {
         if (location == null) location = new MLocation(null);
 

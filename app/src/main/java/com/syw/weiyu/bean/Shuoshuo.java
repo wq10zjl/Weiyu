@@ -6,18 +6,27 @@ package com.syw.weiyu.bean;
  * desc: 说说实体类
  */
 public class Shuoshuo {
-    private String id;
+    private long id;
     private MLocation location;
-    private String timestamp;
+    private long timestamp;
     private String content;
     private String userName;
     private String userId;
+    private CommentList commentList;
 
-    public String getId() {
+    public CommentList getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(CommentList commentList) {
+        this.commentList = commentList;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -29,11 +38,11 @@ public class Shuoshuo {
         this.location = location;
     }
 
-    public String getTimestamp() {
+    public long getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
+    public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
 

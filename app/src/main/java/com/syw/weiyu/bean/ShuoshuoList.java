@@ -19,7 +19,7 @@ public class ShuoshuoList {
         this.shuoshuoList = shuoshuoList;
     }
 
-    public Shuoshuo getShuoshuo(int position) {
+    public Shuoshuo getShuoshuoItem(int position) {
         return shuoshuoList.get(position);
     }
 }

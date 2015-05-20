@@ -1,6 +1,8 @@
 package com.syw.weiyu.api;
 
+import com.syw.weiyu.AppException;
 import com.syw.weiyu.bean.Shuoshuo;
+import com.syw.weiyu.bean.ShuoshuoList;
 
 /**
  * author: youwei
@@ -8,7 +10,8 @@ import com.syw.weiyu.bean.Shuoshuo;
  * desc:
  */
 public interface IShuoshuoApi {
-    void getNearbyShuoshuo();
-    void getShuoshuoDetail(String id);
+    ShuoshuoList refreshNearbyShuoshuo() throws AppException;
+    ShuoshuoList getNearbyShuoshuo(int pageIndex) throws AppException;
+    Shuoshuo getShuoshuoDetail(Shuoshuo shuoshuoWithoutComments) throws AppException;
     void publishShuoshuo(Shuoshuo shuoshuo);
 }

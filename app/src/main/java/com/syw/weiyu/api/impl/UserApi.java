@@ -6,7 +6,7 @@ import com.syw.weiyu.bean.Account;
 import com.syw.weiyu.bean.User;
 import com.syw.weiyu.dao.im.RongCloud;
 import com.syw.weiyu.dao.im.TokenDao;
-import com.syw.weiyu.dao.location.CreateUserPoiDao;
+import com.syw.weiyu.dao.location.UserPoiDao;
 import com.syw.weiyu.dao.location.LocationDao;
 import com.syw.weiyu.dao.user.AccountDao;
 
@@ -29,7 +29,7 @@ public class UserApi implements IUserApi {
      */
     @Override
     public void register(String id,String name,String gender) throws AppException {
-        new CreateUserPoiDao().create(new User(id, name, gender), new LocationDao().get());
+        new UserPoiDao().create(new User(id, name, gender), new LocationDao().get());
         String token = new TokenDao().get(id, name, null);
         Account account = new Account(id,name,gender,token,new LocationDao().get());
         new AccountDao().set(account);
