@@ -7,6 +7,7 @@ import com.syw.weiyu.bean.*;
 import com.syw.weiyu.bean.jsonobj.PoiItemJsonObj;
 import com.syw.weiyu.bean.jsonobj.ResultJsonObj;
 import com.syw.weiyu.dao.location.LocationDao;
+import com.syw.weiyu.dao.user.AccountDao;
 import com.syw.weiyu.third.lbs.LBSCloud;
 import net.tsz.afinal.FinalHttp;
 import net.tsz.afinal.http.AjaxParams;
@@ -17,10 +18,17 @@ import java.util.List;
 /**
  * author: songyouwei
  * date: 2015-05-19
- * desc:
+ * desc: 说说数据存取类
  */
 public class ShuoshuoDao {
-    public ShuoshuoList getNearByShuoshuoList(int pageIndex) throws AppException {
+
+    /**
+     * 获取附近的说说列表
+     * @param pageIndex
+     * @return
+     * @throws AppException
+     */
+    public ShuoshuoList getNearByList(int pageIndex) throws AppException {
         String url = AppConstants.url_nearby_search;
 
         AjaxParams params = LBSCloud.getInitializedParams(AppConstants.geotable_id_shuoshuo);
@@ -35,10 +43,16 @@ public class ShuoshuoDao {
         //get
         FinalHttp http = new FinalHttp();
         String jsonStr = (String) http.getSync(url, params);
-        return parseShuoshuoListFromJson(jsonStr);
+        return parseListFromJson(jsonStr);
     }
 
-    public CommentList getShuoshuoCommentList(long ssId) throws AppException {
+    /**
+     * 获取评论列表
+     * @param ssId 说说ID
+     * @return
+     * @throws AppException
+     */
+    public CommentList getComments(long ssId) throws AppException {
         String url = AppConstants.url_list_poi;
 
         AjaxParams params = LBSCloud.getInitializedParams(AppConstants.geotable_id_comment);
@@ -49,7 +63,36 @@ public class ShuoshuoDao {
         //get
         FinalHttp http = new FinalHttp();
         String jsonStr = (String) http.getSync(url, params);
-        return parseCommentListFromJson(jsonStr);
+        return parseCommentsFromJson(jsonStr);
+    }
+
+    /**
+     * 发布说说
+     * @param content
+     * @throws AppException
+     */
+    public void add(String content) throws AppException {
+        String url = AppConstants.url_create_poi;
+
+        AjaxParams params = LBSCloud.getInitializedParams(AppConstants.geotable_id_shuoshuo);
+        //account info
+        Account user = new AccountDao().get();
+        params.put("userId", user.getId());
+        params.put("userName", user.getName());
+        //location info
+        MLocation location = new LocationDao().get();
+        params.put("longitude", location.getLongitude());
+        params.put("latitude", location.getLatitude());
+        //content
+        params.put("content",content);
+        //timestamp, same as create_time
+        params.put("timestamp", String.valueOf(System.currentTimeMillis()));
+
+        //post
+        FinalHttp http = new FinalHttp();
+        String result = (String)http.postSync(url, params);
+
+        if (JSON.parseObject(result).getInteger("status") != 0) throw new AppException("服务器开小差啦");
     }
 
     /**
@@ -84,9 +127,9 @@ public class ShuoshuoDao {
      * @param jsonStr
      * @return
      */
-    private ShuoshuoList parseShuoshuoListFromJson(String jsonStr) throws AppException {
+    private ShuoshuoList parseListFromJson(String jsonStr) throws AppException {
         ResultJsonObj jsonObj = JSON.parseObject(jsonStr, ResultJsonObj.class);
-        if (jsonObj.getStatus()!=0) throw new AppException("附近的说说列表获取出错");
+        if (jsonObj.getStatus()!=0) throw new AppException("服务器开小差啦");
         List<Shuoshuo> list = new ArrayList<>();
         for (int i=0;i<jsonObj.getSize();i++) {
             Shuoshuo shuoshuo = new Shuoshuo();
@@ -100,7 +143,7 @@ public class ShuoshuoDao {
             list.add(shuoshuo);
         }
         ShuoshuoList shuoshuoList = new ShuoshuoList();
-        shuoshuoList.setShuoshuoList(list);
+        shuoshuoList.set(list);
         return null;
     }
 
@@ -134,7 +177,7 @@ public class ShuoshuoDao {
      * @param jsonStr
      * @return
      */
-    private CommentList parseCommentListFromJson(String jsonStr) throws AppException {
+    private CommentList parseCommentsFromJson(String jsonStr) throws AppException {
         ResultJsonObj jsonObj = JSON.parseObject(jsonStr,ResultJsonObj.class);
         if (jsonObj.getStatus()!=0) throw new AppException("评论获取出错");
         List<Comment> list = new ArrayList<>();

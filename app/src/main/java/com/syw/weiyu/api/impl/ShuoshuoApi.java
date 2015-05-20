@@ -12,24 +12,55 @@ import com.syw.weiyu.dao.shuoshuo.ShuoshuoDao;
  * desc: 说说接口实现
  */
 public class ShuoshuoApi implements IShuoshuoApi {
+    private ShuoshuoList shuoshuoList;
+    private ShuoshuoList getShuoshuoList() {
+        return shuoshuoList;
+    }
+    private void setShuoshuoList(ShuoshuoList shuoshuoList) {
+        this.shuoshuoList = shuoshuoList;
+    }
+
+    /**
+     * 刷新（获取第一页的说说）
+     * @return
+     * @throws AppException
+     */
     @Override
     public ShuoshuoList refreshNearbyShuoshuo() throws AppException {
         return getNearbyShuoshuo(0);
     }
 
+    /**
+     * 获取附近的说说
+     * 优先从内存缓存中获取
+     * @param pageIndex
+     * @return
+     * @throws AppException
+     */
     @Override
     public ShuoshuoList getNearbyShuoshuo(int pageIndex) throws AppException {
-        return new ShuoshuoDao().getNearByShuoshuoList(pageIndex);
+        ShuoshuoList list = getShuoshuoList();
+        if (list == null) {
+            list = new ShuoshuoDao().getNearByList(pageIndex);
+            setShuoshuoList(list);
+        }
+        return list;
     }
 
+    /**
+     * 获取说说详情
+     * @param shuoshuo
+     * @return
+     * @throws AppException
+     */
     @Override
     public Shuoshuo getShuoshuoDetail(Shuoshuo shuoshuo) throws AppException {
-        shuoshuo.setCommentList(new ShuoshuoDao().getShuoshuoCommentList(shuoshuo.getId()));
+        shuoshuo.setCommentList(new ShuoshuoDao().getComments(shuoshuo.getId()));
         return shuoshuo;
     }
 
     @Override
-    public void publishShuoshuo(Shuoshuo shuoshuo) {
-
+    public void publishShuoshuo(String content) throws AppException {
+        new ShuoshuoDao().add(content);
     }
 }

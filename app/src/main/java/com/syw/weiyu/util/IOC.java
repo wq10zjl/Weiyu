@@ -1,7 +1,9 @@
 package com.syw.weiyu.util;
 
 import com.syw.weiyu.api.IAdApi;
+import com.syw.weiyu.api.IShuoshuoApi;
 import com.syw.weiyu.api.impl.AdMoGo;
+import com.syw.weiyu.api.impl.ShuoshuoApi;
 
 /**
  * author: songyouwei
@@ -10,8 +12,14 @@ import com.syw.weiyu.api.impl.AdMoGo;
  */
 public class IOC {
     private static IAdApi adApi;
+    private static IShuoshuoApi shuoshuoApi;
+
     public static IAdApi getAdApi() {
         if (adApi == null) adApi = new AdMoGo();
         return adApi;
+    }
+    public static IShuoshuoApi getShuoshuoApi() {
+        if (shuoshuoApi == null) shuoshuoApi = new ShuoshuoApi();
+        return shuoshuoApi;
     }
 }

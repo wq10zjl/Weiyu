@@ -12,14 +12,18 @@ public class ShuoshuoList {
 
     private List<Shuoshuo> shuoshuoList = new ArrayList<>();
 
-    public List<Shuoshuo> getShuoshuoList() {
+    public List<Shuoshuo> get() {
         return shuoshuoList;
     }
-    public void setShuoshuoList(List<Shuoshuo> shuoshuoList) {
-        this.shuoshuoList = shuoshuoList;
+    public void set(List<Shuoshuo> list) {
+        shuoshuoList.clear();
+        shuoshuoList.addAll(list);
+    }
+    public void append(List<Shuoshuo> list) {
+        shuoshuoList.addAll(list);
     }
 
-    public Shuoshuo getShuoshuoItem(int position) {
+    public Shuoshuo getItem(int position) {
         return shuoshuoList.get(position);
     }
 }

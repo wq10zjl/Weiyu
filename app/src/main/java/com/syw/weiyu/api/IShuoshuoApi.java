@@ -13,5 +13,5 @@ public interface IShuoshuoApi {
     ShuoshuoList refreshNearbyShuoshuo() throws AppException;
     ShuoshuoList getNearbyShuoshuo(int pageIndex) throws AppException;
     Shuoshuo getShuoshuoDetail(Shuoshuo shuoshuoWithoutComments) throws AppException;
-    void publishShuoshuo(Shuoshuo shuoshuo);
+    void publishShuoshuo(String content) throws AppException;
 }

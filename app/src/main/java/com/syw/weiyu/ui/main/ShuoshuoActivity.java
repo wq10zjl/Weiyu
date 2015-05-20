@@ -21,12 +21,14 @@ import com.alibaba.fastjson.JSONObject;
 
 import com.paging.listview.PagingListView;
 import com.syw.weiyu.AppContext;
+import com.syw.weiyu.AppException;
 import com.syw.weiyu.api.IAdApi;
+import com.syw.weiyu.api.IShuoshuoApi;
 import com.syw.weiyu.api.impl.AdMoGo;
 import com.syw.weiyu.bean.ShuoshuoList;
 import com.syw.weiyu.third.lbs.LBSCloud;
 import com.syw.weiyu.R;
-import com.syw.weiyu.ui.adapter.ShuoshuoAdapter;
+import com.syw.weiyu.ui.adapter.ShuoshuoListAdapter;
 import com.syw.weiyu.util.IOC;
 
 import net.tsz.afinal.http.AjaxCallBack;
@@ -58,23 +60,25 @@ public class ShuoshuoActivity extends FragmentActivity {
     int pageIndex = 0;
     int totalPage = 0;
 
-    ShuoshuoAdapter.LOADTYPE loadType;
-    /**
-     * 设置加载类型
-     * @param loadType
-     */
-    public void setLoadType(ShuoshuoAdapter.LOADTYPE loadType) {
-        this.loadType = loadType;
-    }
+//    ShuoshuoAdapter.LOADTYPE loadType;
+//    /**
+//     * 设置加载类型
+//     * @param loadType
+//     */
+//    public void setLoadType(ShuoshuoAdapter.LOADTYPE loadType) {
+//        this.loadType = loadType;
+//    }
+
     PagingListView listView;
-    ShuoshuoAdapter adapter;
+    ShuoshuoListAdapter adapter;
 
     PtrClassicFrameLayout mPtrFrame;
 
     IAdApi adApi = IOC.getAdApi();
+    IShuoshuoApi shuoshuoApi = IOC.getShuoshuoApi();
 
     //LBS callback
-    AjaxCallBack<String> lbsCloudSearchCallback = new LBSCloudSearchCallback();
+//    AjaxCallBack<String> lbsCloudSearchCallback = new LBSCloudSearchCallback();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +93,17 @@ public class ShuoshuoActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("Weiyu", "ShoshuoActivity onResume");
+
+        new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                try {
+                    adapter.setShuoshuoList(shuoshuoApi.getNearbyShuoshuo(0));
+                } catch (AppException e) {
+                    Toast.makeText(ShuoshuoActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        }.sendEmptyMessageDelayed(1, 500);
 
 //        //读取缓存的lists
 //        shuoshuomapList = AppContext.getInstance().getShuoshuomapList();
@@ -159,14 +173,14 @@ public class ShuoshuoActivity extends FragmentActivity {
         mPtrFrame.setPtrHandler(new PtrHandler() {
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {
-                //显示feeds广告
-//                showFeedsAd();
-
-                //刷新列表数据
-//                updateListData(dataType);
                 pageIndex = 0;
-                setLoadType(ShuoshuoAdapter.LOADTYPE.TYPE_REFRESH);
-                LBSCloud.getInstance().nearbyShuoshuoSearch(0, lbsCloudSearchCallback);
+//                setLoadType(ShuoshuoAdapter.LOADTYPE.TYPE_REFRESH);
+//                LBSCloud.getInstance().nearbyShuoshuoSearch(0, lbsCloudSearchCallback);
+                try {
+                    adapter.setShuoshuoList(shuoshuoApi.refreshNearbyShuoshuo());
+                } catch (AppException e) {
+                    Toast.makeText(ShuoshuoActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -181,7 +195,7 @@ public class ShuoshuoActivity extends FragmentActivity {
      */
     private void initListView() {
         listView = (PagingListView) findViewById(R.id.lv_shuoshuo);
-        adapter = new ShuoshuoAdapter(this);
+        adapter = new ShuoshuoListAdapter(this);
         listView.setAdapter(adapter);
         listView.setHasMoreItems(false);
 
@@ -189,30 +203,10 @@ public class ShuoshuoActivity extends FragmentActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,final int position, long id) {
                 //开启聊天
-                RongIM.getInstance().startPrivateChat(
-                        ShuoshuoActivity.this,
-                        adapter.getData().get(position - 1).get("userId"),
-                        adapter.getData().get(position - 1).get("shuoshuo_tv_name"));
-//                new BottomPopupWindow(ShuoshuoActivity.this, new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        switch (v.getId()) {
-//                            case R.id.btn_1:
-//                                //赞
-//                                RongIM.getInstance().sendTextMessage(RongIMClient.ConversationType.SYSTEM,
-//                                        adapter.getData().get(position -1).get("userId"),
-//                                        "[系统消息：赞了你发的秘密]",null);
-//                                break;
-//                            case R.id.btn_2:
-//                                //开启聊天
-//                                RongIM.getInstance().startPrivateChat(
-//                                        ShuoshuoActivity.this,
-//                                        adapter.getData().get(position - 1).get("userId"),
-//                                        adapter.getData().get(position - 1).get("shuoshuo_tv_name"));
-//                                break;
-//                        }
-//                    }
-//                }).show();
+//                RongIM.getInstance().startPrivateChat(
+//                        ShuoshuoActivity.this,
+//                        adapter.getData().get(position - 1).get("userId"),
+//                        adapter.getData().get(position - 1).get("shuoshuo_tv_name"));
             }
         });
 
@@ -220,8 +214,13 @@ public class ShuoshuoActivity extends FragmentActivity {
             @Override
             public void onLoadMoreItems() {
                 if (pageIndex + 1 < totalPage) {
-                    setLoadType(ShuoshuoAdapter.LOADTYPE.TYPE_MORE);
-                    LBSCloud.getInstance().nearbyUserSearch(++pageIndex, lbsCloudSearchCallback);
+//                    setLoadType(ShuoshuoAdapter.LOADTYPE.TYPE_MORE);
+//                    LBSCloud.getInstance().nearbyUserSearch(++pageIndex, lbsCloudSearchCallback);
+                    try {
+                        shuoshuoApi.getNearbyShuoshuo(++pageIndex);
+                    } catch (AppException e) {
+                        Toast.makeText(ShuoshuoActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     listView.onFinishLoading(false, null);
                 }
@@ -232,62 +231,62 @@ public class ShuoshuoActivity extends FragmentActivity {
     /**
      * LBS云检索回调
      */
-    class LBSCloudSearchCallback extends AjaxCallBack<String> {
-        private List<HashMap<String,String>> newDataList = new ArrayList<>();
-        @Override
-        public void onStart() {
-        }
-
-        @Override
-        public void onSuccess(String s) {
-            Log.d("Weiyu", " LBSCloud poi search nearby shuoshuo return:" + s);
-            //解析数据并存入
-            JSONObject result = JSON.parseObject(s);
-            if (result.getString("status").equals("0")) {
-                JSONArray poiArray = result.getJSONArray("contents");
-                newDataList.clear();
-                for (int i=0; i<poiArray.size(); i++) {
-                    JSONObject poi = poiArray.getJSONObject(i);
-
-                    //map for adapter
-                    HashMap<String, String> map = new HashMap<String, String>();
-                    map.put("userId", poi.getString("userId"));
-                    map.put("shuoshuo_tv_name", poi.getString("userName"));
-                    map.put("shuoshuo_tv_address", poi.getString("province")+poi.getString("district"));
-                    map.put("shuoshuo_tv_time", new SimpleDateFormat("yyyy-MM-dd kk:mm:ss", Locale.ENGLISH).format(new Timestamp(poi.getInteger("create_time") * 1000)));
-                    map.put("shuoshuo_tv_content", poi.getString("content"));
-                    newDataList.add(map);
-                }
-
-                //set totalPage
-                if (totalPage == 0) {
-                    totalPage = (int)Math.ceil(Double.parseDouble(result.getString("total"))/Double.parseDouble(result.getString("size")));
-                }
-                //设置适配器
-                if (loadType == ShuoshuoAdapter.LOADTYPE.TYPE_REFRESH) {
-                    //结束下拉刷新
-                    mPtrFrame.refreshComplete();
-                    adapter.setData(newDataList);
-                    //set has more page
-                    listView.setHasMoreItems(pageIndex + 1 < totalPage);
-                    //save result lists into ram
-                    AppContext.getInstance().setShuoshuomapList(newDataList);
-                } else if (loadType == ShuoshuoAdapter.LOADTYPE.TYPE_MORE){
-                    adapter.addData(newDataList);
-                    listView.onFinishLoading(pageIndex + 1 < totalPage, null);
-                    //save result lists into ram
-                    AppContext.getInstance().setUsermapList(adapter.getData());
-                }
-            }
-        }
-
-        @Override
-        public void onFailure(Throwable t, int errorNo, String strMsg) {
-            Log.d("Weiyu", " LBSCloud poi search nearby shuoshuo failure:" + strMsg);
-            //结束下拉刷新
-            mPtrFrame.refreshComplete();
-        }
-    }
+//    class LBSCloudSearchCallback extends AjaxCallBack<String> {
+//        private List<HashMap<String,String>> newDataList = new ArrayList<>();
+//        @Override
+//        public void onStart() {
+//        }
+//
+//        @Override
+//        public void onSuccess(String s) {
+//            Log.d("Weiyu", " LBSCloud poi search nearby shuoshuo return:" + s);
+//            //解析数据并存入
+//            JSONObject result = JSON.parseObject(s);
+//            if (result.getString("status").equals("0")) {
+//                JSONArray poiArray = result.getJSONArray("contents");
+//                newDataList.clear();
+//                for (int i=0; i<poiArray.size(); i++) {
+//                    JSONObject poi = poiArray.getJSONObject(i);
+//
+//                    //map for adapter
+//                    HashMap<String, String> map = new HashMap<String, String>();
+//                    map.put("userId", poi.getString("userId"));
+//                    map.put("shuoshuo_tv_name", poi.getString("userName"));
+//                    map.put("shuoshuo_tv_address", poi.getString("province")+poi.getString("district"));
+//                    map.put("shuoshuo_tv_time", new SimpleDateFormat("yyyy-MM-dd kk:mm:ss", Locale.ENGLISH).format(new Timestamp(poi.getInteger("create_time") * 1000)));
+//                    map.put("shuoshuo_tv_content", poi.getString("content"));
+//                    newDataList.add(map);
+//                }
+//
+//                //set totalPage
+//                if (totalPage == 0) {
+//                    totalPage = (int)Math.ceil(Double.parseDouble(result.getString("total"))/Double.parseDouble(result.getString("size")));
+//                }
+//                //设置适配器
+//                if (loadType == ShuoshuoAdapter.LOADTYPE.TYPE_REFRESH) {
+//                    //结束下拉刷新
+//                    mPtrFrame.refreshComplete();
+//                    adapter.setData(newDataList);
+//                    //set has more page
+//                    listView.setHasMoreItems(pageIndex + 1 < totalPage);
+//                    //save result lists into ram
+//                    AppContext.getInstance().setShuoshuomapList(newDataList);
+//                } else if (loadType == ShuoshuoAdapter.LOADTYPE.TYPE_MORE){
+//                    adapter.addData(newDataList);
+//                    listView.onFinishLoading(pageIndex + 1 < totalPage, null);
+//                    //save result lists into ram
+//                    AppContext.getInstance().setUsermapList(adapter.getData());
+//                }
+//            }
+//        }
+//
+//        @Override
+//        public void onFailure(Throwable t, int errorNo, String strMsg) {
+//            Log.d("Weiyu", " LBSCloud poi search nearby shuoshuo failure:" + strMsg);
+//            //结束下拉刷新
+//            mPtrFrame.refreshComplete();
+//        }
+//    }
 
     private AlertDialog getAddShuoshuoAlertDialog() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(ShuoshuoActivity.this,AlertDialog.THEME_HOLO_LIGHT);
