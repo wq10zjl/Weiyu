@@ -20,10 +20,15 @@ import java.util.Locale;
  * Created by songyouwei on 2015/4/27.
  */
 public class ShuoshuoListAdapter extends PagingBaseAdapter {
-    public void setShuoshuoList(ShuoshuoList list) {
-        this.shuoshuoList = list;
-    }
     ShuoshuoList shuoshuoList;
+    public void set(ShuoshuoList list) {
+        this.shuoshuoList = list;
+        notifyDataSetChanged();
+    }
+    public void append(ShuoshuoList list) {
+        this.shuoshuoList.append(list.get());
+        notifyDataSetChanged();
+    }
 
     LayoutInflater mInflater;
     public ShuoshuoListAdapter(Context ctx) {

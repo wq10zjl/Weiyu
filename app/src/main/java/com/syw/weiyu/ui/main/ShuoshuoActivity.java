@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,11 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 
 import com.paging.listview.PagingListView;
-import com.syw.weiyu.AppContext;
 import com.syw.weiyu.AppException;
 import com.syw.weiyu.api.IAdApi;
 import com.syw.weiyu.api.IShuoshuoApi;
@@ -31,20 +27,13 @@ import com.syw.weiyu.R;
 import com.syw.weiyu.ui.adapter.ShuoshuoListAdapter;
 import com.syw.weiyu.util.IOC;
 
+import com.syw.weiyu.util.Toaster;
 import net.tsz.afinal.http.AjaxCallBack;
-
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
 
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
-import io.rong.imkit.RongIM;
 
 /**
  * author: youwei
@@ -98,9 +87,9 @@ public class ShuoshuoActivity extends FragmentActivity {
             @Override
             public void handleMessage(Message msg) {
                 try {
-                    adapter.setShuoshuoList(shuoshuoApi.getNearbyShuoshuo(0));
+                    adapter.set(shuoshuoApi.getNearbyShuoshuo(0));
                 } catch (AppException e) {
-                    Toast.makeText(ShuoshuoActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toaster.e(ShuoshuoActivity.this,e.getMessage());
                 }
             }
         }.sendEmptyMessageDelayed(1, 500);
@@ -177,9 +166,9 @@ public class ShuoshuoActivity extends FragmentActivity {
 //                setLoadType(ShuoshuoAdapter.LOADTYPE.TYPE_REFRESH);
 //                LBSCloud.getInstance().nearbyShuoshuoSearch(0, lbsCloudSearchCallback);
                 try {
-                    adapter.setShuoshuoList(shuoshuoApi.refreshNearbyShuoshuo());
+                    adapter.set(shuoshuoApi.refreshNearbyShuoshuo());
                 } catch (AppException e) {
-                    Toast.makeText(ShuoshuoActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                    Toaster.e(ShuoshuoActivity.this, e.getMessage());
                 }
             }
 
@@ -207,6 +196,7 @@ public class ShuoshuoActivity extends FragmentActivity {
 //                        ShuoshuoActivity.this,
 //                        adapter.getData().get(position - 1).get("userId"),
 //                        adapter.getData().get(position - 1).get("shuoshuo_tv_name"));
+
             }
         });
 
@@ -217,9 +207,9 @@ public class ShuoshuoActivity extends FragmentActivity {
 //                    setLoadType(ShuoshuoAdapter.LOADTYPE.TYPE_MORE);
 //                    LBSCloud.getInstance().nearbyUserSearch(++pageIndex, lbsCloudSearchCallback);
                     try {
-                        shuoshuoApi.getNearbyShuoshuo(++pageIndex);
+                        adapter.append(shuoshuoApi.getNearbyShuoshuo(++pageIndex));
                     } catch (AppException e) {
-                        Toast.makeText(ShuoshuoActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                        Toaster.e(ShuoshuoActivity.this, e.getMessage());
                     }
                 } else {
                     listView.onFinishLoading(false, null);
@@ -301,22 +291,28 @@ public class ShuoshuoActivity extends FragmentActivity {
                 .setPositiveButton("发送", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        LBSCloud.getInstance().publishShuoshuo(contentET.getText().toString(), new AjaxCallBack<String>() {
-                            @Override
-                            public void onSuccess(String s) {
-                                if (JSON.parseObject(s).getString("status").equals("0")) {
-                                    Toast.makeText(ShuoshuoActivity.this, "发送成功", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Toast.makeText(ShuoshuoActivity.this, "发送失败", Toast.LENGTH_SHORT).show();
-                                }
-
-                            }
-
-                            @Override
-                            public void onFailure(Throwable t, int errorNo, String strMsg) {
-                                Toast.makeText(ShuoshuoActivity.this, "网络错误", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+//                        LBSCloud.getInstance().publishShuoshuo(contentET.getText().toString(), new AjaxCallBack<String>() {
+//                            @Override
+//                            public void onSuccess(String s) {
+//                                if (JSON.parseObject(s).getString("status").equals("0")) {
+//                                    Toaster.i(ShuoshuoActivity.this,"发送成功");
+//                                } else {
+//                                    Toaster.e(ShuoshuoActivity.this,"发送失败");
+//                                }
+//
+//                            }
+//
+//                            @Override
+//                            public void onFailure(Throwable t, int errorNo, String strMsg) {
+//                                Toaster.e(ShuoshuoActivity.this, "网络错误");
+//                            }
+//                        });
+                        try {
+                            shuoshuoApi.publishShuoshuo(contentET.getText().toString());
+                            Toaster.i(ShuoshuoActivity.this, "发送成功");
+                        } catch (AppException e) {
+                            Toaster.e(ShuoshuoActivity.this, e.getMessage());
+                        }
 
                         new Handler() {
                             @Override
