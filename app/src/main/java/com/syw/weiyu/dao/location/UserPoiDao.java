@@ -2,10 +2,8 @@ package com.syw.weiyu.dao.location;
 
 import android.support.annotation.NonNull;
 import com.alibaba.fastjson.JSONObject;
-import com.syw.weiyu.App;
 import com.syw.weiyu.AppConstants;
 import com.syw.weiyu.AppException;
-import com.syw.weiyu.R;
 import com.syw.weiyu.bean.MLocation;
 import com.syw.weiyu.bean.User;
 import com.syw.weiyu.third.lbs.LBSCloud;

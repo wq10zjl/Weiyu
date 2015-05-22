@@ -21,7 +21,7 @@ public class TokenDao {
      * 请求示例：
      * POST /user/get.json HTTP/1.1
      * Host: api.cn.rong.io
-     * App-Key: uwd1c0sxdlx2
+     * AppContext-Key: uwd1c0sxdlx2
      * Nonce: 14314
      * Timestamp: 1408706337
      * Signature: 890b422b75c1c5cb706e4f7921df1d94e69c17f4

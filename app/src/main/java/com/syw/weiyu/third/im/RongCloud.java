@@ -46,7 +46,7 @@ public class RongCloud {
      请求示例：
      POST /user/get.json HTTP/1.1
      Host: api.cn.rong.io
-     App-Key: uwd1c0sxdlx2
+     AppContext-Key: uwd1c0sxdlx2
      Nonce: 14314
      Timestamp: 1408706337
      Signature: 890b422b75c1c5cb706e4f7921df1d94e69c17f4
@@ -80,7 +80,7 @@ public class RongCloud {
     /**
      * 刷新用户信息
      * 说明：当您的用户昵称和头像变更时，
-     *      您的 App Server 应该调用此接口刷新在融云侧保存的用户信息，
+     *      您的 AppContext Server 应该调用此接口刷新在融云侧保存的用户信息，
      *      以便融云发送推送消息的时候，能够正确显示用户信息。
      * 注意：刷新此信息不会更新客户端的用户信息
      * @param userId
@@ -142,7 +142,7 @@ public class RongCloud {
         String signature = sha1(toSign.toString());
 
         FinalHttp http = new FinalHttp();
-        http.addHeader("App-Key",appKey);
+        http.addHeader("AppContext-Key",appKey);
         http.addHeader("Nonce",nonce);
         http.addHeader("Timestamp",timestamp);
         http.addHeader("Signature",signature);

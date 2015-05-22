@@ -62,7 +62,7 @@ public class RongCloud {
         String signature = sha1(toSign.toString());
 
         FinalHttp http = new FinalHttp();
-        http.addHeader("App-Key",appKey);
+        http.addHeader("AppContext-Key",appKey);
         http.addHeader("Nonce",nonce);
         http.addHeader("Timestamp",timestamp);
         http.addHeader("Signature",signature);
