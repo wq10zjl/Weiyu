@@ -8,8 +8,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.syw.weiyu.AppContext;
 import com.syw.weiyu.AppException;
-import com.syw.weiyu.api.impl.LocationApi;
-import com.syw.weiyu.api.impl.UserApi;
+import com.syw.weiyu.api.WeiyuApi;
 import com.syw.weiyu.bean.Account;
 import com.syw.weiyu.bean.MLocation;
 import com.syw.weiyu.third.lbs.LBSCloud;
@@ -29,11 +28,11 @@ public class LoginActivity extends ProfileBaseActivity {
     public void doOnClickWork(String userId, String name, String gender) {
 
         try {
-            UserApi userApi = new UserApi();
+            WeiyuApi api = WeiyuApi.get();
             //注册
-            userApi.register(userId, name, gender);
+            api.register(userId, name, gender);
             //登录
-            userApi.login();
+            api.login();
             //进入主页面
             Intent intent = new Intent(LoginActivity.this, MainTabsActivity.class);
             startActivity(intent);

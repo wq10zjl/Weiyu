@@ -18,14 +18,11 @@ import com.alibaba.fastjson.JSON;
 
 import com.paging.listview.PagingListView;
 import com.syw.weiyu.AppException;
-import com.syw.weiyu.api.IAdApi;
-import com.syw.weiyu.api.IShuoshuoApi;
-import com.syw.weiyu.api.impl.AdMoGo;
+import com.syw.weiyu.api.WeiyuApi;
 import com.syw.weiyu.bean.ShuoshuoList;
 import com.syw.weiyu.third.lbs.LBSCloud;
 import com.syw.weiyu.R;
 import com.syw.weiyu.ui.adapter.ShuoshuoListAdapter;
-import com.syw.weiyu.util.IOC;
 
 import com.syw.weiyu.util.Toaster;
 import net.tsz.afinal.http.AjaxCallBack;
@@ -63,9 +60,6 @@ public class ShuoshuoActivity extends FragmentActivity {
 
     PtrClassicFrameLayout mPtrFrame;
 
-    IAdApi adApi = IOC.getAdApi();
-    IShuoshuoApi shuoshuoApi = IOC.getShuoshuoApi();
-
     //LBS callback
 //    AjaxCallBack<String> lbsCloudSearchCallback = new LBSCloudSearchCallback();
 
@@ -87,7 +81,7 @@ public class ShuoshuoActivity extends FragmentActivity {
             @Override
             public void handleMessage(Message msg) {
                 try {
-                    adapter.set(shuoshuoApi.getNearbyShuoshuo(0));
+                    adapter.set(WeiyuApi.get().getNearbyShuoshuo(0));
                 } catch (AppException e) {
                     Toaster.e(ShuoshuoActivity.this,e.getMessage());
                 }
@@ -110,7 +104,7 @@ public class ShuoshuoActivity extends FragmentActivity {
 
         //add banner ad
         if (listView.getHeaderViewsCount() == 0) {
-            listView.addHeaderView(adApi.getBannerAdView(this,null));
+            listView.addHeaderView(WeiyuApi.get().getBannerAdView(this, null));
         }
     }
 
@@ -129,10 +123,7 @@ public class ShuoshuoActivity extends FragmentActivity {
         /**
          * 对于MoGoAd，要作销毁操作
          */
-        if (adApi instanceof AdMoGo) {
-            AdMoGo mogo = (AdMoGo)adApi;
-            mogo.onBannerDestory();
-        }
+        WeiyuApi.get().onBannerDestory();
         super.onDestroy();
     }
 
@@ -166,7 +157,7 @@ public class ShuoshuoActivity extends FragmentActivity {
 //                setLoadType(ShuoshuoAdapter.LOADTYPE.TYPE_REFRESH);
 //                LBSCloud.getInstance().nearbyShuoshuoSearch(0, lbsCloudSearchCallback);
                 try {
-                    adapter.set(shuoshuoApi.refreshNearbyShuoshuo());
+                    adapter.set(WeiyuApi.get().refreshNearbyShuoshuo());
                 } catch (AppException e) {
                     Toaster.e(ShuoshuoActivity.this, e.getMessage());
                 }
@@ -207,7 +198,7 @@ public class ShuoshuoActivity extends FragmentActivity {
 //                    setLoadType(ShuoshuoAdapter.LOADTYPE.TYPE_MORE);
 //                    LBSCloud.getInstance().nearbyUserSearch(++pageIndex, lbsCloudSearchCallback);
                     try {
-                        adapter.append(shuoshuoApi.getNearbyShuoshuo(++pageIndex));
+                        adapter.append(WeiyuApi.get().getNearbyShuoshuo(++pageIndex));
                     } catch (AppException e) {
                         Toaster.e(ShuoshuoActivity.this, e.getMessage());
                     }
@@ -308,7 +299,7 @@ public class ShuoshuoActivity extends FragmentActivity {
 //                            }
 //                        });
                         try {
-                            shuoshuoApi.publishShuoshuo(contentET.getText().toString());
+                            WeiyuApi.get().publishShuoshuo(contentET.getText().toString());
                             Toaster.i(ShuoshuoActivity.this, "发送成功");
                         } catch (AppException e) {
                             Toaster.e(ShuoshuoActivity.this, e.getMessage());

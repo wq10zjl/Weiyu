@@ -21,7 +21,7 @@ public class AppContext extends Application {
 
     private static AppContext appContext;
 
-    public static AppContext getAppContext() {
+    public static AppContext getCtx() {
         return appContext;
     }
     private static void setAppContext(AppContext appContext) {

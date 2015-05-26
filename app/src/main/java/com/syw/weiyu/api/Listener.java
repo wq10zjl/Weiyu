@@ -20,12 +20,12 @@ public abstract class Listener {
      * 回调类型
      */
     public enum CallbackType {
-        //IAdApi
+        //ad
         onAdError,onAdClick,onAdClose,
-        //IUserApi
+        //user
         onUserRegisterSuccess,getOnUserRegisterFailure,
-        //ILocationApi
+        //location
         onLocateSuccess,onLocateError,
-        //IShuoshuoApi
+        //shuoshuo
     }
 }
