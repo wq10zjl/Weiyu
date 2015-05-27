@@ -15,13 +15,12 @@ import com.alibaba.fastjson.JSONObject;
 
 import com.paging.listview.PagingListView;
 import com.syw.weiyu.AppContext;
-import com.syw.weiyu.api.IAdApi;
+import com.syw.weiyu.api.WeiyuApi;
 import com.syw.weiyu.third.lbs.LBSCloud;
 import com.syw.weiyu.R;
 import com.syw.weiyu.ui.adapter.NearByUserAdapter;
 import com.syw.weiyu.bean.User;
 import com.syw.weiyu.util.ACache;
-import com.syw.weiyu.util.IOC;
 import com.syw.weiyu.util.WeiyuAppUpdateRemind;
 
 import net.tsz.afinal.http.AjaxCallBack;
@@ -61,8 +60,6 @@ public class NearByUserActivity extends FragmentActivity {
 
     //LBS callback
     AjaxCallBack<String> lbsCloudSearchCallback = new LBSCloudSearchCallback();
-
-    IAdApi adApi = IOC.getAdApi();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +102,7 @@ public class NearByUserActivity extends FragmentActivity {
 
         //add banner ad
         if (listView.getHeaderViewsCount() == 0) {
-            listView.addHeaderView(adApi.getBannerAdView(this,null));
+            listView.addHeaderView(WeiyuApi.get().getBannerAdView(this, null));
         }
     }
 

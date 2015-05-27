@@ -3,6 +3,7 @@ package com.syw.weiyu.dao.shuoshuo;
 import com.alibaba.fastjson.JSON;
 import com.syw.weiyu.AppConstants;
 import com.syw.weiyu.AppException;
+import com.syw.weiyu.api.Listener;
 import com.syw.weiyu.bean.*;
 import com.syw.weiyu.bean.jsonobj.PoiItemJsonObj;
 import com.syw.weiyu.bean.jsonobj.ResultJsonObj;
@@ -10,6 +11,7 @@ import com.syw.weiyu.dao.location.LocationDao;
 import com.syw.weiyu.dao.user.AccountDao;
 import com.syw.weiyu.third.lbs.LBSCloud;
 import net.tsz.afinal.FinalHttp;
+import net.tsz.afinal.http.AjaxCallBack;
 import net.tsz.afinal.http.AjaxParams;
 
 import java.util.ArrayList;
@@ -25,10 +27,9 @@ public class ShuoshuoDao {
     /**
      * 获取附近的说说列表
      * @param pageIndex
-     * @return
      * @throws AppException
      */
-    public ShuoshuoList getNearByList(int pageIndex) throws AppException {
+    public void getNearByList(int pageIndex, final Listener<ShuoshuoList> listener) throws AppException {
         String url = AppConstants.url_nearby_search;
 
         AjaxParams params = LBSCloud.getInitializedParams(AppConstants.geotable_id_shuoshuo);
@@ -42,8 +43,24 @@ public class ShuoshuoDao {
         params.put("page_size",AppConstants.page_size_default);
         //get
         FinalHttp http = new FinalHttp();
-        String jsonStr = (String) http.getSync(url, params);
-        return parseListFromJson(jsonStr);
+        http.get(url, params, new AjaxCallBack<String>() {
+            @Override
+            public void onSuccess(String s) {
+                super.onSuccess(s);
+                try {
+                    ShuoshuoList shuoshuoList = parseShuoshuosFromJson(s);
+                    listener.onCallback(Listener.CallbackType.onSuccess, shuoshuoList, null);
+                } catch (AppException e) {
+                    listener.onCallback(Listener.CallbackType.onFailure, null, e.getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t, int errorNo, String strMsg) {
+                super.onFailure(t, errorNo, strMsg);
+                listener.onCallback(Listener.CallbackType.onFailure, null, strMsg);
+            }
+        });
     }
 
     /**
@@ -52,7 +69,7 @@ public class ShuoshuoDao {
      * @return
      * @throws AppException
      */
-    public CommentList getComments(long ssId) throws AppException {
+    public void getComments(long ssId,final Listener<CommentList> listener) throws AppException {
         String url = AppConstants.url_list_poi;
 
         AjaxParams params = LBSCloud.getInitializedParams(AppConstants.geotable_id_comment);
@@ -62,8 +79,24 @@ public class ShuoshuoDao {
         params.put("ssId",ssId+","+ssId);
         //get
         FinalHttp http = new FinalHttp();
-        String jsonStr = (String) http.getSync(url, params);
-        return parseCommentsFromJson(jsonStr);
+        http.get(url, params, new AjaxCallBack<String>() {
+            @Override
+            public void onSuccess(String s) {
+                super.onSuccess(s);
+                try {
+                    CommentList commentList = parseCommentsFromJson(s);
+                    listener.onCallback(Listener.CallbackType.onSuccess, commentList, null);
+                } catch (AppException e) {
+                    listener.onCallback(Listener.CallbackType.onFailure, null, e.getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t, int errorNo, String strMsg) {
+                super.onFailure(t, errorNo, strMsg);
+                listener.onCallback(Listener.CallbackType.onFailure, null, strMsg);
+            }
+        });
     }
 
     /**
@@ -92,7 +125,7 @@ public class ShuoshuoDao {
         FinalHttp http = new FinalHttp();
         String result = (String)http.postSync(url, params);
 
-        if (JSON.parseObject(result).getInteger("status") != 0) throw new AppException("服务器开小差啦");
+        if (JSON.parseObject(result).getInteger("status") != 0) throw new AppException("发布出错");
     }
 
     /**
@@ -127,9 +160,9 @@ public class ShuoshuoDao {
      * @param jsonStr
      * @return
      */
-    private ShuoshuoList parseListFromJson(String jsonStr) throws AppException {
+    private ShuoshuoList parseShuoshuosFromJson(String jsonStr) throws AppException {
         ResultJsonObj jsonObj = JSON.parseObject(jsonStr, ResultJsonObj.class);
-        if (jsonObj.getStatus()!=0) throw new AppException("服务器开小差啦");
+        if (jsonObj.getStatus()!=0) throw new AppException("说说获取出错");
         List<Shuoshuo> list = new ArrayList<>();
         for (int i=0;i<jsonObj.getSize();i++) {
             Shuoshuo shuoshuo = new Shuoshuo();

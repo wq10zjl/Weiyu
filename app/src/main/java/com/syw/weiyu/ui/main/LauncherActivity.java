@@ -6,41 +6,35 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 
 import com.orhanobut.logger.Logger;
-import com.syw.weiyu.AppContext;
 import com.syw.weiyu.AppException;
 import com.syw.weiyu.R;
-import com.syw.weiyu.api.IAdApi;
 import com.syw.weiyu.api.Listener;
-import com.syw.weiyu.api.impl.UserApi;
-import com.syw.weiyu.bean.Account;
-import com.syw.weiyu.dao.user.AccountDao;
-import com.syw.weiyu.util.IOC;
+import com.syw.weiyu.api.WeiyuApi;
 
 
 public class LauncherActivity extends Activity {
 
-    IAdApi adApi = IOC.getAdApi();
+    //是否初次启动
+    private boolean isFirstLaunch = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wy_activity_launcher);
 
-        if (AppContext.getInstance() == null) {
-            //未作初始化时，加载开屏广告，并初始化AppContext
+        if (isFirstLaunch) {
+            //未作初始化时，加载开屏广告
             showSplashAdThenGotoMainPage();
-            AppContext.init(this);
-            AppContext.getInstance().initilize();
+            isFirstLaunch = false;
         } else {
 //          有用户信息→MainTabs主页面
 //          无用户信息→Login登入页
             try {
-                //已做过初始化，并且有用户信息，直接进入主页面
-                new AccountDao().get();
-                new UserApi().login();
+                //有账户信息可直接进入主页面，否则会抛出异常
+                WeiyuApi.get().login();
                 gotoMainPage();
             } catch (AppException e) {
-                //没有账户信息，进入登录页
+                //没有账户信息或token为空，进入登录页
                 gotoLoginPage();
             }
         }
@@ -64,9 +58,9 @@ public class LauncherActivity extends Activity {
 
     private void showSplashAdThenGotoMainPage() {
         //[1s]后加载开屏广告页
-        adApi.showSplashAd(this, new Listener() {
+        WeiyuApi.get().showSplashAd(this, new Listener<String>() {
             @Override
-            public <String> void  onCallback(CallbackType callbackType, String msg) {
+            public void onCallback(CallbackType callbackType, String msg) {
                 switch (callbackType) {
                     case onAdError:
                         Logger.d(msg.toString());

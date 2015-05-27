@@ -1,6 +1,8 @@
 package com.syw.weiyu.api;
 
 import android.app.Activity;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -9,10 +11,7 @@ import com.syw.weiyu.R;
 import com.syw.weiyu.adp.WeiyuBannerCustomEventPlatformAdapter;
 import com.syw.weiyu.adp.WeiyuCustomEventPlatformEnum;
 import com.syw.weiyu.av.WeiyuLayout;
-import com.syw.weiyu.bean.Account;
-import com.syw.weiyu.bean.Shuoshuo;
-import com.syw.weiyu.bean.ShuoshuoList;
-import com.syw.weiyu.bean.User;
+import com.syw.weiyu.bean.*;
 import com.syw.weiyu.controller.listener.WeiyuListener;
 import com.syw.weiyu.dao.im.RongCloud;
 import com.syw.weiyu.dao.im.TokenDao;
@@ -22,6 +21,7 @@ import com.syw.weiyu.dao.shuoshuo.ShuoshuoDao;
 import com.syw.weiyu.dao.user.AccountDao;
 import com.syw.weiyu.splash.WeiyuSplash;
 import com.syw.weiyu.splash.WeiyuSplashListener;
+import com.syw.weiyu.util.StringUtil;
 import com.syw.weiyu.util.WeiyuSize;
 import com.syw.weiyu.util.WeiyuSplashMode;
 
@@ -41,40 +41,63 @@ public class WeiyuApi {
 
     /**
      * =========================================
-     * ----------------ÓÃ»§²¿·Ö------------------
+     * ----------------ç”¨æˆ·éƒ¨åˆ†------------------
      * =========================================
      */
 
     /**
-     * ×¢²á½Ó¿Ú
-     * 1.Ê¹ÓÃÕË»§ĞÅÏ¢ÔÚLBSÔÆ´´½¨POI½Úµã
-     * 2.»ñÈ¡token
-     * 3.ÉèÖÃÕË»§
+     * æ³¨å†Œæ¥å£
+     * 1.ä½¿ç”¨è´¦æˆ·ä¿¡æ¯åœ¨LBSäº‘åˆ›å»ºPOIèŠ‚ç‚¹
+     * 2.è·å–token
+     * 3.è®¾ç½®è´¦æˆ·ä¿¡æ¯åˆ°æœ¬åœ°
      * @param id
      * @param name
      * @param gender
      * @throws AppException
      */
-    public void register(String id,String name,String gender) throws AppException {
-        new UserPoiDao().create(new User(id, name, gender), new LocationDao().get());
-        String token = new TokenDao().get(id, name, null);
-        Account account = new Account(id,name,gender,token,new LocationDao().get());
-        new AccountDao().set(account);
+    public void register(final String id,final String name,final String gender,final Listener<Account> listener) throws AppException {
+        new UserPoiDao().create(new User(id, name, gender), new LocationDao().get(), new Listener<String>() {
+            @Override
+            public void onCallback(@NonNull CallbackType callbackType, @Nullable String data, @Nullable String msg) {
+                if (callbackType == CallbackType.onSuccess) {
+                    try {
+                        new TokenDao().get(id, name, null, new Listener<String>() {
+                            @Override
+                            public void onCallback(@NonNull CallbackType callbackType, @Nullable String data, @Nullable String msg) {
+                                Account account = new Account(id, name, gender, data, new LocationDao().get());
+                                try {
+                                    new AccountDao().set(account);
+                                    listener.onCallback(CallbackType.onSuccess, account, null);
+                                } catch (AppException e) {
+                                    e.printStackTrace();
+                                    listener.onCallback(CallbackType.onFailure, null, e.getMessage());
+                                }
+                            }
+                        });
+                    } catch (AppException e) {
+                        listener.onCallback(CallbackType.onFailure,null,e.getMessage());
+                    }
+                } else {
+                    listener.onCallback(CallbackType.onFailure,null,msg);
+                }
+            }
+        });
+
     }
 
     /**
-     * µÇÂ¼½Ó¿Ú
-     * 1.Á¬½ÓIM·şÎñÆ÷
-     * @return
+     * ç™»å½•æ¥å£
+     * è·å–å½“å‰è´¦æˆ·ï¼Œæ‹¿tokenï¼Œè¿æ¥IMæœåŠ¡å™¨
      */
-    public void login() throws AppException {
-        RongCloud.connect(new AccountDao().get().getToken());
+    public void login(Account account) {
+        String token = account.getToken();
+        RongCloud.connect(token);
     }
 
     /**
-     * µÇ³ö
-     * 1.¸üĞÂ×îºóÔÚÏßÊ±¼ä
-     * 2.µÇ³öIM·şÎñÆ÷
+     * ç™»å‡º
+     * 1.æ›´æ–°æœ€ååœ¨çº¿æ—¶é—´
+     * 2.ç™»å‡ºIMæœåŠ¡å™¨
      * @param id
      */
     public void logout(String id) {
@@ -82,7 +105,7 @@ public class WeiyuApi {
     }
 
     /**
-     * ÊÇ·ñÔÚÏß
+     * æ˜¯å¦åœ¨çº¿
      * @param id
      * @return
      */
@@ -91,7 +114,7 @@ public class WeiyuApi {
     }
 
     /**
-     * »ñÈ¡×îºóÔÚÏßÊ±¼ä
+     * è·å–æœ€ååœ¨çº¿æ—¶é—´
      * @param id
      * @return
      */
@@ -100,7 +123,7 @@ public class WeiyuApi {
     }
 
     /**
-     * »ñÈ¡ÓÃ»§×ÊÁÏ
+     * è·å–ç”¨æˆ·èµ„æ–™
      * @param id
      * @return
      */
@@ -109,42 +132,42 @@ public class WeiyuApi {
     }
 
     /**
-     * ¸üĞÂÓÃ»§×ÊÁÏ
+     * æ›´æ–°ç”¨æˆ·èµ„æ–™
      */
     public void updateUserProfile(User user) {
 
     }
 
+
     /**
      * =========================================
-     * ----------------Î»ÖÃ²¿·Ö------------------
+     * ----------------ä½ç½®éƒ¨åˆ†------------------
      * =========================================
      */
 
     /**
-     * ¶¨Î»£¬±£´æÎ»ÖÃÊı¾İ
+     * å®šä½ï¼Œä¿å­˜ä½ç½®æ•°æ®
      */
     public void locate() {
         new LocationDao().set();
     }
 
-    public void updateUserLocation(Listener listener) {
-
-    }
-
-    public void getCachedLocation(Listener listener) {
-
+    /**
+     * è·å–ä¿å­˜åœ¨æœ¬åœ°çš„ä½ç½®ä¿¡æ¯
+     */
+    public MLocation getCachedLocation() {
+        return new LocationDao().get();
     }
 
 
     /**
      * =========================================
-     * ----------------ËµËµ²¿·Ö------------------
+     * ----------------è¯´è¯´éƒ¨åˆ†------------------
      * =========================================
      */
 
     /**
-     * Ë¢ĞÂ£¨»ñÈ¡µÚÒ»Ò³µÄËµËµ£©
+     * åˆ·æ–°ï¼ˆè·å–ç¬¬ä¸€é¡µçš„è¯´è¯´ï¼‰
      * @return
      * @throws AppException
      */
@@ -153,25 +176,34 @@ public class WeiyuApi {
     }
 
     /**
-     * »ñÈ¡¸½½üµÄËµËµ
-     * ÓÅÏÈ´ÓÄÚ´æ»º´æÖĞ»ñÈ¡
+     * è·å–é™„è¿‘çš„è¯´è¯´
      * @param pageIndex
      * @return
      * @throws AppException
      */
-    public ShuoshuoList getNearbyShuoshuo(int pageIndex) throws AppException {
+    public ShuoshuoList getNearbyShuoshuo(int pageIndex,Listener<ShuoshuoList> listListener) throws AppException {
+        new ShuoshuoDao().getNearByList(pageIndex, listListener);
         return null;
     }
 
     /**
-     * »ñÈ¡ËµËµÏêÇé
+     * è·å–è¯´è¯´è¯¦æƒ…
      * @param shuoshuo
      * @return
      * @throws AppException
      */
-    public Shuoshuo getShuoshuoDetail(Shuoshuo shuoshuo) throws AppException {
-        shuoshuo.setCommentList(new ShuoshuoDao().getComments(shuoshuo.getId()));
-        return shuoshuo;
+    public void getShuoshuoDetail(final Shuoshuo shuoshuo, final Listener<Shuoshuo> listener) throws AppException {
+        new ShuoshuoDao().getComments(shuoshuo.getId(), new Listener<CommentList>() {
+            @Override
+            public void onCallback(@NonNull CallbackType callbackType, @Nullable CommentList data, @Nullable String msg) {
+                if (callbackType == CallbackType.onSuccess) {
+                    shuoshuo.setCommentList(data);
+                    listener.onCallback(CallbackType.onSuccess,shuoshuo,msg);
+                } else {
+                    listener.onCallback(CallbackType.onFailure,null,msg);
+                }
+            }
+        });
     }
 
     public void publishShuoshuo(String content) throws AppException {
@@ -180,7 +212,7 @@ public class WeiyuApi {
 
     /**
      * =========================================
-     * ----------------¹ã¸æ²¿·Ö------------------
+     * ----------------å¹¿å‘Šéƒ¨åˆ†------------------
      * =========================================
      */
 
@@ -188,23 +220,18 @@ public class WeiyuApi {
     WeiyuLayout weiyuLayoutCode;
 
     /**
-     * ÔÚActivityµÄonDestroy·½·¨ÏÂµ÷ÓÃ
+     * åœ¨Activityçš„onDestroyæ–¹æ³•ä¸‹è°ƒç”¨
      */
     public void onBannerDestory() {
         WeiyuLayout.clear();
         weiyuLayoutCode.clearThread();
     }
 
-    Listener listener;
-    public void init(Listener listener) {
-        this.listener = listener;
-    }
-
-    public View getBannerAdView(Activity activity,final Listener listener) {
+    public View getBannerAdView(Activity activity,final Listener<String> listener) {
         /**
-         * ³õÊ¼»¯adsMogoView
-         * ²ÎÊı£ºµÚÒ»¸öactivity,µÚ¶ş¸ömogoID£¨¸ÃÖµÎªÃ¢¹ûºóÌ¨ÉêÇëµÄÉú²úµÄÃ¢¹ûID£¬·Çµ¥Ò»Æ½Ì¨ID£©,µÚÈı¸öÉèÖÃ¹ã¸æÕ¹Ê¾Î»ÖÃ,µÚËÄ¸öÇëÇó¹ã¸æ³ß´ç,
-         * µÚÎå¸öÊÇ·ñÊÖ¶¯Ë¢ĞÂtrue£ºÊÇÊÖ¶¯Ë¢ĞÂ£¨Ã¢¹ûºóÌ¨ÂÖ»»Ê±¼ä±ØĞëÎª½ûÓÃ²Å»áÉúĞ§£©	£¬false:×Ô¶¯ÂÖ»»
+         * åˆå§‹åŒ–adsMogoView
+         * å‚æ•°ï¼šç¬¬ä¸€ä¸ªactivity,ç¬¬äºŒä¸ªmogoIDï¼ˆè¯¥å€¼ä¸ºèŠ’æœåå°ç”³è¯·çš„ç”Ÿäº§çš„èŠ’æœIDï¼Œéå•ä¸€å¹³å°IDï¼‰,ç¬¬ä¸‰ä¸ªè®¾ç½®å¹¿å‘Šå±•ç¤ºä½ç½®,ç¬¬å››ä¸ªè¯·æ±‚å¹¿å‘Šå°ºå¯¸,
+         * ç¬¬äº”ä¸ªæ˜¯å¦æ‰‹åŠ¨åˆ·æ–°trueï¼šæ˜¯æ‰‹åŠ¨åˆ·æ–°ï¼ˆèŠ’æœåå°è½®æ¢æ—¶é—´å¿…é¡»ä¸ºç¦ç”¨æ‰ä¼šç”Ÿæ•ˆï¼‰	ï¼Œfalse:è‡ªåŠ¨è½®æ¢
          */
         weiyuLayoutCode = new WeiyuLayout(activity, activity.getString(R.string.adsmogo_appid), WeiyuSize.WeiyuAutomaticScreen);
 
@@ -231,17 +258,17 @@ public class WeiyuApi {
 
             @Override
             public void onFailedReceiveAd() {
-                listener.onCallback(Listener.CallbackType.onAdError,"onFailedReceive");
+                listener.onCallback(Listener.CallbackType.onAdError,null,"onFailedReceive");
             }
 
             @Override
             public void onClickAd(String s) {
-                listener.onCallback(Listener.CallbackType.onAdClick,s);
+                listener.onCallback(Listener.CallbackType.onAdClick,null,s);
             }
 
             @Override
             public boolean onCloseAd() {
-                listener.onCallback(Listener.CallbackType.onAdClose,"");
+                listener.onCallback(Listener.CallbackType.onAdClose,null,null);
                 return false;
             }
 
@@ -262,13 +289,13 @@ public class WeiyuApi {
         return weiyuLayoutCode;
     }
 
-    public void showSplashAd(Activity activity,final Listener listener) {
+    public void showSplashAd(Activity activity,final Listener<String> listener) {
         WeiyuSplash weiyuSplash = new WeiyuSplash(activity,activity.getString(R.string.adsmogo_appid), WeiyuSplashMode.FULLSCREEN);
-        //ÉèÖÃ¿ªÆÁ¹ã¸æ¼àÌı
+        //è®¾ç½®å¼€å±å¹¿å‘Šç›‘å¬
         weiyuSplash.setWeiyuSplashListener(new WeiyuSplashListener() {
             @Override
             public void onSplashClickAd(String s) {
-                listener.onCallback(Listener.CallbackType.onAdClick,s);
+                listener.onCallback(Listener.CallbackType.onAdClick,null,s);
             }
 
             @Override
@@ -278,7 +305,7 @@ public class WeiyuApi {
 
             @Override
             public void onSplashError(String s) {
-                listener.onCallback(Listener.CallbackType.onAdError,s);
+                listener.onCallback(Listener.CallbackType.onAdError,null,s);
             }
 
             @Override
@@ -288,7 +315,7 @@ public class WeiyuApi {
 
             @Override
             public void onSplashClose() {
-                listener.onCallback(Listener.CallbackType.onAdClose,"");
+                listener.onCallback(Listener.CallbackType.onAdClose,null,null);
             }
         });
         weiyuSplash.setCloseButtonVisibility(View.VISIBLE);

@@ -5,6 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.syw.weiyu.AppConstants;
 import com.syw.weiyu.AppException;
 
+import com.syw.weiyu.api.Listener;
+import net.tsz.afinal.http.AjaxCallBack;
 import net.tsz.afinal.http.AjaxParams;
 
 /**
@@ -36,18 +38,30 @@ public class TokenDao {
      * <p/>
      * {"code":200, "userId":"jlk456j5", "token":"sfd9823ihufi"}
      */
-    public String get(String userId, String name, String portraitUri) throws AppException {
+    public void get(String userId, final String name, String portraitUri, final Listener<String> listener) throws AppException {
         //请求参数
         AjaxParams params = new AjaxParams();
         params.put("userId", userId);
         params.put("name", name);
         params.put("portraitUri", portraitUri);
-        String jsonResult = (String) RongCloud.getSignedHttp().postSync(AppConstants.url_user_gettoken, params);
-        JSONObject result = JSON.parseObject(jsonResult);
-        if (result.getInteger("code") == 200) {
-            return result.getString("token");
-        } else {
-            throw new AppException("token 获取失败");
-        }
+        RongCloud.getSignedHttp().post(AppConstants.url_user_gettoken, params, new AjaxCallBack<String>() {
+            @Override
+            public void onSuccess(String s) {
+                super.onSuccess(s);
+                JSONObject result = JSON.parseObject(s);
+                if (result.getInteger("code") == 200) {
+                    listener.onCallback(Listener.CallbackType.onSuccess,result.getString("token"),null);
+                } else {
+                    listener.onCallback(Listener.CallbackType.onFailure,null,"token 获取失败");
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t, int errorNo, String strMsg) {
+                super.onFailure(t, errorNo, strMsg);
+                listener.onCallback(Listener.CallbackType.onFailure, null, strMsg);
+            }
+        });
+
     }
 }

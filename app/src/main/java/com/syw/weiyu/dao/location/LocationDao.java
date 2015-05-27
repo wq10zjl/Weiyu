@@ -7,47 +7,50 @@ import com.syw.weiyu.bean.MLocation;
 import com.syw.weiyu.third.lbs.LocSDK;
 import net.tsz.afinal.FinalDb;
 
+import java.util.List;
+
 /**
  * author: youwei
  * date: 2015-05-19
- * desc: �˻�λ����Ϣ�Ĵ�ȡ
+ * desc: 账户位置信息的存取
  */
 public class LocationDao {
+
+    /**
+     * 定位，并保存or更新位置信息到DB
+     * 若定位失败，do nothing
+     */
     public void set() {
         LocSDK.OnLocateCompleteListener locListener = new LocSDK.OnLocateCompleteListener(){
             @Override
             public void onSuccess(BDLocation location) {
-                FinalDb.create(AppContext.getCtx()).save(new MLocation(location));
+                FinalDb finalDb = FinalDb.create(AppContext.getCtx());
+                finalDb.deleteAll(MLocation.class);
+                finalDb.save(new MLocation(location));
             }
 
             @Override
             public void onFailure() {
-                FinalDb.create(AppContext.getCtx()).save(new MLocation(null));
+                //do nothing
             }
         };
         LocSDK.getInstance().locate(locListener);
     }
 
+    /**
+     * 获取保存的位置
+     * 如果不存在数据，则构造默认的位置并返回
+     * @return
+     */
     public MLocation get() {
-        MLocation location = FinalDb.create(AppContext.getCtx()).findAll(MLocation.class).get(0);
-        if (location == null) {
+        MLocation location;
+        FinalDb finalDb = FinalDb.create(AppContext.getCtx());
+        List<MLocation> locations = finalDb.findAll(MLocation.class);
+        if (locations.size() == 0) {
             location = new MLocation(null);
+        } else {
+            location = locations.get(0);
         }
         return location;
-    }
-
-    public void update() {
-        LocSDK.OnLocateCompleteListener locListener = new LocSDK.OnLocateCompleteListener(){
-            @Override
-            public void onSuccess(BDLocation location) {
-                FinalDb.create(AppContext.getCtx()).update(new MLocation(location));
-            }
-
-            @Override
-            public void onFailure() {
-                FinalDb.create(AppContext.getCtx()).update(new MLocation(null));
-            }
-        };
-        LocSDK.getInstance().locate(locListener);
     }
 }

@@ -4,11 +4,13 @@ import android.support.annotation.NonNull;
 import com.alibaba.fastjson.JSONObject;
 import com.syw.weiyu.AppConstants;
 import com.syw.weiyu.AppException;
+import com.syw.weiyu.api.Listener;
 import com.syw.weiyu.bean.MLocation;
 import com.syw.weiyu.bean.User;
 import com.syw.weiyu.third.lbs.LBSCloud;
 import com.syw.weiyu.util.StringUtil;
 import net.tsz.afinal.FinalHttp;
+import net.tsz.afinal.http.AjaxCallBack;
 import net.tsz.afinal.http.AjaxParams;
 
 /**
@@ -17,7 +19,14 @@ import net.tsz.afinal.http.AjaxParams;
  * desc:
  */
 public class UserPoiDao {
-    public void create(@NonNull User user,MLocation location) throws AppException {
+
+    /**
+     * 在LBS云创建用户POI数据
+     * @param user
+     * @param location
+     * @throws AppException
+     */
+    public void create(@NonNull User user,MLocation location, final Listener<String> listener) throws AppException {
         if (location == null) location = new MLocation(null);
 
         AjaxParams params = LBSCloud.getInitializedParams(AppConstants.geotable_id_user);
@@ -36,16 +45,28 @@ public class UserPoiDao {
         //post
         final String url = AppConstants.url_create_poi;
         FinalHttp http = new FinalHttp();
-        String jsonResult = (String) http.postSync(url, params);
-        if (StringUtil.isEmpty(jsonResult)) throw new AppException("网络异常");
-        JSONObject result = JSONObject.parseObject(jsonResult);
-        if (result.getInteger("status") == 0) {
-            //创建成功
-        } else if (result.getInteger("status") == 3002) {
-            //这是老用户（主键重复）
-        } else {
-            //创建POI出错
-            throw new AppException("创建用户POI信息出错");
-        }
+        http.post(url, params, new AjaxCallBack<String>() {
+            @Override
+            public void onSuccess(String s) {
+                super.onSuccess(s);
+                if (StringUtil.isEmpty(s)) {
+                    listener.onCallback(Listener.CallbackType.onFailure,null,"网络异常");
+                } else {
+                    JSONObject result = JSONObject.parseObject(s);
+                    if (result.getInteger("status") == 0 || result.getInteger("status") == 3002) {
+                        //创建成功 or 这是老用户（主键重复）
+                        listener.onCallback(Listener.CallbackType.onSuccess,null,null);
+                    } else {
+                        //创建POI出错
+                        listener.onCallback(Listener.CallbackType.onFailure,null,"创建用户POI信息出错");
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t, int errorNo, String strMsg) {
+                super.onFailure(t, errorNo, strMsg);
+            }
+        });
     }
 }

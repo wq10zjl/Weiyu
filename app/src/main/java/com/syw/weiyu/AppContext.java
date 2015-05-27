@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import com.orhanobut.logger.Logger;
+import com.syw.weiyu.api.WeiyuApi;
+import com.syw.weiyu.dao.location.LocationDao;
 import com.syw.weiyu.third.lbs.LBSCloud;
 import com.syw.weiyu.third.im.RongCloudEvent;
 
@@ -52,6 +54,9 @@ public class AppContext extends Application {
             //初始化融云SDK事件监听处理
             RongCloudEvent.init(this);
         }
+
+        //定位并保存
+        WeiyuApi.get().locate();
     }
 
     @Override

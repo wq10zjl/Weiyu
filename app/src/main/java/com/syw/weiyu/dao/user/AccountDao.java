@@ -10,12 +10,12 @@ import net.tsz.afinal.FinalDb;
 /**
  * author: youwei
  * date: 2015-05-19
- * desc: 账户数据的存取，包含用户信息，Token，和位置信息
+ * desc: 璐︽埛鏁版嵁鐨勫瓨鍙栵紝鍖呭惈鐢ㄦ埛淇℃伅锛孴oken锛屽拰浣嶇疆淇℃伅
  */
 public class AccountDao {
 
     /**
-     * 获取当前账户
+     * 鑾峰彇褰撳墠璐︽埛
      * @return
      * @throws AppException
      */
@@ -23,7 +23,7 @@ public class AccountDao {
         Context ctx = AppContext.getCtx();
         Account account = FinalDb.create(ctx).findAll(Account.class).get(0);
         if (account != null) return account;
-        else throw new AppException("暂无账户");
+        else throw new AppException("鏆傛棤璐︽埛");
     }
 
     public void set(Account account) throws AppException {
