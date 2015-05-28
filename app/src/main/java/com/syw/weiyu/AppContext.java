@@ -6,9 +6,11 @@ import android.content.Context;
 
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.util.LruCache;
 import com.orhanobut.logger.Logger;
 import com.syw.weiyu.api.WeiyuApi;
-import com.syw.weiyu.dao.location.LocationDao;
+import com.syw.weiyu.bean.Account;
+import com.syw.weiyu.dao.user.AccountDao;
 import com.syw.weiyu.third.lbs.LBSCloud;
 import com.syw.weiyu.third.im.RongCloudEvent;
 
@@ -17,12 +19,10 @@ import io.rong.imkit.RongIM;
 
 /**
  * 自有的Application，程序入口，应用程序上下文环境
- * 做一些基本的初始化
+ * 做一些基本的初始化，保存一些运行时数据
  */
 public class AppContext extends Application {
-
     private static AppContext appContext;
-
     public static AppContext getCtx() {
         return appContext;
     }
@@ -30,11 +30,52 @@ public class AppContext extends Application {
         AppContext.appContext = appContext;
     }
 
+    /**
+     * ===========RAM Cache===========
+     */
+    public static final String KEY_ACCOUNT = "key_account";
+    public static final String KEY_LOCATION = "key_location";
+    public static final String KEY_NEARBYSHUOSHUOS = "key_nearbyshuoshuos";
+    public static final String KEY_NEARBYUSERS = "key_nearbyusers";
+    static final int cacheSize = (int) (Runtime.getRuntime().maxMemory()/2);//最大heap size的一半吧
+    static LruCache<String, Object> lruCache = new LruCache<>(cacheSize);
+    public static void put(String k,Object v) {
+        lruCache.put(k,v);
+    }
+    public static Object get(String k) {
+        return lruCache.get(k);
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
         setAppContext(this);
 
+        initSDKs();
+        initData();
+    }
+
+    /**
+     * 初始化数据
+     */
+    private void initData() {
+        //定位并保存DB
+        WeiyuApi.get().locate();
+        //位置数据
+        put(KEY_LOCATION,WeiyuApi.get().getSavedLocation());
+        //账户数据
+        try {
+            Account account = new AccountDao().get();
+            put(KEY_ACCOUNT,account);
+        } catch (AppException e) {
+            //do nothing
+        }
+    }
+
+    /**
+     * 初始化SDK组件
+     */
+    private void initSDKs() {
         // 注册App异常崩溃处理器（防crash）
         Thread.setDefaultUncaughtExceptionHandler(AppException.getAppExceptionHandler(this));
 
@@ -54,9 +95,6 @@ public class AppContext extends Application {
             //初始化融云SDK事件监听处理
             RongCloudEvent.init(this);
         }
-
-        //定位并保存
-        WeiyuApi.get().locate();
     }
 
     @Override

@@ -3,6 +3,10 @@ package com.syw.weiyu.ui.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 
 import com.orhanobut.logger.Logger;
@@ -10,6 +14,8 @@ import com.syw.weiyu.AppException;
 import com.syw.weiyu.R;
 import com.syw.weiyu.api.Listener;
 import com.syw.weiyu.api.WeiyuApi;
+import com.syw.weiyu.bean.Account;
+import com.syw.weiyu.dao.user.AccountDao;
 
 
 public class LauncherActivity extends Activity {
@@ -31,7 +37,8 @@ public class LauncherActivity extends Activity {
 //          无用户信息→Login登入页
             try {
                 //有账户信息可直接进入主页面，否则会抛出异常
-                WeiyuApi.get().login();
+                Account account = new AccountDao().get();
+                WeiyuApi.get().login(account.getToken());
                 gotoMainPage();
             } catch (AppException e) {
                 //没有账户信息或token为空，进入登录页
@@ -58,24 +65,29 @@ public class LauncherActivity extends Activity {
 
     private void showSplashAdThenGotoMainPage() {
         //[1s]后加载开屏广告页
-        WeiyuApi.get().showSplashAd(this, new Listener<String>() {
+        new Handler(){
             @Override
-            public void onCallback(CallbackType callbackType, String msg) {
-                switch (callbackType) {
-                    case onAdError:
-                        Logger.d(msg.toString());
-                        gotoMainPage();
-                        break;
-                    case onAdClick:
-                        Logger.d(msg.toString());
-                        break;
-                    case onAdClose:
-                    default:
-                        gotoMainPage();
-                        break;
-                }
+            public void handleMessage(Message msg) {
+                WeiyuApi.get().showSplashAd(LauncherActivity.this, new Listener<String>() {
+                    @Override
+                    public void onCallback(@NonNull CallbackType callbackType, @Nullable String data, @Nullable String msg) {
+                        switch (callbackType) {
+                            case onAdError:
+                                Logger.d(msg);
+                                gotoMainPage();
+                                break;
+                            case onAdClick:
+                                Logger.d(msg);
+                                break;
+                            case onAdClose:
+                            default:
+                                gotoMainPage();
+                                break;
+                        }
+                    }
+                });
             }
-        });
+        }.sendEmptyMessageDelayed(0,1000);
     }
 
 

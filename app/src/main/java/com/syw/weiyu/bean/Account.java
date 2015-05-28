@@ -10,15 +10,13 @@ public class Account {
     private String name;
     private String gender;
     private String token;
-    private MLocation location;
 
     public Account() {}
-    public Account(String id, String name, String gender, String token, MLocation location) {
+    public Account(String id, String name, String gender, String token) {
         this.id = id;
         this.name = name;
         this.gender = gender;
         this.token = token;
-        this.location = location;
     }
 
     public String getId() {
@@ -51,13 +49,5 @@ public class Account {
 
     public void setToken(String token) {
         this.token = token;
-    }
-
-    public MLocation getLocation() {
-        return location;
-    }
-
-    public void setLocation(MLocation location) {
-        this.location = location;
     }
 }

@@ -3,11 +3,16 @@ package com.syw.weiyu.dao.im;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.syw.weiyu.AppConstants;
+import com.syw.weiyu.AppContext;
 import com.syw.weiyu.AppException;
 
 import com.syw.weiyu.api.Listener;
+import com.syw.weiyu.bean.Account;
+import net.tsz.afinal.FinalDb;
 import net.tsz.afinal.http.AjaxCallBack;
 import net.tsz.afinal.http.AjaxParams;
+
+import java.util.List;
 
 /**
  * author: youwei
@@ -38,7 +43,7 @@ public class TokenDao {
      * <p/>
      * {"code":200, "userId":"jlk456j5", "token":"sfd9823ihufi"}
      */
-    public void get(String userId, final String name, String portraitUri, final Listener<String> listener) throws AppException {
+    public void get(String userId, final String name, String portraitUri, final Listener<String> listener) {
         //请求参数
         AjaxParams params = new AjaxParams();
         params.put("userId", userId);
@@ -50,7 +55,8 @@ public class TokenDao {
                 super.onSuccess(s);
                 JSONObject result = JSON.parseObject(s);
                 if (result.getInteger("code") == 200) {
-                    listener.onCallback(Listener.CallbackType.onSuccess,result.getString("token"),null);
+                    String token = result.getString("token");
+                    listener.onCallback(Listener.CallbackType.onSuccess,token,null);
                 } else {
                     listener.onCallback(Listener.CallbackType.onFailure,null,"token 获取失败");
                 }
@@ -62,6 +68,5 @@ public class TokenDao {
                 listener.onCallback(Listener.CallbackType.onFailure, null, strMsg);
             }
         });
-
     }
 }

@@ -26,7 +26,7 @@ public class UserPoiDao {
      * @param location
      * @throws AppException
      */
-    public void create(@NonNull User user,MLocation location, final Listener<String> listener) throws AppException {
+    public void create(@NonNull User user,MLocation location, final Listener<String> listener) {
         if (location == null) location = new MLocation(null);
 
         AjaxParams params = LBSCloud.getInitializedParams(AppConstants.geotable_id_user);

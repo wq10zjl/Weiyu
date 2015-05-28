@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import com.syw.weiyu.AppContext;
 import com.syw.weiyu.AppException;
 import com.syw.weiyu.R;
 import com.syw.weiyu.adp.WeiyuBannerCustomEventPlatformAdapter;
@@ -24,6 +25,9 @@ import com.syw.weiyu.splash.WeiyuSplashListener;
 import com.syw.weiyu.util.StringUtil;
 import com.syw.weiyu.util.WeiyuSize;
 import com.syw.weiyu.util.WeiyuSplashMode;
+import net.tsz.afinal.FinalDb;
+
+import java.util.List;
 
 /**
  * author: songyouwei
@@ -53,44 +57,39 @@ public class WeiyuApi {
      * @param id
      * @param name
      * @param gender
-     * @throws AppException
+     * @param listener 包含
      */
-    public void register(final String id,final String name,final String gender,final Listener<Account> listener) throws AppException {
+    public void register(final String id,final String name,final String gender,final Listener<String> listener) {
         new UserPoiDao().create(new User(id, name, gender), new LocationDao().get(), new Listener<String>() {
             @Override
             public void onCallback(@NonNull CallbackType callbackType, @Nullable String data, @Nullable String msg) {
+                //poi创建成功
                 if (callbackType == CallbackType.onSuccess) {
-                    try {
-                        new TokenDao().get(id, name, null, new Listener<String>() {
-                            @Override
-                            public void onCallback(@NonNull CallbackType callbackType, @Nullable String data, @Nullable String msg) {
-                                Account account = new Account(id, name, gender, data, new LocationDao().get());
-                                try {
-                                    new AccountDao().set(account);
-                                    listener.onCallback(CallbackType.onSuccess, account, null);
-                                } catch (AppException e) {
-                                    e.printStackTrace();
-                                    listener.onCallback(CallbackType.onFailure, null, e.getMessage());
-                                }
+                    //拿token
+                    new TokenDao().get(id, name, null, new Listener<String>() {
+                        @Override
+                        public void onCallback(@NonNull CallbackType callbackType, @Nullable String data, @Nullable String msg) {
+                            if (callbackType == CallbackType.onSuccess) {
+                                Account account = new Account(id, name, gender, data);
+                                new AccountDao().set(account);
+                                listener.onCallback(CallbackType.onSuccess, data, null);
+                            } else {
+                                listener.onCallback(CallbackType.onFailure,null,msg);
                             }
-                        });
-                    } catch (AppException e) {
-                        listener.onCallback(CallbackType.onFailure,null,e.getMessage());
-                    }
+                        }
+                    });
                 } else {
                     listener.onCallback(CallbackType.onFailure,null,msg);
                 }
             }
         });
-
     }
 
     /**
      * 登录接口
-     * 获取当前账户，拿token，连接IM服务器
+     * 连接IM服务器
      */
-    public void login(Account account) {
-        String token = account.getToken();
+    public void login(String token) {
         RongCloud.connect(token);
     }
 
@@ -155,7 +154,7 @@ public class WeiyuApi {
     /**
      * 获取保存在本地的位置信息
      */
-    public MLocation getCachedLocation() {
+    public MLocation getSavedLocation() {
         return new LocationDao().get();
     }
 
