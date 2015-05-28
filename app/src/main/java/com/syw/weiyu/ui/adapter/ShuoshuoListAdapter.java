@@ -8,7 +8,6 @@ import android.widget.TextView;
 import com.paging.listview.PagingBaseAdapter;
 import com.syw.weiyu.R;
 import com.syw.weiyu.bean.Shuoshuo;
-import com.syw.weiyu.bean.ShuoshuoList;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -20,13 +19,14 @@ import java.util.Locale;
  * Created by songyouwei on 2015/4/27.
  */
 public class ShuoshuoListAdapter extends PagingBaseAdapter {
-    ShuoshuoList shuoshuoList;
-    public void set(ShuoshuoList list) {
-        this.shuoshuoList = list;
+    List<Shuoshuo> shuoshuos = new ArrayList<>();
+    public void set(List<Shuoshuo> list) {
+        this.shuoshuos.clear();
+        this.shuoshuos.addAll(list);
         notifyDataSetChanged();
     }
-    public void append(ShuoshuoList list) {
-        this.shuoshuoList.append(list.get());
+    public void append(List<Shuoshuo> list) {
+        this.shuoshuos.addAll(list);
         notifyDataSetChanged();
     }
 
@@ -45,12 +45,12 @@ public class ShuoshuoListAdapter extends PagingBaseAdapter {
 
     @Override
     public int getCount() {
-        return shuoshuoList.get().size();
+        return shuoshuos.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return shuoshuoList.get().get(position);
+        return shuoshuos.get(position);
     }
 
     @Override
@@ -73,7 +73,7 @@ public class ShuoshuoListAdapter extends PagingBaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        Shuoshuo shuoshuo = shuoshuoList.get().get(position);
+        Shuoshuo shuoshuo = shuoshuos.get(position);
         holder.name.setText(shuoshuo.getUserName());
         holder.address.setText(shuoshuo.getLocation().getProvince()+shuoshuo.getLocation().getCity()+shuoshuo.getLocation().getDistrict());
         holder.time.setText(new SimpleDateFormat("yyyy-MM-dd kk:mm:ss", Locale.ENGLISH).format(new Timestamp(shuoshuo.getTimestamp() * 1000)));

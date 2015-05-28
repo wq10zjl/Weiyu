@@ -1,5 +1,7 @@
 package com.syw.weiyu.bean;
 
+import java.util.List;
+
 /**
  * author: youwei
  * date: 2015-05-11
@@ -12,14 +14,14 @@ public class Shuoshuo {
     private String content;
     private String userName;
     private String userId;
-    private CommentList commentList;
+    private List<Comment> comments;
 
-    public CommentList getCommentList() {
-        return commentList;
+    public List<Comment> getComments() {
+        return comments;
     }
 
-    public void setCommentList(CommentList commentList) {
-        this.commentList = commentList;
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
     public long getId() {

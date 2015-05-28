@@ -23,11 +23,15 @@ public class AccountDao {
      * @throws AppException 暂无账户
      */
     public Account get() throws AppException {
-        Context ctx = AppContext.getCtx();
-        FinalDb finalDb = FinalDb.create(ctx);
-        List<Account> accounts = FinalDb.create(ctx).findAll(Account.class);
-        if (accounts != null && accounts.size()>0) return accounts.get(0);
-        else throw new AppException("暂无账户");
+        Account account = (Account) AppContext.get(AppContext.KEY_ACCOUNT);
+        if (account == null) {
+            Context ctx = AppContext.getCtx();
+            FinalDb finalDb = FinalDb.create(ctx);
+            List<Account> accounts = finalDb.findAll(Account.class);
+            if (accounts != null && accounts.size() > 0) account = accounts.get(0);
+            else throw new AppException("暂无账户");
+        }
+        return account;
     }
 
     /**
@@ -39,5 +43,6 @@ public class AccountDao {
         FinalDb finalDb = FinalDb.create(ctx);
         finalDb.deleteAll(Account.class);
         finalDb.save(account);
+        AppContext.put(AppContext.KEY_ACCOUNT, account);
     }
 }

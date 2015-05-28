@@ -17,16 +17,17 @@ import java.util.List;
 public class LocationDao {
 
     /**
-     * 定位，并保存or更新位置信息到DB
-     * 若定位失败，do nothing
+     * 定位，并保存or更新位置信息
      */
     public void set() {
         LocSDK.OnLocateCompleteListener locListener = new LocSDK.OnLocateCompleteListener(){
             @Override
             public void onSuccess(BDLocation location) {
+                MLocation mLocation = new MLocation(location);
                 FinalDb finalDb = FinalDb.create(AppContext.getCtx());
                 finalDb.deleteAll(MLocation.class);
-                finalDb.save(new MLocation(location));
+                finalDb.save(mLocation);
+                AppContext.put(AppContext.KEY_LOCATION, mLocation);
             }
 
             @Override
@@ -38,18 +39,20 @@ public class LocationDao {
     }
 
     /**
-     * 获取保存的位置
+     * 获取保存的位置数据
      * 如果不存在数据，则构造默认的位置并返回
      * @return
      */
     public MLocation get() {
-        MLocation location;
-        FinalDb finalDb = FinalDb.create(AppContext.getCtx());
-        List<MLocation> locations = finalDb.findAll(MLocation.class);
-        if (locations.size() == 0) {
-            location = new MLocation(null);
-        } else {
-            location = locations.get(0);
+        MLocation location = (MLocation) AppContext.get(AppContext.KEY_LOCATION);
+        if (location == null) {
+            FinalDb finalDb = FinalDb.create(AppContext.getCtx());
+            List<MLocation> locations = finalDb.findAll(MLocation.class);
+            if (locations == null || locations.size() == 0) {
+                location = new MLocation(null);
+            } else {
+                location = locations.get(0);
+            }
         }
         return location;
     }

@@ -9,6 +9,7 @@ import com.syw.weiyu.AppException;
 import com.syw.weiyu.R;
 
 import com.syw.weiyu.third.im.RongCloudEvent;
+import com.syw.weiyu.util.StringUtil;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.RongIMClient;
 import net.tsz.afinal.FinalHttp;
@@ -24,7 +25,8 @@ import java.security.MessageDigest;
  */
 public class RongCloud {
 
-    public static void connect(@NonNull String token) {
+    public static void connect(@NonNull String token) throws AppException {
+        if (StringUtil.isEmpty(token)) throw new AppException("无token");
         // 连接融云服务器。
         try {
             RongIM.connect(token, new RongIMClient.ConnectCallback() {

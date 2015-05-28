@@ -5,6 +5,8 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,23 +16,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alibaba.fastjson.JSON;
-
 import com.paging.listview.PagingListView;
 import com.syw.weiyu.AppException;
+import com.syw.weiyu.api.Listener;
 import com.syw.weiyu.api.WeiyuApi;
-import com.syw.weiyu.bean.ShuoshuoList;
-import com.syw.weiyu.third.lbs.LBSCloud;
+import com.syw.weiyu.bean.Shuoshuo;
 import com.syw.weiyu.R;
+import com.syw.weiyu.bean.ShuoshuoList;
 import com.syw.weiyu.ui.adapter.ShuoshuoListAdapter;
 
 import com.syw.weiyu.util.Toaster;
-import net.tsz.afinal.http.AjaxCallBack;
 
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
+
+import java.util.List;
 
 /**
  * author: youwei
@@ -39,29 +41,13 @@ import in.srain.cube.views.ptr.PtrHandler;
  */
 public class ShuoshuoActivity extends FragmentActivity {
 
-//    //用于视图适配器的mapList
-//    List<HashMap<String, String>> shuoshuomapList = new ArrayList<>();
-    ShuoshuoList shuoshuoList;
-
     int pageIndex = 0;
     int totalPage = 0;
-
-//    ShuoshuoAdapter.LOADTYPE loadType;
-//    /**
-//     * 设置加载类型
-//     * @param loadType
-//     */
-//    public void setLoadType(ShuoshuoAdapter.LOADTYPE loadType) {
-//        this.loadType = loadType;
-//    }
 
     PagingListView listView;
     ShuoshuoListAdapter adapter;
 
     PtrClassicFrameLayout mPtrFrame;
-
-    //LBS callback
-//    AjaxCallBack<String> lbsCloudSearchCallback = new LBSCloudSearchCallback();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,26 +67,13 @@ public class ShuoshuoActivity extends FragmentActivity {
             @Override
             public void handleMessage(Message msg) {
                 try {
-                    adapter.set(WeiyuApi.get().getNearbyShuoshuo(0));
+                    ShuoshuoList list = WeiyuApi.get().getCachedNearbyShuoshuo();
+                    adapter.set(list.getShuoshuos());
                 } catch (AppException e) {
-                    Toaster.e(ShuoshuoActivity.this,e.getMessage());
+                    mPtrFrame.autoRefresh();
                 }
             }
         }.sendEmptyMessageDelayed(1, 500);
-
-//        //读取缓存的lists
-//        shuoshuomapList = AppContext.getInstance().getShuoshuomapList();
-//        //若空，则刷新数据（延迟一秒），否者直接设置适配器
-//        if(shuoshuomapList.isEmpty()) {
-//            new Handler(){
-//                @Override
-//                public void handleMessage(Message msg) {
-//                    mPtrFrame.autoRefresh();
-//                }
-//            }.sendEmptyMessageDelayed(1,500);
-//        } else {
-//            adapter.setData(shuoshuomapList);
-//        }
 
         //add banner ad
         if (listView.getHeaderViewsCount() == 0) {
@@ -109,20 +82,7 @@ public class ShuoshuoActivity extends FragmentActivity {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
     protected void onDestroy() {
-        /**
-         * 对于MoGoAd，要作销毁操作
-         */
         WeiyuApi.get().onBannerDestory();
         super.onDestroy();
     }
@@ -154,13 +114,21 @@ public class ShuoshuoActivity extends FragmentActivity {
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {
                 pageIndex = 0;
-//                setLoadType(ShuoshuoAdapter.LOADTYPE.TYPE_REFRESH);
-//                LBSCloud.getInstance().nearbyShuoshuoSearch(0, lbsCloudSearchCallback);
-                try {
-                    adapter.set(WeiyuApi.get().refreshNearbyShuoshuo());
-                } catch (AppException e) {
-                    Toaster.e(ShuoshuoActivity.this, e.getMessage());
-                }
+                WeiyuApi.get().getNearbyShuoshuo(0, new Listener<ShuoshuoList>() {
+                    @Override
+                    public void onCallback(@NonNull CallbackType callbackType, @Nullable ShuoshuoList data, @Nullable String msg) {
+                        //结束下拉刷新
+                        mPtrFrame.refreshComplete();
+                        if (callbackType == CallbackType.onSuccess) {
+                            if (data != null) {
+                                adapter.set(data.getShuoshuos());
+                                totalPage = data.getTotal();
+                                //set has more page
+                                listView.setHasMoreItems(pageIndex + 1 < totalPage);
+                            }
+                        } else Toaster.e(ShuoshuoActivity.this, msg);
+                    }
+                });
             }
 
             @Override
@@ -195,13 +163,24 @@ public class ShuoshuoActivity extends FragmentActivity {
             @Override
             public void onLoadMoreItems() {
                 if (pageIndex + 1 < totalPage) {
-//                    setLoadType(ShuoshuoAdapter.LOADTYPE.TYPE_MORE);
-//                    LBSCloud.getInstance().nearbyUserSearch(++pageIndex, lbsCloudSearchCallback);
-                    try {
-                        adapter.append(WeiyuApi.get().getNearbyShuoshuo(++pageIndex));
-                    } catch (AppException e) {
-                        Toaster.e(ShuoshuoActivity.this, e.getMessage());
-                    }
+                    WeiyuApi.get().getNearbyShuoshuo(++pageIndex, new Listener<ShuoshuoList>() {
+                        @Override
+                        public void onCallback(@NonNull CallbackType callbackType, @Nullable ShuoshuoList data, @Nullable String msg) {
+                            if (callbackType == CallbackType.onSuccess) {
+                                if (data != null) {
+                                    adapter.append(data.getShuoshuos());
+                                    totalPage = data.getTotal();
+                                    //set has more page
+                                    listView.onFinishLoading(pageIndex + 1 < totalPage, null);
+                                }
+                            } else {
+                                Toaster.e(ShuoshuoActivity.this, msg);
+                                --pageIndex;
+                            }
+                            //结束下拉刷新
+                            mPtrFrame.refreshComplete();
+                        }
+                    });
                 } else {
                     listView.onFinishLoading(false, null);
                 }
@@ -298,12 +277,13 @@ public class ShuoshuoActivity extends FragmentActivity {
 //                                Toaster.e(ShuoshuoActivity.this, "网络错误");
 //                            }
 //                        });
-                        try {
-                            WeiyuApi.get().publishShuoshuo(contentET.getText().toString());
-                            Toaster.i(ShuoshuoActivity.this, "发送成功");
-                        } catch (AppException e) {
-                            Toaster.e(ShuoshuoActivity.this, e.getMessage());
-                        }
+                        WeiyuApi.get().publishShuoshuo(contentET.getText().toString(), new Listener<String>() {
+                            @Override
+                            public void onCallback(@NonNull CallbackType callbackType, @Nullable String data, @Nullable String msg) {
+                                if (callbackType == CallbackType.onSuccess) Toaster.i(ShuoshuoActivity.this, "发送成功");
+                                else Toaster.e(ShuoshuoActivity.this, msg);
+                            }
+                        });
 
                         new Handler() {
                             @Override

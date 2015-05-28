@@ -2,6 +2,7 @@ package com.syw.weiyu.dao.shuoshuo;
 
 import com.alibaba.fastjson.JSON;
 import com.syw.weiyu.AppConstants;
+import com.syw.weiyu.AppContext;
 import com.syw.weiyu.AppException;
 import com.syw.weiyu.api.Listener;
 import com.syw.weiyu.bean.*;
@@ -29,7 +30,7 @@ public class ShuoshuoDao {
      * @param pageIndex
      * @throws AppException
      */
-    public void getNearByList(int pageIndex, final Listener<ShuoshuoList> listener) throws AppException {
+    public void getNearByList(int pageIndex, final Listener<ShuoshuoList> listener) {
         String url = AppConstants.url_nearby_search;
 
         AjaxParams params = LBSCloud.getInitializedParams(AppConstants.geotable_id_shuoshuo);
@@ -49,6 +50,7 @@ public class ShuoshuoDao {
                 super.onSuccess(s);
                 try {
                     ShuoshuoList shuoshuoList = parseShuoshuosFromJson(s);
+                    AppContext.put(AppContext.KEY_NEARBYSHUOSHUOS,shuoshuoList);
                     listener.onCallback(Listener.CallbackType.onSuccess, shuoshuoList, null);
                 } catch (AppException e) {
                     listener.onCallback(Listener.CallbackType.onFailure, null, e.getMessage());
@@ -69,7 +71,7 @@ public class ShuoshuoDao {
      * @return
      * @throws AppException
      */
-    public void getComments(long ssId,final Listener<CommentList> listener) throws AppException {
+    public void getComments(long ssId,final Listener<List<Comment>> listener) throws AppException {
         String url = AppConstants.url_list_poi;
 
         AjaxParams params = LBSCloud.getInitializedParams(AppConstants.geotable_id_comment);
@@ -84,8 +86,8 @@ public class ShuoshuoDao {
             public void onSuccess(String s) {
                 super.onSuccess(s);
                 try {
-                    CommentList commentList = parseCommentsFromJson(s);
-                    listener.onCallback(Listener.CallbackType.onSuccess, commentList, null);
+                    List<Comment> comments = parseCommentsFromJson(s);
+                    listener.onCallback(Listener.CallbackType.onSuccess, comments, null);
                 } catch (AppException e) {
                     listener.onCallback(Listener.CallbackType.onFailure, null, e.getMessage());
                 }
@@ -102,18 +104,18 @@ public class ShuoshuoDao {
     /**
      * 发布说说
      * @param content
-     * @throws AppException
+     * @param listener
      */
-    public void add(String content) throws AppException {
+    public void add(String content, final Listener<String> listener) {
         String url = AppConstants.url_create_poi;
 
         AjaxParams params = LBSCloud.getInitializedParams(AppConstants.geotable_id_shuoshuo);
         //account info
-        Account user = new AccountDao().get();
-        params.put("userId", user.getId());
-        params.put("userName", user.getName());
+        Account account = (Account) AppContext.get(AppContext.KEY_ACCOUNT);
+        params.put("userId", account.getId());
+        params.put("userName", account.getName());
         //location info
-        MLocation location = new LocationDao().get();
+        MLocation location = (MLocation) AppContext.get(AppContext.KEY_LOCATION);
         params.put("longitude", location.getLongitude());
         params.put("latitude", location.getLatitude());
         //content
@@ -122,10 +124,20 @@ public class ShuoshuoDao {
         params.put("timestamp", String.valueOf(System.currentTimeMillis()));
 
         //post
-        FinalHttp http = new FinalHttp();
-        String result = (String)http.postSync(url, params);
+        new FinalHttp().post(url, params, new AjaxCallBack<String>() {
+            @Override
+            public void onSuccess(String s) {
+                super.onSuccess(s);
+                if (JSON.parseObject(s).getInteger("status") != 0) listener.onCallback(Listener.CallbackType.onSuccess,null,null);
+                else listener.onCallback(Listener.CallbackType.onFailure,null,null);
+            }
 
-        if (JSON.parseObject(result).getInteger("status") != 0) throw new AppException("发布出错");
+            @Override
+            public void onFailure(Throwable t, int errorNo, String strMsg) {
+                super.onFailure(t, errorNo, strMsg);
+                listener.onCallback(Listener.CallbackType.onFailure,null,strMsg);
+            }
+        });
     }
 
     /**
@@ -163,6 +175,7 @@ public class ShuoshuoDao {
     private ShuoshuoList parseShuoshuosFromJson(String jsonStr) throws AppException {
         ResultJsonObj jsonObj = JSON.parseObject(jsonStr, ResultJsonObj.class);
         if (jsonObj.getStatus()!=0) throw new AppException("说说获取出错");
+        int total = jsonObj.getTotal();
         List<Shuoshuo> list = new ArrayList<>();
         for (int i=0;i<jsonObj.getSize();i++) {
             Shuoshuo shuoshuo = new Shuoshuo();
@@ -175,9 +188,7 @@ public class ShuoshuoDao {
             shuoshuo.setLocation(new MLocation(poi.getCity(),poi.getProvince(),poi.getDistrict()));
             list.add(shuoshuo);
         }
-        ShuoshuoList shuoshuoList = new ShuoshuoList();
-        shuoshuoList.set(list);
-        return null;
+        return new ShuoshuoList(total,list);
     }
 
     /**
@@ -210,7 +221,7 @@ public class ShuoshuoDao {
      * @param jsonStr
      * @return
      */
-    private CommentList parseCommentsFromJson(String jsonStr) throws AppException {
+    private List<Comment> parseCommentsFromJson(String jsonStr) throws AppException {
         ResultJsonObj jsonObj = JSON.parseObject(jsonStr,ResultJsonObj.class);
         if (jsonObj.getStatus()!=0) throw new AppException("评论获取出错");
         List<Comment> list = new ArrayList<>();
@@ -223,8 +234,6 @@ public class ShuoshuoDao {
             comment.setContent(poi.getContent());
             list.add(comment);
         }
-        CommentList commentList = new CommentList();
-        commentList.setCommentList(list);
-        return commentList;
+        return list;
     }
 }

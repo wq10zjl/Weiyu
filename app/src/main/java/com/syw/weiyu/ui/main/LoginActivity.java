@@ -35,12 +35,16 @@ public class LoginActivity extends ProfileBaseActivity {
             @Override
             public void onCallback(@NonNull CallbackType callbackType, @Nullable String data, @Nullable String msg) {
                 if (callbackType == CallbackType.onSuccess) {
-                    //登录
-                    WeiyuApi.get().login(data);
-                    //进入主页面
-                    Intent intent = new Intent(LoginActivity.this, MainTabsActivity.class);
-                    startActivity(intent);
-                    finish();
+                    try {
+                        //登录
+                        WeiyuApi.get().login(data);
+                        //进入主页面
+                        Intent intent = new Intent(LoginActivity.this, MainTabsActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } catch (AppException e) {
+                        Toaster.e(LoginActivity.this, e.getMessage());
+                    }
                 } else {
                     Toaster.e(LoginActivity.this,msg);
                 }

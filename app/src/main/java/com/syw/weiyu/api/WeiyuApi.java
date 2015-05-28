@@ -25,7 +25,6 @@ import com.syw.weiyu.splash.WeiyuSplashListener;
 import com.syw.weiyu.util.StringUtil;
 import com.syw.weiyu.util.WeiyuSize;
 import com.syw.weiyu.util.WeiyuSplashMode;
-import net.tsz.afinal.FinalDb;
 
 import java.util.List;
 
@@ -57,7 +56,7 @@ public class WeiyuApi {
      * @param id
      * @param name
      * @param gender
-     * @param listener 包含
+     * @param listener 包含返回token
      */
     public void register(final String id,final String name,final String gender,final Listener<String> listener) {
         new UserPoiDao().create(new User(id, name, gender), new LocationDao().get(), new Listener<String>() {
@@ -74,22 +73,28 @@ public class WeiyuApi {
                                 new AccountDao().set(account);
                                 listener.onCallback(CallbackType.onSuccess, data, null);
                             } else {
-                                listener.onCallback(CallbackType.onFailure,null,msg);
+                                listener.onCallback(CallbackType.onFailure, null, msg);
                             }
                         }
                     });
                 } else {
-                    listener.onCallback(CallbackType.onFailure,null,msg);
+                    listener.onCallback(CallbackType.onFailure, null, msg);
                 }
             }
         });
     }
 
+    public Account getAccount() throws AppException {
+        return new AccountDao().get();
+    }
+
     /**
      * 登录接口
      * 连接IM服务器
+     * @param token
+     * @throws AppException 无token
      */
-    public void login(String token) {
+    public void login(String token) throws AppException {
         RongCloud.connect(token);
     }
 
@@ -151,9 +156,6 @@ public class WeiyuApi {
         new LocationDao().set();
     }
 
-    /**
-     * 获取保存在本地的位置信息
-     */
     public MLocation getSavedLocation() {
         return new LocationDao().get();
     }
@@ -168,19 +170,20 @@ public class WeiyuApi {
     /**
      * 刷新（获取第一页的说说）
      * @return
-     * @throws AppException
+     * @throws AppException 无缓存数据
      */
-    public ShuoshuoList refreshNearbyShuoshuo() throws AppException {
-        return getNearbyShuoshuo(0);
+    public ShuoshuoList getCachedNearbyShuoshuo() throws AppException {
+        ShuoshuoList list = (ShuoshuoList) AppContext.get(AppContext.KEY_NEARBYSHUOSHUOS);
+        if (list!=null && list.getShuoshuos()!=null && list.getShuoshuos().size()>0) return list;
+        else throw new AppException("无缓存数据");
     }
 
     /**
      * 获取附近的说说
      * @param pageIndex
      * @return
-     * @throws AppException
      */
-    public ShuoshuoList getNearbyShuoshuo(int pageIndex,Listener<ShuoshuoList> listListener) throws AppException {
+    public List<Shuoshuo> getNearbyShuoshuo(int pageIndex,Listener<ShuoshuoList> listListener) {
         new ShuoshuoDao().getNearByList(pageIndex, listListener);
         return null;
     }
@@ -192,11 +195,11 @@ public class WeiyuApi {
      * @throws AppException
      */
     public void getShuoshuoDetail(final Shuoshuo shuoshuo, final Listener<Shuoshuo> listener) throws AppException {
-        new ShuoshuoDao().getComments(shuoshuo.getId(), new Listener<CommentList>() {
+        new ShuoshuoDao().getComments(shuoshuo.getId(), new Listener<List<Comment>>() {
             @Override
-            public void onCallback(@NonNull CallbackType callbackType, @Nullable CommentList data, @Nullable String msg) {
+            public void onCallback(@NonNull CallbackType callbackType, @Nullable List<Comment> data, @Nullable String msg) {
                 if (callbackType == CallbackType.onSuccess) {
-                    shuoshuo.setCommentList(data);
+                    shuoshuo.setComments(data);
                     listener.onCallback(CallbackType.onSuccess,shuoshuo,msg);
                 } else {
                     listener.onCallback(CallbackType.onFailure,null,msg);
@@ -205,8 +208,8 @@ public class WeiyuApi {
         });
     }
 
-    public void publishShuoshuo(String content) throws AppException {
-        new ShuoshuoDao().add(content);
+    public void publishShuoshuo(String content,Listener<String> listener) {
+        new ShuoshuoDao().add(content,listener);
     }
 
     /**

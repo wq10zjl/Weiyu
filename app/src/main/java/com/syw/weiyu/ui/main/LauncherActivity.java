@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 
 import com.orhanobut.logger.Logger;
+import com.syw.weiyu.AppContext;
 import com.syw.weiyu.AppException;
 import com.syw.weiyu.R;
 import com.syw.weiyu.api.Listener;
@@ -33,15 +34,14 @@ public class LauncherActivity extends Activity {
             showSplashAdThenGotoMainPage();
             isFirstLaunch = false;
         } else {
-//          有用户信息→MainTabs主页面
-//          无用户信息→Login登入页
+//          有账户信息→MainTabs主页面
+//          无账户信息→Login登入页
             try {
-                //有账户信息可直接进入主页面，否则会抛出异常
-                Account account = new AccountDao().get();
+                Account account = WeiyuApi.get().getAccount();
                 WeiyuApi.get().login(account.getToken());
                 gotoMainPage();
             } catch (AppException e) {
-                //没有账户信息或token为空，进入登录页
+                //没有账户信息，进入登录页
                 gotoLoginPage();
             }
         }

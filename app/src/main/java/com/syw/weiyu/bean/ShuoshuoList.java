@@ -5,25 +5,31 @@ import java.util.List;
 
 /**
  * author: songyouwei
- * date: 2015-05-19
- * desc: 说说列表
+ * date: 2015-05-28
+ * desc:
  */
 public class ShuoshuoList {
+    private int total;
+    private List<Shuoshuo> shuoshuos = new ArrayList<>();
 
-    private List<Shuoshuo> shuoshuoList = new ArrayList<>();
-
-    public List<Shuoshuo> get() {
-        return shuoshuoList;
-    }
-    public void set(List<Shuoshuo> list) {
-        shuoshuoList.clear();
-        shuoshuoList.addAll(list);
-    }
-    public void append(List<Shuoshuo> list) {
-        shuoshuoList.addAll(list);
+    public ShuoshuoList(int total, List<Shuoshuo> shuoshuos) {
+        this.total = total;
+        this.shuoshuos = shuoshuos;
     }
 
-    public Shuoshuo getItem(int position) {
-        return shuoshuoList.get(position);
+    public List<Shuoshuo> getShuoshuos() {
+        return shuoshuos;
+    }
+
+    public void setShuoshuos(List<Shuoshuo> shuoshuos) {
+        this.shuoshuos = shuoshuos;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
     }
 }

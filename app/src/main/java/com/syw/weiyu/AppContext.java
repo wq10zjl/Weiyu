@@ -59,10 +59,8 @@ public class AppContext extends Application {
      * 初始化数据
      */
     private void initData() {
-        //定位并保存DB
+        //定位并保存
         WeiyuApi.get().locate();
-        //位置数据
-        put(KEY_LOCATION,WeiyuApi.get().getSavedLocation());
         //账户数据
         try {
             Account account = new AccountDao().get();
