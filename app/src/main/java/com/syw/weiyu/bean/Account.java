@@ -3,7 +3,7 @@ package com.syw.weiyu.bean;
 /**
  * author: youwei
  * date: 2015-05-19
- * desc: ÓÃ»§ÕË»§
+ * desc: ç”¨æˆ·è´¦æˆ·
  */
 public class Account {
     private String id;

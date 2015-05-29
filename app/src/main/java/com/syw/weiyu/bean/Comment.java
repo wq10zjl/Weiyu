@@ -3,7 +3,7 @@ package com.syw.weiyu.bean;
 /**
  * author: youwei
  * date: 2015-05-20
- * desc: ΖΐΒΫΚµΜεΐΰ
+ * desc: θ―„θ®Ίε®δ½“η±»
  */
 public class Comment {
     private String userName;

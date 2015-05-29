@@ -30,6 +30,15 @@ public class AppContext extends Application {
         AppContext.appContext = appContext;
     }
 
+    //是否初次启动（Launcher页使用）
+    private static boolean isFirstLaunch = true;
+    public static boolean isFirstLaunch() {
+        return isFirstLaunch;
+    }
+    public static void setIsFirstLaunch(boolean isFirstLaunch) {
+        AppContext.isFirstLaunch = isFirstLaunch;
+    }
+
     /**
      * ===========RAM Cache===========
      */
@@ -75,14 +84,14 @@ public class AppContext extends Application {
      */
     private void initSDKs() {
         // 注册App异常崩溃处理器（防crash）
-        Thread.setDefaultUncaughtExceptionHandler(AppException.getAppExceptionHandler(this));
+//        Thread.setDefaultUncaughtExceptionHandler(AppException.getAppExceptionHandler(this));
 
         //初始化日志工具类
         String TAG = "Weiyu";
         Logger.init(TAG);
 
         //初始化百度云
-        LBSCloud.init(this);
+//        LBSCloud.init(this);
         //初始化定位SDK
         LocSDK.init(this);
 

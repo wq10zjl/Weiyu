@@ -20,6 +20,7 @@ import com.syw.weiyu.dao.location.LocationDao;
 import com.syw.weiyu.dao.location.UserPoiDao;
 import com.syw.weiyu.dao.shuoshuo.ShuoshuoDao;
 import com.syw.weiyu.dao.user.AccountDao;
+import com.syw.weiyu.dao.user.UserDao;
 import com.syw.weiyu.splash.WeiyuSplash;
 import com.syw.weiyu.splash.WeiyuSplashListener;
 import com.syw.weiyu.util.StringUtil;
@@ -131,8 +132,8 @@ public class WeiyuApi {
      * @param id
      * @return
      */
-    public User getUserProfile(String id) {
-        return null;
+    public User getUser(String id) throws AppException {
+        return new UserDao().getUser(id);
     }
 
     /**
@@ -183,9 +184,8 @@ public class WeiyuApi {
      * @param pageIndex
      * @return
      */
-    public List<Shuoshuo> getNearbyShuoshuo(int pageIndex,Listener<ShuoshuoList> listListener) {
-        new ShuoshuoDao().getNearByList(pageIndex, listListener);
-        return null;
+    public void getNearbyShuoshuo(int pageIndex,Listener<ShuoshuoList> listener) {
+        new ShuoshuoDao().getNearByList(pageIndex, listener);
     }
 
     /**

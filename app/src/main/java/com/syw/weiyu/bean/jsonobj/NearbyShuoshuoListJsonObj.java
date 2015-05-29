@@ -6,14 +6,13 @@ import java.util.List;
 /**
  * author: youwei
  * date: 2015-05-20
- * desc: ÇëÇóËµËµ¡¢ÆÀÂÛÁĞ±íµÄ·µ»Ø½á¹û£¨ÓÃÓÚJSON·´ĞòÁĞ»¯£©
+ * desc: è¯·æ±‚è¯´è¯´åˆ—è¡¨çš„è¿”å›ç»“æœï¼ˆç”¨äºJSONååºåˆ—åŒ–ï¼‰
  */
-public class ResultJsonObj {
+public class NearbyShuoshuoListJsonObj {
     private int status;
     private int size;
     private int total;
-    private List<PoiItemJsonObj> pois = new ArrayList<>();
-    private String message;
+    private List<NearbyShuoshuoItemJsonObj> contents = new ArrayList<>();
 
     @Override
     public String toString() {
@@ -21,17 +20,8 @@ public class ResultJsonObj {
                 "status=" + status +
                 ", size=" + size +
                 ", total=" + total +
-                ", pois=" + pois +
-                ", message='" + message + '\'' +
+                ", contents=" + contents +
                 '}';
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 
     public int getStatus() {
@@ -58,11 +48,11 @@ public class ResultJsonObj {
         this.total = total;
     }
 
-    public List<PoiItemJsonObj> getPois() {
-        return pois;
+    public List<NearbyShuoshuoItemJsonObj> getContents() {
+        return contents;
     }
 
-    public void setPois(List<PoiItemJsonObj> pois) {
-        this.pois = pois;
+    public void setContents(List<NearbyShuoshuoItemJsonObj> contents) {
+        this.contents = contents;
     }
 }

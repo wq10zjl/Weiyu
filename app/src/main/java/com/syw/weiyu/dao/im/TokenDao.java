@@ -52,7 +52,6 @@ public class TokenDao {
         RongCloud.getSignedHttp().post(AppConstants.url_user_gettoken, params, new AjaxCallBack<String>() {
             @Override
             public void onSuccess(String s) {
-                super.onSuccess(s);
                 JSONObject result = JSON.parseObject(s);
                 if (result.getInteger("code") == 200) {
                     String token = result.getString("token");
@@ -64,7 +63,6 @@ public class TokenDao {
 
             @Override
             public void onFailure(Throwable t, int errorNo, String strMsg) {
-                super.onFailure(t, errorNo, strMsg);
                 listener.onCallback(Listener.CallbackType.onFailure, null, strMsg);
             }
         });

@@ -25,7 +25,7 @@ public class AppException extends Exception implements Thread.UncaughtExceptionH
     }
 
     /**
-     * ÏµÍ³Ä¬ÈÏµÄUncaughtException´¦ÀíÀà
+     * ç³»ç»Ÿé»˜è®¤çš„UncaughtExceptionå¤„ç†ç±»
      */
     private Thread.UncaughtExceptionHandler mDefaultHandler;
     private AppContext mContext;
@@ -34,7 +34,7 @@ public class AppException extends Exception implements Thread.UncaughtExceptionH
         this.mContext = (AppContext) context;
     }
     /**
-     * »ñÈ¡APPÒì³£±ÀÀ£´¦Àí¶ÔÏó
+     * è·å–APPå¼‚å¸¸å´©æºƒå¤„ç†å¯¹è±¡
      *
      * @param context
      * @return
@@ -50,10 +50,10 @@ public class AppException extends Exception implements Thread.UncaughtExceptionH
         }
     }
     /**
-     * ×Ô¶¨ÒåÒì³£´¦Àí:ÊÕ¼¯´íÎóĞÅÏ¢&·¢ËÍ´íÎó±¨¸æ
+     * è‡ªå®šä¹‰å¼‚å¸¸å¤„ç†:æ”¶é›†é”™è¯¯ä¿¡æ¯&å‘é€é”™è¯¯æŠ¥å‘Š
      *
      * @param ex
-     * @return true:´¦ÀíÁË¸ÃÒì³£ĞÅÏ¢;·ñÔò·µ»Øfalse
+     * @return true:å¤„ç†äº†è¯¥å¼‚å¸¸ä¿¡æ¯;å¦åˆ™è¿”å›false
      */
     private boolean handleException(final Throwable ex) {
         if (ex == null) {
@@ -64,7 +64,7 @@ public class AppException extends Exception implements Thread.UncaughtExceptionH
         }
 //        final Context context = AppManager.getAppManager().currentActivity();
 //        final String crashReport = getCrashReport(context, ex);
-//        //ÏÔÊ¾Òì³£ĞÅÏ¢&·¢ËÍ±¨¸æ
+//        //æ˜¾ç¤ºå¼‚å¸¸ä¿¡æ¯&å‘é€æŠ¥å‘Š
 //        new Thread() {
 //            public void run() {
 //                Looper.prepare();
@@ -77,7 +77,7 @@ public class AppException extends Exception implements Thread.UncaughtExceptionH
         return true;
     }
     /**
-     * »ñÈ¡APP±ÀÀ£Òì³£±¨¸æ
+     * è·å–APPå´©æºƒå¼‚å¸¸æŠ¥å‘Š
      *
      * @param ex
      * @return
@@ -88,9 +88,9 @@ public class AppException extends Exception implements Thread.UncaughtExceptionH
         exceptionStr.append("Version: " + pinfo.versionName + " (" + pinfo.versionCode + ")\n");
         exceptionStr.append("API Level: " + android.os.Build.VERSION.SDK_INT + "\n");
         exceptionStr.append("Android: " + android.os.Build.VERSION.RELEASE + " (" + android.os.Build.MODEL + ")\n\n\n");
-        exceptionStr.append("Òì³£ĞÅÏ¢: \n");
+        exceptionStr.append("å¼‚å¸¸ä¿¡æ¯: \n");
         exceptionStr.append("Exception: " + ex.getMessage() + "\n\n\n");
-        exceptionStr.append("¶ÑÕ»ĞÅÏ¢: \n");
+        exceptionStr.append("å †æ ˆä¿¡æ¯: \n");
         StackTraceElement[] elements = ex.getStackTrace();
         for (int i = 0; i < elements.length; i++) {
             exceptionStr.append(elements[i].toString() + "\n");

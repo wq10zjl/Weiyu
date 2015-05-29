@@ -21,29 +21,26 @@ import com.syw.weiyu.dao.user.AccountDao;
 
 public class LauncherActivity extends Activity {
 
-    //是否初次启动
-    private boolean isFirstLaunch = true;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wy_activity_launcher);
 
-        if (isFirstLaunch) {
-            //未作初始化时，加载开屏广告
-            showSplashAdThenGotoMainPage();
-            isFirstLaunch = false;
-        } else {
-//          有账户信息→MainTabs主页面
-//          无账户信息→Login登入页
-            try {
-                Account account = WeiyuApi.get().getAccount();
-                WeiyuApi.get().login(account.getToken());
+//        有账户信息→MainTabs主页面
+//        无账户信息→Login登入页
+        try {
+            Account account = WeiyuApi.get().getAccount();
+            WeiyuApi.get().login(account.getToken());
+            if (AppContext.isFirstLaunch()) {
+                //未作初始化时，加载开屏广告
+                showSplashAdThenGotoMainPage();
+                AppContext.setIsFirstLaunch(false);
+            } else {
                 gotoMainPage();
-            } catch (AppException e) {
-                //没有账户信息，进入登录页
-                gotoLoginPage();
             }
+        } catch (AppException e) {
+            //没有账户信息，进入登录页
+            gotoLoginPage();
         }
     }
 

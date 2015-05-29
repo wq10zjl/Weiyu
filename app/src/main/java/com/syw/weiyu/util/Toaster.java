@@ -6,7 +6,7 @@ import com.devspark.appmsg.AppMsg;
 /**
  * author: songyouwei
  * date: 2015-05-21
- * desc: ÍÂË¾er
+ * desc: åå¸er
  */
 public class Toaster {
     public static void i(Activity ctx,String msg) {

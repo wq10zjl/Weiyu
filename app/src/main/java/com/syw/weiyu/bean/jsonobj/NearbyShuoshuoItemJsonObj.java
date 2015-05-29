@@ -3,9 +3,9 @@ package com.syw.weiyu.bean.jsonobj;
 /**
  * author: youwei
  * date: 2015-05-20
- * desc: ËµËµ¡¢ÆÀÂÛ¡¢poiÊı¾İÏî£¨ÓÃÓÚJSON·´ĞòÁĞ»¯£©
+ * desc: è¯´è¯´ã€è¯„è®ºã€poiæ•°æ®é¡¹ï¼ˆç”¨äºJSONååºåˆ—åŒ–ï¼‰
  */
-public class PoiItemJsonObj {
+public class NearbyShuoshuoItemJsonObj {
     private long id;
     private String province;
     private String city;
@@ -14,6 +14,7 @@ public class PoiItemJsonObj {
     private String content;
     private String userName;
     private String userId;
+    private long distance;
 
     @Override
     public String toString() {
@@ -26,6 +27,7 @@ public class PoiItemJsonObj {
                 ", content='" + content + '\'' +
                 ", userName='" + userName + '\'' +
                 ", userId='" + userId + '\'' +
+                ", distance=" + distance +
                 '}';
     }
 
@@ -91,5 +93,13 @@ public class PoiItemJsonObj {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public long getDistance() {
+        return distance;
+    }
+
+    public void setDistance(long distance) {
+        this.distance = distance;
     }
 }

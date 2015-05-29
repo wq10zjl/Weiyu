@@ -22,7 +22,7 @@ public class MLocation implements Serializable {
 
     @Override
     public String toString() {
-        return "MLocation{" +
+        return "{" +
                 "address='" + address + '\'' +
                 ", city='" + city + '\'' +
                 ", province='" + province + '\'' +

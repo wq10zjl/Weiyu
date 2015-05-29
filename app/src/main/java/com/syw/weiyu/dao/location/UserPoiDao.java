@@ -48,7 +48,6 @@ public class UserPoiDao {
         http.post(url, params, new AjaxCallBack<String>() {
             @Override
             public void onSuccess(String s) {
-                super.onSuccess(s);
                 if (StringUtil.isEmpty(s)) {
                     listener.onCallback(Listener.CallbackType.onFailure,null,"网络异常");
                 } else {
@@ -65,7 +64,8 @@ public class UserPoiDao {
 
             @Override
             public void onFailure(Throwable t, int errorNo, String strMsg) {
-                super.onFailure(t, errorNo, strMsg);
+                //创建POI出错
+                listener.onCallback(Listener.CallbackType.onFailure, null, strMsg);
             }
         });
     }

@@ -3,7 +3,7 @@ package com.syw.weiyu;
 /**
  * author: youwei
  * date: 2015-05-19
- * desc: ÒıÓÃÅäÖÃ£¬°üÀ¨Ò»Ğ©³£Á¿ºÍÉèÖÃµÄ²ÎÊı
+ * desc: å¼•ç”¨é…ç½®ï¼ŒåŒ…æ‹¬ä¸€äº›å¸¸é‡å’Œè®¾ç½®çš„å‚æ•°
  */
 public class AppConstants {
 //  Rong Cloud
@@ -12,9 +12,10 @@ public class AppConstants {
     public static final String rongcloud_app_key_debug = "pvxdm17jx5n8r";
     public static final String rongcloud_app_secret_debug = "zFfxVu2WUusvL";
 //  urls
-    public static final String url_user_gettoken = "https://api.cn.rong.io/user/get.json";
+    public static final String url_user_gettoken = "https://api.cn.rong.io/user/getToken.json";
     public static final String url_user_refresh = "https://api.cn.rong.io/user/refresh.json";
-//  ×Ô¶¨ÒåµÄ¿Í»§¶Ë³£Á¿
+    public static final String url_user_checkOnline = "https://api.cn.rong.io/user/checkOnline.json";
+//  è‡ªå®šä¹‰çš„å®¢æˆ·ç«¯å¸¸é‡
     public static final String RC_ACTION_RECEIVE_MESSAGE = "rc_action_receive_message";
     public static final String RC_UNREAD_COUNT = "rc_unread_count";
 
@@ -27,16 +28,16 @@ public class AppConstants {
     public static final String geotable_id_shuoshuo = "99489";
     public static final String geotable_id_comment = "104953";
     public static final String coord_type = "3";
-//  Ä¬ÈÏµÄ¡°¸½½ü¡±¼ìË÷µÄ°ë¾¶¡¾¿ªÊ¼ÏÈÉèÖÃ5000¹«Àï£¬»ù±¾¿ÉÒÔ¸²¸ÇÕû¸öÖĞ¹úÈÎÒâÁ½µã¡¿[300¹«Àï£¬´óÔ¼ÊÇÎßºşµ½ÉÏº£µÄ¾àÀë]
+//  é»˜è®¤çš„â€œé™„è¿‘â€æ£€ç´¢çš„åŠå¾„ã€å¼€å§‹å…ˆè®¾ç½®5000å…¬é‡Œï¼ŒåŸºæœ¬å¯ä»¥è¦†ç›–æ•´ä¸ªä¸­å›½ä»»æ„ä¸¤ç‚¹ã€‘[300å…¬é‡Œï¼Œå¤§çº¦æ˜¯èŠœæ¹–åˆ°ä¸Šæµ·çš„è·ç¦»]
     public static final String default_radius = "5000000";
-//   Ä¬ÈÏµØÖ·ĞÅÏ¢£¬¶¨Î»Ê§°ÜÊ±Ê¹ÓÃ 
-    public static final String address_default = "±±¾©ÊĞ¶«³ÇÇø¶«³¤°²½Ö";
-    public static final String city_default = "±±¾©";
-    public static final String province_default = "±±¾©";
-    public static final String district_default = "¶«³ÇÇø";
+//   é»˜è®¤åœ°å€ä¿¡æ¯ï¼Œå®šä½å¤±è´¥æ—¶ä½¿ç”¨ 
+    public static final String address_default = "åŒ—äº¬å¸‚ä¸œåŸåŒºä¸œé•¿å®‰è¡—";
+    public static final String city_default = "åŒ—äº¬";
+    public static final String province_default = "åŒ—äº¬";
+    public static final String district_default = "ä¸œåŸåŒº";
     public static final String longitude_default = "116.4038740000";
     public static final String latitude_default = "39.9148890000";
-//  Ä¬ÈÏÒ³´óĞ¡
+//  é»˜è®¤é¡µå¤§å°
     public static final String page_size_default = "20";
 
 //  AdsMoGo

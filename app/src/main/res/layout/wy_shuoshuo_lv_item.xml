@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--android:background="@android:drawable/picture_frame"-->
 <LinearLayout
     android:background="@android:drawable/picture_frame"
     android:orientation="vertical"
     android:id="@+id/nearby_shuoshuo_lv_item"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="1dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,7 +39,7 @@
         android:id="@+id/shuoshuo_tv_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="86dip"
+        android:minHeight="128dip"
         android:text="content"
         android:layout_marginTop="18dip"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
@@ -46,9 +48,11 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="18dip"
         android:src="@drawable/wy_bg_cell_divider_line"/>
 
     <LinearLayout
+            android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -60,5 +64,10 @@
             android:textSize="@dimen/px_to_sp_23"/>
 
     </LinearLayout>
+
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/wy_bg_cell_divider_line"/>
 
 </LinearLayout>

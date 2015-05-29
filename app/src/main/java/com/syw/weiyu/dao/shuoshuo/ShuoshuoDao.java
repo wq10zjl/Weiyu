@@ -6,10 +6,9 @@ import com.syw.weiyu.AppContext;
 import com.syw.weiyu.AppException;
 import com.syw.weiyu.api.Listener;
 import com.syw.weiyu.bean.*;
-import com.syw.weiyu.bean.jsonobj.PoiItemJsonObj;
-import com.syw.weiyu.bean.jsonobj.ResultJsonObj;
+import com.syw.weiyu.bean.jsonobj.NearbyShuoshuoItemJsonObj;
+import com.syw.weiyu.bean.jsonobj.NearbyShuoshuoListJsonObj;
 import com.syw.weiyu.dao.location.LocationDao;
-import com.syw.weiyu.dao.user.AccountDao;
 import com.syw.weiyu.third.lbs.LBSCloud;
 import net.tsz.afinal.FinalHttp;
 import net.tsz.afinal.http.AjaxCallBack;
@@ -47,7 +46,6 @@ public class ShuoshuoDao {
         http.get(url, params, new AjaxCallBack<String>() {
             @Override
             public void onSuccess(String s) {
-                super.onSuccess(s);
                 try {
                     ShuoshuoList shuoshuoList = parseShuoshuosFromJson(s);
                     AppContext.put(AppContext.KEY_NEARBYSHUOSHUOS,shuoshuoList);
@@ -59,7 +57,6 @@ public class ShuoshuoDao {
 
             @Override
             public void onFailure(Throwable t, int errorNo, String strMsg) {
-                super.onFailure(t, errorNo, strMsg);
                 listener.onCallback(Listener.CallbackType.onFailure, null, strMsg);
             }
         });
@@ -143,43 +140,45 @@ public class ShuoshuoDao {
     /**
      * 解析包含说说列表的json数据
      * eg:
-       {
+     {
          "status": 0,
-         "size": 2,
-         "total": 23,
-         "pois": [
+         "total": 35,
+         "size": 1,
+         "contents": [
              {
-             "title": null,
-             "location": [
-                 120.247089,
-                 30.21482
-                 ],
-             "city": "杭州市",
-             "create_time": "2015-05-19 07:55:47",
+             "timestamp": 1432767399619,
+             "userName": "魅力四射",
+             "uid": 890849790,
+             "province": "北京市",
              "geotable_id": 99489,
-             "province": "浙江省",
-             "district": "萧山区",
-             "timestamp": 1431975265127,
-             "content": "怎么没人，不好玩",
-             "userName": "哭着笑痛",
-             "userId": "865175024792115",
-             "city_id": 179,
-             "id": 865735044
+             "content": "微乐官方免费注册下载网址:http:\/\/www.v89.com 邀请码:18765068625\ 现在赚的就是互联网的钱，要懂得走在时代前沿。 欢迎你加入微乐 ， 注册好了进群学习交流 QQ群:274307262",
+             "district": "东城区",
+             "create_time": 1432767234,
+             "city": "北京市",
+             "userId": "865418028527404",
+             "location": [
+                 116.403874,
+                 39.914889
+             ],
+             "title": null,
+             "coord_type": 3,
+             "type": 0,
+             "distance": 1014058,
+             "weight": 0
              }
-         ],
-         "message": "成功"
-       }
+         ]
+     }
      * @param jsonStr
      * @return
      */
     private ShuoshuoList parseShuoshuosFromJson(String jsonStr) throws AppException {
-        ResultJsonObj jsonObj = JSON.parseObject(jsonStr, ResultJsonObj.class);
+        NearbyShuoshuoListJsonObj jsonObj = JSON.parseObject(jsonStr, NearbyShuoshuoListJsonObj.class);
         if (jsonObj.getStatus()!=0) throw new AppException("说说获取出错");
         int total = jsonObj.getTotal();
         List<Shuoshuo> list = new ArrayList<>();
         for (int i=0;i<jsonObj.getSize();i++) {
             Shuoshuo shuoshuo = new Shuoshuo();
-            PoiItemJsonObj poi = jsonObj.getPois().get(i);
+            NearbyShuoshuoItemJsonObj poi = jsonObj.getContents().get(i);
             shuoshuo.setId(poi.getId());
             shuoshuo.setTimestamp(poi.getTimestamp());
             shuoshuo.setUserId(poi.getUserId());
@@ -222,12 +221,12 @@ public class ShuoshuoDao {
      * @return
      */
     private List<Comment> parseCommentsFromJson(String jsonStr) throws AppException {
-        ResultJsonObj jsonObj = JSON.parseObject(jsonStr,ResultJsonObj.class);
+        NearbyShuoshuoListJsonObj jsonObj = JSON.parseObject(jsonStr,NearbyShuoshuoListJsonObj.class);
         if (jsonObj.getStatus()!=0) throw new AppException("评论获取出错");
         List<Comment> list = new ArrayList<>();
         for (int i=0;i<jsonObj.getSize();i++) {
             Comment comment = new Comment();
-            PoiItemJsonObj poi = jsonObj.getPois().get(i);
+            NearbyShuoshuoItemJsonObj poi = jsonObj.getContents().get(i);
             comment.setUserId(poi.getUserId());
             comment.setUserName(poi.getUserName());
             comment.setTimestamp(poi.getTimestamp());

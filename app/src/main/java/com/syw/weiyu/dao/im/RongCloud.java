@@ -21,7 +21,7 @@ import java.security.MessageDigest;
 /**
  * author: youwei
  * date: 2015-05-12
- * desc:
+ * desc: 融云的一些基础操作
  */
 public class RongCloud {
 
@@ -64,7 +64,7 @@ public class RongCloud {
         String signature = sha1(toSign.toString());
 
         FinalHttp http = new FinalHttp();
-        http.addHeader("AppContext-Key",appKey);
+        http.addHeader("App-Key",appKey);
         http.addHeader("Nonce",nonce);
         http.addHeader("Timestamp",timestamp);
         http.addHeader("Signature",signature);

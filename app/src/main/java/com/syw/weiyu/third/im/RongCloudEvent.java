@@ -4,15 +4,11 @@ import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.syw.weiyu.AppContext;
-import com.syw.weiyu.third.lbs.LBSCloud;
+import com.syw.weiyu.AppException;
+import com.syw.weiyu.api.WeiyuApi;
+import com.syw.weiyu.dao.location.LocationDao;
 import com.syw.weiyu.bean.MLocation;
 import com.syw.weiyu.bean.User;
-import com.syw.weiyu.util.ACache;
-
-import net.tsz.afinal.http.AjaxCallBack;
 
 import java.util.List;
 
@@ -194,29 +190,20 @@ public final class RongCloudEvent implements
         /**
          * demo 代码  开发者需替换成自己的代码。
          */
-        //从ACache拿user
-        final User user = JSON.parseObject(ACache.get(mContext).getAsString(userId), User.class);
-        Log.d("Weiyu","cached user:"+user);
-        //没有，发起网络请求并储存
-        if (user == null) {
-            LBSCloud.getInstance().getDetail(userId,new AjaxCallBack<String>() {
-                @Override
-                public void onSuccess(String s) {
-                    JSONObject poi = JSON.parseObject(s).getJSONObject("poi");
-                    //save to cache
-                    ACache.get(mContext).put(userId, poi.toJSONString());
-                }
-
-                @Override
-                public void onFailure(Throwable t, int errorNo, String strMsg) {
-                }
-            });
-            return new RongIMClient.UserInfo(userId,"未知",null);
+        RongIMClient.UserInfo userInfo;
+        try {
+            User user = WeiyuApi.get().getUser(userId);
+            userInfo = new RongIMClient.UserInfo(
+                    user.getId(),
+                    user.getName(),
+                    user.getGender().equals("男")?"http://com-syw-weiyu.qiniudn.com/wy_icon_male.jpg":"http://com-syw-weiyu.qiniudn.com/wy_icon_female.jpg");
+        } catch (AppException e) {
+            userInfo = new RongIMClient.UserInfo(
+                    userId,
+                    "匿名",
+                    null);
         }
-        return new RongIMClient.UserInfo(
-                userId,
-                user.getName()!=null?user.getName():"未知",
-                user.getGender().equals("男")?"http://com-syw-weiyu.qiniudn.com/wy_icon_male.jpg":"http://com-syw-weiyu.qiniudn.com/wy_icon_female.jpg");
+        return userInfo;
     }
 
     /**
@@ -324,20 +311,15 @@ public final class RongCloudEvent implements
      */
     @Override
     public void onStartLocation(Context context, final LocationCallback callback) {
-        /**
-         * demo 代码  开发者需替换成自己的代码。
-         */
-//        DemoContext.getInstance().setLastLocationCallback(callback);
-//        context.startActivity(new Intent(context, LocationActivity.class));//SOSO地图
-        MLocation location = AppContext.getInstance().getLocation();
+        final MLocation location = new LocationDao().get();
         final double lat = Double.parseDouble(location.getLatitude());
         final double lng = Double.parseDouble(location.getLongitude());
-        final StringBuffer uri = new StringBuffer("http://api.map.baidu.com/staticimage?width=300&height=150&&zoom=11&markers=").append(lng).append(",").append(lat).append("&center=").append(AppContext.getInstance().getLocation().getCity());
+        final StringBuffer uri = new StringBuffer("http://api.map.baidu.com/staticimage?width=300&height=150&&zoom=11&markers=").append(lng).append(",").append(lat).append("&center=").append(location.getCity());
         new Runnable(){
             @Override
             public void run() {
                 callback.onSuccess(LocationMessage.obtain(lat, lng,
-                        AppContext.getInstance().getLocation().getAddress(),
+                        location.getAddress(),
                         Uri.parse(uri.toString())));
             }
         }.run();
