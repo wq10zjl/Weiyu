@@ -125,8 +125,8 @@ public class ShuoshuoDao {
             @Override
             public void onSuccess(String s) {
                 super.onSuccess(s);
-                if (JSON.parseObject(s).getInteger("status") != 0) listener.onCallback(Listener.CallbackType.onSuccess,null,null);
-                else listener.onCallback(Listener.CallbackType.onFailure,null,null);
+                if (JSON.parseObject(s).getInteger("status") == 0) listener.onCallback(Listener.CallbackType.onSuccess,null,null);
+                else listener.onCallback(Listener.CallbackType.onFailure,null,"发送错误");
             }
 
             @Override

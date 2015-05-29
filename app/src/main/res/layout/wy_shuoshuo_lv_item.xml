@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--android:background="@android:drawable/picture_frame"-->
 <LinearLayout
-    android:background="@android:drawable/picture_frame"
+    android:background="@drawable/bg_card_tacos"
     android:orientation="vertical"
     android:id="@+id/nearby_shuoshuo_lv_item"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="1dp">
+    android:layout_margin="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,6 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="name"
+            android:textColor="#ffffff"
             android:textSize="@dimen/px_to_sp_23"/>
 
         <TextView
@@ -27,13 +28,14 @@
             android:layout_marginStart="23dip"
             android:layout_marginLeft="23dip"
             android:text="time"
+            android:textColor="#ffffff"
             android:textSize="@dimen/px_to_sp_23"/>
     </LinearLayout>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/wy_bg_cell_divider_line"/>
+    <!--<ImageView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:src="@drawable/wy_bg_cell_divider_line"/>-->
 
     <TextView
         android:id="@+id/shuoshuo_tv_content"
@@ -41,33 +43,36 @@
         android:layout_height="wrap_content"
         android:minHeight="128dip"
         android:text="content"
+        android:textColor="#ffffff"
         android:layout_marginTop="18dip"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dip"
-        android:src="@drawable/wy_bg_cell_divider_line"/>
+    <!--<ImageView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="18dip"-->
+        <!--android:src="@drawable/wy_bg_cell_divider_line"/>-->
 
     <LinearLayout
             android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ImageView android:layout_width="23dp" android:layout_height="23dp" android:src="@drawable/wy_icon_gps"/>
         <TextView
             android:id="@+id/shuoshuo_tv_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="address"
+            android:textColor="#ffffff"
             android:textSize="@dimen/px_to_sp_23"/>
 
     </LinearLayout>
 
-    <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/wy_bg_cell_divider_line"/>
+    <!--<ImageView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:src="@drawable/wy_bg_cell_divider_line"/>-->
 
 </LinearLayout>
