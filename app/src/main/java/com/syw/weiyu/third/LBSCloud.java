@@ -1,4 +1,4 @@
-package com.syw.weiyu.third.lbs;
+package com.syw.weiyu.third;
 
 import android.content.Context;
 import android.util.Log;

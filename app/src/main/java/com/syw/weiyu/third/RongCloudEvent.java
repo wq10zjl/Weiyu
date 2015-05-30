@@ -1,4 +1,4 @@
-package com.syw.weiyu.third.im;
+package com.syw.weiyu.third;
 
 import android.content.Context;
 import android.net.Uri;

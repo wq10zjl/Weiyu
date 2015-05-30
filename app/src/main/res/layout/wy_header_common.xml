@@ -10,15 +10,15 @@
     android:layout_alignParentLeft="true"
     android:layout_alignParentStart="true">
 
-    <ImageView
-        android:id="@+id/header_iv_logo"
-        android:layout_width="48dip"
-        android:layout_height="48dip"
-        android:src="@drawable/wy_ic_launcher"
-        android:scaleType="centerInside"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+    <!--<ImageView-->
+        <!--android:id="@+id/header_iv_logo"-->
+        <!--android:layout_width="48dip"-->
+        <!--android:layout_height="48dip"-->
+        <!--android:src="@drawable/wy_ic_launcher"-->
+        <!--android:scaleType="centerInside"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true" />-->
 
     <TextView
         android:id="@+id/header_tv_title"

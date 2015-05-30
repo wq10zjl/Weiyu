@@ -3,25 +3,13 @@ package com.syw.weiyu.ui.main;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
-import android.widget.Toast;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.syw.weiyu.AppContext;
 import com.syw.weiyu.AppException;
 import com.syw.weiyu.api.Listener;
 import com.syw.weiyu.api.WeiyuApi;
-import com.syw.weiyu.bean.Account;
-import com.syw.weiyu.bean.MLocation;
-import com.syw.weiyu.third.lbs.LBSCloud;
-import com.syw.weiyu.third.im.RongCloud;
 import com.syw.weiyu.ui.user.ProfileBaseActivity;
-import com.syw.weiyu.bean.User;
-import com.syw.weiyu.util.ACache;
 
 import com.syw.weiyu.util.Toaster;
-import net.tsz.afinal.http.AjaxCallBack;
 
 /**
  * Created by songyouwei on 2015/2/25.

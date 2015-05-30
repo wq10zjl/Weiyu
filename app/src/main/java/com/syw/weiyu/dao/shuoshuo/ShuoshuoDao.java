@@ -9,7 +9,7 @@ import com.syw.weiyu.bean.*;
 import com.syw.weiyu.bean.jsonobj.NearbyShuoshuoItemJsonObj;
 import com.syw.weiyu.bean.jsonobj.NearbyShuoshuoListJsonObj;
 import com.syw.weiyu.dao.location.LocationDao;
-import com.syw.weiyu.third.lbs.LBSCloud;
+import com.syw.weiyu.third.LBSCloud;
 import net.tsz.afinal.FinalHttp;
 import net.tsz.afinal.http.AjaxCallBack;
 import net.tsz.afinal.http.AjaxParams;
@@ -29,7 +29,7 @@ public class ShuoshuoDao {
      * @param pageIndex
      * @throws AppException
      */
-    public void getNearByList(int pageIndex, final Listener<ShuoshuoList> listener) {
+    public void getNearByList(final int pageIndex, final Listener<ShuoshuoList> listener) {
         String url = AppConstants.url_nearby_search;
 
         AjaxParams params = LBSCloud.getInitializedParams(AppConstants.geotable_id_shuoshuo);
@@ -48,8 +48,16 @@ public class ShuoshuoDao {
             public void onSuccess(String s) {
                 try {
                     ShuoshuoList shuoshuoList = parseShuoshuosFromJson(s);
-                    AppContext.put(AppContext.KEY_NEARBYSHUOSHUOS,shuoshuoList);
                     listener.onCallback(Listener.CallbackType.onSuccess, shuoshuoList, null);
+
+                    //cache
+                    if (pageIndex == 1) {
+                        AppContext.put(AppContext.KEY_NEARBYSHUOSHUOS, shuoshuoList);
+                    } else {
+                        ShuoshuoList oldList = (ShuoshuoList)AppContext.get(AppContext.KEY_NEARBYSHUOSHUOS);
+                        oldList.getShuoshuos().addAll(shuoshuoList.getShuoshuos());
+                        AppContext.put(AppContext.KEY_NEARBYSHUOSHUOS, oldList);
+                    }
                 } catch (AppException e) {
                     listener.onCallback(Listener.CallbackType.onFailure, null, e.getMessage());
                 }

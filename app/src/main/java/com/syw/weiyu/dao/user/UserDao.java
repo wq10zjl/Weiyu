@@ -4,16 +4,14 @@ import com.alibaba.fastjson.JSON;
 import com.syw.weiyu.AppConstants;
 import com.syw.weiyu.AppContext;
 import com.syw.weiyu.AppException;
-import com.syw.weiyu.api.Listener;
 import com.syw.weiyu.bean.MLocation;
 import com.syw.weiyu.bean.User;
 import com.syw.weiyu.bean.jsonobj.SingleResultJsonObj;
 import com.syw.weiyu.bean.jsonobj.UserPoiItemJsonObj;
-import com.syw.weiyu.third.lbs.LBSCloud;
+import com.syw.weiyu.third.LBSCloud;
 import com.syw.weiyu.util.StringUtil;
 import net.tsz.afinal.FinalDb;
 import net.tsz.afinal.FinalHttp;
-import net.tsz.afinal.http.AjaxCallBack;
 import net.tsz.afinal.http.AjaxParams;
 
 /**

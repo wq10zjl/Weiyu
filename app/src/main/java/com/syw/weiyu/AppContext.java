@@ -11,10 +11,9 @@ import com.orhanobut.logger.Logger;
 import com.syw.weiyu.api.WeiyuApi;
 import com.syw.weiyu.bean.Account;
 import com.syw.weiyu.dao.user.AccountDao;
-import com.syw.weiyu.third.lbs.LBSCloud;
-import com.syw.weiyu.third.im.RongCloudEvent;
+import com.syw.weiyu.third.RongCloudEvent;
 
-import com.syw.weiyu.third.lbs.LocSDK;
+import com.syw.weiyu.third.LocSDK;
 import io.rong.imkit.RongIM;
 
 /**

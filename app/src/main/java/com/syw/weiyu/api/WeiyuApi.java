@@ -260,16 +260,19 @@ public class WeiyuApi {
 
             @Override
             public void onFailedReceiveAd() {
+                if (listener == null) return;
                 listener.onCallback(Listener.CallbackType.onAdError,null,"onFailedReceive");
             }
 
             @Override
             public void onClickAd(String s) {
+                if (listener == null) return;
                 listener.onCallback(Listener.CallbackType.onAdClick,null,s);
             }
 
             @Override
             public boolean onCloseAd() {
+                if (listener == null) return false;
                 listener.onCallback(Listener.CallbackType.onAdClose,null,null);
                 return false;
             }

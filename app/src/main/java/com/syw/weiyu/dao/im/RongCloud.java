@@ -1,14 +1,11 @@
 package com.syw.weiyu.dao.im;
 
-import android.content.Context;
-
 import android.support.annotation.NonNull;
 import com.orhanobut.logger.Logger;
 import com.syw.weiyu.AppConstants;
 import com.syw.weiyu.AppException;
-import com.syw.weiyu.R;
 
-import com.syw.weiyu.third.im.RongCloudEvent;
+import com.syw.weiyu.third.RongCloudEvent;
 import com.syw.weiyu.util.StringUtil;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.RongIMClient;

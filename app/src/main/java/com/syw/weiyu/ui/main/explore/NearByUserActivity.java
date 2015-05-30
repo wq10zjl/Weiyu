@@ -1,40 +1,6 @@
 package com.syw.weiyu.ui.main.explore;
 
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-
-
-import com.paging.listview.PagingListView;
-import com.syw.weiyu.AppContext;
-import com.syw.weiyu.api.WeiyuApi;
-import com.syw.weiyu.third.lbs.LBSCloud;
-import com.syw.weiyu.R;
-import com.syw.weiyu.ui.adapter.NearByUserAdapter;
-import com.syw.weiyu.bean.User;
-import com.syw.weiyu.util.ACache;
-import com.syw.weiyu.util.WeiyuAppUpdateRemind;
-
-import net.tsz.afinal.http.AjaxCallBack;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-
-import in.srain.cube.views.ptr.PtrClassicFrameLayout;
-import in.srain.cube.views.ptr.PtrDefaultHandler;
-import in.srain.cube.views.ptr.PtrFrameLayout;
-import in.srain.cube.views.ptr.PtrHandler;
-import io.rong.imkit.RongIM;
 
 /**
  * Created by youwei on 2015/2/9.

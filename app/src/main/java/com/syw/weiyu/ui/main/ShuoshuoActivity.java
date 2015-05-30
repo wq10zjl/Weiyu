@@ -245,16 +245,16 @@ public class ShuoshuoActivity extends FragmentActivity {
     /**
      * 两次返回键退出，间隔2秒
      */
-    private long currentTime=0;
-    private long oldTime=0;
-    @Override
-    public void onBackPressed() {
-        currentTime = System.currentTimeMillis();
-        if ((currentTime - oldTime) > 2000 || oldTime == 0) {
-            Toast.makeText(this, "再按一次退出", 2000).show();
-            oldTime = currentTime;
-        } else {
-            finish();
-        }
-    }
+//    private long currentTime=0;
+//    private long oldTime=0;
+//    @Override
+//    public void onBackPressed() {
+//        currentTime = System.currentTimeMillis();
+//        if ((currentTime - oldTime) > 2000 || oldTime == 0) {
+//            Toast.makeText(this, "再按一次退出", 2000).show();
+//            oldTime = currentTime;
+//        } else {
+//            finish();
+//        }
+//    }
 }

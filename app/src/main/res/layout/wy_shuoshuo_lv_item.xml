@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--android:background="@android:drawable/picture_frame"-->
 <LinearLayout
-    android:background="@drawable/bg_card_tacos"
     android:orientation="vertical"
     android:id="@+id/nearby_shuoshuo_lv_item"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="10dp">
+    android:layout_height="wrap_content">
 
-    <LinearLayout
+    <LinearLayout android:layout_marginTop="30dp" android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -18,18 +16,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="name"
-            android:textColor="#ffffff"
-            android:textSize="@dimen/px_to_sp_23"/>
+            android:layout_weight="3"
+            android:textSize="18dp"/>
 
         <TextView
+            android:gravity="end"
             android:id="@+id/shuoshuo_tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="23dip"
-            android:layout_marginLeft="23dip"
+            android:layout_weight="2"
             android:text="time"
-            android:textColor="#ffffff"
-            android:textSize="@dimen/px_to_sp_23"/>
+            android:textSize="18dp"/>
     </LinearLayout>
 
     <!--<ImageView-->
@@ -37,15 +34,14 @@
         <!--android:layout_height="wrap_content"-->
         <!--android:src="@drawable/wy_bg_cell_divider_line"/>-->
 
-    <TextView
+    <TextView android:layout_margin="10dp"
         android:id="@+id/shuoshuo_tv_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="128dip"
+        android:minHeight="203dip"
         android:text="content"
-        android:textColor="#ffffff"
-        android:layout_marginTop="18dip"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+        android:gravity="center"
+        android:textSize="24dp"/>
 
 
     <!--<ImageView-->
@@ -54,20 +50,21 @@
         <!--android:layout_marginTop="18dip"-->
         <!--android:src="@drawable/wy_bg_cell_divider_line"/>-->
 
-    <LinearLayout
-            android:orientation="horizontal"
+    <LinearLayout android:orientation="horizontal" android:layout_marginBottom="30dp" android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView android:layout_width="23dp" android:layout_height="23dp" android:src="@drawable/wy_icon_gps"/>
-        <TextView
+        <ImageView android:layout_width="25dp" android:layout_height="25dp" android:src="@drawable/wy_icon_gps"/>
+        <TextView android:layout_weight="4"
             android:id="@+id/shuoshuo_tv_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="address"
-            android:textColor="#ffffff"
-            android:textSize="@dimen/px_to_sp_23"/>
-
+            android:textSize="18dp"/>
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1">
+            <TextView android:layout_weight="1" android:gravity="end" android:id="@+id/comment_count" android:text="comment_count" android:textSize="18dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <ImageView android:layout_weight="1" android:id="@+id/ic_comment" android:layout_width="25dp" android:layout_height="25dp" android:src="@drawable/wy_ic_card_comment_grey"/>
+        </LinearLayout>
     </LinearLayout>
 
     <!--<ImageView-->

@@ -1,22 +1,16 @@
 package com.syw.weiyu.ui.user;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.alibaba.fastjson.JSON;
 import com.dd.processbutton.iml.ActionProcessButton;
 import com.syw.weiyu.AppContext;
 import com.syw.weiyu.bean.Account;
-import com.syw.weiyu.third.lbs.LBSCloud;
 import com.syw.weiyu.R;
-import com.syw.weiyu.third.im.RongCloud;
+import com.syw.weiyu.third.RongCloud;
 import com.syw.weiyu.bean.User;
-import com.syw.weiyu.util.ACache;
-
-import net.tsz.afinal.http.AjaxCallBack;
 
 /**
  * Created by songyouwei on 2015/2/25.
