@@ -1,5 +1,9 @@
 package com.syw.weiyu.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,22 +11,13 @@ import java.util.List;
  * date: 2015-05-11
  * desc: 说说实体类
  */
-public class Shuoshuo {
+public class Shuoshuo implements Serializable {
     private long id;
     private MLocation location;
     private long timestamp;
     private String content;
     private String userName;
     private String userId;
-    private List<Comment> comments;
-
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
 
     public long getId() {
         return id;
@@ -71,4 +66,5 @@ public class Shuoshuo {
     public void setUserId(String userId) {
         this.userId = userId;
     }
+
 }

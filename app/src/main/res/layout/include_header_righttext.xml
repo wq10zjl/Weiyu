@@ -4,7 +4,7 @@
     android:layout_height="fill_parent" >
 
     <com.immomo.momo.android.view.HandyTextView
-        android:id="@+id/header_htv_righttext"
+        android:uid="@+uid/header_htv_righttext"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"

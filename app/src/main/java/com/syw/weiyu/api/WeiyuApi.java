@@ -85,6 +85,11 @@ public class WeiyuApi {
         });
     }
 
+    /**
+     * 获取当前账户
+     * @return
+     * @throws AppException 暂无账户
+     */
     public Account getAccount() throws AppException {
         return new AccountDao().get();
     }
@@ -157,6 +162,10 @@ public class WeiyuApi {
         new LocationDao().set();
     }
 
+    /**
+     * 获取缓存的位置数据
+     * @return
+     */
     public MLocation getSavedLocation() {
         return new LocationDao().get();
     }
@@ -169,7 +178,7 @@ public class WeiyuApi {
      */
 
     /**
-     * 刷新（获取第一页的说说）
+     * 获取缓存的说说列表
      * @return
      * @throws AppException 无缓存数据
      */
@@ -189,27 +198,31 @@ public class WeiyuApi {
     }
 
     /**
-     * 获取说说详情
-     * @param shuoshuo
-     * @return
+     * 获取说说的评论
+     * @param ssId 说说ID
+     * @param listener
      * @throws AppException
      */
-    public void getShuoshuoDetail(final Shuoshuo shuoshuo, final Listener<Shuoshuo> listener) throws AppException {
-        new ShuoshuoDao().getComments(shuoshuo.getId(), new Listener<List<Comment>>() {
+    public void getShuoshuoComments(final long ssId, final Listener<List<Comment>> listener) {
+        new ShuoshuoDao().getComments(ssId, new Listener<List<Comment>>() {
             @Override
             public void onCallback(@NonNull CallbackType callbackType, @Nullable List<Comment> data, @Nullable String msg) {
                 if (callbackType == CallbackType.onSuccess) {
-                    shuoshuo.setComments(data);
-                    listener.onCallback(CallbackType.onSuccess,shuoshuo,msg);
+                    listener.onCallback(CallbackType.onSuccess, data, msg);
                 } else {
-                    listener.onCallback(CallbackType.onFailure,null,msg);
+                    listener.onCallback(CallbackType.onFailure, null, msg);
                 }
             }
         });
     }
 
+    /**
+     * 发布说说
+     * @param content
+     * @param listener
+     */
     public void publishShuoshuo(String content,Listener<String> listener) {
-        new ShuoshuoDao().add(content,listener);
+        new ShuoshuoDao().add(content, listener);
     }
 
     /**

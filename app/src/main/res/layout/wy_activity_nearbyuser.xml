@@ -2,31 +2,31 @@
 <LinearLayout
     android:background="#EEEEEE"
     android:orientation="vertical"
-    android:id="@+id/nearby_layout_root"
+    android:uid="@+uid/nearby_layout_root"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
     <include
-        android:id="@+id/shuoshuo_header"
+        android:uid="@+uid/shuoshuo_header"
         layout="@layout/wy_header_withbackbtn"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>
 
     <!--<RelativeLayout-->
-        <!--android:id="@+id/banner_ad_container"-->
+        <!--android:uid="@+uid/banner_ad_container"-->
         <!--android:layout_width="fill_parent"-->
         <!--android:layout_height="wrap_content" >-->
     <!--</RelativeLayout>-->
 
     <LinearLayout
-        android:id="@+id/nearby_container"
+        android:uid="@+uid/nearby_container"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical">
 
         <in.srain.cube.views.ptr.PtrClassicFrameLayout
-            android:id="@+id/rotate_header_list_view_frame"
+            android:uid="@+uid/rotate_header_list_view_frame"
             xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
             cube_ptr:ptr_resistance="1.7">
 
             <com.paging.listview.PagingListView
-                android:id="@+id/lv_nearby"
+                android:uid="@+uid/lv_nearby"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:choiceMode="singleChoice"

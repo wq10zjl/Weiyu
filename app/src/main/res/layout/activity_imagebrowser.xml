@@ -11,7 +11,7 @@
         android:layout_weight="1" >
 
         <com.immomo.momo.android.view.ScrollViewPager
-            android:id="@+id/imagebrowser_svp_pager"
+            android:uid="@+uid/imagebrowser_svp_pager"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" />
     </RelativeLayout>
@@ -23,7 +23,7 @@
         android:paddingRight="15dip" >
 
         <ImageView
-            android:id="@+id/imagebrowser_iv_download"
+            android:uid="@+uid/imagebrowser_iv_download"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -31,7 +31,7 @@
             android:visibility="gone" />
 
         <com.immomo.momo.android.view.PhotoTextView
-            android:id="@+id/imagebrowser_ptv_page"
+            android:uid="@+uid/imagebrowser_ptv_page"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="1"

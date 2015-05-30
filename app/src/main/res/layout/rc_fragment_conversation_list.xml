@@ -6,7 +6,7 @@
 
 
     <ListView
-        android:id="@android:id/list"
+        android:uid="@android:uid/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:cacheColorHint="@android:color/transparent"
@@ -20,7 +20,7 @@
     </ListView>
 
     <TextView
-        android:id="@android:id/empty"
+        android:uid="@android:uid/empty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -33,7 +33,7 @@
         android:visibility="gone" />
 
     <TextView
-        android:id="@android:id/text1"
+        android:uid="@android:uid/text1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/px_to_dip_68"
         android:paddingLeft="@dimen/px_to_dip_16"

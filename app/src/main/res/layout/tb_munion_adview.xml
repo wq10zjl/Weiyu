@@ -23,7 +23,7 @@
         android:layout_height="fill_parent">
 
         <LinearLayout
-            android:id="@+id/promoter_frame"
+            android:uid="@+uid/promoter_frame"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -31,14 +31,14 @@
             android:paddingTop="10dp"></LinearLayout>
 
         <RelativeLayout
-            android:id="@+id/progress_frame"
+            android:uid="@+uid/progress_frame"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:gravity="center"
             android:background="#fff">
 
             <TextView
-                android:id="@+id/status_msg"
+                android:uid="@+uid/status_msg"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -46,7 +46,7 @@
                 android:textSize="18sp"/>
 
             <ProgressBar
-                android:id="@+id/loading"
+                android:uid="@+uid/loading"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_centerInParent="true"/>

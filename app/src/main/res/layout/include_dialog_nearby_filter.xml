@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/dialog_nearby_layout_root"
+    android:uid="@+uid/dialog_nearby_layout_root"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@color/dialog_backgroud_full"
@@ -36,13 +36,13 @@
                     android:textSize="16sp" />
 
                 <RadioGroup
-                    android:id="@+id/dialog_nearby_rg_gender"
+                    android:uid="@+uid/dialog_nearby_rg_gender"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal" >
 
                     <RadioButton
-                        android:id="@+id/dialog_nearby_rb_gender_all"
+                        android:uid="@+uid/dialog_nearby_rb_gender_all"
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -55,7 +55,7 @@
                         android:textSize="14sp" />
 
                     <RadioButton
-                        android:id="@+id/dialog_nearby_rb_gender_male"
+                        android:uid="@+uid/dialog_nearby_rb_gender_male"
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -68,7 +68,7 @@
                         android:textSize="14sp" />
 
                     <RadioButton
-                        android:id="@+id/dialog_nearby_rb_gender_female"
+                        android:uid="@+uid/dialog_nearby_rb_gender_female"
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -92,14 +92,14 @@
                     android:textSize="16sp" />
 
                 <RadioGroup
-                    android:id="@+id/dialog_nearby_rg_time"
+                    android:uid="@+uid/dialog_nearby_rg_time"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dip"
                     android:orientation="horizontal" >
 
                     <RadioButton
-                        android:id="@+id/dialog_nearby_rb_time_fifteenminutes"
+                        android:uid="@+uid/dialog_nearby_rb_time_fifteenminutes"
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -112,7 +112,7 @@
                         android:textSize="14sp" />
 
                     <RadioButton
-                        android:id="@+id/dialog_nearby_rb_time_sixtyminutes"
+                        android:uid="@+uid/dialog_nearby_rb_time_sixtyminutes"
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -125,7 +125,7 @@
                         android:textSize="14sp" />
 
                     <RadioButton
-                        android:id="@+id/dialog_nearby_rb_time_oneday"
+                        android:uid="@+uid/dialog_nearby_rb_time_oneday"
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -138,7 +138,7 @@
                         android:textSize="14sp" />
 
                     <RadioButton
-                        android:id="@+id/dialog_nearby_rb_time_twoday"
+                        android:uid="@+uid/dialog_nearby_rb_time_twoday"
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -165,7 +165,7 @@
                     android:orientation="horizontal" >
 
                     <Button
-                        android:id="@+id/dialog_nearby_btn_submit"
+                        android:uid="@+uid/dialog_nearby_btn_submit"
                         style="@style/Style_Dialog_Button"
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
@@ -174,7 +174,7 @@
                         android:text="确认" />
 
                     <Button
-                        android:id="@+id/dialog_nearby_btn_cancel"
+                        android:uid="@+uid/dialog_nearby_btn_cancel"
                         style="@style/Style_Dialog_Button"
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"

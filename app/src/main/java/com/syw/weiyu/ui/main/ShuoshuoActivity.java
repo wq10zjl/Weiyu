@@ -122,7 +122,10 @@ public class ShuoshuoActivity extends FragmentActivity {
                         if (callbackType == CallbackType.onSuccess) {
                             if (data != null) {
                                 adapter.set(data.getShuoshuos());
-                                totalPage = data.getTotal();
+                                //set totalPage
+                                if (totalPage == 0) {
+                                    totalPage = (int)Math.ceil(data.getTotal()/data.getShuoshuos().size());
+                                }
                                 //set has more page
                                 listView.setHasMoreItems(pageIndex + 1 < totalPage);
                             }
@@ -147,18 +150,6 @@ public class ShuoshuoActivity extends FragmentActivity {
         listView.setAdapter(adapter);
         listView.setHasMoreItems(false);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,final int position, long id) {
-                //开启聊天
-//                RongIM.getInstance().startPrivateChat(
-//                        ShuoshuoActivity.this,
-//                        adapter.getData().get(position - 1).get("userId"),
-//                        adapter.getData().get(position - 1).get("shuoshuo_tv_name"));
-
-            }
-        });
-
         listView.setPagingableListener(new PagingListView.Pagingable() {
             @Override
             public void onLoadMoreItems() {
@@ -169,13 +160,12 @@ public class ShuoshuoActivity extends FragmentActivity {
                             if (callbackType == CallbackType.onSuccess) {
                                 if (data != null) {
                                     adapter.append(data.getShuoshuos());
-                                    totalPage = data.getTotal();
                                     //set has more page
                                     listView.onFinishLoading(pageIndex + 1 < totalPage, null);
                                 }
                             } else {
                                 Toaster.e(ShuoshuoActivity.this, msg);
-                                --pageIndex;
+                                pageIndex--;
                             }
                             //结束下拉刷新
                             mPtrFrame.refreshComplete();
@@ -201,22 +191,6 @@ public class ShuoshuoActivity extends FragmentActivity {
                 .setPositiveButton("发送", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-//                        LBSCloud.getInstance().publishShuoshuo(contentET.getText().toString(), new AjaxCallBack<String>() {
-//                            @Override
-//                            public void onSuccess(String s) {
-//                                if (JSON.parseObject(s).getString("status").equals("0")) {
-//                                    Toaster.i(ShuoshuoActivity.this,"发送成功");
-//                                } else {
-//                                    Toaster.e(ShuoshuoActivity.this,"发送失败");
-//                                }
-//
-//                            }
-//
-//                            @Override
-//                            public void onFailure(Throwable t, int errorNo, String strMsg) {
-//                                Toaster.e(ShuoshuoActivity.this, "网络错误");
-//                            }
-//                        });
                         WeiyuApi.get().publishShuoshuo(contentET.getText().toString(), new Listener<String>() {
                             @Override
                             public void onCallback(@NonNull CallbackType callbackType, @Nullable String data, @Nullable String msg) {
@@ -233,11 +207,7 @@ public class ShuoshuoActivity extends FragmentActivity {
                         }.sendEmptyMessageDelayed(1, 1000);
                     }
                 })
-                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        builder.create().dismiss();
-                    }
-                });
+                .setNegativeButton("取消", null);
         return builder.create();
     }
 

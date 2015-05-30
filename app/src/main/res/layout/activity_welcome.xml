@@ -34,7 +34,7 @@
         android:src="@drawable/pic_index_copyright" />
 
     <LinearLayout
-        android:id="@+id/welcome_linear_ctrlbar"
+        android:uid="@+uid/welcome_linear_ctrlbar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -47,39 +47,39 @@
         android:paddingTop="13dip" >
 
         <LinearLayout
-            android:id="@+id/welcome_linear_avatars"
+            android:uid="@+uid/welcome_linear_avatars"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal" >
 
             <include
-                android:id="@+id/welcome_include_member_avatar_block0"
+                android:uid="@+uid/welcome_include_member_avatar_block0"
                 android:layout_weight="1"
                 layout="@layout/include_welcome_item" />
 
             <include
-                android:id="@+id/welcome_include_member_avatar_block1"
+                android:uid="@+uid/welcome_include_member_avatar_block1"
                 android:layout_weight="1"
                 layout="@layout/include_welcome_item" />
 
             <include
-                android:id="@+id/welcome_include_member_avatar_block2"
+                android:uid="@+uid/welcome_include_member_avatar_block2"
                 android:layout_weight="1"
                 layout="@layout/include_welcome_item" />
 
             <include
-                android:id="@+id/welcome_include_member_avatar_block3"
+                android:uid="@+uid/welcome_include_member_avatar_block3"
                 android:layout_weight="1"
                 layout="@layout/include_welcome_item" />
 
             <include
-                android:id="@+id/welcome_include_member_avatar_block4"
+                android:uid="@+uid/welcome_include_member_avatar_block4"
                 android:layout_weight="1"
                 layout="@layout/include_welcome_item" />
 
             <include
-                android:id="@+id/welcome_include_member_avatar_block5"
+                android:uid="@+uid/welcome_include_member_avatar_block5"
                 android:layout_weight="1"
                 layout="@layout/include_welcome_item" />
         </LinearLayout>
@@ -98,7 +98,7 @@
                 android:src="@drawable/ic_index_totaluser" />
 
             <com.immomo.momo.android.view.HandyTextView
-                android:id="@+id/welcome_htv_usercount"
+                android:uid="@+uid/welcome_htv_usercount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
@@ -125,7 +125,7 @@
             android:orientation="horizontal" >
 
             <Button
-                android:id="@+id/welcome_btn_register"
+                android:uid="@+uid/welcome_btn_register"
                 android:layout_width="100dip"
                 android:layout_height="40dip"
                 android:layout_margin="5dip"
@@ -134,7 +134,7 @@
                 android:textColor="#FFFFFFFF" />
 
             <Button
-                android:id="@+id/welcome_btn_login"
+                android:uid="@+uid/welcome_btn_login"
                 android:layout_width="100dip"
                 android:layout_height="40dip"
                 android:layout_margin="5dip"
@@ -143,7 +143,7 @@
                 android:textColor="#ff465579" />
 
             <ImageButton
-                android:id="@+id/welcome_ibtn_about"
+                android:uid="@+uid/welcome_ibtn_about"
                 android:layout_width="wrap_content"
                 android:layout_height="40dip"
                 android:layout_margin="5dip"

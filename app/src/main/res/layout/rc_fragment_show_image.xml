@@ -6,7 +6,7 @@
     android:background="@android:color/black" >
 
     <uk.co.senab.photoview.PhotoView
-        android:id="@android:id/icon"
+        android:uid="@android:uid/icon"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/black"
@@ -14,7 +14,7 @@
         android:scaleType="fitCenter" />
 
     <RelativeLayout
-        android:id="@+id/showimage_btm_layout"
+        android:uid="@+uid/showimage_btm_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/px_to_dip_106"
         android:layout_gravity="bottom"
@@ -22,7 +22,7 @@
         android:gravity="center_vertical" >
 
         <Button
-            android:id="@android:id/button1"
+            android:uid="@android:uid/button1"
             android:layout_width="@dimen/px_to_dip_124"
             android:layout_height="@dimen/px_to_dip_56"
             android:layout_centerVertical="true"
@@ -34,7 +34,7 @@
             android:textSize="@dimen/px_to_dip_36" />
 
         <Button
-            android:id="@android:id/button2"
+            android:uid="@android:uid/button2"
             android:layout_width="@dimen/px_to_dip_124"
             android:layout_height="@dimen/px_to_dip_56"
             android:layout_alignParentRight="true"

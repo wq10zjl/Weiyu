@@ -5,7 +5,7 @@
     android:background="@color/background_normal" >
 
     <com.immomo.momo.android.view.HandyTextView
-        android:id="@+id/reg_photo_htv_recommendation"
+        android:uid="@+uid/reg_photo_htv_recommendation"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -21,8 +21,8 @@
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_above="@+id/reg_photo_layout_nearusers"
-        android:layout_below="@+id/reg_photo_htv_recommendation"
+        android:layout_above="@+uid/reg_photo_layout_nearusers"
+        android:layout_below="@+uid/reg_photo_htv_recommendation"
         android:fadingEdge="none"
         android:fillViewport="true"
         android:scrollbars="none" >
@@ -41,7 +41,7 @@
                 android:padding="1dip" >
 
                 <ImageView
-                    android:id="@+id/reg_photo_iv_userphoto"
+                    android:uid="@+uid/reg_photo_iv_userphoto"
                     android:layout_width="120dip"
                     android:layout_height="120dip"
                     android:layout_marginRight="12dip"
@@ -57,7 +57,7 @@
                     android:orientation="vertical" >
 
                     <LinearLayout
-                        android:id="@+id/reg_photo_layout_selectphoto"
+                        android:uid="@+uid/reg_photo_layout_selectphoto"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:layout_marginBottom="3dip"
@@ -82,7 +82,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/reg_photo_layout_takepicture"
+                        android:uid="@+uid/reg_photo_layout_takepicture"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:layout_marginTop="3dip"
@@ -122,7 +122,7 @@
     </ScrollView>
 
     <LinearLayout
-        android:id="@+id/reg_photo_layout_nearusers"
+        android:uid="@+uid/reg_photo_layout_nearusers"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -141,7 +141,7 @@
             android:textSize="15sp" />
 
         <LinearLayout
-            android:id="@+id/reg_photo_layout_avatars"
+            android:uid="@+uid/reg_photo_layout_avatars"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -151,32 +151,32 @@
             android:padding="5dip" >
 
             <include
-                android:id="@+id/reg_photo_include_member_avatar_block0"
+                android:uid="@+uid/reg_photo_include_member_avatar_block0"
                 android:layout_weight="1"
                 layout="@layout/include_welcome_item" />
 
             <include
-                android:id="@+id/reg_photo_include_member_avatar_block1"
+                android:uid="@+uid/reg_photo_include_member_avatar_block1"
                 android:layout_weight="1"
                 layout="@layout/include_welcome_item" />
 
             <include
-                android:id="@+id/reg_photo_include_member_avatar_block2"
+                android:uid="@+uid/reg_photo_include_member_avatar_block2"
                 android:layout_weight="1"
                 layout="@layout/include_welcome_item" />
 
             <include
-                android:id="@+id/reg_photo_include_member_avatar_block3"
+                android:uid="@+uid/reg_photo_include_member_avatar_block3"
                 android:layout_weight="1"
                 layout="@layout/include_welcome_item" />
 
             <include
-                android:id="@+id/reg_photo_include_member_avatar_block4"
+                android:uid="@+uid/reg_photo_include_member_avatar_block4"
                 android:layout_weight="1"
                 layout="@layout/include_welcome_item" />
 
             <include
-                android:id="@+id/reg_photo_include_member_avatar_block5"
+                android:uid="@+uid/reg_photo_include_member_avatar_block5"
                 android:layout_weight="1"
                 layout="@layout/include_welcome_item" />
         </LinearLayout>

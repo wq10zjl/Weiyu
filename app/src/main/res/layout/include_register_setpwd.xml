@@ -29,7 +29,7 @@
                 android:textSize="17sp" />
 
             <EditText
-                android:id="@+id/reg_setpwd_et_pwd"
+                android:uid="@+uid/reg_setpwd_et_pwd"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dip"
@@ -41,7 +41,7 @@
                 android:singleLine="true" />
 
             <EditText
-                android:id="@+id/reg_setpwd_et_repwd"
+                android:uid="@+uid/reg_setpwd_et_repwd"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dip"

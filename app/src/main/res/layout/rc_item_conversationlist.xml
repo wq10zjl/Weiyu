@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@android:id/widget_frame"
+    android:uid="@android:uid/widget_frame"
     android:layout_width="match_parent"
     android:layout_height="@dimen/px_to_dip_128"
     android:layout_gravity="center_vertical"
@@ -22,7 +22,7 @@
             android:layout_height="@dimen/px_to_dip_128">
 
             <io.rong.imkit.view.AsyncImageView
-                android:id="@android:id/icon"
+                android:uid="@android:uid/icon"
                 android:layout_width="@dimen/px_to_dip_96"
                 android:layout_height="@dimen/px_to_dip_96"
                 android:layout_centerHorizontal="true"
@@ -33,7 +33,7 @@
                 app:shape="square" />
 
             <TextView
-                android:id="@+id/rc_new_message"
+                android:uid="@+uid/rc_new_message"
                 android:layout_width="@dimen/px_to_dip_42"
                 android:layout_height="@dimen/px_to_dip_42"
                 android:layout_alignParentRight="true"
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@android:id/text1"
+                    android:uid="@android:uid/text1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left|center_vertical"
@@ -71,7 +71,7 @@
                     android:textSize="@dimen/px_to_dip_30" />
 
                 <TextView
-                    android:id="@android:id/text2"
+                    android:uid="@android:uid/text2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right|center_vertical"
@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@android:id/message"
+                    android:uid="@android:uid/message"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right|center_vertical"
@@ -97,7 +97,7 @@
                     android:textSize="@dimen/px_to_dip_27" />
 
                 <ImageView
-                    android:id="@+id/message_block"
+                    android:uid="@+uid/message_block"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:visibility="gone"

@@ -6,7 +6,7 @@
     android:orientation="horizontal" >
 
     <com.immomo.momo.android.view.HandyTextView
-        android:id="@+id/toast_text"
+        android:uid="@+uid/toast_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"

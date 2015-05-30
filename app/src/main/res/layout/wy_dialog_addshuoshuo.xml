@@ -9,7 +9,7 @@
 
     <EditText
         android:hint="和附近的人说说你的秘密"
-        android:id="@+id/et_shuoshuo_content"
+        android:uid="@+uid/et_shuoshuo_content"
         android:background="@null"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

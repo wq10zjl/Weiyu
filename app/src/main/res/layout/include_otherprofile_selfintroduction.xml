@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/otherprofile_selfintroduction_layout"
+    android:uid="@+uid/otherprofile_selfintroduction_layout"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -43,7 +43,7 @@
             android:padding="12dip" >
 
             <com.immomo.momo.android.view.HandyTextView
-                android:id="@+id/otherprofile_selfintroduction_htv_interest_title"
+                android:uid="@+uid/otherprofile_selfintroduction_htv_interest_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -54,7 +54,7 @@
             <com.immomo.momo.android.view.EmoticonsTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/otherprofile_selfintroduction_htv_interest_title"
+                android:layout_below="@+uid/otherprofile_selfintroduction_htv_interest_title"
                 android:text="看电影、逛街、唱歌"
                 android:textColor="@color/font_value"
                 android:textSize="16sp" />
@@ -77,7 +77,7 @@
             android:padding="12dip" >
 
             <com.immomo.momo.android.view.HandyTextView
-                android:id="@+id/otherprofile_selfintroduction_htv_hangout_title"
+                android:uid="@+uid/otherprofile_selfintroduction_htv_hangout_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -88,7 +88,7 @@
             <com.immomo.momo.android.view.EmoticonsTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/otherprofile_selfintroduction_htv_hangout_title"
+                android:layout_below="@+uid/otherprofile_selfintroduction_htv_hangout_title"
                 android:text="电影院、KTV"
                 android:textColor="@color/font_value"
                 android:textSize="16sp" />
@@ -111,7 +111,7 @@
             android:padding="12dip" >
 
             <com.immomo.momo.android.view.HandyTextView
-                android:id="@+id/otherprofile_selfintroduction_htv_intro_title"
+                android:uid="@+uid/otherprofile_selfintroduction_htv_intro_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -122,7 +122,7 @@
             <com.immomo.momo.android.view.EmoticonsTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/otherprofile_selfintroduction_htv_intro_title"
+                android:layout_below="@+uid/otherprofile_selfintroduction_htv_intro_title"
                 android:text="我不想和无聊的人聊天"
                 android:textColor="@color/font_value"
                 android:textSize="16sp" />

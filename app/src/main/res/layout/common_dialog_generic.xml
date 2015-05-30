@@ -8,7 +8,7 @@
     android:paddingRight="10dip" >
 
     <LinearLayout
-        android:id="@+id/dialog_generic_layout_root"
+        android:uid="@+uid/dialog_generic_layout_root"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dip"
@@ -18,14 +18,14 @@
         android:orientation="vertical" >
 
         <LinearLayout
-            android:id="@+id/dialog_generic_layout_top"
+            android:uid="@+uid/dialog_generic_layout_top"
             android:layout_width="fill_parent"
             android:layout_height="0dip"
             android:layout_weight="1"
             android:orientation="vertical" >
 
             <LinearLayout
-                android:id="@+id/dialog_generic_layout_title"
+                android:uid="@+uid/dialog_generic_layout_title"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -33,7 +33,7 @@
                 android:paddingRight="10dip" >
 
                 <com.immomo.momo.android.view.HandyTextView
-                    android:id="@+id/dialog_generic_htv_title"
+                    android:uid="@+uid/dialog_generic_htv_title"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:gravity="left"
@@ -49,7 +49,7 @@
                     android:textSize="20sp" />
 
                 <View
-                    android:id="@+id/dialog_generic_view_titleline"
+                    android:uid="@+uid/dialog_generic_view_titleline"
                     android:layout_width="fill_parent"
                     android:layout_height="2dip"
                     android:layout_marginBottom="10dip"
@@ -57,7 +57,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/dialog_generic_layout_content"
+                android:uid="@+uid/dialog_generic_layout_content"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -78,7 +78,7 @@
                         android:paddingTop="4dip" >
 
                         <com.immomo.momo.android.view.HandyTextView
-                            android:id="@+id/dialog_generic_htv_message"
+                            android:uid="@+uid/dialog_generic_htv_message"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/text_color"
@@ -89,7 +89,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/dialog_generic_layout_bottom"
+            android:uid="@+uid/dialog_generic_layout_bottom"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -101,7 +101,7 @@
             android:visibility="gone" >
 
             <Button
-                android:id="@+id/dialog_generic_btn_button1"
+                android:uid="@+uid/dialog_generic_btn_button1"
                 style="@style/Style_Dialog_Button"
                 android:layout_width="0.0dip"
                 android:layout_height="wrap_content"
@@ -110,7 +110,7 @@
                 android:visibility="gone"/>
 
             <Button
-                android:id="@+id/dialog_generic_btn_button2"
+                android:uid="@+uid/dialog_generic_btn_button2"
                 style="@style/Style_Dialog_Button"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
@@ -119,7 +119,7 @@
                 android:visibility="gone"/>
 
             <Button
-                android:id="@+id/dialog_generic_btn_button3"
+                android:uid="@+uid/dialog_generic_btn_button3"
                 style="@style/Style_Dialog_Button"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"

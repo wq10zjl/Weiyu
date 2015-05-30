@@ -11,7 +11,7 @@
         android:focusable="false" />
 
     <GridView
-        android:id="@+id/emotionbar_gv_display"
+        android:uid="@+uid/emotionbar_gv_display"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_weight="1"
@@ -37,7 +37,7 @@
         android:orientation="horizontal" >
 
         <RadioGroup
-            android:id="@+id/emotionbar_rg_inner"
+            android:uid="@+uid/emotionbar_rg_inner"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_gravity="bottom"
@@ -45,7 +45,7 @@
             android:orientation="horizontal" >
 
             <RadioButton
-                android:id="@+id/emotionbar_rb_default"
+                android:uid="@+uid/emotionbar_rb_default"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
@@ -60,7 +60,7 @@
                 android:textSize="15sp" />
 
             <RadioButton
-                android:id="@+id/emotionbar_rb_emoji"
+                android:uid="@+uid/emotionbar_rb_emoji"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
@@ -74,7 +74,7 @@
                 android:textSize="15sp" />
 
             <ImageView
-                android:id="@+id/emotionbar_iv_delete"
+                android:uid="@+uid/emotionbar_iv_delete"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:layout_weight="0"

@@ -26,7 +26,7 @@
                 android:paddingBottom="15dip" >
 
                 <EditText
-                    android:id="@+id/reg_baseinfo_et_name"
+                    android:uid="@+uid/reg_baseinfo_et_name"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="3dip"
@@ -71,7 +71,7 @@
                         android:textSize="17sp" />
 
                     <RadioGroup
-                        android:id="@+id/reg_baseinfo_rg_gender"
+                        android:uid="@+uid/reg_baseinfo_rg_gender"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:layout_gravity="right"
@@ -80,7 +80,7 @@
                         android:orientation="horizontal" >
 
                         <RadioButton
-                            android:id="@+id/reg_baseinfo_rb_male"
+                            android:uid="@+uid/reg_baseinfo_rb_male"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
@@ -93,7 +93,7 @@
                             android:textSize="17sp" />
 
                         <RadioButton
-                            android:id="@+id/reg_baseinfo_rb_female"
+                            android:uid="@+uid/reg_baseinfo_rb_female"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 

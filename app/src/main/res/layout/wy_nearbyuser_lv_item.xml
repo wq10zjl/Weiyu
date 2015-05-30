@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     android:orientation="vertical"
-    android:id="@+id/nearby_lv_item"
+    android:uid="@+uid/nearby_lv_item"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/nearbyuser_iv_portrait"
+            android:uid="@+uid/nearbyuser_iv_portrait"
             android:layout_width="62dip"
             android:layout_height="62dip"
             android:src="@drawable/wy_ic_launcher"/>
@@ -32,7 +32,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/nearbyuser_tv_name"
+                android:uid="@+uid/nearbyuser_tv_name"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="name"
@@ -41,7 +41,7 @@
                 android:gravity="top"/>
 
                 <TextView
-                android:id="@+id/nearbyuser_tv_address"
+                android:uid="@+uid/nearbyuser_tv_address"
                 android:layout_width="fill_parent"
                 android:layout_height="26dip"
                 android:singleLine="true"

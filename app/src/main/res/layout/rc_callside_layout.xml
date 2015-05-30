@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/container"
+    android:uid="@+uid/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black" >
 
     <Button
-        android:id="@+id/button1"
+        android:uid="@+uid/button1"
         android:layout_width="match_parent"
         android:layout_height="60dip"
         android:layout_alignParentBottom="true"
@@ -17,15 +17,15 @@
         android:textColor="@android:color/white" />
 
     <RelativeLayout
-        android:id="@+id/sound_off_container_id"
+        android:uid="@+uid/sound_off_container_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button1"
+        android:layout_above="@+uid/button1"
         android:layout_marginBottom="28dp"
-        android:layout_toLeftOf="@+id/user_photo_container" >
+        android:layout_toLeftOf="@+uid/user_photo_container" >
 
         <ImageView
-            android:id="@+id/sound_off_id"
+            android:uid="@+uid/sound_off_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/rc_btn_sound_off_selector" />
@@ -33,7 +33,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/sound_off_id"
+            android:layout_below="@uid/sound_off_id"
             android:layout_centerHorizontal="true"
             android:text="静音"
             android:textColor="#8b8b8b" 
@@ -41,7 +41,7 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/user_name"
+        android:uid="@+uid/user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -50,17 +50,17 @@
         android:textSize="15dp" />
 
     <FrameLayout
-        android:id="@+id/user_photo_container"
+        android:uid="@+uid/user_photo_container"
         android:layout_width="100dip"
         android:layout_height="100dip"
-        android:layout_above="@+id/user_name"
+        android:layout_above="@+uid/user_name"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp"
         android:background="@drawable/rc_call_photo_bg"
         android:padding="10dp" >
 
         <ImageView
-            android:id="@+id/user_photo"
+            android:uid="@+uid/user_photo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/rc_default_portrait"
@@ -68,10 +68,10 @@
     </FrameLayout>
 
     <TextView
-        android:id="@+id/calling_state"
+        android:uid="@+uid/calling_state"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/user_name"
+        android:layout_below="@+uid/user_name"
         android:layout_centerHorizontal="true"
         android:text="正在呼叫中...."
         android:textColor="@android:color/white"
@@ -80,11 +80,11 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/sound_off_container_id"
-        android:layout_toRightOf="@+id/user_photo_container" >
+        android:layout_alignTop="@+uid/sound_off_container_id"
+        android:layout_toRightOf="@+uid/user_photo_container" >
 
         <ImageView
-            android:id="@+id/hands_off_id"
+            android:uid="@+uid/hands_off_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/rc_btn_hands_free_selector" />
@@ -92,7 +92,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/hands_off_id"
+            android:layout_below="@uid/hands_off_id"
             android:layout_centerHorizontal="true"
             android:text="免提"
             android:textColor="#8b8b8b" 
@@ -100,7 +100,7 @@
     </RelativeLayout>
     
 	<View
-	    android:id="@+id/mask_layout" 
+	    android:uid="@+uid/mask_layout"
 	    android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#88000000"

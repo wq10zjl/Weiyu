@@ -6,7 +6,7 @@
     android:layout_weight="1">
 
     <ImageView
-        android:id="@+id/ad_image"
+        android:uid="@+uid/ad_image"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:scaleType="centerCrop"

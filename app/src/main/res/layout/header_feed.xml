@@ -20,20 +20,20 @@
             android:duplicateParentState="false" >
 
             <RelativeLayout
-                android:id="@+id/header_feed_layout_top"
+                android:uid="@+uid/header_feed_layout_top"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dip" >
 
                 <RelativeLayout
-                    android:id="@+id/header_feed_layout_timeroot"
+                    android:uid="@+uid/header_feed_layout_timeroot"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_marginBottom="6dip" >
 
                     <ImageView
-                        android:id="@+id/header_feed_iv_avatar"
+                        android:uid="@+uid/header_feed_iv_avatar"
                         android:layout_width="36dip"
                         android:layout_height="36dip"
                         android:layout_alignParentLeft="true"
@@ -41,14 +41,14 @@
                         android:scaleType="fitXY"/>
 
                     <LinearLayout
-                        android:id="@+id/header_feed_layout_time"
+                        android:uid="@+uid/header_feed_layout_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:gravity="center" >
 
                         <TextView
-                            android:id="@+id/header_feed_tv_time"
+                            android:uid="@+uid/header_feed_tv_time"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/font_value"
@@ -59,14 +59,14 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dip"
-                        android:layout_toLeftOf="@+id/header_feed_layout_time"
-                        android:layout_toRightOf="@+id/header_feed_iv_avatar"
+                        android:layout_toLeftOf="@+uid/header_feed_layout_time"
+                        android:layout_toRightOf="@+uid/header_feed_iv_avatar"
                         android:gravity="center_vertical"
                         android:minHeight="36dip"
                         android:orientation="vertical" >
 
                         <com.immomo.momo.android.view.EmoticonsTextView
-                            android:id="@+id/header_feed_etv_name"
+                            android:uid="@+uid/header_feed_etv_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:singleLine="true"
@@ -80,7 +80,7 @@
                             android:orientation="horizontal" >
 
                             <LinearLayout
-                                android:id="@+id/header_feed_layout_gender"
+                                android:uid="@+uid/header_feed_layout_gender"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="5dip"
@@ -92,13 +92,13 @@
                                 android:paddingTop="2dip" >
 
                                 <ImageView
-                                    android:id="@+id/header_feed_iv_gender"
+                                    android:uid="@+uid/header_feed_iv_gender"
                                     android:layout_width="8dip"
                                     android:layout_height="8dip"
                                     android:scaleType="fitXY"/>
 
                                 <com.immomo.momo.android.view.HandyTextView
-                                    android:id="@+id/header_feed_htv_age"
+                                    android:uid="@+uid/header_feed_htv_age"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="2dip"
@@ -108,7 +108,7 @@
                             </LinearLayout>
 
                             <ImageView
-                                android:id="@+id/user_item_iv_icon_vip"
+                                android:uid="@+uid/user_item_iv_icon_vip"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="1dip"
@@ -117,7 +117,7 @@
                                 android:visibility="gone" />
 
                             <ImageView
-                                android:id="@+id/user_item_iv_icon_group_role"
+                                android:uid="@+uid/user_item_iv_icon_group_role"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="1dip"
@@ -126,7 +126,7 @@
                                 android:visibility="gone"/>
 
                             <ImageView
-                                android:id="@+id/user_item_iv_icon_industry"
+                                android:uid="@+uid/user_item_iv_icon_industry"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="1dip"
@@ -135,7 +135,7 @@
                                 android:visibility="gone" />
 
                             <ImageView
-                                android:id="@+id/user_item_iv_icon_weibo"
+                                android:uid="@+uid/user_item_iv_icon_weibo"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="1dip"
@@ -144,7 +144,7 @@
                                 android:visibility="gone"/>
 
                             <ImageView
-                                android:id="@+id/user_item_iv_icon_txweibo"
+                                android:uid="@+uid/user_item_iv_icon_txweibo"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="1dip"
@@ -153,7 +153,7 @@
                                 android:visibility="gone"/>
 
                             <ImageView
-                                android:id="@+id/user_item_iv_icon_renren"
+                                android:uid="@+uid/user_item_iv_icon_renren"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="1dip"
@@ -162,7 +162,7 @@
                                 android:visibility="gone"/>
 
                             <ImageView
-                                android:id="@+id/user_item_iv_icon_device"
+                                android:uid="@+uid/user_item_iv_icon_device"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="1dip"
@@ -171,7 +171,7 @@
                                 android:visibility="gone" />
 
                             <ImageView
-                                android:id="@+id/user_item_iv_icon_relation"
+                                android:uid="@+uid/user_item_iv_icon_relation"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="1dip"
@@ -180,7 +180,7 @@
                                 android:visibility="gone"/>
 
                             <ImageView
-                                android:id="@+id/user_item_iv_icon_multipic"
+                                android:uid="@+uid/user_item_iv_icon_multipic"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="1dip"
@@ -192,19 +192,19 @@
                 </RelativeLayout>
 
                 <com.immomo.momo.android.view.EmoticonsTextView
-                    android:id="@+id/header_feed_etv_content"
+                    android:uid="@+uid/header_feed_etv_content"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/header_feed_layout_timeroot"
+                    android:layout_below="@+uid/header_feed_layout_timeroot"
                     android:lineSpacingMultiplier="1.3"
                     android:textColor="@color/font_attribute"
                     android:textSize="15sp" />
 
                 <ImageView
-                    android:id="@+id/header_feed_iv_content"
+                    android:uid="@+uid/header_feed_iv_content"
                     android:layout_width="80dip"
                     android:layout_height="80dip"
-                    android:layout_below="@+id/header_feed_etv_content"
+                    android:layout_below="@+uid/header_feed_etv_content"
                     android:layout_marginTop="3dip"
                     android:clickable="true"
                     android:scaleType="centerCrop"
@@ -214,11 +214,11 @@
             <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="40dip"
-                android:layout_below="@+id/header_feed_layout_top"
+                android:layout_below="@+uid/header_feed_layout_top"
                 android:background="@drawable/bg_card_inner_bottom_normal" >
 
                 <LinearLayout
-                    android:id="@+id/header_feed_layout_comment"
+                    android:uid="@+uid/header_feed_layout_comment"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
                     android:layout_alignParentRight="true"
@@ -236,7 +236,7 @@
                         android:src="@drawable/ic_feed_comment_highlight" />
 
                     <TextView
-                        android:id="@+id/header_feed_tv_commentcount"
+                        android:uid="@+uid/header_feed_tv_commentcount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="2dip"
@@ -248,7 +248,7 @@
                 <View
                     android:layout_width="1px"
                     android:layout_height="fill_parent"
-                    android:layout_toLeftOf="@+id/header_feed_layout_comment"
+                    android:layout_toLeftOf="@+uid/header_feed_layout_comment"
                     android:background="#ffdfdfdf"
                     android:focusable="false" />
 
@@ -259,7 +259,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="20dip"
-                    android:layout_toLeftOf="@+id/header_feed_layout_comment"
+                    android:layout_toLeftOf="@+uid/header_feed_layout_comment"
                     android:orientation="horizontal" >
 
                     <ImageView
@@ -271,7 +271,7 @@
                         android:src="@drawable/ic_user_location" />
 
                     <TextView
-                        android:id="@+id/header_feed_tv_distance"
+                        android:uid="@+uid/header_feed_tv_distance"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -287,7 +287,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/header_feed_layout_loading"
+        android:uid="@+uid/header_feed_layout_loading"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dip"
@@ -297,7 +297,7 @@
         android:visibility="gone">
 
         <TextView
-            android:id="@+id/header_feed_tv_loading"
+            android:uid="@+uid/header_feed_tv_loading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -307,11 +307,11 @@
             android:visibility="visible" />
 
         <ImageView
-            android:id="@+id/header_feed_iv_loading"
+            android:uid="@+uid/header_feed_iv_loading"
             android:layout_width="20dip"
             android:layout_height="20dip"
             android:layout_marginRight="5dip"
-            android:layout_toLeftOf="@+id/header_feed_tv_loading"
+            android:layout_toLeftOf="@+uid/header_feed_tv_loading"
             android:scaleType="centerInside"
             android:src="@drawable/ic_loading" />
     </RelativeLayout>

@@ -6,7 +6,7 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/conversation_message_time_tv"
+        android:uid="@+uid/conversation_message_time_tv"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/px_to_dip_50"
         android:layout_gravity="center_horizontal"
@@ -26,7 +26,7 @@
         android:orientation="horizontal" >
 
         <ImageView
-            android:id="@+id/conversation_message_other_portrait"
+            android:uid="@+uid/conversation_message_other_portrait"
             android:layout_width="@dimen/px_to_dip_82"
             android:layout_height="@dimen/px_to_dip_82"
             android:layout_marginLeft="@dimen/px_to_dip_16"
@@ -34,14 +34,14 @@
             android:visibility="gone" />
 
         <ProgressBar
-            android:id="@+id/conversation_message_progressbar"
+            android:uid="@+uid/conversation_message_progressbar"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_gravity="center_vertical"
             android:visibility="gone" />
 
         <ImageView
-            android:id="@+id/conversation_message_send_failed"
+            android:uid="@+uid/conversation_message_send_failed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -49,20 +49,20 @@
             android:visibility="gone" />
 
         <LinearLayout
-            android:id="@+id/text_layout_layout"
+            android:uid="@+uid/text_layout_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical" >
 
             <LinearLayout
-                android:id="@+id/conversation_message_text_layout"
+                android:uid="@+uid/conversation_message_text_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rc_conversation_bubble_blue" >
 
                 <TextView
-                    android:id="@+id/conversation_message_username_tv"
+                    android:uid="@+uid/conversation_message_username_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
@@ -70,7 +70,7 @@
                     android:visibility="gone" />
 
                 <TextView
-                    android:id="@+id/conversation_message_content_tv"
+                    android:uid="@+uid/conversation_message_content_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:autoLink="web|email|phone"
@@ -81,7 +81,7 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/conversation_message_self_portrait"
+            android:uid="@+uid/conversation_message_self_portrait"
             android:layout_width="@dimen/px_to_dip_82"
             android:layout_height="@dimen/px_to_dip_82"
             android:layout_gravity="right"

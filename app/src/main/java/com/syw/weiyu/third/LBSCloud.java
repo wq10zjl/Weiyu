@@ -49,7 +49,7 @@ public class LBSCloud {
 //
 //        AjaxParams params = getInitializedParams();
 //        //user info
-//        params.put("userId", user.getId());
+//        params.put("userId", user.getUid());
 //        params.put("name", user.getName());
 //        params.put("gender", user.getGender());
 //        params.put("tags", user.getTags());
@@ -72,7 +72,7 @@ public class LBSCloud {
 //    public void updateUserLocation() {
 //        //build params
 //        AjaxParams params = getInitializedParams();
-//        params.put("userId", AppContext.getInstance().getUser().getId());
+//        params.put("userId", AppContext.getInstance().getUser().getUid());
 //        params.put("latitude", AppContext.getInstance().getLocation().getLatitude());
 //        params.put("longitude", AppContext.getInstance().getLocation().getLongitude());
 //        params.put("address",AppContext.getInstance().getLocation().getAddress());
@@ -100,7 +100,7 @@ public class LBSCloud {
 //    public void updateLastOnlineTime() {
 //        //build params
 //        AjaxParams params = getInitializedParams();
-//        params.put("userId", AppContext.getInstance().getUser().getId());
+//        params.put("userId", AppContext.getInstance().getUser().getUid());
 //        //post
 //        String url = context.getString(R.string.url_update_poi);
 //        FinalHttp http = new FinalHttp();
@@ -146,7 +146,7 @@ public class LBSCloud {
 //
 //        AjaxParams params = getInitializedParams(context.getString(R.string.geotable_id_shuoshuo));
 //        //user info
-//        params.put("userId", user.getId());
+//        params.put("userId", user.getUid());
 //        params.put("userName", user.getName());
 //        //location info
 //        params.put("longitude", location.getLongitude());

@@ -253,7 +253,7 @@ public final class RongCloudEvent implements
 //        Log.d("Begavior", conversationType.getName() + ":" + user.getName());
 //        Intent in = new Intent(context, UserInfoActivity.class);
 //        in.putExtra("user_name", user.getName());
-//        in.putExtra("user_id", user.getId());
+//        in.putExtra("user_id", user.getUid());
 //        context.startActivity(in);
 
         return false;

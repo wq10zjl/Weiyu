@@ -5,7 +5,7 @@
     android:orientation="vertical" >
 
     <com.immomo.momo.android.view.MoMoRefreshListView
-        android:id="@+id/nearby_people_mmrlv_list"
+        android:uid="@+uid/nearby_people_mmrlv_list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:cacheColorHint="@color/transparent"

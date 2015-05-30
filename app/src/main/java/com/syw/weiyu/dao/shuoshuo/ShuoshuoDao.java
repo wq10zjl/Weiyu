@@ -1,14 +1,19 @@
 package com.syw.weiyu.dao.shuoshuo;
 
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.SaveListener;
 import com.alibaba.fastjson.JSON;
 import com.syw.weiyu.AppConstants;
 import com.syw.weiyu.AppContext;
 import com.syw.weiyu.AppException;
 import com.syw.weiyu.api.Listener;
+import com.syw.weiyu.api.WeiyuApi;
 import com.syw.weiyu.bean.*;
 import com.syw.weiyu.bean.jsonobj.NearbyShuoshuoItemJsonObj;
 import com.syw.weiyu.bean.jsonobj.NearbyShuoshuoListJsonObj;
 import com.syw.weiyu.dao.location.LocationDao;
+import com.syw.weiyu.dao.user.AccountDao;
 import com.syw.weiyu.third.LBSCloud;
 import net.tsz.afinal.FinalHttp;
 import net.tsz.afinal.http.AjaxCallBack;
@@ -71,39 +76,83 @@ public class ShuoshuoDao {
     }
 
     /**
+     * 添加评论
+     * @param content
+     * @param listener
+     */
+    public void addComment(String content, final Listener<String> listener) {
+        Account account = null;
+        try {
+            account = new AccountDao().get();
+        } catch (AppException e) {
+            listener.onCallback(Listener.CallbackType.onFailure,null,e.getMessage());
+        }
+        Comment comment = new Comment();
+        comment.setUserId(account.getId());
+        comment.setUserName(account.getName());
+        comment.setContent(content);
+        comment.setTimestamp(System.currentTimeMillis());
+        comment.save(AppContext.getCtx(), new SaveListener() {
+            @Override
+            public void onSuccess() {
+                listener.onCallback(Listener.CallbackType.onSuccess, null, "评论成功");
+            }
+
+            @Override
+            public void onFailure(int i, String s) {
+                listener.onCallback(Listener.CallbackType.onFailure, null, s);
+            }
+        });
+    }
+
+    /**
      * 获取评论列表
      * @param ssId 说说ID
      * @return
      * @throws AppException
      */
-    public void getComments(long ssId,final Listener<List<Comment>> listener) throws AppException {
-        String url = AppConstants.url_list_poi;
-
-        AjaxParams params = LBSCloud.getInitializedParams(AppConstants.geotable_id_comment);
-        params.put("q","");
-        //按时间|距离排序，优先显示时间靠前的
-        params.put("sortby","timestamp:-1|distance:1");
-        params.put("ssId",ssId+","+ssId);
-        //get
-        FinalHttp http = new FinalHttp();
-        http.get(url, params, new AjaxCallBack<String>() {
+    public void getComments(long ssId,final Listener<List<Comment>> listener) {
+        BmobQuery<Comment> query = new BmobQuery<>();
+        query.order("-timestamp");
+        query.findObjects(AppContext.getCtx(), new FindListener<Comment>() {
             @Override
-            public void onSuccess(String s) {
-                super.onSuccess(s);
-                try {
-                    List<Comment> comments = parseCommentsFromJson(s);
-                    listener.onCallback(Listener.CallbackType.onSuccess, comments, null);
-                } catch (AppException e) {
-                    listener.onCallback(Listener.CallbackType.onFailure, null, e.getMessage());
-                }
+            public void onSuccess(List<Comment> list) {
+                listener.onCallback(Listener.CallbackType.onSuccess,list,null);
             }
 
             @Override
-            public void onFailure(Throwable t, int errorNo, String strMsg) {
-                super.onFailure(t, errorNo, strMsg);
-                listener.onCallback(Listener.CallbackType.onFailure, null, strMsg);
+            public void onError(int i, String s) {
+                listener.onCallback(Listener.CallbackType.onFailure,null,s);
             }
         });
+
+//        String url = AppConstants.url_list_poi;
+//
+//        AjaxParams params = LBSCloud.getInitializedParams(AppConstants.geotable_id_comment);
+//        params.put("q","");
+//        //按时间|距离排序，优先显示时间靠前的
+//        params.put("sortby","timestamp:-1|distance:1");
+//        params.put("ssId",ssId+","+ssId);
+//        //get
+//        FinalHttp http = new FinalHttp();
+//        http.get(url, params, new AjaxCallBack<String>() {
+//            @Override
+//            public void onSuccess(String s) {
+//                super.onSuccess(s);
+//                try {
+//                    List<Comment> comments = parseCommentsFromJson(s);
+//                    listener.onCallback(Listener.CallbackType.onSuccess, comments, null);
+//                } catch (AppException e) {
+//                    listener.onCallback(Listener.CallbackType.onFailure, null, e.getMessage());
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Throwable t, int errorNo, String strMsg) {
+//                super.onFailure(t, errorNo, strMsg);
+//                listener.onCallback(Listener.CallbackType.onFailure, null, strMsg);
+//            }
+//        });
     }
 
     /**
@@ -187,7 +236,7 @@ public class ShuoshuoDao {
         for (int i=0;i<jsonObj.getSize();i++) {
             Shuoshuo shuoshuo = new Shuoshuo();
             NearbyShuoshuoItemJsonObj poi = jsonObj.getContents().get(i);
-            shuoshuo.setId(poi.getId());
+            shuoshuo.setId(poi.getUid());
             shuoshuo.setTimestamp(poi.getTimestamp());
             shuoshuo.setUserId(poi.getUserId());
             shuoshuo.setUserName(poi.getUserName());

@@ -20,7 +20,7 @@
             android:orientation="horizontal" >
 
             <EditText
-                android:id="@+id/edit"
+                android:uid="@+uid/edit"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/px_to_dip_18"
@@ -32,7 +32,7 @@
                 android:textSize="16dp" />
 
             <ImageView
-                android:id="@+id/search_icon"
+                android:uid="@+uid/search_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/px_to_dip_20"

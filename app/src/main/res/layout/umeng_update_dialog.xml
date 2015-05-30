@@ -5,7 +5,7 @@
     android:background="#99232323" >
 
     <LinearLayout
-        android:id="@+id/umeng_update_frame"
+        android:uid="@+uid/umeng_update_frame"
         android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -19,7 +19,7 @@
             android:layout_width="fill_parent"
             android:layout_height="40dp" >
             <ImageView
-                android:id="@+id/umeng_update_wifi_indicator"
+                android:uid="@+uid/umeng_update_wifi_indicator"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_centerVertical="true"
@@ -36,7 +36,7 @@
                 android:textColor="#008bea" />
             
             <Button
-                android:id="@+id/umeng_update_id_close"
+                android:uid="@+uid/umeng_update_id_close"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_alignParentRight="true"
@@ -68,7 +68,7 @@
                 android:orientation="vertical" >
 
                 <TextView
-                    android:id="@+id/umeng_update_content"
+                    android:uid="@+uid/umeng_update_content"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -82,7 +82,7 @@
         <!-- Ignore CheckBox -->
 
 		<CheckBox
-		    android:id="@+id/umeng_update_id_check"
+		    android:uid="@+uid/umeng_update_id_check"
 	        android:layout_width="fill_parent"
 	        android:layout_height="32dp"
 	        android:text="@string/UMIgnore"
@@ -96,7 +96,7 @@
             android:layout_height="wrap_content" >
 
             <Button
-                android:id="@+id/umeng_update_id_ok"
+                android:uid="@+uid/umeng_update_id_ok"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -109,7 +109,7 @@
                 android:textColor="#FFFFFF" />
 
             <Button
-                android:id="@+id/umeng_update_id_cancel"
+                android:uid="@+uid/umeng_update_id_cancel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -122,7 +122,7 @@
                 android:textColor="#000" />
 
             <Button
-                android:id="@+id/umeng_update_id_ignore"
+                android:uid="@+uid/umeng_update_id_ignore"
 				android:visibility="gone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

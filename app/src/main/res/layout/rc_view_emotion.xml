@@ -8,7 +8,7 @@
 
     <android.support.v4.view.ViewPager
         android:layout_marginTop="@dimen/px_to_dip_20"
-        android:id="@+id/viewpager"
+        android:uid="@+uid/viewpager"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -17,7 +17,7 @@
 
 
     <io.rong.imkit.view.CirclePageIndicator
-        android:id="@+id/radio_group"
+        android:uid="@+uid/radio_group"
         android:layout_width="fill_parent"
         android:layout_height="20dp"
         android:layout_gravity="bottom"

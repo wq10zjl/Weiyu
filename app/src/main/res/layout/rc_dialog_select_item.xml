@@ -5,14 +5,14 @@
     android:orientation="vertical" >
 
     <RelativeLayout
-        android:id="@+id/dialog_layout_one"
+        android:uid="@+uid/dialog_layout_one"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/px_to_dip_94"
         android:orientation="vertical"
         android:paddingLeft="@dimen/px_to_dip_34" >
 
         <TextView
-            android:id="@android:id/text1"
+            android:uid="@android:uid/text1"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_centerVertical="true"
@@ -27,14 +27,14 @@
         android:background="@android:color/black" />
 
     <RelativeLayout
-        android:id="@+id/dialog_layout_two"
+        android:uid="@+uid/dialog_layout_two"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/px_to_dip_94"
         android:orientation="vertical"
         android:paddingLeft="@dimen/px_to_dip_34" >
 
         <TextView
-            android:id="@android:id/text2"
+            android:uid="@android:uid/text2"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:gravity="center_vertical"

@@ -9,7 +9,7 @@
     android:orientation="horizontal">
 
     <ImageView
-        android:id="@+id/conversation_message_bar_change_iv"
+        android:uid="@+uid/conversation_message_bar_change_iv"
         android:layout_width="@dimen/px_to_dip_64"
         android:layout_height="@dimen/px_to_dip_64"
         android:layout_gravity="bottom"
@@ -20,7 +20,7 @@
         android:src="@drawable/rc_message_bar_vioce_icon" />
 
     <LinearLayout
-        android:id="@+id/conversation_message_edit_layout"
+        android:uid="@+uid/conversation_message_edit_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/px_to_dip_5"
@@ -39,7 +39,7 @@
             android:minHeight="@dimen/px_to_dip_96">
 
             <io.rong.imkit.view.MentionsEditText
-                android:id="@+id/conversation_message_bar_edit"
+                android:uid="@+uid/conversation_message_bar_edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
@@ -55,7 +55,7 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/conversation_message_expression"
+            android:uid="@+uid/conversation_message_expression"
             android:layout_width="@dimen/px_to_dip_50"
             android:layout_height="@dimen/px_to_dip_50"
             android:layout_gravity="bottom|right"
@@ -65,7 +65,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/conversation_message_bar_voice_btn"
+        android:uid="@+uid/conversation_message_bar_voice_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -79,7 +79,7 @@
         android:visibility="gone" />
 
     <ImageView
-        android:id="@+id/conversation_message_bar_add_iv"
+        android:uid="@+uid/conversation_message_bar_add_iv"
         android:layout_width="@dimen/px_to_dip_64"
         android:layout_height="@dimen/px_to_dip_64"
         android:layout_gravity="bottom"
@@ -90,7 +90,7 @@
         android:visibility="visible" />
 
     <Button
-        android:id="@+id/conversation_message_bar_send_btn"
+        android:uid="@+uid/conversation_message_bar_send_btn"
         android:layout_width="@dimen/px_to_dip_86"
         android:layout_height="@dimen/px_to_dip_68"
         android:layout_gravity="bottom"

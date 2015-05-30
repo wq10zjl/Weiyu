@@ -6,7 +6,7 @@
     android:orientation="vertical" >
 
     <com.immomo.momo.android.view.HandyTextView
-        android:id="@+id/dialog_otherfeedlist_htv_copy"
+        android:uid="@+uid/dialog_otherfeedlist_htv_copy"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_dialog_listitem_selector"
@@ -21,7 +21,7 @@
         android:background="@color/dialog_divider" />
 
     <com.immomo.momo.android.view.HandyTextView
-        android:id="@+id/dialog_otherfeedlist_htv_report"
+        android:uid="@+uid/dialog_otherfeedlist_htv_report"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_dialog_listitem_selector"

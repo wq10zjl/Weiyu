@@ -5,15 +5,15 @@
     android:background="@color/background_normal" >
 
     <include
-        android:id="@+id/otherprofile_header"
+        android:uid="@+uid/otherprofile_header"
         android:layout_alignParentTop="true"
         layout="@layout/include_header" />
 
     <com.immomo.momo.android.view.PagerScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_above="@+id/otherprofile_bottom"
-        android:layout_below="@+id/otherprofile_header"
+        android:layout_above="@+uid/otherprofile_bottom"
+        android:layout_below="@+uid/otherprofile_header"
         android:fadingEdge="none" >
 
         <LinearLayout
@@ -36,13 +36,13 @@
     </com.immomo.momo.android.view.PagerScrollView>
 
     <include
-        android:id="@+id/otherprofile_bottom"
+        android:uid="@+uid/otherprofile_bottom"
         layout="@layout/include_otherprofile_bottom" />
 
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/otherprofile_header"
+        android:layout_below="@+uid/otherprofile_header"
         android:background="@drawable/bg_topbar_shadow"
         android:focusable="false" />
 

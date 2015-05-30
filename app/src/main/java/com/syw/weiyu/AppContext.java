@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.util.LruCache;
+import cn.bmob.v3.Bmob;
 import com.orhanobut.logger.Logger;
 import com.syw.weiyu.api.WeiyuApi;
 import com.syw.weiyu.bean.Account;
@@ -101,6 +102,9 @@ public class AppContext extends Application {
             //初始化融云SDK事件监听处理
             RongCloudEvent.init(this);
         }
+
+        //初始化Bmob
+        Bmob.initialize(this, AppConstants.bmob_app_key);
     }
 
     @Override

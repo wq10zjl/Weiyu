@@ -1,6 +1,8 @@
 package com.syw.weiyu.ui.adapter;
 
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.TextView;
 import com.paging.listview.PagingBaseAdapter;
 import com.syw.weiyu.R;
 import com.syw.weiyu.bean.Shuoshuo;
+import com.syw.weiyu.ui.shuoshuo.ShuoshuoDetailActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -29,7 +32,9 @@ public class ShuoshuoListAdapter extends PagingBaseAdapter {
     }
 
     LayoutInflater mInflater;
+    Context ctx;
     public ShuoshuoListAdapter(Context ctx) {
+        this.ctx = ctx;
         mInflater = LayoutInflater.from(ctx);
     }
 
@@ -73,11 +78,20 @@ public class ShuoshuoListAdapter extends PagingBaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        Shuoshuo shuoshuo = shuoshuos.get(position);
+        final Shuoshuo shuoshuo = shuoshuos.get(position);
         holder.name.setText(shuoshuo.getUserName());
         holder.address.setText(shuoshuo.getLocation().getProvince()+shuoshuo.getLocation().getCity()+shuoshuo.getLocation().getDistrict());
         holder.time.setText(new SimpleDateFormat("MM-dd kk:mm").format(new Date(shuoshuo.getTimestamp())));
         holder.content.setText(shuoshuo.getContent());
+
+        holder.content.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ctx,ShuoshuoDetailActivity.class);
+                intent.putExtra("shuoshuo",shuoshuo);
+                ctx.startActivity(intent);
+            }
+        });
 
         //1/2白色
         if (shuoshuo.getTimestamp()%2 == 0) {

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rc_dialog"
+    android:uid="@+uid/rc_dialog"
     android:layout_width="@dimen/px_to_dip_564"
     android:layout_height="wrap_content"
     android:background="@drawable/rc_bg_select_dialog"
     android:orientation="vertical" >
 
     <FrameLayout
-        android:id="@+id/dialog_topbar"
+        android:uid="@+uid/dialog_topbar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:minHeight="@dimen/px_to_dip_128"
         android:padding="5dp" >
 
         <TextView
-            android:id="@+id/dialog_title"
+            android:uid="@+uid/dialog_title"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -27,18 +27,18 @@
         </TextView>
     </FrameLayout>
 
-    <View android:id="@+id/dialog_top_line"
+    <View android:uid="@+uid/dialog_top_line"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/px_to_dip_1"
         android:background="@color/dialog_conversation_line_color" />
 
     <FrameLayout
-        android:id="@+id/dialog_content"
+        android:uid="@+uid/dialog_content"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/dialog_content_txt"
+            android:uid="@+uid/dialog_content_txt"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:lineSpacingExtra="7.0dp"
@@ -53,7 +53,7 @@
     </FrameLayout>
 
     <LinearLayout
-        android:id="@+id/dialog_bottombar"
+        android:uid="@+uid/dialog_bottombar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -64,7 +64,7 @@
         android:visibility="gone" >
 
         <Button
-            android:id="@android:id/button1"
+            android:uid="@android:uid/button1"
             android:layout_width="wrap_content"
             android:layout_height="38dp"
             android:layout_margin="5dp"
@@ -75,7 +75,7 @@
             android:visibility="gone" />
 
         <Button
-            android:id="@android:id/button2"
+            android:uid="@android:uid/button2"
             android:layout_width="wrap_content"
             android:layout_height="38dp"
             android:layout_margin="5dp"
@@ -86,7 +86,7 @@
             android:visibility="gone" />
 
         <Button
-            android:id="@android:id/button3"
+            android:uid="@android:uid/button3"
             android:layout_width="wrap_content"
             android:layout_height="38dp"
             android:layout_margin="5dp"

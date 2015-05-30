@@ -12,7 +12,7 @@
         android:orientation="horizontal" >
 
         <CheckBox
-            android:id="@android:id/checkbox"
+            android:uid="@android:uid/checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -27,7 +27,7 @@
 
         <io.rong.imkit.view.AsyncImageView
             app:shape="square"
-            android:id="@android:id/icon"
+            android:uid="@android:uid/icon"
             android:layout_width="@dimen/px_to_dip_56"
             android:layout_height="@dimen/px_to_dip_56"
             android:layout_marginBottom="@dimen/px_to_dip_16"
@@ -37,7 +37,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@android:id/text1"
+        android:uid="@android:uid/text1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"

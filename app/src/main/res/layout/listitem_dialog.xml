@@ -7,7 +7,7 @@
     android:paddingRight="1dip" >
 
     <com.immomo.momo.android.view.HandyTextView
-        android:id="@+id/listitem_dialog_text"
+        android:uid="@+uid/listitem_dialog_text"
         android:layout_width="0dip"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -16,7 +16,7 @@
         android:textSize="18sp" />
 
     <ImageView
-        android:id="@+id/listitem_dialog_icon"
+        android:uid="@+uid/listitem_dialog_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right|center"

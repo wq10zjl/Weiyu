@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rc_dialog"
+    android:uid="@+uid/rc_dialog"
     android:layout_width="@dimen/px_to_dip_564"
     android:layout_height="wrap_content"
     android:background="@drawable/rc_bg_select_dialog"
     android:orientation="vertical">
 
     <TextView
-        android:id="@android:id/title"
+        android:uid="@android:uid/title"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/px_to_dip_64"
         android:layout_gravity="center_vertical"
@@ -22,7 +22,7 @@
         android:background="@color/dialog_conversation_line_color" />
 
     <EditText
-        android:id="@android:id/edit"
+        android:uid="@android:uid/edit"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/px_to_dip_90"
         android:layout_marginLeft="@dimen/px_to_dip_10"
@@ -39,7 +39,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@android:id/button1"
+            android:uid="@android:uid/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -49,7 +49,7 @@
             android:textSize="@dimen/px_to_dip_28" />
 
         <Button
-            android:id="@android:id/button2"
+            android:uid="@android:uid/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#d3d3d3"

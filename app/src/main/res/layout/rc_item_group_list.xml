@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@android:id/text1"
+        android:uid="@android:uid/text1"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="@dimen/px_to_dip_46"
         android:layout_width="wrap_content"

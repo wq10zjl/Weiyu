@@ -304,6 +304,9 @@
         <!--附近说说-->
         <activity android:name=".ui.main.ShuoshuoActivity"/>
 
+        <!--说说详情-->
+        <activity android:name=".ui.shuoshuo.ShuoshuoDetailActivity"/>
+
     </application>
 
 </manifest>

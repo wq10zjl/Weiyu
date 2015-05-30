@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TabHost xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@android:id/tabhost"
+    android:uid="@android:uid/tabhost"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
@@ -13,20 +13,20 @@
             android:layout_height="wrap_content" >
 
             <FrameLayout
-                android:id="@android:id/tabcontent"
+                android:uid="@android:uid/tabcontent"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_above="@android:id/tabs"/>
+                android:layout_above="@android:uid/tabs"/>
 
             <ImageView
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
                 android:background="#bbbbbb"
-                android:layout_above="@android:id/tabs"/>
+                android:layout_above="@android:uid/tabs"/>
 
             <TabWidget
                 android:background="@android:color/white"
-                android:id="@android:id/tabs"
+                android:uid="@android:uid/tabs"
                 android:layout_width="fill_parent"
                 android:layout_height="56dip"
                 android:layout_alignParentBottom="true"

@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/conversation_message_time_tv"
+        android:uid="@+uid/conversation_message_time_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -32,7 +32,7 @@
 
 
         <LinearLayout
-            android:id="@+id/text_left_layout_layout"
+            android:uid="@+uid/text_left_layout_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/px_to_dip_25"
@@ -42,7 +42,7 @@
 
             <io.rong.imkit.view.AsyncImageView
                 android:src="@drawable/rc_default_portrait"
-                android:id="@+id/conversation_message_other_portrait"
+                android:uid="@+uid/conversation_message_other_portrait"
                 app:defDrawable="@drawable/rc_default_portrait"
                 android:layout_width="@dimen/px_to_dip_82"
                 android:layout_height="@dimen/px_to_dip_82"
@@ -59,7 +59,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/conversation_message_username_left_tv"
+                    android:uid="@+uid/conversation_message_username_left_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
@@ -79,7 +79,7 @@
                         android:background="@drawable/rc_conversation_bubble_white">
 
                         <io.rong.imkit.view.AsyncImageView
-                            android:id="@+id/conversation_message_left_tv"
+                            android:uid="@+uid/conversation_message_left_tv"
                             android:layout_width="140dp"
                             android:layout_height="81dp"
                             android:layout_gravity="left"
@@ -93,7 +93,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
                             android:gravity="center"
-                            android:id="@id/rc_item0"/>
+                            android:uid="@uid/rc_item0"/>
 
                     </FrameLayout>
                 <!--</LinearLayout>-->
@@ -103,7 +103,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/text_right_layout_layout"
+            android:uid="@+uid/text_right_layout_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/px_to_dip_25"
@@ -120,7 +120,7 @@
                 android:visibility="visible">
 
                 <ProgressBar
-                    android:id="@+id/conversation_message_progressbar"
+                    android:uid="@+uid/conversation_message_progressbar"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:padding="5dp"
@@ -128,7 +128,7 @@
                     android:visibility="invisible" />
 
                 <ImageView
-                    android:id="@+id/conversation_message_send_failed"
+                    android:uid="@+uid/conversation_message_send_failed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
@@ -144,7 +144,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/conversation_message_username_right_tv"
+                        android:uid="@+uid/conversation_message_username_right_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
@@ -158,7 +158,7 @@
                         android:layout_height="wrap_content">
 
                         <io.rong.imkit.view.AsyncImageView
-                            android:id="@+id/conversation_message_right_tv"
+                            android:uid="@+uid/conversation_message_right_tv"
                             android:layout_width="140dp"
                             android:layout_height="81dp"
                             android:layout_gravity="left"
@@ -167,7 +167,7 @@
 
 
                         <TextView
-                            android:id="@+id/progress_textview"
+                            android:uid="@+uid/progress_textview"
                             android:layout_width="140dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -182,13 +182,13 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
                             android:gravity="center"
-                            android:id="@id/rc_item1"/>
+                            android:uid="@uid/rc_item1"/>
                     </FrameLayout>
                 </LinearLayout>
             </LinearLayout>
 
             <io.rong.imkit.view.AsyncImageView
-                android:id="@+id/conversation_message_self_portrait"
+                android:uid="@+uid/conversation_message_self_portrait"
                 app:defDrawable="@drawable/rc_default_portrait"
                 android:src="@drawable/rc_default_portrait"
                 android:layout_width="@dimen/px_to_dip_82"

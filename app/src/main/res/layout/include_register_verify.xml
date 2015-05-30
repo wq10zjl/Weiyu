@@ -20,7 +20,7 @@
             android:paddingTop="15dip" >
 
             <com.immomo.momo.android.view.HandyTextView
-                android:id="@+id/reg_verify_htv_phonenumber"
+                android:uid="@+uid/reg_verify_htv_phonenumber"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dip"
@@ -37,7 +37,7 @@
                 android:orientation="horizontal" >
 
                 <EditText
-                    android:id="@+id/reg_verify_et_verifycode"
+                    android:uid="@+uid/reg_verify_et_verifycode"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dip"
@@ -50,7 +50,7 @@
                     android:singleLine="true" />
 
                 <Button
-                    android:id="@+id/reg_verify_btn_resend"
+                    android:uid="@+uid/reg_verify_btn_resend"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
@@ -58,7 +58,7 @@
             </LinearLayout>
 
             <com.immomo.momo.android.view.HandyTextView
-                android:id="@+id/reg_verify_htv_nocode"
+                android:uid="@+uid/reg_verify_htv_nocode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dip"

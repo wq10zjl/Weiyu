@@ -7,7 +7,7 @@
 
     <TextView
         android:text="微遇\n遇见你的新世界"
-        android:id="@+id/guide_content"
+        android:uid="@+uid/guide_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -21,7 +21,7 @@
 
     <!--开屏广告容器-->
     <!--<FrameLayout-->
-        <!--android:id="@+id/splashcontainer"-->
+        <!--android:uid="@+uid/splashcontainer"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent"-->
         <!--android:fitsSystemWindows="true"-->

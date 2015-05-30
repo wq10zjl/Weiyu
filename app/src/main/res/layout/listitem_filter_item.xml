@@ -6,7 +6,7 @@
     android:layout_marginRight="2dip" >
 
     <ImageView
-        android:id="@+id/filter_item_image"
+        android:uid="@+uid/filter_item_image"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_margin="3dip"
@@ -16,7 +16,7 @@
         android:padding="1dip" />
 
     <ImageView
-        android:id="@+id/filter_item_cover"
+        android:uid="@+uid/filter_item_cover"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:clickable="true"
@@ -24,10 +24,10 @@
         android:src="@drawable/btn_filter_cover" />
 
     <com.immomo.momo.android.view.HandyTextView
-        android:id="@+id/filter_item_text"
+        android:uid="@+uid/filter_item_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/filter_item_image"
+        android:layout_alignBottom="@+uid/filter_item_image"
         android:layout_centerHorizontal="true"
         android:clickable="false"
         android:focusable="false"

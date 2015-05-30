@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/header_spinner_layout_root"
+    android:uid="@+uid/header_spinner_layout_root"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/bg_headerbar_spinner"
@@ -9,7 +9,7 @@
     android:clickable="true">
 
     <com.immomo.momo.android.view.HandyTextView
-        android:id="@+id/header_spinner_htv_text"
+        android:uid="@+uid/header_spinner_htv_text"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:gravity="center_vertical"
@@ -22,13 +22,14 @@
         android:textSize="18sp" />
 
     <com.immomo.momo.android.view.RotatingImageView
-        android:id="@+id/header_spinner_riv_arrow"
+        android:uid="@+uid/header_spinner_riv_arrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="8dip"
         android:layout_marginTop="2dip"
-        android:layout_toRightOf="@+id/header_spinner_htv_text"
+        android:layout_toRightOf="@+uid/header_spinner_htv_text"
         android:scaleType="centerInside"
         android:src="@drawable/ic_topbar_dropdown_arrow" />
-</RelativeLayout>
+
+</RelativeLayout>

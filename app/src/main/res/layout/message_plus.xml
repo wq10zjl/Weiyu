@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/message_plus_layout_bar"
+    android:uid="@+uid/message_plus_layout_bar"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/bg_chat_plusbar"
@@ -8,7 +8,7 @@
     android:visibility="gone" >
 
     <LinearLayout
-        android:id="@+id/message_plus_layout_picture"
+        android:uid="@+uid/message_plus_layout_picture"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_weight="1"
@@ -33,7 +33,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/message_plus_layout_camera"
+        android:uid="@+uid/message_plus_layout_camera"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_weight="1"
@@ -58,7 +58,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/message_plus_layout_location"
+        android:uid="@+uid/message_plus_layout_location"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_weight="1"
@@ -83,7 +83,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/message_plus_layout_gift"
+        android:uid="@+uid/message_plus_layout_gift"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_weight="1"

@@ -43,7 +43,7 @@
                 android:background="@color/devideline" />
 
             <RelativeLayout
-                android:id="@+id/otherprofile_info_layout_vip"
+                android:uid="@+uid/otherprofile_info_layout_vip"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="50dip"
@@ -81,7 +81,7 @@
             </RelativeLayout>
 
             <LinearLayout
-                android:id="@+id/otherprofile_info_layout_momoid"
+                android:uid="@+uid/otherprofile_info_layout_momoid"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
@@ -121,7 +121,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/otherprofile_info_layout_sign"
+                android:uid="@+uid/otherprofile_info_layout_sign"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
@@ -137,7 +137,7 @@
                     android:padding="10dip" >
 
                     <com.immomo.momo.android.view.HandyTextView
-                        android:id="@+id/otherprofile_info_htv_sign_title"
+                        android:uid="@+uid/otherprofile_info_htv_sign_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
@@ -146,10 +146,10 @@
                         android:textSize="18sp" />
 
                     <com.immomo.momo.android.view.EmoticonsTextView
-                        android:id="@+id/otherprofile_info_htv_sign"
+                        android:uid="@+uid/otherprofile_info_htv_sign"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/otherprofile_info_htv_sign_title"
+                        android:layout_below="@+uid/otherprofile_info_htv_sign_title"
                         android:autoLink="all"
                         android:text="今天的天气真是不错的~"
                         android:textColor="@color/font_value"
@@ -190,7 +190,7 @@
                 android:padding="10dip" >
 
                 <com.immomo.momo.android.view.HandyTextView
-                    android:id="@+id/otherprofile_info_htv_company_title"
+                    android:uid="@+uid/otherprofile_info_htv_company_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -201,7 +201,7 @@
                 <com.immomo.momo.android.view.EmoticonsTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/otherprofile_info_htv_company_title"
+                    android:layout_below="@+uid/otherprofile_info_htv_company_title"
                     android:text="青岛xxxxx有限公司"
                     android:textColor="@color/font_value"
                     android:textSize="16sp" />
@@ -224,7 +224,7 @@
                 android:padding="10dip" >
 
                 <com.immomo.momo.android.view.HandyTextView
-                    android:id="@+id/otherprofile_info_htv_school_title"
+                    android:uid="@+uid/otherprofile_info_htv_school_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -235,7 +235,7 @@
                 <com.immomo.momo.android.view.EmoticonsTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/otherprofile_info_htv_school_title"
+                    android:layout_below="@+uid/otherprofile_info_htv_school_title"
                     android:text="青岛xxxxx中学"
                     android:textColor="@color/font_value"
                     android:textSize="16sp" />

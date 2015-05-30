@@ -7,7 +7,7 @@
     android:orientation="vertical" >
 
     <io.rong.imkit.view.PinnedHeaderListView
-        android:id="@android:id/list"
+        android:uid="@android:uid/list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:fadingEdge="none"
@@ -15,7 +15,7 @@
         android:scrollbars="none" />
 
     <io.rong.imkit.view.SwitchGroup
-        android:id="@android:id/message"
+        android:uid="@android:uid/message"
         android:layout_width="@dimen/px_to_dip_50"
         android:paddingTop="@dimen/px_to_dip_20"
         android:layout_height="match_parent"

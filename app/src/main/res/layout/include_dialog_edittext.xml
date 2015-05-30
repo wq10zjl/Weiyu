@@ -5,7 +5,7 @@
     android:orientation="vertical" >
 
     <EditText
-        android:id="@+id/dialog_edittext_enter"
+        android:uid="@+uid/dialog_edittext_enter"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/edittext_default"

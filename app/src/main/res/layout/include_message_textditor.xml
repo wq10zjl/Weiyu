@@ -16,7 +16,7 @@
         android:orientation="horizontal" >
 
         <ImageButton
-            android:id="@+id/chat_textditor_ib_plus"
+            android:uid="@+uid/chat_textditor_ib_plus"
             android:layout_width="36dip"
             android:layout_height="46dip"
             android:layout_marginRight="4dip"
@@ -28,14 +28,14 @@
             android:layout_height="wrap_content" >
 
             <ImageButton
-                android:id="@+id/chat_textditor_ib_keyboard"
+                android:uid="@+uid/chat_textditor_ib_keyboard"
                 android:layout_width="fill_parent"
                 android:layout_height="46dip"
                 android:background="@drawable/btn_chatbtn2"
                 android:src="@drawable/ic_chat_keyboard_normal" />
 
             <ImageButton
-                android:id="@+id/chat_textditor_ib_emote"
+                android:uid="@+uid/chat_textditor_ib_emote"
                 android:layout_width="fill_parent"
                 android:layout_height="46dip"
                 android:background="@drawable/btn_chatbtn2"
@@ -44,7 +44,7 @@
     </LinearLayout>
 
     <com.immomo.momo.android.view.EmoticonsEditText
-        android:id="@+id/chat_textditor_eet_editer"
+        android:uid="@+uid/chat_textditor_eet_editer"
         android:layout_width="0dip"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content" >
 
         <Button
-            android:id="@+id/chat_textditor_btn_send"
+            android:uid="@+uid/chat_textditor_btn_send"
             android:layout_width="wrap_content"
             android:layout_height="46dip"
             android:layout_marginLeft="4dip"
@@ -72,7 +72,7 @@
             android:visibility="gone" />
 
         <ImageView
-            android:id="@+id/chat_textditor_iv_audio"
+            android:uid="@+uid/chat_textditor_iv_audio"
             android:layout_width="wrap_content"
             android:layout_height="46dip"
             android:layout_marginLeft="4dip"

@@ -1,11 +1,13 @@
 package com.syw.weiyu.bean;
 
+import cn.bmob.v3.BmobObject;
+
 /**
  * author: youwei
  * date: 2015-05-20
  * desc: 评论实体类
  */
-public class Comment {
+public class Comment extends BmobObject {
     private String userName;
     private String userId;
     private String content;

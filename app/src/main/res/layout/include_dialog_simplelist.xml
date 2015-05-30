@@ -5,7 +5,7 @@
     android:orientation="vertical" >
 
     <ListView
-        android:id="@+id/dialog_simplelist_list"
+        android:uid="@+uid/dialog_simplelist_list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_dialog_simplelist"

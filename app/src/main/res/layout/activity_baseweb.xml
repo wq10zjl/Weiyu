@@ -5,7 +5,7 @@
     android:background="#FFFFFFFF" >
 
     <LinearLayout
-        android:id="@+id/baseweb_linear_header_container"
+        android:uid="@+uid/baseweb_linear_header_container"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:visibility="gone" >
@@ -14,15 +14,15 @@
     </LinearLayout>
 
     <WebView
-        android:id="@+id/baseweb_webview"
+        android:uid="@+uid/baseweb_webview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@id/baseweb_linear_header_container"
+        android:layout_below="@uid/baseweb_linear_header_container"
         android:fadeScrollbars="true"
         android:scrollbarStyle="insideOverlay" />
 
     <include
-        android:id="@+id/baseweb_loading_indicator"
+        android:uid="@+uid/baseweb_loading_indicator"
         layout="@layout/include_loading_indicator"
         android:visibility="gone" />
 

@@ -28,14 +28,14 @@
         android:paddingRight="15dip" >
 
         <com.immomo.momo.android.view.HandyTextView
-            android:id="@+id/about_htv_versionname"
+            android:uid="@+uid/about_htv_versionname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/text_color"
             android:textSize="14sp" />
 
         <Button
-            android:id="@+id/about_btn_checknewversion"
+            android:uid="@+uid/about_btn_checknewversion"
             android:layout_width="fill_parent"
             android:layout_height="40dip"
             android:layout_marginTop="10dip"
@@ -45,7 +45,7 @@
             android:textSize="15sp" />
 
         <Button
-            android:id="@+id/about_btn_introduction"
+            android:uid="@+uid/about_btn_introduction"
             android:layout_width="fill_parent"
             android:layout_height="40dip"
             android:layout_marginTop="10dip"
@@ -55,7 +55,7 @@
             android:textSize="15sp" />
 
         <Button
-            android:id="@+id/about_btn_go_official_website"
+            android:uid="@+uid/about_btn_go_official_website"
             android:layout_width="fill_parent"
             android:layout_height="40dip"
             android:layout_marginTop="10dip"

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <io.rong.imkit.view.CoverFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/rong_cover_layout"
+    android:uid="@+uid/rong_cover_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:coverView="@+id/rong_voice_cover"
-    app:triggerView="@+id/conversation_message_bar_voice_btn" >
+    app:coverView="@+uid/rong_voice_cover"
+    app:triggerView="@+uid/conversation_message_bar_voice_btn" >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
         android:background="#EBEBEB" >
 
         <io.rong.imkit.view.ConversationMessageBar
-            android:id="@+id/conversation_message_bar"
+            android:uid="@+uid/conversation_message_bar"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -21,10 +21,10 @@
             android:focusableInTouchMode="true" />
 
         <io.rong.imkit.view.PullDownRefreshListView
-            android:id="@android:id/list"
+            android:uid="@android:uid/list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/conversation_message_bar"
+            android:layout_above="@uid/conversation_message_bar"
             android:background="#EBEBEB"
             android:cacheColorHint="@android:color/transparent"
             android:divider="@android:color/transparent"
@@ -34,7 +34,7 @@
             android:scrollingCache="false" />
 
         <TextView
-            android:id="@+id/connect_state"
+            android:uid="@+uid/connect_state"
             android:layout_width="match_parent"
             android:layout_height="@dimen/px_to_dip_68"
             android:background="#FBE8E8"
@@ -49,7 +49,7 @@
     </RelativeLayout>
 
     <io.rong.imkit.view.VoiceCoverView
-        android:id="@id/rong_voice_cover"
+        android:uid="@uid/rong_voice_cover"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_gravity="center"
@@ -57,7 +57,7 @@
     </io.rong.imkit.view.VoiceCoverView>
 
     <FrameLayout
-        android:id="@android:id/toggle"
+        android:uid="@android:uid/toggle"
         android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

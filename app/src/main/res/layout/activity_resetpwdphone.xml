@@ -5,13 +5,13 @@
     android:background="@color/background_normal" >
 
     <include
-        android:id="@+id/resetpwdphone_header"
+        android:uid="@+uid/resetpwdphone_header"
         layout="@layout/include_header" />
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/resetpwdphone_header"
+        android:layout_below="@+uid/resetpwdphone_header"
         android:orientation="vertical" >
 
         <ScrollView
@@ -44,7 +44,7 @@
                     android:orientation="vertical" />
 
                 <com.immomo.momo.android.view.HandyTextView
-                    android:id="@+id/resetpwdphone_htv_content"
+                    android:uid="@+uid/resetpwdphone_htv_content"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dip"
@@ -70,7 +70,7 @@
                     android:orientation="vertical" />
 
                 <EditText
-                    android:id="@+id/resetpwdphone_et_validatecode"
+                    android:uid="@+uid/resetpwdphone_et_validatecode"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dip"
@@ -90,7 +90,7 @@
                     android:textSize="16sp" />
 
                 <EditText
-                    android:id="@+id/resetpwdphone_et_newpwd"
+                    android:uid="@+uid/resetpwdphone_et_newpwd"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dip"
@@ -103,7 +103,7 @@
                     android:singleLine="true" />
 
                 <EditText
-                    android:id="@+id/resetpwdphone_et_renewpwd"
+                    android:uid="@+uid/resetpwdphone_et_renewpwd"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dip"
@@ -128,7 +128,7 @@
             android:paddingTop="4dip" >
 
             <Button
-                android:id="@+id/resetpwdphone_btn_back"
+                android:uid="@+uid/resetpwdphone_btn_back"
                 android:layout_width="wrap_content"
                 android:layout_height="42dip"
                 android:layout_marginRight="9dip"
@@ -140,7 +140,7 @@
                 android:textSize="14sp" />
 
             <Button
-                android:id="@+id/resetpwdphone_btn_submit"
+                android:uid="@+uid/resetpwdphone_btn_submit"
                 android:layout_width="wrap_content"
                 android:layout_height="42dip"
                 android:layout_marginLeft="9dip"
@@ -156,7 +156,7 @@
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/resetpwdphone_header"
+        android:layout_below="@+uid/resetpwdphone_header"
         android:background="@drawable/bg_topbar_shadow"
         android:focusable="false" />
 

@@ -6,7 +6,7 @@
     android:orientation="vertical" >
 
     <LinearLayout
-        android:id="@+id/nearby_group_header_layout_header"
+        android:uid="@+uid/nearby_group_header_layout_header"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="@drawable/bg_nearbygroup_parent"
@@ -19,7 +19,7 @@
         android:paddingTop="7dip" >
 
         <com.immomo.momo.android.view.HandyTextView
-            android:id="@+id/nearby_group_header_htv_address"
+            android:uid="@+uid/nearby_group_header_htv_address"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -29,7 +29,7 @@
             android:textSize="14sp" />
 
         <com.immomo.momo.android.view.HandyTextView
-            android:id="@+id/nearby_group_header_htv_count"
+            android:uid="@+uid/nearby_group_header_htv_count"
             android:layout_width="100dip"
             android:layout_height="wrap_content"
             android:ellipsize="end"

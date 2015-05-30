@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TabHost xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@android:id/tabhost"
+    android:uid="@android:uid/tabhost"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
@@ -10,25 +10,25 @@
         android:background="#FFE8E8E8" >
 
         <include
-            android:id="@+id/abouttabs_header"
+            android:uid="@+uid/abouttabs_header"
             layout="@layout/include_header" />
 
         <LinearLayout
-            android:id="@+id/abouttabs_linear_content"
+            android:uid="@+uid/abouttabs_linear_content"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_below="@+id/abouttabs_header"
+            android:layout_below="@+uid/abouttabs_header"
             android:orientation="vertical" >
 
             <TabWidget
-                android:id="@android:id/tabs"
+                android:uid="@android:uid/tabs"
                 android:layout_width="fill_parent"
                 android:layout_height="40dip"
                 android:background="@drawable/bg_tab_bluelight_normal"
                 android:divider="@null" />
 
             <FrameLayout
-                android:id="@android:id/tabcontent"
+                android:uid="@android:uid/tabcontent"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1" />
@@ -37,7 +37,7 @@
         <ImageView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/abouttabs_header"
+            android:layout_below="@+uid/abouttabs_header"
             android:background="@drawable/bg_topbar_shadow"
             android:focusable="false" />
     </RelativeLayout>

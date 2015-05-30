@@ -5,14 +5,14 @@
     android:background="@color/white" >
 
     <ImageView
-        android:id="@+id/userguide_iv_content"
+        android:uid="@+uid/userguide_iv_content"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter" />
 
     <ImageView
-        android:id="@+id/userguide_iv_bottom"
+        android:uid="@+uid/userguide_iv_bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -21,7 +21,7 @@
         android:scaleType="fitCenter" />
 
     <Button
-        android:id="@+id/userguide_btn_enter"
+        android:uid="@+uid/userguide_btn_enter"
         android:layout_width="200dip"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

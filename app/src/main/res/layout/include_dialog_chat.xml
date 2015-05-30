@@ -6,7 +6,7 @@
     android:orientation="vertical" >
 
     <com.immomo.momo.android.view.HandyTextView
-        android:id="@+id/dialog_chat_htv_voicemode"
+        android:uid="@+uid/dialog_chat_htv_voicemode"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_dialog_listitem_selector"
@@ -21,7 +21,7 @@
         android:background="@color/dialog_divider" />
 
     <com.immomo.momo.android.view.HandyTextView
-        android:id="@+id/dialog_chat_htv_create"
+        android:uid="@+uid/dialog_chat_htv_create"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_dialog_listitem_selector"
@@ -36,7 +36,7 @@
         android:background="@color/dialog_divider" />
 
     <com.immomo.momo.android.view.HandyTextView
-        android:id="@+id/dialog_chat_htv_synchronous"
+        android:uid="@+uid/dialog_chat_htv_synchronous"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_dialog_listitem_selector"

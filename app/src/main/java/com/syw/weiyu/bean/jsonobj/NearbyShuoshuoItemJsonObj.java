@@ -6,7 +6,7 @@ package com.syw.weiyu.bean.jsonobj;
  * desc: 说说、评论、poi数据项（用于JSON反序列化）
  */
 public class NearbyShuoshuoItemJsonObj {
-    private long id;
+    private long uid;
     private String province;
     private String city;
     private String district;
@@ -19,7 +19,7 @@ public class NearbyShuoshuoItemJsonObj {
     @Override
     public String toString() {
         return "{" +
-                "id=" + id +
+                "uid=" + uid +
                 ", province='" + province + '\'' +
                 ", city='" + city + '\'' +
                 ", district='" + district + '\'' +
@@ -31,12 +31,12 @@ public class NearbyShuoshuoItemJsonObj {
                 '}';
     }
 
-    public long getId() {
-        return id;
+    public long getUid() {
+        return uid;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setUid(long uid) {
+        this.uid = uid;
     }
 
     public String getProvince() {

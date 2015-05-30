@@ -174,11 +174,11 @@ public class NearByUserActivity extends FragmentActivity {
 //
 //                    //users(only has userId&name&gender)
 //                    User user = new User();
-//                    user.setId(poi.getString("userId"));
+//                    user.setUid(poi.getString("userId"));
 //                    user.setName(poi.getString("name"));
 //                    user.setGender(poi.getString("gender"));
 //                    //save userId-json[k-v value] cache
-//                    ACache.get(NearByUserActivity.this).put(user.getId(), JSON.toJSONString(user));
+//                    ACache.get(NearByUserActivity.this).put(user.getUid(), JSON.toJSONString(user));
 //                }
 //                //set totalPage
 //                if (totalPage == 0) {

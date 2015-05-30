@@ -8,14 +8,14 @@
     android:orientation="horizontal" >
 
     <View
-        android:id="@+id/tabbar_item_ligthblue_driver_left"
+        android:uid="@+uid/tabbar_item_ligthblue_driver_left"
         android:layout_width="1px"
         android:layout_height="18dip"
         android:background="#ffa5a9ad"
         android:visibility="gone" />
 
     <com.immomo.momo.android.view.HandyTextView
-        android:id="@+id/tabbar_item_htv_label"
+        android:uid="@+uid/tabbar_item_htv_label"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -23,7 +23,7 @@
         android:textSize="14sp" />
 
     <View
-        android:id="@+id/tabbar_item_ligthblue_driver_right"
+        android:uid="@+uid/tabbar_item_ligthblue_driver_right"
         android:layout_width="1px"
         android:layout_height="18dip"
         android:background="#ffa5a9ad"

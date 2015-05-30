@@ -41,7 +41,7 @@
                     android:orientation="horizontal" >
 
                     <com.immomo.momo.android.view.HandyTextView
-                        android:id="@+id/reg_birthday_htv_constellation"
+                        android:uid="@+uid/reg_birthday_htv_constellation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
@@ -50,7 +50,7 @@
                         android:textSize="17sp" />
 
                     <com.immomo.momo.android.view.HandyTextView
-                        android:id="@+id/reg_birthday_htv_age"
+                        android:uid="@+uid/reg_birthday_htv_age"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
@@ -77,7 +77,7 @@
                 android:orientation="vertical"
                 android:paddingBottom="15dip" >
                 <DatePicker
-                    android:id="@+id/reg_birthday_dp_birthday"
+                    android:uid="@+uid/reg_birthday_dp_birthday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

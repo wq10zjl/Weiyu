@@ -27,7 +27,7 @@
                 android:orientation="horizontal" >
 
                 <com.immomo.momo.android.view.HandyTextView
-                    android:id="@+id/reg_phone_htv_areacode"
+                    android:uid="@+uid/reg_phone_htv_areacode"
                     android:layout_width="100dip"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dip"
@@ -40,7 +40,7 @@
                     android:textSize="18sp" />
 
                 <EditText
-                    android:id="@+id/reg_phone_et_phone"
+                    android:uid="@+uid/reg_phone_et_phone"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:background="@drawable/edittext_default"
@@ -56,7 +56,7 @@
                 android:layout_height="fill_parent" >
 
                 <com.immomo.momo.android.view.HandyTextView
-                    android:id="@+id/reg_phone_htv_notice"
+                    android:uid="@+uid/reg_phone_htv_notice"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8.0dip"
@@ -71,15 +71,15 @@
                     android:visibility="gone" />
 
                 <LinearLayout
-                    android:id="@+id/reg_phone_layout_note"
+                    android:uid="@+uid/reg_phone_layout_note"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:layout_below="@+id/reg_phone_htv_notice"
+                    android:layout_below="@+uid/reg_phone_htv_notice"
                     android:orientation="vertical"
                     android:paddingBottom="50dip" >
 
                     <com.immomo.momo.android.view.HandyTextView
-                        android:id="@+id/reg_phone_htv_note"
+                        android:uid="@+uid/reg_phone_htv_note"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dip"

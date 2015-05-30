@@ -6,7 +6,7 @@
     android:orientation="horizontal" >
 
     <LinearLayout
-        android:id="@+id/refreshing_header_layout_container"
+        android:uid="@+uid/refreshing_header_layout_container"
         android:layout_width="fill_parent"
         android:layout_height="60dip"
         android:background="@drawable/bg_loadbar"
@@ -17,14 +17,14 @@
             android:layout_height="wrap_content" >
 
             <ImageView
-                android:id="@+id/refreshing_header_iv_arrow"
+                android:uid="@+uid/refreshing_header_iv_arrow"
                 android:layout_width="60dip"
                 android:layout_height="60dip"
                 android:scaleType="centerInside"
                 android:src="@drawable/ic_common_droparrow_up" />
 
             <ImageView
-                android:id="@+id/refreshing_header_iv_loading"
+                android:uid="@+uid/refreshing_header_iv_loading"
                 android:layout_width="60dip"
                 android:layout_height="60dip"
                 android:scaleType="centerInside"
@@ -41,14 +41,14 @@
             android:orientation="vertical" >
 
             <com.immomo.momo.android.view.HandyTextView
-                android:id="@+id/refreshing_header_htv_title"
+                android:uid="@+uid/refreshing_header_htv_title"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/dropbar_text_color"
                 android:textSize="16sp" />
 
             <com.immomo.momo.android.view.HandyTextView
-                android:id="@+id/refreshing_header_htv_time"
+                android:uid="@+uid/refreshing_header_htv_time"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
@@ -57,7 +57,7 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/refreshing_header_iv_cancel"
+            android:uid="@+uid/refreshing_header_iv_cancel"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:paddingLeft="5dip"

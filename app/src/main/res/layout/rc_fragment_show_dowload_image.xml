@@ -6,7 +6,7 @@
     android:orientation="vertical" >
 
     <uk.co.senab.photoview.PhotoView
-        android:id="@android:id/icon"
+        android:uid="@android:uid/icon"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitCenter"

@@ -6,7 +6,7 @@
     android:layout_gravity="center"
     android:layout_height="wrap_content">
     <ImageView
-            android:id="@android:id/icon"
+            android:uid="@android:uid/icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -15,7 +15,7 @@
             android:src="@drawable/rc_volume_zero" />
 
         <TextView
-            android:id="@android:id/text1"
+            android:uid="@android:uid/text1"
             android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@android:id/message"
+            android:uid="@android:uid/message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

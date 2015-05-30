@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"/>
 
     <!--<RelativeLayout-->
-    <!--android:id="@+id/explore_item_appwall"-->
+    <!--android:uid="@+uid/explore_item_appwall"-->
     <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
     <!--android:layout_width="match_parent"-->
     <!--android:layout_height="58dip"-->
@@ -18,7 +18,7 @@
     <!--&lt;!&ndash;android:background="@drawable/wy_single_item"        &ndash;&gt;-->
 
     <!--<ImageView-->
-    <!--android:id="@+id/lv_icon_portrait"-->
+    <!--android:uid="@+uid/lv_icon_portrait"-->
     <!--android:layout_width="62dip"-->
     <!--android:layout_height="fill_parent"-->
     <!--android:layout_alignParentBottom="true"-->
@@ -26,13 +26,13 @@
     <!--android:src="@drawable/wy_icon_appwall"/>-->
 
     <!--<TextView-->
-    <!--android:id="@+id/lv_tv_name"-->
+    <!--android:uid="@+uid/lv_tv_name"-->
     <!--android:layout_width="fill_parent"-->
     <!--android:layout_height="fill_parent"-->
     <!--android:layout_alignParentRight="true"-->
     <!--android:layout_alignParentTop="true"-->
     <!--android:layout_alignWithParentIfMissing="true"-->
-    <!--android:layout_toRightOf="@id/lv_icon_portrait"-->
+    <!--android:layout_toRightOf="@uid/lv_icon_portrait"-->
     <!--android:gravity="center_vertical"-->
     <!--android:text="精品游戏和应用"-->
     <!--android:textSize="@dimen/px_to_dip_36"/>-->
@@ -45,7 +45,7 @@
         android:src="@drawable/wy_bg_cell_divider_line"/>
 
     <RelativeLayout
-        android:id="@+id/explore_item_shuoshuo"
+        android:uid="@+uid/explore_item_shuoshuo"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="58dip"
@@ -53,7 +53,7 @@
         <!--android:background="@drawable/wy_single_item"        -->
 
         <ImageView
-            android:id="@+id/lv_icon_nearby_people"
+            android:uid="@+uid/lv_icon_nearby_people"
             android:layout_width="62dip"
             android:layout_height="fill_parent"
             android:layout_alignParentBottom="true"
@@ -61,14 +61,14 @@
             android:src="@drawable/wy_icon_nearby_people"/>
 
         <TextView
-            android:id="@+id/lv_tv_nearby_people"
+            android:uid="@+uid/lv_tv_nearby_people"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_above="@+id/lv_tv_nearby_people"
+            android:layout_above="@+uid/lv_tv_nearby_people"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:layout_alignWithParentIfMissing="true"
-            android:layout_toRightOf="@id/lv_icon_nearby_people"
+            android:layout_toRightOf="@uid/lv_icon_nearby_people"
             android:gravity="center_vertical"
             android:text="附近的人"
             android:textSize="@dimen/px_to_dip_36"/>
@@ -83,7 +83,7 @@
         android:background="#bbbbbb"/>
 
     <RelativeLayout
-        android:id="@+id/explore_item_profile"
+        android:uid="@+uid/explore_item_profile"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="58dip"
@@ -91,7 +91,7 @@
         <!--android:background="@drawable/wy_single_item"        -->
 
         <ImageView
-            android:id="@+id/lv_icon_profile"
+            android:uid="@+uid/lv_icon_profile"
             android:layout_width="62dip"
             android:layout_height="fill_parent"
             android:layout_alignParentBottom="true"
@@ -99,14 +99,14 @@
             android:src="@drawable/wy_icon_profile"/>
 
         <TextView
-            android:id="@+id/lv_tv_profile"
+            android:uid="@+uid/lv_tv_profile"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_above="@+id/lv_tv_profile"
+            android:layout_above="@+uid/lv_tv_profile"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:layout_alignWithParentIfMissing="true"
-            android:layout_toRightOf="@id/lv_icon_profile"
+            android:layout_toRightOf="@uid/lv_icon_profile"
             android:gravity="center_vertical"
             android:text="个人资料修改"
             android:textSize="@dimen/px_to_dip_36"/>
@@ -122,14 +122,14 @@
 
 
     <RelativeLayout
-        android:id="@+id/explore_item_aboutinfo"
+        android:uid="@+uid/explore_item_aboutinfo"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="58dip"
         android:padding="8dip">
 
         <ImageView
-            android:id="@+id/lv_icon_aboutinfo"
+            android:uid="@+uid/lv_icon_aboutinfo"
             android:layout_width="62dip"
             android:layout_height="fill_parent"
             android:layout_alignParentBottom="true"
@@ -137,13 +137,13 @@
             android:src="@drawable/wy_icon_aboutinfo"/>
 
         <TextView
-            android:id="@+id/nearbyuser_tv_address"
+            android:uid="@+uid/nearbyuser_tv_address"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:layout_alignWithParentIfMissing="true"
-            android:layout_toRightOf="@id/lv_icon_aboutinfo"
+            android:layout_toRightOf="@uid/lv_icon_aboutinfo"
             android:gravity="center_vertical"
             android:text="关于"
             android:textSize="@dimen/px_to_dip_36"/>

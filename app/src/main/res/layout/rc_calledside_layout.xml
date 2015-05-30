@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/container"
+    android:uid="@+uid/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black" >
@@ -13,7 +13,7 @@
         android:padding="10dp" >
 
         <Button
-            android:id="@+id/refuse_id"
+            android:uid="@+uid/refuse_id"
             android:layout_width="0dip"
             android:layout_height="60dip"
             android:layout_marginRight="5dp"
@@ -24,7 +24,7 @@
             android:textColor="@android:color/white" />
 
         <Button
-            android:id="@+id/answer_id"
+            android:uid="@+uid/answer_id"
             android:layout_width="0dip"
             android:layout_height="60dip"
             android:layout_marginLeft="5dp"
@@ -36,7 +36,7 @@
         <!-- 结束通话    隐藏按钮 -->
 
         <Button
-            android:id="@+id/call_finish"
+            android:uid="@+uid/call_finish"
             android:layout_width="match_parent"
             android:layout_height="60dip"
             android:layout_marginRight="5dp"
@@ -48,7 +48,7 @@
     </LinearLayout>
 
     <FrameLayout
-        android:id="@+id/user_photo_container"
+        android:uid="@+uid/user_photo_container"
         android:layout_width="100dip"
         android:layout_height="100dip"
         android:layout_alignParentTop="true"
@@ -59,26 +59,26 @@
         android:layout_marginBottom="10dp">
 
         <ImageView
-            android:id="@+id/user_photo"
+            android:uid="@+uid/user_photo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/rc_default_portrait"/>
     </FrameLayout>
 
     <TextView
-        android:id="@+id/user_name"
+        android:uid="@+uid/user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/user_photo_container"
+        android:layout_below="@+uid/user_photo_container"
         android:layout_centerHorizontal="true"
         android:textColor="@android:color/white"
         android:textSize="15dp" />
 
     <TextView
-        android:id="@+id/calling_state"
+        android:uid="@+uid/calling_state"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/user_name"
+        android:layout_below="@+uid/user_name"
         android:layout_centerHorizontal="true"
         android:text="来电话了"
         android:textColor="@android:color/white"
@@ -86,11 +86,11 @@
     <!-- 静音/免提  控制界面   隐藏这个控件 -->
 
     <LinearLayout
-        android:id="@+id/vioce_control_container"
+        android:uid="@+uid/vioce_control_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/calling_state"
+        android:layout_below="@+uid/calling_state"
         android:layout_marginTop="70dp"
         android:orientation="horizontal"
         android:visibility="gone" >
@@ -101,7 +101,7 @@
             android:layout_weight="1" >
 
             <ImageView
-                android:id="@+id/sound_off_id"
+                android:uid="@+uid/sound_off_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -110,7 +110,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/sound_off_id"
+                android:layout_below="@uid/sound_off_id"
                 android:layout_centerHorizontal="true"
                 android:text="静音"
                 android:textColor="#8b8b8b" 
@@ -123,7 +123,7 @@
             android:layout_weight="1" >
 
             <ImageView
-                android:id="@+id/hands_off_id"
+                android:uid="@+uid/hands_off_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -132,7 +132,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/hands_off_id"
+                android:layout_below="@uid/hands_off_id"
                 android:layout_centerHorizontal="true"
                 android:text="免提"
                 android:textColor="#8b8b8b"
@@ -142,7 +142,7 @@
         
     </LinearLayout>
 	<View
-	    android:id="@+id/mask_layout" 
+	    android:uid="@+uid/mask_layout"
 	    android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#88000000"

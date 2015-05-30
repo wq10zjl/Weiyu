@@ -6,13 +6,13 @@
     android:orientation="vertical" >
 
     <ImageView
-        android:id="@android:id/icon"
+        android:uid="@android:uid/icon"
         android:layout_width="@dimen/px_to_dip_116"
         android:layout_height="@dimen/px_to_dip_116"
         android:textSize="@dimen/px_to_dip_80" />
 
     <TextView
-        android:id="@android:id/text2"
+        android:uid="@android:uid/text2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/px_to_dip_20"

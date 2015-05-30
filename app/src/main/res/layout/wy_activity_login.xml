@@ -8,24 +8,24 @@
     >
 
     <include
-        android:id="@+id/login_header"
+        android:uid="@+uid/login_header"
         layout="@layout/wy_header_common"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>
 
     <LinearLayout
-        android:id="@+id/login_layout_content"
+        android:uid="@+uid/login_layout_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_below="@+id/login_header"
+        android:layout_below="@+uid/login_header"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="66dp">
 
         <EditText
             android:background="@drawable/edittext_default"
             android:layout_margin="@dimen/px_to_dip_20"
-            android:id="@+id/et_name"
+            android:uid="@+uid/et_name"
             android:layout_width="256dp"
             android:layout_height="wrap_content"
             android:hint="一句话介绍自己"
@@ -39,7 +39,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tv_gender"
+                android:uid="@+uid/tv_gender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/px_to_dip_20"
@@ -49,7 +49,7 @@
                 android:layout_gravity="center"/>
 
             <RadioGroup
-                android:id="@+id/rg_gender"
+                android:uid="@+uid/rg_gender"
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
@@ -59,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:text="男"
                     android:textSize="20dip"
-                    android:id="@+id/rb_man"
+                    android:uid="@+uid/rb_man"
                     android:checked="false"/>
                 <RadioButton
                     android:layout_marginLeft="40dip"
@@ -67,7 +67,7 @@
                     android:layout_height="wrap_content"
                     android:text="女"
                     android:textSize="20dip"
-                    android:id="@+id/rb_woman"
+                    android:uid="@+uid/rb_woman"
                     android:checked="true"/>
             </RadioGroup>
 
@@ -75,12 +75,12 @@
 
 
         <RelativeLayout
-            android:layout_below="@id/login_header"
+            android:layout_below="@uid/login_header"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
 
             <com.dd.processbutton.iml.ActionProcessButton
-                android:id="@+id/btnSignIn"
+                android:uid="@+uid/btnSignIn"
                 android:layout_width="256dip"
                 android:layout_height="wrap_content"
                 android:text="微遇"
