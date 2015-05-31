@@ -12,16 +12,16 @@ public class NearByUserActivity extends FragmentActivity {
 //
 //    int pageIndex = 0;
 //    int totalPage = 0;
-//    NearByUserAdapter.LOADTYPE loadType;
+//    NearByUsersAdapter.LOADTYPE loadType;
 //    /**
 //     * 设置加载类型
 //     * @param loadType
 //     */
-//    public void setLoadType(NearByUserAdapter.LOADTYPE loadType) {
+//    public void setLoadType(NearByUsersAdapter.LOADTYPE loadType) {
 //        this.loadType = loadType;
 //    }
 //    PagingListView listView;
-//    NearByUserAdapter adapter;
+//    NearByUsersAdapter adapter;
 //    PtrClassicFrameLayout mPtrFrame;
 //
 //    //LBS callback
@@ -99,7 +99,7 @@ public class NearByUserActivity extends FragmentActivity {
 //                //刷新列表数据
 ////                updateListData(dataType);
 //                pageIndex = 0;
-//                setLoadType(NearByUserAdapter.LOADTYPE.TYPE_REFRESH);
+//                setLoadType(NearByUsersAdapter.LOADTYPE.TYPE_REFRESH);
 //                LBSCloud.getInstance().nearbyUserSearch(0, lbsCloudSearchCallback);
 //            }
 //
@@ -115,7 +115,7 @@ public class NearByUserActivity extends FragmentActivity {
 //     */
 //    private void initListView() {
 //        listView = (PagingListView) findViewById(R.id.lv_nearby);
-//        adapter = new NearByUserAdapter(this);
+//        adapter = new NearByUsersAdapter(this);
 //        listView.setAdapter(adapter);
 //        listView.setHasMoreItems(false);
 //
@@ -133,7 +133,7 @@ public class NearByUserActivity extends FragmentActivity {
 //            @Override
 //            public void onLoadMoreItems() {
 //                if (pageIndex+1 < totalPage) {
-//                    setLoadType(NearByUserAdapter.LOADTYPE.TYPE_MORE);
+//                    setLoadType(NearByUsersAdapter.LOADTYPE.TYPE_MORE);
 //                    LBSCloud.getInstance().nearbyUserSearch(++pageIndex, lbsCloudSearchCallback);
 //                } else {
 //                    listView.onFinishLoading(false, null);
@@ -186,7 +186,7 @@ public class NearByUserActivity extends FragmentActivity {
 //                }
 //
 //                //设置适配器
-//                if (loadType == NearByUserAdapter.LOADTYPE.TYPE_REFRESH) {
+//                if (loadType == NearByUsersAdapter.LOADTYPE.TYPE_REFRESH) {
 //                    //结束下拉刷新
 //                    mPtrFrame.refreshComplete();
 //                    adapter.setData(newDataList);
@@ -194,7 +194,7 @@ public class NearByUserActivity extends FragmentActivity {
 //                    listView.setHasMoreItems(pageIndex + 1 < totalPage);
 //                    //save result lists into ram
 //                    AppContext.getInstance().setUsermapList(newDataList);
-//                } else if (loadType == NearByUserAdapter.LOADTYPE.TYPE_MORE){
+//                } else if (loadType == NearByUsersAdapter.LOADTYPE.TYPE_MORE){
 //                    adapter.addData(newDataList);
 //                    listView.onFinishLoading(pageIndex + 1 < totalPage, null);
 //                    //save result lists into ram

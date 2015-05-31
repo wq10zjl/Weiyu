@@ -1,75 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--android:background="@android:drawable/picture_frame"-->
 <LinearLayout
-    android:orientation="vertical"
-    android:uid="@+uid/nearby_shuoshuo_lv_item"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
-
-    <LinearLayout android:layout_marginTop="30dp" android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
-        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:id="@+id/nearby_shuoshuo_lv_item"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:uid="@+uid/shuoshuo_tv_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="name"
-            android:layout_weight="3"
-            android:textSize="18dp"/>
+    <LinearLayout android:layout_marginTop="20dp" android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
 
         <TextView
-            android:gravity="end"
-            android:uid="@+uid/shuoshuo_tv_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="time"
-            android:textSize="18dp"/>
+                android:id="@+id/shuoshuo_tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="name"
+                android:layout_weight="3"
+                android:textSize="18dp"/>
+
+        <TextView
+                android:gravity="end"
+                android:id="@+id/shuoshuo_tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="time"
+                android:textSize="18dp"/>
     </LinearLayout>
 
-    <!--<ImageView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:src="@drawable/wy_bg_cell_divider_line"/>-->
-
     <TextView android:layout_margin="10dp"
-        android:uid="@+uid/shuoshuo_tv_content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="203dip"
-        android:text="content"
-        android:gravity="center"
-        android:textSize="24dp"/>
+              android:id="@+id/shuoshuo_tv_content"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:minHeight="128dip"
+              android:text="content"
+              android:gravity="center"
+              android:textSize="24dp"/>
 
-
-    <!--<ImageView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="18dip"-->
-        <!--android:src="@drawable/wy_bg_cell_divider_line"/>-->
-
-    <LinearLayout android:orientation="horizontal" android:layout_marginBottom="30dp" android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <LinearLayout android:orientation="horizontal" android:layout_marginBottom="20dp" android:layout_marginLeft="10dp"
+                  android:layout_marginRight="10dp"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
 
         <ImageView android:layout_width="25dp" android:layout_height="25dp" android:src="@drawable/wy_icon_gps"/>
         <TextView android:layout_weight="4"
-            android:uid="@+uid/shuoshuo_tv_address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="address"
-            android:textSize="18dp"/>
-        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1">
-            <TextView android:layout_weight="1" android:gravity="end" android:uid="@+uid/comment_count" android:text="comment_count" android:textSize="18dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-            <ImageView android:layout_weight="1" android:uid="@+uid/ic_comment" android:layout_width="25dp" android:layout_height="25dp" android:src="@drawable/wy_ic_card_comment_grey"/>
+                  android:id="@+id/shuoshuo_tv_address"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="address"
+                  android:textSize="18dp"/>
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:layout_weight="1">
+            <TextView android:layout_weight="1" android:gravity="end" android:id="@+id/shuoshuo_tv_comment_count"
+                      android:text="comment_count" android:textSize="18dp" android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"/>
+            <ImageView android:layout_weight="1" android:id="@+id/ic_comment" android:layout_width="25dp"
+                       android:layout_height="25dp" android:src="@drawable/wy_ic_card_comment_grey"/>
         </LinearLayout>
     </LinearLayout>
-
-    <!--<ImageView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:src="@drawable/wy_bg_cell_divider_line"/>-->
 
 </LinearLayout>

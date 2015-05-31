@@ -10,8 +10,9 @@ import cn.bmob.v3.BmobObject;
 public class Comment extends BmobObject {
     private String userName;
     private String userId;
+    private String userGender;
     private String content;
-    private int ssId;
+    private long ssId;
     private long timestamp;
 
     public String getUserName() {
@@ -38,11 +39,11 @@ public class Comment extends BmobObject {
         this.content = content;
     }
 
-    public int getSsId() {
+    public long getSsId() {
         return ssId;
     }
 
-    public void setSsId(int ssId) {
+    public void setSsId(long ssId) {
         this.ssId = ssId;
     }
 
@@ -52,5 +53,13 @@ public class Comment extends BmobObject {
 
     public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public String getUserGender() {
+        return userGender;
+    }
+
+    public void setUserGender(String userGender) {
+        this.userGender = userGender;
     }
 }

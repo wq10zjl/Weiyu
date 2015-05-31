@@ -19,7 +19,7 @@ import java.util.*;
 /**
  * Created by songyouwei on 2015/4/27.
  */
-public class ShuoshuoListAdapter extends PagingBaseAdapter {
+public class ShuoshuosAdapter extends PagingBaseAdapter {
     List<Shuoshuo> shuoshuos = new ArrayList<>();
     public void set(List<Shuoshuo> list) {
         this.shuoshuos.clear();
@@ -30,10 +30,14 @@ public class ShuoshuoListAdapter extends PagingBaseAdapter {
         this.shuoshuos.addAll(list);
         notifyDataSetChanged();
     }
+    public void addOnTop(Shuoshuo shuoshuo) {
+        this.shuoshuos.add(0,shuoshuo);
+        notifyDataSetChanged();
+    }
 
     LayoutInflater mInflater;
     Context ctx;
-    public ShuoshuoListAdapter(Context ctx) {
+    public ShuoshuosAdapter(Context ctx) {
         this.ctx = ctx;
         mInflater = LayoutInflater.from(ctx);
     }

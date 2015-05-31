@@ -216,6 +216,10 @@ public class WeiyuApi {
         });
     }
 
+    public void addComment(long ssId,String content,Listener<Comment> listener) {
+        new ShuoshuoDao().addComment(ssId,content,listener);
+    }
+
     /**
      * 发布说说
      * @param content

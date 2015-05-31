@@ -80,27 +80,29 @@ public class ShuoshuoDao {
      * @param content
      * @param listener
      */
-    public void addComment(String content, final Listener<String> listener) {
+    public void addComment(long ssId,String content, final Listener<Comment> listener) {
         Account account = null;
         try {
             account = new AccountDao().get();
         } catch (AppException e) {
             listener.onCallback(Listener.CallbackType.onFailure,null,e.getMessage());
         }
-        Comment comment = new Comment();
+        final Comment comment = new Comment();
+        comment.setSsId(ssId);
         comment.setUserId(account.getId());
         comment.setUserName(account.getName());
+        comment.setUserGender(account.getGender());
         comment.setContent(content);
         comment.setTimestamp(System.currentTimeMillis());
         comment.save(AppContext.getCtx(), new SaveListener() {
             @Override
             public void onSuccess() {
-                listener.onCallback(Listener.CallbackType.onSuccess, null, "评论成功");
+                listener.onCallback(Listener.CallbackType.onSuccess, comment, "评论成功");
             }
 
             @Override
             public void onFailure(int i, String s) {
-                listener.onCallback(Listener.CallbackType.onFailure, null, s);
+                listener.onCallback(Listener.CallbackType.onFailure, null, "评论出错:"+s);
             }
         });
     }

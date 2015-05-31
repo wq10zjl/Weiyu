@@ -10,18 +10,8 @@
     android:layout_alignParentLeft="true"
     android:layout_alignParentStart="true">
 
-    <!--<ImageView-->
-        <!--android:uid="@+uid/header_iv_logo"-->
-        <!--android:layout_width="48dip"-->
-        <!--android:layout_height="48dip"-->
-        <!--android:src="@drawable/wy_ic_launcher"-->
-        <!--android:scaleType="centerInside"-->
-        <!--android:layout_centerVertical="true"-->
-        <!--android:layout_alignParentLeft="true"-->
-        <!--android:layout_alignParentStart="true" />-->
-
     <TextView
-        android:uid="@+uid/header_tv_title"
+        android:id="@+id/header_tv_title"
         android:textColor="@color/white"
         android:textSize="20dip"
         android:layout_width="wrap_content"
@@ -30,7 +20,7 @@
         android:layout_centerHorizontal="true"/>
 
     <ImageView
-        android:uid="@+uid/header_iv_right"
+        android:id="@+id/header_iv_right"
         android:layout_width="wrap_content"
         android:layout_height="48dip"
         android:layout_alignParentTop="true"

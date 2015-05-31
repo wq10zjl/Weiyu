@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Created by songyouwei on 2015/4/27.
  */
-public class NearByUserAdapter extends PagingBaseAdapter {
+public class NearByUsersAdapter extends PagingBaseAdapter {
 
     public enum LOADTYPE {
         TYPE_REFRESH, TYPE_MORE;
@@ -42,7 +42,7 @@ public class NearByUserAdapter extends PagingBaseAdapter {
     LayoutInflater mInflater;
     List<HashMap<String, String>> nearbyusermapList = new ArrayList<>();
 //
-    public NearByUserAdapter(Context ctx) {
+    public NearByUsersAdapter(Context ctx) {
         mInflater = LayoutInflater.from(ctx);
     }
 
