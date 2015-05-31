@@ -1,15 +1,13 @@
 package com.syw.weiyu.ui.main;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import com.syw.weiyu.AppException;
 import com.syw.weiyu.api.Listener;
 import com.syw.weiyu.api.WeiyuApi;
 import com.syw.weiyu.ui.user.ProfileBaseActivity;
 
-import com.syw.weiyu.util.Toaster;
+import com.syw.weiyu.util.Msger;
 
 /**
  * Created by songyouwei on 2015/2/25.
@@ -21,21 +19,23 @@ public class LoginActivity extends ProfileBaseActivity {
         //注册
         WeiyuApi.get().register(userId, name, gender, new Listener<String>() {
             @Override
-            public void onCallback(@NonNull CallbackType callbackType, @Nullable String data, @Nullable String msg) {
-                if (callbackType == CallbackType.onSuccess) {
-                    try {
-                        //登录
-                        WeiyuApi.get().login(data);
-                        //进入主页面
-                        Intent intent = new Intent(LoginActivity.this, MainTabsActivity.class);
-                        startActivity(intent);
-                        finish();
-                    } catch (AppException e) {
-                        Toaster.e(LoginActivity.this, e.getMessage());
-                    }
-                } else {
-                    Toaster.e(LoginActivity.this,msg);
+            public void onSuccess(String data) {
+                //登录
+                try {
+                    WeiyuApi.get().login(data);
+                    //进入主页面
+                    Intent intent = new Intent(LoginActivity.this, MainTabsActivity.class);
+                    startActivity(intent);
+                    finish();
+                } catch (AppException e) {
+                    Msger.e(LoginActivity.this, e.getMessage());
                 }
+
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                Msger.e(LoginActivity.this, msg);
             }
         });
     }

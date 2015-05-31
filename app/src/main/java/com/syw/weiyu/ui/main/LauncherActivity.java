@@ -13,6 +13,7 @@ import com.orhanobut.logger.Logger;
 import com.syw.weiyu.AppContext;
 import com.syw.weiyu.AppException;
 import com.syw.weiyu.R;
+import com.syw.weiyu.api.AdListener;
 import com.syw.weiyu.api.Listener;
 import com.syw.weiyu.api.WeiyuApi;
 import com.syw.weiyu.bean.Account;
@@ -65,26 +66,19 @@ public class LauncherActivity extends Activity {
         new Handler(){
             @Override
             public void handleMessage(Message msg) {
-                WeiyuApi.get().showSplashAd(LauncherActivity.this, new Listener<String>() {
+                WeiyuApi.get().showSplashAd(LauncherActivity.this, new AdListener() {
                     @Override
-                    public void onCallback(@NonNull CallbackType callbackType, @Nullable String data, @Nullable String msg) {
-                        switch (callbackType) {
-                            case onAdError:
-                                Logger.d(msg);
-                                gotoMainPage();
-                                break;
-                            case onAdClick:
-                                Logger.d(msg);
-                                break;
-                            case onAdClose:
-                            default:
-                                gotoMainPage();
-                                break;
-                        }
+                    public void onFailedReceiveAd() {
+                        gotoMainPage();
+                    }
+
+                    @Override
+                    public void onCloseAd() {
+                        gotoMainPage();
                     }
                 });
             }
-        }.sendEmptyMessageDelayed(0,1000);
+        }.sendEmptyMessageDelayed(0, 1000);
     }
 
 

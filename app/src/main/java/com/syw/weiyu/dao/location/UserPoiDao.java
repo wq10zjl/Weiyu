@@ -26,7 +26,7 @@ public class UserPoiDao {
      * @param location
      * @throws AppException
      */
-    public void create(@NonNull User user,MLocation location, final Listener<String> listener) {
+    public void create(@NonNull User user,MLocation location, final Listener<Void> listener) {
         if (location == null) location = new MLocation(null);
 
         AjaxParams params = LBSCloud.getInitializedParams(AppConstants.geotable_id_user);
@@ -49,15 +49,13 @@ public class UserPoiDao {
             @Override
             public void onSuccess(String s) {
                 if (StringUtil.isEmpty(s)) {
-                    listener.onCallback(Listener.CallbackType.onFailure,null,"网络异常");
-                } else {
                     JSONObject result = JSONObject.parseObject(s);
                     if (result.getInteger("status") == 0 || result.getInteger("status") == 3002) {
                         //创建成功 or 这是老用户（主键重复）
-                        listener.onCallback(Listener.CallbackType.onSuccess,null,null);
+                        listener.onSuccess(null);
                     } else {
                         //创建POI出错
-                        listener.onCallback(Listener.CallbackType.onFailure,null,"创建用户POI信息出错");
+                        listener.onFailure("创建用户POI信息出错");
                     }
                 }
             }
@@ -65,7 +63,7 @@ public class UserPoiDao {
             @Override
             public void onFailure(Throwable t, int errorNo, String strMsg) {
                 //创建POI出错
-                listener.onCallback(Listener.CallbackType.onFailure, null, strMsg);
+                listener.onFailure("创建POI出错:"+strMsg);
             }
         });
     }

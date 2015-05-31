@@ -1,8 +1,6 @@
 package com.syw.weiyu.ui.shuoshuo;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.EditText;
@@ -16,7 +14,7 @@ import com.syw.weiyu.bean.Comment;
 import com.syw.weiyu.bean.Shuoshuo;
 import com.syw.weiyu.ui.adapter.CommentsAdapter;
 import com.syw.weiyu.util.StringUtil;
-import com.syw.weiyu.util.Toaster;
+import com.syw.weiyu.util.Msger;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -39,12 +37,17 @@ public class ShuoshuoDetailActivity extends FragmentActivity {
         final ListView commentsListView = (ListView) findViewById(R.id.comments);
         final CommentsAdapter adapter = new CommentsAdapter(ShuoshuoDetailActivity.this);
         final long ssId = shuoshuo.getId();
-        Toaster.i(this, "正在加载评论");
+        Msger.i(this, "正在加载评论");
         WeiyuApi.get().getShuoshuoComments(ssId, new Listener<List<Comment>>() {
             @Override
-            public void onCallback(@NonNull CallbackType callbackType, @Nullable List<Comment> data, @Nullable String msg) {
+            public void onSuccess(List<Comment> data) {
                 adapter.set(data);
                 commentsListView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                Msger.e(ShuoshuoDetailActivity.this, msg);
             }
         });
 
@@ -57,12 +60,12 @@ public class ShuoshuoDetailActivity extends FragmentActivity {
                 if (!StringUtil.isEmpty(content)) {
                     WeiyuApi.get().addComment(ssId, content, new Listener<Comment>() {
                         @Override
-                        public void onCallback(@NonNull CallbackType callbackType, @Nullable Comment data, @Nullable String msg) {
-                            if (callbackType == CallbackType.onSuccess) {
-                                Toaster.i(ShuoshuoDetailActivity.this, msg);
-                                adapter.append(data);
-                            }
-                            else Toaster.e(ShuoshuoDetailActivity.this,msg);
+                        public void onSuccess(Comment data) {
+                            adapter.append(data);
+                        }
+                        @Override
+                        public void onFailure(String msg) {
+                            Msger.e(ShuoshuoDetailActivity.this, msg);
                         }
                     });
                 }

@@ -55,15 +55,15 @@ public class TokenDao {
                 JSONObject result = JSON.parseObject(s);
                 if (result.getInteger("code") == 200) {
                     String token = result.getString("token");
-                    listener.onCallback(Listener.CallbackType.onSuccess,token,null);
+                    listener.onSuccess(token);
                 } else {
-                    listener.onCallback(Listener.CallbackType.onFailure,null,"token 获取失败");
+                    listener.onFailure("token获取出错:"+s);
                 }
             }
 
             @Override
             public void onFailure(Throwable t, int errorNo, String strMsg) {
-                listener.onCallback(Listener.CallbackType.onFailure, null, strMsg);
+                listener.onFailure("网络错误:"+strMsg);
             }
         });
     }

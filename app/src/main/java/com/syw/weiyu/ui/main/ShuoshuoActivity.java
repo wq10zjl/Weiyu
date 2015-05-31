@@ -5,8 +5,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,11 +17,10 @@ import com.syw.weiyu.AppException;
 import com.syw.weiyu.api.Listener;
 import com.syw.weiyu.api.WeiyuApi;
 import com.syw.weiyu.R;
-import com.syw.weiyu.bean.Shuoshuo;
 import com.syw.weiyu.bean.ShuoshuoList;
 import com.syw.weiyu.ui.adapter.ShuoshuosAdapter;
 
-import com.syw.weiyu.util.Toaster;
+import com.syw.weiyu.util.Msger;
 
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
@@ -112,20 +109,23 @@ public class ShuoshuoActivity extends FragmentActivity {
                 pageIndex = 0;
                 WeiyuApi.get().getNearbyShuoshuo(0, new Listener<ShuoshuoList>() {
                     @Override
-                    public void onCallback(@NonNull CallbackType callbackType, @Nullable ShuoshuoList data, @Nullable String msg) {
+                    public void onSuccess(ShuoshuoList data) {
                         //结束下拉刷新
                         mPtrFrame.refreshComplete();
-                        if (callbackType == CallbackType.onSuccess) {
-                            if (data != null) {
-                                adapter.set(data.getShuoshuos());
-                                //set totalPage
-                                if (totalPage == 0) {
-                                    totalPage = (int)Math.ceil(data.getTotal()/data.getShuoshuos().size());
-                                }
-                                //set has more page
-                                listView.setHasMoreItems(pageIndex + 1 < totalPage);
-                            }
-                        } else Toaster.e(ShuoshuoActivity.this, msg);
+                        adapter.set(data.getShuoshuos());
+                        //set totalPage
+                        if (totalPage == 0) {
+                            totalPage = (int)Math.ceil(data.getTotal()/data.getShuoshuos().size());
+                        }
+                        //set has more page
+                        listView.setHasMoreItems(pageIndex + 1 < totalPage);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        //结束下拉刷新
+                        mPtrFrame.refreshComplete();
+                        Msger.e(ShuoshuoActivity.this, msg);
                     }
                 });
             }
@@ -152,19 +152,20 @@ public class ShuoshuoActivity extends FragmentActivity {
                 if (pageIndex + 1 < totalPage) {
                     WeiyuApi.get().getNearbyShuoshuo(++pageIndex, new Listener<ShuoshuoList>() {
                         @Override
-                        public void onCallback(@NonNull CallbackType callbackType, @Nullable ShuoshuoList data, @Nullable String msg) {
-                            if (callbackType == CallbackType.onSuccess) {
-                                if (data != null) {
-                                    adapter.append(data.getShuoshuos());
-                                    //set has more page
-                                    listView.onFinishLoading(pageIndex + 1 < totalPage, null);
-                                }
-                            } else {
-                                Toaster.e(ShuoshuoActivity.this, msg);
-                                pageIndex--;
-                            }
+                        public void onSuccess(ShuoshuoList data) {
                             //结束下拉刷新
                             mPtrFrame.refreshComplete();
+                            adapter.append(data.getShuoshuos());
+                            //set has more page
+                            listView.onFinishLoading(pageIndex + 1 < totalPage, null);
+                        }
+
+                        @Override
+                        public void onFailure(String msg) {
+                            //结束下拉刷新
+                            mPtrFrame.refreshComplete();
+                            Msger.e(ShuoshuoActivity.this, msg);
+                            pageIndex--;
                         }
                     });
                 } else {
@@ -187,13 +188,15 @@ public class ShuoshuoActivity extends FragmentActivity {
                 .setPositiveButton("发送", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        WeiyuApi.get().publishShuoshuo(contentET.getText().toString(), new Listener<String>() {
+                        WeiyuApi.get().publishShuoshuo(contentET.getText().toString(), new Listener<Void>() {
                             @Override
-                            public void onCallback(@NonNull CallbackType callbackType, @Nullable String data, @Nullable String msg) {
-                                if (callbackType == CallbackType.onSuccess) {
-                                    Toaster.i(ShuoshuoActivity.this, "发送成功");
-                                }
-                                else Toaster.e(ShuoshuoActivity.this, msg);
+                            public void onSuccess(Void data) {
+                                Msger.i(ShuoshuoActivity.this, "发送成功");
+                            }
+
+                            @Override
+                            public void onFailure(String msg) {
+                                Msger.e(ShuoshuoActivity.this, msg);
                             }
                         });
 

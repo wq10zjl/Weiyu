@@ -6,9 +6,9 @@ import com.devspark.appmsg.AppMsg;
 /**
  * author: songyouwei
  * date: 2015-05-21
- * desc: 吐司er
+ * desc: 消息提示，代替toast
  */
-public class Toaster {
+public class Msger {
     public static void i(Activity ctx,String msg) {
         // create {@link AppMsg} with specify type
         AppMsg.makeText(ctx,msg,AppMsg.STYLE_INFO).show();

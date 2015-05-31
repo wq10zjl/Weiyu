@@ -8,25 +8,11 @@ import java.util.Objects;
 /**
  * author: youwei
  * date: 2015-05-11
- * desc: API的监听接口
+ * desc: 微遇APP内部回调接口
  */
-public abstract class Listener<T> {
+public interface Listener<T> {
 
-    /**
-     * 回调
-     * @param callbackType 回调类型
-     * @param data 返回的数据
-     * @param msg 消息
-     */
-    public abstract void onCallback(@NonNull CallbackType callbackType,@Nullable T data,@Nullable String msg);
+    void onSuccess(T data);
+    void onFailure(String msg);
 
-    /**
-     * 回调类型
-     */
-    public enum CallbackType {
-        //common
-        onSuccess,onFailure,
-        //ad
-        onAdError,onAdClick,onAdClose,
-    }
 }

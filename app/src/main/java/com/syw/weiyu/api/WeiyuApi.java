@@ -1,8 +1,6 @@
 package com.syw.weiyu.api;
 
 import android.app.Activity;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -18,12 +16,12 @@ import com.syw.weiyu.dao.im.RongCloud;
 import com.syw.weiyu.dao.im.TokenDao;
 import com.syw.weiyu.dao.location.LocationDao;
 import com.syw.weiyu.dao.location.UserPoiDao;
+import com.syw.weiyu.dao.shuoshuo.CommentDao;
 import com.syw.weiyu.dao.shuoshuo.ShuoshuoDao;
 import com.syw.weiyu.dao.user.AccountDao;
 import com.syw.weiyu.dao.user.UserDao;
 import com.syw.weiyu.splash.WeiyuSplash;
 import com.syw.weiyu.splash.WeiyuSplashListener;
-import com.syw.weiyu.util.StringUtil;
 import com.syw.weiyu.util.WeiyuSize;
 import com.syw.weiyu.util.WeiyuSplashMode;
 
@@ -60,27 +58,28 @@ public class WeiyuApi {
      * @param listener 包含返回token
      */
     public void register(final String id,final String name,final String gender,final Listener<String> listener) {
-        new UserPoiDao().create(new User(id, name, gender), new LocationDao().get(), new Listener<String>() {
+        new UserPoiDao().create(new User(id, name, gender), new LocationDao().get(), new Listener<Void>() {
             @Override
-            public void onCallback(@NonNull CallbackType callbackType, @Nullable String data, @Nullable String msg) {
-                //poi创建成功
-                if (callbackType == CallbackType.onSuccess) {
-                    //拿token
-                    new TokenDao().get(id, name, null, new Listener<String>() {
-                        @Override
-                        public void onCallback(@NonNull CallbackType callbackType, @Nullable String data, @Nullable String msg) {
-                            if (callbackType == CallbackType.onSuccess) {
-                                Account account = new Account(id, name, gender, data);
-                                new AccountDao().set(account);
-                                listener.onCallback(CallbackType.onSuccess, data, null);
-                            } else {
-                                listener.onCallback(CallbackType.onFailure, null, msg);
-                            }
-                        }
-                    });
-                } else {
-                    listener.onCallback(CallbackType.onFailure, null, msg);
-                }
+            public void onSuccess(Void data) {
+                //拿token
+                new TokenDao().get(id, name, null, new Listener<String>() {
+                    @Override
+                    public void onSuccess(String data) {
+                        Account account = new Account(id, name, gender, data);
+                        new AccountDao().set(account);
+                        listener.onSuccess(data);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        listener.onSuccess(msg);
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                listener.onFailure(msg);
             }
         });
     }
@@ -204,20 +203,21 @@ public class WeiyuApi {
      * @throws AppException
      */
     public void getShuoshuoComments(final long ssId, final Listener<List<Comment>> listener) {
-        new ShuoshuoDao().getComments(ssId, new Listener<List<Comment>>() {
+        new CommentDao().getComments(ssId, new Listener<List<Comment>>() {
             @Override
-            public void onCallback(@NonNull CallbackType callbackType, @Nullable List<Comment> data, @Nullable String msg) {
-                if (callbackType == CallbackType.onSuccess) {
-                    listener.onCallback(CallbackType.onSuccess, data, msg);
-                } else {
-                    listener.onCallback(CallbackType.onFailure, null, msg);
-                }
+            public void onSuccess(List<Comment> data) {
+                listener.onSuccess(data);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                listener.onFailure(msg);
             }
         });
     }
 
     public void addComment(long ssId,String content,Listener<Comment> listener) {
-        new ShuoshuoDao().addComment(ssId,content,listener);
+        new CommentDao().addComment(ssId,content,listener);
     }
 
     /**
@@ -225,7 +225,7 @@ public class WeiyuApi {
      * @param content
      * @param listener
      */
-    public void publishShuoshuo(String content,Listener<String> listener) {
+    public void publishShuoshuo(String content,Listener<Void> listener) {
         new ShuoshuoDao().add(content, listener);
     }
 
@@ -246,7 +246,7 @@ public class WeiyuApi {
         weiyuLayoutCode.clearThread();
     }
 
-    public View getBannerAdView(Activity activity,final Listener<String> listener) {
+    public View getBannerAdView(Activity activity,final AdListener listener) {
         /**
          * 初始化adsMogoView
          * 参数：第一个activity,第二个mogoID（该值为芒果后台申请的生产的芒果ID，非单一平台ID）,第三个设置广告展示位置,第四个请求广告尺寸,
@@ -277,20 +277,16 @@ public class WeiyuApi {
 
             @Override
             public void onFailedReceiveAd() {
-                if (listener == null) return;
-                listener.onCallback(Listener.CallbackType.onAdError,null,"onFailedReceive");
+                listener.onFailedReceiveAd();
             }
 
             @Override
             public void onClickAd(String s) {
-                if (listener == null) return;
-                listener.onCallback(Listener.CallbackType.onAdClick,null,s);
             }
 
             @Override
             public boolean onCloseAd() {
-                if (listener == null) return false;
-                listener.onCallback(Listener.CallbackType.onAdClose,null,null);
+                listener.onCloseAd();
                 return false;
             }
 
@@ -311,13 +307,13 @@ public class WeiyuApi {
         return weiyuLayoutCode;
     }
 
-    public void showSplashAd(Activity activity,final Listener<String> listener) {
+    public void showSplashAd(Activity activity,final AdListener listener) {
         WeiyuSplash weiyuSplash = new WeiyuSplash(activity,activity.getString(R.string.adsmogo_appid), WeiyuSplashMode.FULLSCREEN);
         //设置开屏广告监听
         weiyuSplash.setWeiyuSplashListener(new WeiyuSplashListener() {
             @Override
             public void onSplashClickAd(String s) {
-                listener.onCallback(Listener.CallbackType.onAdClick,null,s);
+
             }
 
             @Override
@@ -327,7 +323,7 @@ public class WeiyuApi {
 
             @Override
             public void onSplashError(String s) {
-                listener.onCallback(Listener.CallbackType.onAdError,null,s);
+                listener.onFailedReceiveAd();
             }
 
             @Override
@@ -337,7 +333,7 @@ public class WeiyuApi {
 
             @Override
             public void onSplashClose() {
-                listener.onCallback(Listener.CallbackType.onAdClose,null,null);
+                listener.onCloseAd();
             }
         });
         weiyuSplash.setCloseButtonVisibility(View.VISIBLE);

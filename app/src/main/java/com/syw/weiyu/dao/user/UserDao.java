@@ -45,7 +45,6 @@ public class UserDao {
          "message": "成功"
      }
      * @param id
-     * @param listener
      */
     public User getUser(String id) throws AppException {
         FinalDb finalDb = FinalDb.create(AppContext.getCtx());
