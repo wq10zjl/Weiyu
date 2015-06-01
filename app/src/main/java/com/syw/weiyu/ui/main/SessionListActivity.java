@@ -21,7 +21,6 @@ public class SessionListActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wy_activity_sessionlist);
         initViews();
-        getSupportFragmentManager().beginTransaction().replace(R.id.sessionlist_layout_content,new ConversationListFragment()).commit();
     }
 
     private void initViews() {

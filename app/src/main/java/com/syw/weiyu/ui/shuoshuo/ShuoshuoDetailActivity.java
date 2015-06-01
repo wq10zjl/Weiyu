@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * author: songyouwei
  * date: 2015-05-30
- * desc: ËµËµÏêÇéÒ³
+ * desc: è¯´è¯´è¯¦æƒ…é¡µ
  */
 public class ShuoshuoDetailActivity extends FragmentActivity {
     @Override
@@ -37,7 +37,7 @@ public class ShuoshuoDetailActivity extends FragmentActivity {
         final ListView commentsListView = (ListView) findViewById(R.id.comments);
         final CommentsAdapter adapter = new CommentsAdapter(ShuoshuoDetailActivity.this);
         final long ssId = shuoshuo.getId();
-        Msger.i(this, "ÕýÔÚ¼ÓÔØÆÀÂÛ");
+        Msger.i(this, "æ­£åœ¨åŠ è½½è¯„è®º");
         WeiyuApi.get().getShuoshuoComments(ssId, new Listener<List<Comment>>() {
             @Override
             public void onSuccess(List<Comment> data) {

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.paging.listview.PagingBaseAdapter;
 import com.syw.weiyu.R;
+import com.syw.weiyu.bean.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,27 +21,23 @@ import java.util.List;
  */
 public class NearByUsersAdapter extends PagingBaseAdapter {
 
-    public enum LOADTYPE {
-        TYPE_REFRESH, TYPE_MORE;
-    }
-
-    public void setData(List<HashMap<String, String>> data) {
+    public void set(List<User> data) {
         nearbyusermapList.clear();
         nearbyusermapList.addAll(data);
         notifyDataSetChanged();
     }
 
-    public void addData(List<HashMap<String, String>> data) {
+    public void append(List<User> data) {
         nearbyusermapList.addAll(data);
         notifyDataSetChanged();
     }
 
-    public List<HashMap<String, String>> getData() {
+    public List<User> getData() {
         return nearbyusermapList;
     }
 
     LayoutInflater mInflater;
-    List<HashMap<String, String>> nearbyusermapList = new ArrayList<>();
+    List<User> nearbyusermapList = new ArrayList<>();
 //
     public NearByUsersAdapter(Context ctx) {
         mInflater = LayoutInflater.from(ctx);
@@ -83,12 +80,12 @@ public class NearByUsersAdapter extends PagingBaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
         holder.portrait.setImageResource(
-                nearbyusermapList.get(position).get("gender").equals("男")?
+                nearbyusermapList.get(position).getGender().equals("男")?
                         R.drawable.wy_icon_male:
                         R.drawable.wy_icon_female
         );
-        holder.name.setText(nearbyusermapList.get(position).get("name"));
-        holder.address.setText(nearbyusermapList.get(position).get("address"));
+        holder.name.setText(nearbyusermapList.get(position).getName());
+        holder.address.setText(nearbyusermapList.get(position).getLocation().getAddress());
 
         return convertView;
     }

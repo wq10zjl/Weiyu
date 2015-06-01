@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class CommentDao {
     /**
-     * 添加评论
+     * 娣诲姞璇勮
      * @param content
      * @param listener
      */
@@ -45,14 +45,14 @@ public class CommentDao {
 
             @Override
             public void onFailure(int i, String s) {
-                listener.onFailure("评论出错:"+s);
+                listener.onFailure("璇勮鍑洪敊:"+s);
             }
         });
     }
 
     /**
-     * 获取评论列表
-     * @param ssId 说说ID
+     * 鑾峰彇璇勮鍒楄〃
+     * @param ssId 璇磋ID
      * @return
      * @throws AppException
      */
@@ -67,7 +67,7 @@ public class CommentDao {
 
             @Override
             public void onError(int i, String s) {
-                listener.onFailure("获取评论出错:"+s);
+                listener.onFailure("鑾峰彇璇勮鍑洪敊:"+s);
             }
         });
 
@@ -75,7 +75,7 @@ public class CommentDao {
 //
 //        AjaxParams params = LBSCloud.getInitializedParams(AppConstants.geotable_id_comment);
 //        params.put("q","");
-//        //按时间|距离排序，优先显示时间靠前的
+//        //鎸夋椂闂磡璺濈鎺掑簭锛屼紭鍏堟樉绀烘椂闂撮潬鍓嶇殑
 //        params.put("sortby","timestamp:-1|distance:1");
 //        params.put("ssId",ssId+","+ssId);
 //        //get

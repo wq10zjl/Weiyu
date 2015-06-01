@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.paging.listview.PagingListView;
 import com.syw.weiyu.AppException;
 import com.syw.weiyu.api.Listener;
+import com.syw.weiyu.api.Null;
 import com.syw.weiyu.api.WeiyuApi;
 import com.syw.weiyu.R;
 import com.syw.weiyu.bean.ShuoshuoList;
@@ -188,9 +189,9 @@ public class ShuoshuoActivity extends FragmentActivity {
                 .setPositiveButton("发送", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        WeiyuApi.get().publishShuoshuo(contentET.getText().toString(), new Listener<Void>() {
+                        WeiyuApi.get().publishShuoshuo(contentET.getText().toString(), new Listener<Null>() {
                             @Override
-                            public void onSuccess(Void data) {
+                            public void onSuccess(Null data) {
                                 Msger.i(ShuoshuoActivity.this, "发送成功");
                             }
 

@@ -36,7 +36,7 @@ public class RongCloud {
                 }
 
                 @Override
-                public void onError(ErrorCode errorCode) {
+                public void onError(RongIMClient.ErrorCode errorCode) {
                     // 此处处理连接错误。
                     Logger.e("Connect rongcloud failed, errormsg:" + errorCode.getMessage());
                 }

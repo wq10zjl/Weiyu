@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.syw.weiyu.AppConstants;
 import com.syw.weiyu.AppException;
 import com.syw.weiyu.api.Listener;
+import com.syw.weiyu.api.Null;
 import com.syw.weiyu.bean.MLocation;
 import com.syw.weiyu.bean.User;
 import com.syw.weiyu.third.LBSCloud;
@@ -26,7 +27,7 @@ public class UserPoiDao {
      * @param location
      * @throws AppException
      */
-    public void create(@NonNull User user,MLocation location, final Listener<Void> listener) {
+    public void create(@NonNull User user,MLocation location, final Listener<Null> listener) {
         if (location == null) location = new MLocation(null);
 
         AjaxParams params = LBSCloud.getInitializedParams(AppConstants.geotable_id_user);

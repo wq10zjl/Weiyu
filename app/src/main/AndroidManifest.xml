@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.syw.weiyu"
-    android:versionCode="2"
-    android:versionName="2.0" >
-
-    <uses-sdk
-        android:minSdkVersion="14"
-        android:targetSdkVersion="22" />
+    package="com.syw.weiyu">
 
     <!-- Baidu LocSDK -->
     <!-- 这个权限用于进行网络定位 -->
@@ -43,15 +37,12 @@
     <!-- 广点通 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_UPDATES" />
 
-    <!-- 豌豆荚AD -->
-    <!--<uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />-->
-
     <application
         android:name=".AppContext"
         android:allowBackup="true"
         android:icon="@drawable/wy_ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/RcTheme" >
+        android:theme="@style/WeiyuAppTheme" >
 
         <!-- AdMoGo MobAd -->
         <!-- 声明Mogo的Activity -->
@@ -71,7 +62,7 @@
         <!-- Baidu LocSDK -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="@string/locsdk_ak" />
+            android:value="mUv2tjv4ZdI06Enf9E6GEsZ6" />
 
         <service
             android:name="com.baidu.location.f"
@@ -97,180 +88,6 @@
             android:theme="@android:style/Theme.Translucent" >
         </activity>
 
-        <!-- for 多盟SDK -->
-        <!--<activity-->
-        <!--android:name="cn.domob.android.ads.DmActivity"-->
-        <!--android:theme="@android:style/Theme.Translucent" />-->
-
-        <!-- For 豌豆荚 AdsSdk. -->
-        <!--<activity-->
-            <!--android:name="com.wandoujia.ads.sdk.AppWallActivity"-->
-            <!--android:launchMode="singleTop"-->
-            <!--android:configChanges="orientation|keyboardHidden|screenSize"/>-->
-
-        <!--<activity-->
-            <!--android:name="com.wandoujia.ads.sdk.AppWidgetContainerActivity"-->
-            <!--android:theme="@android:style/Theme.Translucent.NoTitleBar"-->
-            <!--android:configChanges="orientation|keyboardHidden|screenSize"/>-->
-
-        <!--<activity android:name="com.wandoujia.ads.sdk.InterstitialAdActivity"-->
-                  <!--android:theme="@android:style/Theme.Translucent.NoTitleBar"-->
-                  <!--android:configChanges="orientation|keyboardHidden|screenSize"/>-->
-
-        <!--<service android:name="com.wandoujia.ads.sdk.DownloadService"/>-->
-
-        <!--<receiver android:name="com.wandoujia.ads.sdk.AppChangedReceiver">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.PACKAGE_ADDED"/>-->
-
-                <!--<data android:scheme="package"/>-->
-            <!--</intent-filter>-->
-        <!--</receiver>-->
-
-        <!-- Begin Rong Cloud -->
-        <meta-data
-            android:name="RONG_CLOUD_APP_KEY"
-            android:value="@string/rongcloud_app_key" />
-
-        <activity
-            android:name="io.rong.imkit.RongActivity"
-            android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data
-                    android:host="com.syw.weiyu"
-                    android:pathPrefix="/conversationsetting/"
-                    android:scheme="rong" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data
-                    android:host="com.syw.weiyu"
-                    android:path="/grouplist"
-                    android:scheme="rong" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data
-                    android:host="com.syw.weiyu"
-                    android:path="/conversationgrouplist"
-                    android:scheme="rong" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data
-                    android:host="com.syw.weiyu"
-                    android:pathPrefix="/friend/"
-                    android:scheme="rong" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="io.rong.imkit.RongSingleActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data
-                    android:host="com.syw.weiyu"
-                    android:path="/conversationlist"
-                    android:scheme="rong" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="io.rong.imkit.RongSecActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data
-                    android:host="com.syw.weiyu"
-                    android:pathPrefix="/conversation/"
-                    android:scheme="rong" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="io.rong.voipkit.activity.CallSideActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="io.rong.voipkit.activity.CalledSideActivity"
-            android:excludeFromRecents="true"
-            android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="io.rong.voipkit.calledSideActivity.action" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data
-                    android:host="com.syw.weiyu"
-                    android:path="/calledsideactivity"
-                    android:scheme="rong" />
-            </intent-filter>
-        </activity>
-
-        <service
-            android:name="io.rong.imkit.service.RongIMService"
-            android:enabled="true"
-            android:exported="false"
-            android:priority="1000" />
-        <service
-            android:name="io.rong.imlib.push.PushService"
-            android:process=":push" >
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <action android:name="io.rong.push" />
-            </intent-filter>
-        </service>
-        <service
-            android:name="io.rong.imlib.push.CommandService"
-            android:process=":push" >
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <action android:name="io.rong.command" />
-            </intent-filter>
-        </service>
-
-        <receiver
-            android:name="io.rong.imlib.push.PushReceiver"
-            android:process=":push" >
-            <intent-filter>
-                <action android:name="io.rong.imlib.action.push.heartbeat" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
-        <receiver android:name="io.rong.imlib.push.PushMessageReceiver" >
-            <intent-filter>
-                <action android:name="io.rong.push.message" />
-            </intent-filter>
-        </receiver>
-
-        <service android:name="io.rong.imlib.RongService" />
-        <!-- End Rong Cloud -->
-
         <!-- 启动页 -->
         <activity android:name=".ui.main.LauncherActivity" >
             <intent-filter>
@@ -286,8 +103,27 @@
         <!-- 附近 -->
         <activity android:name=".ui.main.explore.NearByUserActivity" />
 
-        <!-- 消息 -->
-        <activity android:name=".ui.main.SessionListActivity" />
+        <!-- 消息列表 -->
+        <activity android:name=".ui.main.SessionListActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:host="com.syw.weiyu"
+                        android:path="/conversationlist"
+                        android:scheme="rong" />
+            </intent-filter>
+        </activity>
+        <!--消息-->
+        <activity android:name=".ui.main.SessionActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                        android:host="com.syw.weiyu"
+                        android:pathPrefix="/conversation/"
+                        android:scheme="rong" />
+            </intent-filter>
+        </activity>
 
         <!-- 发现 -->
         <activity android:name=".ui.main.ExploreActivity" />

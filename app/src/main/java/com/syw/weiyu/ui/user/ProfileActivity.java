@@ -16,7 +16,7 @@ import com.syw.weiyu.bean.User;
  * Created by songyouwei on 2015/2/25.
  * 修改资料的Activity
  */
-public class ProfileActivity extends ProfileBaseActivity {
+public class ProfileActivity extends LoginBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

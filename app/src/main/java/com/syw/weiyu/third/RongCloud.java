@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.orhanobut.logger.Logger;
+import com.syw.weiyu.AppConstants;
 import com.syw.weiyu.R;
 import com.syw.weiyu.util.ACache;
 
@@ -74,7 +75,7 @@ public class RongCloud {
         params.put("name",name);
         params.put("portraitUri",portraitUri);
         Log.d("Weiyu", "get, params:" + params.getParamString());
-        getSignedHttp().post(context.getString(R.string.url_user_gettoken), params, callback);
+        getSignedHttp().post(AppConstants.url_user_gettoken, params, callback);
     }
 
     /**
@@ -95,7 +96,7 @@ public class RongCloud {
         params.put("name",name);
         params.put("portraitUri",portraitUri);
 
-        getSignedHttp().post(context.getString(R.string.url_user_refresh), params, callback);
+        getSignedHttp().post(AppConstants.url_user_refresh, params, callback);
     }
 
     /**
@@ -117,7 +118,7 @@ public class RongCloud {
                 }
 
                 @Override
-                public void onError(ErrorCode errorCode) {
+                public void onError(RongIMClient.ErrorCode errorCode) {
                     // 此处处理连接错误。
                     Logger.e("Connect rongcloud failed, errormsg:"+errorCode.getMessage());
                 }
@@ -134,8 +135,8 @@ public class RongCloud {
      */
     private FinalHttp getSignedHttp() {
 
-        String appKey = context.getString(R.string.rongcloud_app_key);
-        String appSecret = context.getString(R.string.rongcloud_app_secret);
+        String appKey = AppConstants.rongcloud_app_key;
+        String appSecret = AppConstants.rongcloud_app_secret;
         String nonce = String.valueOf(Math.random() * 1000000);
         String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
         StringBuffer toSign = new StringBuffer(appSecret).append(nonce).append(timestamp);

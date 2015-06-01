@@ -1,19 +1,15 @@
 package com.syw.weiyu.dao.shuoshuo;
 
-import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.listener.FindListener;
-import cn.bmob.v3.listener.SaveListener;
 import com.alibaba.fastjson.JSON;
 import com.syw.weiyu.AppConstants;
 import com.syw.weiyu.AppContext;
 import com.syw.weiyu.AppException;
 import com.syw.weiyu.api.Listener;
-import com.syw.weiyu.api.WeiyuApi;
+import com.syw.weiyu.api.Null;
 import com.syw.weiyu.bean.*;
-import com.syw.weiyu.bean.jsonobj.NearbyShuoshuoItemJsonObj;
-import com.syw.weiyu.bean.jsonobj.NearbyShuoshuoListJsonObj;
+import com.syw.weiyu.bean.jsonobj.ShuoshuoItemJsonObj;
+import com.syw.weiyu.bean.jsonobj.NearbySearchListJsonObj;
 import com.syw.weiyu.dao.location.LocationDao;
-import com.syw.weiyu.dao.user.AccountDao;
 import com.syw.weiyu.third.LBSCloud;
 import net.tsz.afinal.FinalHttp;
 import net.tsz.afinal.http.AjaxCallBack;
@@ -52,7 +48,7 @@ public class ShuoshuoDao {
             @Override
             public void onSuccess(String s) {
                 try {
-                    ShuoshuoList shuoshuoList = parseShuoshuosFromJson(s);
+                    ShuoshuoList shuoshuoList = parseShuoshuoListFromJson(s);
                     listener.onSuccess(shuoshuoList);
 
                     //cache
@@ -80,7 +76,7 @@ public class ShuoshuoDao {
      * @param content
      * @param listener
      */
-    public void add(String content, final Listener<Void> listener) {
+    public void add(String content, final Listener<Null> listener) {
         String url = AppConstants.url_create_poi;
 
         AjaxParams params = LBSCloud.getInitializedParams(AppConstants.geotable_id_shuoshuo);
@@ -147,14 +143,14 @@ public class ShuoshuoDao {
      * @param jsonStr
      * @return
      */
-    private ShuoshuoList parseShuoshuosFromJson(String jsonStr) throws AppException {
-        NearbyShuoshuoListJsonObj jsonObj = JSON.parseObject(jsonStr, NearbyShuoshuoListJsonObj.class);
+    private ShuoshuoList parseShuoshuoListFromJson(String jsonStr) throws AppException {
+        NearbySearchListJsonObj<ShuoshuoItemJsonObj> jsonObj = JSON.parseObject(jsonStr, NearbySearchListJsonObj.class);
         if (jsonObj.getStatus()!=0) throw new AppException("说说获取出错");
         int total = jsonObj.getTotal();
         List<Shuoshuo> list = new ArrayList<>();
         for (int i=0;i<jsonObj.getSize();i++) {
             Shuoshuo shuoshuo = new Shuoshuo();
-            NearbyShuoshuoItemJsonObj poi = jsonObj.getContents().get(i);
+            ShuoshuoItemJsonObj poi = jsonObj.getContents().get(i);
             shuoshuo.setId(poi.getUid());
             shuoshuo.setTimestamp(poi.getTimestamp());
             shuoshuo.setUserId(poi.getUserId());
@@ -197,12 +193,12 @@ public class ShuoshuoDao {
      * @return
      */
     private List<Comment> parseCommentsFromJson(String jsonStr) throws AppException {
-        NearbyShuoshuoListJsonObj jsonObj = JSON.parseObject(jsonStr,NearbyShuoshuoListJsonObj.class);
+        NearbySearchListJsonObj<ShuoshuoItemJsonObj> jsonObj = JSON.parseObject(jsonStr,NearbySearchListJsonObj.class);
         if (jsonObj.getStatus()!=0) throw new AppException("评论获取出错");
         List<Comment> list = new ArrayList<>();
         for (int i=0;i<jsonObj.getSize();i++) {
             Comment comment = new Comment();
-            NearbyShuoshuoItemJsonObj poi = jsonObj.getContents().get(i);
+            ShuoshuoItemJsonObj poi = jsonObj.getContents().get(i);
             comment.setUserId(poi.getUserId());
             comment.setUserName(poi.getUserName());
             comment.setTimestamp(poi.getTimestamp());

@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="#EEEEEE"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
     <include
-        android:uid="@+uid/sessionlist_header"
+        android:id="@+id/sessionlist_header"
         layout="@layout/wy_header_common"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>
 
-    <FrameLayout
-        android:uid="@+uid/sessionlist_layout_content"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@+uid/sessionlist_header"
-        android:fadingEdge="none"
-        android:gravity="center" />
+    <!-- 会话列表页面 Fragment -->
+    <fragment
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="io.rong.imkit.fragment.ConversationListFragment"/>
 
-</RelativeLayout>
+</LinearLayout>

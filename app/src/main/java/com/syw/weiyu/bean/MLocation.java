@@ -50,6 +50,12 @@ public class MLocation implements Serializable {
         }
     }
 
+    public MLocation(String city, String province, String district,String address) {
+        this.city = city;
+        this.province = province;
+        this.district = district;
+        this.address = address;
+    }
     public MLocation(String city, String province, String district) {
         this.city = city;
         this.province = province;

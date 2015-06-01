@@ -4,9 +4,9 @@ import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import com.syw.weiyu.AppConstants;
 import com.syw.weiyu.AppContext;
 import com.syw.weiyu.AppException;
-import com.syw.weiyu.R;
 import com.syw.weiyu.adp.WeiyuBannerCustomEventPlatformAdapter;
 import com.syw.weiyu.adp.WeiyuCustomEventPlatformEnum;
 import com.syw.weiyu.av.WeiyuLayout;
@@ -43,7 +43,7 @@ public class WeiyuApi {
 
     /**
      * =========================================
-     * ----------------用户部分------------------
+     * ----------------账户部分------------------
      * =========================================
      */
 
@@ -58,9 +58,9 @@ public class WeiyuApi {
      * @param listener 包含返回token
      */
     public void register(final String id,final String name,final String gender,final Listener<String> listener) {
-        new UserPoiDao().create(new User(id, name, gender), new LocationDao().get(), new Listener<Void>() {
+        new UserPoiDao().create(new User(id, name, gender), new LocationDao().get(), new Listener<Null>() {
             @Override
-            public void onSuccess(Void data) {
+            public void onSuccess(Null data) {
                 //拿token
                 new TokenDao().get(id, name, null, new Listener<String>() {
                     @Override
@@ -72,7 +72,7 @@ public class WeiyuApi {
 
                     @Override
                     public void onFailure(String msg) {
-                        listener.onSuccess(msg);
+                        listener.onFailure(msg);
                     }
                 });
             }
@@ -131,14 +131,6 @@ public class WeiyuApi {
         return 0;
     }
 
-    /**
-     * 获取用户资料
-     * @param id
-     * @return
-     */
-    public User getUser(String id) throws AppException {
-        return new UserDao().getUser(id);
-    }
 
     /**
      * 更新用户资料
@@ -147,6 +139,25 @@ public class WeiyuApi {
 
     }
 
+
+    /**
+     * =========================================
+     * ----------------用户部分------------------
+     * =========================================
+     */
+
+    public void getNearbyUsers(int pageIndex,Listener<UserList> listener) {
+        new UserDao().getNearbyUsers(pageIndex,listener);
+    }
+
+    /**
+     * 获取用户资料
+     * @param id
+     * @return
+     */
+    public User getUser(String id) throws AppException {
+        return new UserDao().getUser(id);
+    }
 
     /**
      * =========================================
@@ -225,7 +236,7 @@ public class WeiyuApi {
      * @param content
      * @param listener
      */
-    public void publishShuoshuo(String content,Listener<Void> listener) {
+    public void publishShuoshuo(String content,Listener<Null> listener) {
         new ShuoshuoDao().add(content, listener);
     }
 
@@ -252,7 +263,7 @@ public class WeiyuApi {
          * 参数：第一个activity,第二个mogoID（该值为芒果后台申请的生产的芒果ID，非单一平台ID）,第三个设置广告展示位置,第四个请求广告尺寸,
          * 第五个是否手动刷新true：是手动刷新（芒果后台轮换时间必须为禁用才会生效）	，false:自动轮换
          */
-        weiyuLayoutCode = new WeiyuLayout(activity, activity.getString(R.string.adsmogo_appid), WeiyuSize.WeiyuAutomaticScreen);
+        weiyuLayoutCode = new WeiyuLayout(activity, AppConstants.adsmogo_appid, WeiyuSize.WeiyuAutomaticScreen);
 
         weiyuLayoutCode.setWeiyuListener(new WeiyuListener() {
             @Override
@@ -308,7 +319,7 @@ public class WeiyuApi {
     }
 
     public void showSplashAd(Activity activity,final AdListener listener) {
-        WeiyuSplash weiyuSplash = new WeiyuSplash(activity,activity.getString(R.string.adsmogo_appid), WeiyuSplashMode.FULLSCREEN);
+        WeiyuSplash weiyuSplash = new WeiyuSplash(activity,AppConstants.adsmogo_appid, WeiyuSplashMode.FULLSCREEN);
         //设置开屏广告监听
         weiyuSplash.setWeiyuSplashListener(new WeiyuSplashListener() {
             @Override
