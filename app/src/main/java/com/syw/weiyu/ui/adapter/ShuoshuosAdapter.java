@@ -97,6 +97,9 @@ public class ShuoshuosAdapter extends PagingBaseAdapter {
             }
         });
 
+
+        /*设置背景色*/
+
         //1/2白色
         if (shuoshuo.getTimestamp()%2 == 0) {
             convertView.setBackgroundResource(R.drawable.s_1);

@@ -40,7 +40,7 @@ public class ShuoshuoDao {
         params.put("radius",AppConstants.default_radius);
         //按时间|距离排序，优先显示时间靠前的
         params.put("sortby","timestamp:-1|distance:1");
-        params.put("page_index",pageIndex+"");
+        params.put("page_index",pageIndex-1+"");//检索是从0页开始的
         params.put("page_size",AppConstants.page_size_default);
         //get
         FinalHttp http = new FinalHttp();
@@ -144,13 +144,14 @@ public class ShuoshuoDao {
      * @return
      */
     private ShuoshuoList parseShuoshuoListFromJson(String jsonStr) throws AppException {
-        NearbySearchListJsonObj<ShuoshuoItemJsonObj> jsonObj = JSON.parseObject(jsonStr, NearbySearchListJsonObj.class);
+        NearbySearchListJsonObj jsonObj = new NearbySearchListJsonObj();
+        jsonObj = JSON.parseObject(jsonStr, jsonObj.getClass());
         if (jsonObj.getStatus()!=0) throw new AppException("说说获取出错");
         int total = jsonObj.getTotal();
         List<Shuoshuo> list = new ArrayList<>();
         for (int i=0;i<jsonObj.getSize();i++) {
             Shuoshuo shuoshuo = new Shuoshuo();
-            ShuoshuoItemJsonObj poi = jsonObj.getContents().get(i);
+            ShuoshuoItemJsonObj poi = JSON.parseObject(jsonObj.getContents().get(i).toString(), ShuoshuoItemJsonObj.class);
             shuoshuo.setId(poi.getUid());
             shuoshuo.setTimestamp(poi.getTimestamp());
             shuoshuo.setUserId(poi.getUserId());
@@ -193,12 +194,12 @@ public class ShuoshuoDao {
      * @return
      */
     private List<Comment> parseCommentsFromJson(String jsonStr) throws AppException {
-        NearbySearchListJsonObj<ShuoshuoItemJsonObj> jsonObj = JSON.parseObject(jsonStr,NearbySearchListJsonObj.class);
+        NearbySearchListJsonObj jsonObj = JSON.parseObject(jsonStr,NearbySearchListJsonObj.class);
         if (jsonObj.getStatus()!=0) throw new AppException("评论获取出错");
         List<Comment> list = new ArrayList<>();
         for (int i=0;i<jsonObj.getSize();i++) {
             Comment comment = new Comment();
-            ShuoshuoItemJsonObj poi = jsonObj.getContents().get(i);
+            ShuoshuoItemJsonObj poi = (ShuoshuoItemJsonObj) jsonObj.getContents().get(i);
             comment.setUserId(poi.getUserId());
             comment.setUserName(poi.getUserName());
             comment.setTimestamp(poi.getTimestamp());

@@ -160,13 +160,13 @@ public class UserDao {
     }
 
     private UserList parseUserListFromJson(String jsonStr) throws AppException {
-        NearbySearchListJsonObj<UserItemJsonObj> jsonObj = JSON.parseObject(jsonStr, NearbySearchListJsonObj.class);
+        NearbySearchListJsonObj jsonObj = JSON.parseObject(jsonStr, NearbySearchListJsonObj.class);
         if (jsonObj.getStatus()!=0) throw new AppException("附近的人获取出错");
         int total = jsonObj.getTotal();
         List<User> list = new ArrayList<>();
         for (int i=0;i<jsonObj.getSize();i++) {
             User user = new User();
-            UserItemJsonObj poi = jsonObj.getContents().get(i);
+            UserItemJsonObj poi = JSON.parseObject(jsonObj.getContents().get(i).toString(),UserItemJsonObj.class);
             user.setId(poi.getUserId());
             user.setName(poi.getName());
             user.setGender(poi.getGender());

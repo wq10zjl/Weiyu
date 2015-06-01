@@ -107,8 +107,8 @@ public class ShuoshuoActivity extends FragmentActivity {
         mPtrFrame.setPtrHandler(new PtrHandler() {
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {
-                pageIndex = 0;
-                WeiyuApi.get().getNearbyShuoshuo(0, new Listener<ShuoshuoList>() {
+                pageIndex = 1;
+                WeiyuApi.get().getNearbyShuoshuo(pageIndex, new Listener<ShuoshuoList>() {
                     @Override
                     public void onSuccess(ShuoshuoList data) {
                         //结束下拉刷新

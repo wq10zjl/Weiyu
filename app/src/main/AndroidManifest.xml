@@ -42,7 +42,7 @@
         android:allowBackup="true"
         android:icon="@drawable/wy_ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/WeiyuAppTheme" >
+        android:theme="@style/RCTheme" >
 
         <!-- AdMoGo MobAd -->
         <!-- 声明Mogo的Activity -->
@@ -92,7 +92,6 @@
         <activity android:name=".ui.main.LauncherActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

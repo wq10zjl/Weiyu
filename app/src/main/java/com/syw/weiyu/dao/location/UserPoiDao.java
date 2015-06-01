@@ -2,6 +2,7 @@ package com.syw.weiyu.dao.location;
 
 import android.support.annotation.NonNull;
 import com.alibaba.fastjson.JSONObject;
+import com.orhanobut.logger.Logger;
 import com.syw.weiyu.AppConstants;
 import com.syw.weiyu.AppException;
 import com.syw.weiyu.api.Listener;
@@ -49,15 +50,14 @@ public class UserPoiDao {
         http.post(url, params, new AjaxCallBack<String>() {
             @Override
             public void onSuccess(String s) {
-                if (StringUtil.isEmpty(s)) {
-                    JSONObject result = JSONObject.parseObject(s);
-                    if (result.getInteger("status") == 0 || result.getInteger("status") == 3002) {
-                        //创建成功 or 这是老用户（主键重复）
-                        listener.onSuccess(null);
-                    } else {
-                        //创建POI出错
-                        listener.onFailure("创建用户POI信息出错");
-                    }
+                JSONObject result = JSONObject.parseObject(s);
+                if (result.getInteger("status") == 0 || result.getInteger("status") == 3002) {
+                    //创建成功 or 这是老用户（主键重复）
+                    listener.onSuccess(null);
+                } else {
+                    //创建POI出错
+                    listener.onFailure("创建用户POI信息出错");
+                    Logger.e(s);
                 }
             }
 

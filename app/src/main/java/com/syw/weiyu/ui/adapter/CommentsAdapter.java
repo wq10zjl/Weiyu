@@ -86,6 +86,7 @@ public class CommentsAdapter extends BaseAdapter {
         final Comment comment = comments.get(position);
         holder.portrait.setImageResource(comment.getUserGender().equals("男")?R.drawable.wy_icon_male:R.drawable.wy_icon_female);
         holder.name.setText(comment.getUserName());
+        holder.floor.setText(1+position+"楼");
         holder.time.setText(new SimpleDateFormat("MM-dd kk:mm").format(new Date(comment.getTimestamp())));
         holder.content.setText(comment.getContent());
 

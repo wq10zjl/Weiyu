@@ -8,11 +8,11 @@ import java.util.List;
  * date: 2015-05-20
  * desc: 请求周边检索列表的返回结果（用于JSON反序列化）
  */
-public class NearbySearchListJsonObj<T> {
+public class NearbySearchListJsonObj {
     private int status;
     private int size;
     private int total;
-    private List<T> contents = new ArrayList<>();
+    private List contents = new ArrayList();
 
     @Override
     public String toString() {
@@ -48,11 +48,11 @@ public class NearbySearchListJsonObj<T> {
         this.total = total;
     }
 
-    public List<T> getContents() {
+    public List getContents() {
         return contents;
     }
 
-    public void setContents(List<T> contents) {
+    public void setContents(List contents) {
         this.contents = contents;
     }
 }

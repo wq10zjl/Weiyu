@@ -39,29 +39,25 @@ android {
 //    }
 }
 
-repositories {
-    maven {
-        //Ultra Pull To Refresh
-        url 'https://oss.sonatype.org/content/repositories/releases'
-    }
-    mavenCentral()
-}
+//repositories {
+//    maven {
+//        //Ultra Pull To Refresh
+//        url 'https://oss.sonatype.org/content/repositories/releases'
+//    }
+//    mavenCentral()
+//}
 
 
 dependencies {
-    compile project(':IMkit')
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:support-v4:22.1.1'
     compile 'com.android.support:appcompat-v7:22.1.1'
     compile 'com.github.dmytrodanylyk.android-process-button:library:1.0.3'
-    compile 'in.srain.cube:ultra-ptr:1.0.9@aar'
+    compile 'in.srain.cube:ultra-ptr:1.0.9'
     compile 'com.github.nicolasjafelle:paginglistview:1.2'
     compile 'com.orhanobut:logger:1.8'
     compile 'com.github.johnkil.android-appmsg:appmsg:1.2.0'
+
+    compile project(':IMkit')
     //event bus 已经集成在融云里了
-    //    compile 'de.greenrobot:eventbus:2.4.0'
-    //    compile 'org.roboguice:roboguice:3.0.1'
-    //    provided 'org.roboguice:roboblender:3.0.1'
-    //    compile 'com.squareup.dagger:dagger:1.2.2'
-    //    compile 'com.squareup.dagger:dagger-compiler:1.2.2'
 }
