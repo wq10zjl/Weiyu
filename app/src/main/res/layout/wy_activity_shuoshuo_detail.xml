@@ -12,7 +12,7 @@
         <include layout="@layout/wy_header_withbackbtn"/>
         <!--<include layout="@layout/wy_shuoshuo_lv_item"/>-->
 
-        <LinearLayout android:layout_marginTop="10dp" android:padding="10dp" android:background="@color/white"
+        <LinearLayout android:background="@color/white"
                       android:orientation="vertical"
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content">
@@ -25,7 +25,7 @@
 
     </LinearLayout>
 
-    <LinearLayout android:layout_margin="10dp" android:gravity="bottom" android:layout_gravity="bottom"
+    <LinearLayout android:layout_margin="5dp" android:gravity="bottom" android:layout_gravity="bottom"
                   android:orientation="horizontal" android:layout_width="match_parent"
                   android:layout_height="wrap_content">
 

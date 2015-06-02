@@ -44,7 +44,7 @@
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content">
 
-        <ImageView android:layout_width="25dp" android:layout_height="25dp" android:src="@drawable/wy_icon_gps"/>
+        <ImageView android:layout_width="25dp" android:layout_height="25dp" android:src="@drawable/wy_ic_card_location"/>
         <TextView android:layout_weight="4"
                   android:id="@+id/shuoshuo_tv_address"
                   android:layout_width="wrap_content"
@@ -54,10 +54,10 @@
         <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
                       android:layout_weight="1">
             <TextView android:layout_weight="1" android:gravity="end" android:id="@+id/shuoshuo_tv_comment_count"
-                      android:text="comment_count" android:textSize="18dp" android:layout_width="wrap_content"
+                      android:text="x评" android:textSize="18dp" android:layout_width="wrap_content"
                       android:layout_height="wrap_content"/>
-            <ImageView android:layout_weight="1" android:id="@+id/ic_comment" android:layout_width="25dp"
-                       android:layout_height="25dp" android:src="@drawable/wy_ic_card_comment_grey"/>
+            <ImageView android:layout_weight="1" android:id="@+id/ic_like" android:layout_width="25dp"
+                       android:layout_height="25dp" android:src="@drawable/wy_ic_card_like_grey"/>
         </LinearLayout>
     </LinearLayout>
 

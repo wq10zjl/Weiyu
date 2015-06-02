@@ -32,21 +32,7 @@ android {
         exclude 'META-INF/NOTICE.txt'
     }
 
-    //use next line code to avoid detection in gradle
-    //such XXXis not translated in zh (chinese) missingtranslation
-//    lintOptions {
-//        abortOnError false
-//    }
 }
-
-//repositories {
-//    maven {
-//        //Ultra Pull To Refresh
-//        url 'https://oss.sonatype.org/content/repositories/releases'
-//    }
-//    mavenCentral()
-//}
-
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])

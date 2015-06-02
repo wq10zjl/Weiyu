@@ -8,6 +8,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.util.LruCache;
 import cn.bmob.v3.Bmob;
+import com.devspark.appmsg.AppMsg;
 import com.orhanobut.logger.Logger;
 import com.syw.weiyu.api.WeiyuApi;
 import com.syw.weiyu.bean.Account;

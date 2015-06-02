@@ -89,7 +89,7 @@
         </activity>
 
         <!-- 启动页 -->
-        <activity android:name=".ui.main.LauncherActivity" >
+        <activity android:name=".ui.LauncherActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -97,13 +97,13 @@
         </activity>
 
         <!-- 主界面 -->
-        <activity android:name=".ui.main.MainTabsActivity" />
+        <activity android:name=".ui.MainTabsActivity" />
 
         <!-- 附近 -->
-        <activity android:name=".ui.main.explore.NearByUserActivity" />
+        <activity android:name=".ui.explore.NearByUserActivity" />
 
         <!-- 消息列表 -->
-        <activity android:name=".ui.main.SessionListActivity">
+        <activity android:name=".ui.session.SessionListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -113,7 +113,7 @@
             </intent-filter>
         </activity>
         <!--消息-->
-        <activity android:name=".ui.main.SessionActivity">
+        <activity android:name=".ui.session.SessionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -125,22 +125,23 @@
         </activity>
 
         <!-- 发现 -->
-        <activity android:name=".ui.main.ExploreActivity" />
+        <activity android:name=".ui.explore.ExploreActivity" />
 
         <!-- 登录 -->
-        <activity android:name=".ui.main.LoginActivity" />
+        <activity android:name=".ui.user.LoginActivity" />
 
         <!-- 修改资料 -->
         <activity android:name=".ui.user.ProfileActivity" />
 
         <!--关于信息-->
-        <activity android:name=".ui.main.explore.AboutInfoActivity"/>
+        <activity android:name=".ui.explore.AboutInfoActivity"/>
 
         <!--附近说说-->
-        <activity android:name=".ui.main.ShuoshuoActivity"/>
+        <activity android:name=".ui.shuoshuo.ShuoshuoActivity"/>
 
         <!--说说详情-->
-        <activity android:name=".ui.shuoshuo.ShuoshuoDetailActivity"/>
+        <activity android:name=".ui.shuoshuo.ShuoshuoDetailActivity"
+                android:windowSoftInputMode="stateHidden"/>
 
     </application>
 

@@ -10,10 +10,12 @@ import com.devspark.appmsg.AppMsg;
  */
 public class Msger {
     public static void i(Activity ctx,String msg) {
+        AppMsg.cancelAll(ctx);
         // create {@link AppMsg} with specify type
         AppMsg.makeText(ctx,msg,AppMsg.STYLE_INFO).show();
     }
     public static void e(Activity ctx,String msg) {
+        AppMsg.cancelAll(ctx);
         // create {@link AppMsg} with specify type
         AppMsg.makeText(ctx,msg,AppMsg.STYLE_ALERT).show();
     }

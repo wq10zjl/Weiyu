@@ -22,7 +22,7 @@ public class ProfileActivity extends LoginBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //set back icon
-        ImageView imageView = (ImageView) findViewById(R.id.header_iv_logo);
+        ImageView imageView = (ImageView) findViewById(R.id.header_left);
         imageView.setImageResource(R.drawable.wy_icon_back);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override

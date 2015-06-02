@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.*;
 import com.syw.weiyu.R;
 import com.syw.weiyu.api.Listener;
@@ -29,6 +30,7 @@ public class ShuoshuoDetailActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wy_activity_shuoshuo_detail);
+        initViews();
 
         final ListView listView = (ListView) findViewById(R.id.comments);
 
@@ -39,14 +41,18 @@ public class ShuoshuoDetailActivity extends FragmentActivity {
         listView.addHeaderView(allCommentsTV);
 
         final CommentsAdapter adapter = new CommentsAdapter(ShuoshuoDetailActivity.this);
+        listView.setAdapter(adapter);
         final long ssId = shuoshuo.getId();
         Msger.i(this, "正在加载评论");
         WeiyuApi.get().getShuoshuoComments(ssId, new Listener<List<Comment>>() {
             @Override
             public void onSuccess(List<Comment> data) {
-                adapter.set(data);
-                listView.setAdapter(adapter);
-                Msger.i(ShuoshuoDetailActivity.this, "评论加载完成");
+                if (data.size()>0) {
+                    adapter.set(data);
+                    Msger.i(ShuoshuoDetailActivity.this, "评论加载完成");
+                } else {
+                    Msger.e(ShuoshuoDetailActivity.this, "暂无评论");
+                }
             }
 
             @Override
@@ -60,14 +66,21 @@ public class ShuoshuoDetailActivity extends FragmentActivity {
         btn_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //隐藏键盘
+                ((InputMethodManager)getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(ShuoshuoDetailActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
                 String content = et_comment.getText().toString();
                 Msger.i(ShuoshuoDetailActivity.this,"正在添加评论...");
                 if (!StringUtil.isEmpty(content)) {
                     WeiyuApi.get().addComment(ssId, content, new Listener<Comment>() {
                         @Override
                         public void onSuccess(Comment data) {
-                            adapter.append(data);
                             Msger.i(ShuoshuoDetailActivity.this, "评论成功");
+                            adapter.append(data);
+                            //定位到底部
+                            listView.smoothScrollToPosition(listView.getBottom());
+                            //清空输入框
+                            et_comment.setText("");
                         }
                         @Override
                         public void onFailure(String msg) {
@@ -77,6 +90,17 @@ public class ShuoshuoDetailActivity extends FragmentActivity {
                 }
             }
         });
+    }
+
+    private void initViews() {
+        findViewById(R.id.header_left).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+        TextView tvTitle = (TextView) findViewById(R.id.header_title);
+        tvTitle.setText("详情");
     }
 
     private View getAllCommentsTV() {

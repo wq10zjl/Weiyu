@@ -58,7 +58,8 @@ public class CommentDao {
      */
     public void getComments(long ssId,final Listener<List<Comment>> listener) {
         BmobQuery<Comment> query = new BmobQuery<>();
-        query.order("-timestamp");
+        query.addWhereEqualTo("ssId",ssId);
+        query.order("+timestamp");//时间早的靠前
         query.findObjects(AppContext.getCtx(), new FindListener<Comment>() {
             @Override
             public void onSuccess(List<Comment> list) {

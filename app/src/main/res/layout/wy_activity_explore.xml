@@ -41,7 +41,7 @@
             android:layout_toRightOf="@id/lv_icon_nearby_people"
             android:gravity="center_vertical"
             android:text="附近的人"
-            android:textSize="36dp"/>
+            android:textSize="20dp"/>
 
     </RelativeLayout>
 
@@ -79,7 +79,7 @@
             android:layout_toRightOf="@id/lv_icon_profile"
             android:gravity="center_vertical"
             android:text="个人资料修改"
-            android:textSize="36dp"/>
+            android:textSize="20dp"/>
 
     </RelativeLayout>
 
@@ -116,7 +116,7 @@
             android:layout_toRightOf="@id/lv_icon_aboutinfo"
             android:gravity="center_vertical"
             android:text="关于"
-            android:textSize="36dp"/>
+            android:textSize="20dp"/>
 
     </RelativeLayout>
 
