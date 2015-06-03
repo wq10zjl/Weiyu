@@ -22,8 +22,8 @@ public class Shuoshuo extends BmobObject implements Serializable {
     private String userId;
     private BmobGeoPoint gpsAdd;//用于Bmob存储位置点
     private String addressStr;//用于Bmob存储位置名
-    private int commentCount;
-    private int likedCount;
+    private int commentCount;//评论数
+    private int likedCount;//喜欢数
 
     public long getId() {
         return id;

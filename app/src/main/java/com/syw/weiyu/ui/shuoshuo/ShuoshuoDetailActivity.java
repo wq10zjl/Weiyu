@@ -36,7 +36,7 @@ public class ShuoshuoDetailActivity extends FragmentActivity {
 
         final ListView listView = (ListView) findViewById(R.id.comments);
 
-        Shuoshuo shuoshuo = (Shuoshuo) getIntent().getSerializableExtra("shuoshuo");
+        final Shuoshuo shuoshuo = (Shuoshuo) getIntent().getSerializableExtra("shuoshuo");
         View shuoshuoView = getShuoshuoView(shuoshuo);
         View allCommentsTV = getAllCommentsTV();
         listView.addHeaderView(shuoshuoView);
@@ -74,11 +74,14 @@ public class ShuoshuoDetailActivity extends FragmentActivity {
                 String content = et_comment.getText().toString();
                 Msger.i(ShuoshuoDetailActivity.this,"正在添加评论...");
                 if (!StringUtil.isEmpty(content)) {
-                    WeiyuApi.get().addComment(ssId, content, new Listener<Comment>() {
+                    WeiyuApi.get().addComment(shuoshuo, content, new Listener<Comment>() {
                         @Override
                         public void onSuccess(Comment data) {
                             Msger.i(ShuoshuoDetailActivity.this, "评论成功");
+                            //添加adapter里的数据
                             adapter.append(data);
+                            //评论数++
+                            ((TextView)findViewById(R.id.shuoshuo_tv_comment_count)).setText(String.valueOf(shuoshuo.getCommentCount() + 1));
                             //定位到底部
                             listView.smoothScrollToPosition(listView.getBottom());
                             //清空输入框

@@ -15,6 +15,7 @@ import com.syw.weiyu.bean.ShuoshuoList;
 import net.tsz.afinal.FinalDb;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * author: youwei
@@ -66,7 +67,7 @@ public class ShuoshuoDao4Bmob implements ShuoshuoDao {
     @Override
     public void create(Account account, MLocation location, String content, long timeStamp, final Listener<Null> listener) {
         Shuoshuo shuoshuo = new Shuoshuo();
-        shuoshuo.setId(shuoshuo.hashCode());//or null
+        shuoshuo.setId(System.currentTimeMillis()+shuoshuo.hashCode());
         shuoshuo.setUserId(account.getId());
         shuoshuo.setUserName(account.getName());
         BmobGeoPoint gpsAdd = new BmobGeoPoint(Double.parseDouble(location.getLongitude()), Double.parseDouble(location.getLatitude()));
@@ -82,8 +83,20 @@ public class ShuoshuoDao4Bmob implements ShuoshuoDao {
 
             @Override
             public void onFailure(int i, String s) {
-                listener.onFailure("发送出现错误:"+s);
+                listener.onFailure("发送说说出现错误:"+s);
             }
         });
+    }
+
+    @Override
+    public void addCommentCount(Shuoshuo shuoshuo) {
+        shuoshuo.increment("commentCount");
+        shuoshuo.update(AppContext.getCtx());
+    }
+
+    @Override
+    public void addLikedCount(Shuoshuo shuoshuo) {
+        shuoshuo.increment("likedCount");
+        shuoshuo.update(AppContext.getCtx());
     }
 }

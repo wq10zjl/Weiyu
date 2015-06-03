@@ -12,8 +12,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.paging.listview.PagingBaseAdapter;
 import com.syw.weiyu.R;
+import com.syw.weiyu.api.WeiyuApi;
 import com.syw.weiyu.bean.Shuoshuo;
 import com.syw.weiyu.ui.shuoshuo.ShuoshuoDetailActivity;
+import io.rong.imkit.RongIM;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -73,7 +75,7 @@ public class ShuoshuosAdapter extends PagingBaseAdapter {
     //然后重写getView
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
+        final ViewHolder holder;
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.wy_shuoshuo_lv_item, null);
             holder = new ViewHolder();
@@ -93,16 +95,35 @@ public class ShuoshuosAdapter extends PagingBaseAdapter {
         holder.address.setText(shuoshuo.getLocation()==null?shuoshuo.getAddressStr():shuoshuo.getLocation().getProvince()+shuoshuo.getLocation().getCity()+shuoshuo.getLocation().getDistrict());
         holder.time.setText(new SimpleDateFormat("MM-dd kk:mm").format(new Date(shuoshuo.getTimestamp())));
         holder.content.setText(shuoshuo.getContent());
+        holder.commentCount.setText(String.valueOf(shuoshuo.getCommentCount())+"评论");
+        holder.likedCount.setText(String.valueOf(shuoshuo.getLikedCount()));
+
+        //点内容时跳转
         holder.content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ctx,ShuoshuoDetailActivity.class);
-                intent.putExtra("shuoshuo",shuoshuo);
-                ctx.startActivity(intent);
+                if (shuoshuos.size() == 1) {
+                    //如果是详情页,说说只有一条，就开启私聊
+                    RongIM.getInstance().startPrivateChat(ctx, shuoshuo.getUserId(), shuoshuo.getUserName()+"（私聊）");
+                } else {
+                    //说说首页
+                    Intent intent = new Intent(ctx, ShuoshuoDetailActivity.class);
+                    intent.putExtra("shuoshuo", shuoshuo);
+                    ctx.startActivity(intent);
+                }
             }
         });
-        holder.commentCount.setText(shuoshuo.getCommentCount());
-        holder.likedCount.setText(shuoshuo.getLikedCount());
+        //点❤
+        holder.liked.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                WeiyuApi.get().addLiked(shuoshuo);
+                holder.liked.setImageResource(R.drawable.wy_ic_card_liked);
+                holder.liked.setClickable(false);
+                shuoshuo.setLikedCount(shuoshuo.getLikedCount()+1);
+                holder.likedCount.setText(String.valueOf(shuoshuo.getLikedCount()));
+            }
+        });
 
 
         /*设置背景色*/
@@ -113,6 +134,8 @@ public class ShuoshuosAdapter extends PagingBaseAdapter {
             holder.address.setTextColor(Color.BLACK);
             holder.time.setTextColor(Color.BLACK);
             holder.content.setTextColor(Color.BLACK);
+            holder.commentCount.setTextColor(Color.BLACK);
+            holder.likedCount.setTextColor(Color.BLACK);
             holder.liked.setImageResource(R.drawable.wy_ic_card_like_grey);
         } else {
             //随机背景图[非白色]
@@ -133,6 +156,8 @@ public class ShuoshuosAdapter extends PagingBaseAdapter {
             holder.address.setTextColor(Color.WHITE);
             holder.time.setTextColor(Color.WHITE);
             holder.content.setTextColor(Color.WHITE);
+            holder.commentCount.setTextColor(Color.WHITE);
+            holder.likedCount.setTextColor(Color.WHITE);
             holder.liked.setImageResource(R.drawable.wy_ic_card_like);
         }
 

@@ -106,6 +106,16 @@ public class ShuoshuoDao4LBSyun implements ShuoshuoDao {
         });
     }
 
+    @Override
+    public void addCommentCount(Shuoshuo shuoshuo) {
+
+    }
+
+    @Override
+    public void addLikedCount(Shuoshuo shuoshuo) {
+
+    }
+
 
     /**
      * 解析包含说说列表的json数据

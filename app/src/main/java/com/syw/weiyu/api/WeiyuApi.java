@@ -255,7 +255,15 @@ public class WeiyuApi {
      */
     public void publishShuoshuo(String content,Listener<Null> listener) throws AppException {
         Account account = localAccountDao.get();
-        shuoshuoDao.create(account,locationDao.get(),content,System.currentTimeMillis(),listener);
+        shuoshuoDao.create(account, locationDao.get(), content, System.currentTimeMillis(), listener);
+    }
+
+    /**
+     * “❤”
+     * @param shuoshuo
+     */
+    public void addLiked(Shuoshuo shuoshuo) {
+        shuoshuoDao.addLikedCount(shuoshuo);
     }
 
     /**
@@ -268,8 +276,15 @@ public class WeiyuApi {
         commentDao.getComments(ssId, listener);
     }
 
-    public void addComment(long ssId,String content,Listener<Comment> listener) {
-        commentDao.addComment(ssId, content, listener);
+    /**
+     * 添加评论
+     * @param shuoshuo
+     * @param content
+     * @param listener
+     */
+    public void addComment(Shuoshuo shuoshuo,String content,Listener<Comment> listener) {
+        commentDao.addComment(shuoshuo.getId(), content, listener);
+        shuoshuoDao.addCommentCount(shuoshuo);
     }
 
     /**

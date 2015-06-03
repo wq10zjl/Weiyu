@@ -20,7 +20,7 @@ public class AboutInfoActivity extends FragmentActivity {
                 onBackPressed();
             }
         });
-        ((TextView) findViewById(R.id.header_title)).setText("¹ØÓÚ");
+        ((TextView) findViewById(R.id.header_title)).setText("å…³äºŽ");
     }
 
 }

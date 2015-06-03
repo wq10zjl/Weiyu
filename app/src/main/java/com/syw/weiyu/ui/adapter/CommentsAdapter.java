@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.syw.weiyu.R;
 import com.syw.weiyu.bean.Comment;
+import io.rong.imkit.RongIM;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -89,6 +90,14 @@ public class CommentsAdapter extends BaseAdapter {
         holder.floor.setText(1+position+"楼");
         holder.time.setText(new SimpleDateFormat("MM-dd kk:mm").format(new Date(comment.getTimestamp())));
         holder.content.setText(comment.getContent());
+
+        //点击评论时开启私聊
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RongIM.getInstance().startPrivateChat(ctx, comment.getUserId(), comment.getUserName()+"（私聊）");
+            }
+        });
 
         return convertView;
     }

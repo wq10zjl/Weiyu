@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.paging.listview.PagingBaseAdapter;
 import com.syw.weiyu.R;
 import com.syw.weiyu.bean.User;
+import io.rong.imkit.RongIM;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,9 +36,11 @@ public class NearByUsersAdapter extends PagingBaseAdapter {
     }
 
     LayoutInflater mInflater;
+    Context ctx;
     List<User> users = new ArrayList<>();
 //
     public NearByUsersAdapter(Context ctx) {
+        this.ctx = ctx;
         mInflater = LayoutInflater.from(ctx);
     }
 
@@ -77,7 +80,7 @@ public class NearByUsersAdapter extends PagingBaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        User user = users.get(position);
+        final User user = users.get(position);
         holder.portrait.setImageResource(
                 user.getGender().equals("男") ?
                         R.drawable.wy_icon_male :
@@ -85,6 +88,14 @@ public class NearByUsersAdapter extends PagingBaseAdapter {
         );
         holder.name.setText(user.getName());
         holder.address.setText(user.getLocation()==null?user.getAddressStr():user.getLocation().getAddress());
+
+        //点击用户时开启私聊
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RongIM.getInstance().startPrivateChat(ctx, user.getId(), user.getName() + "（私聊）");
+            }
+        });
 
         return convertView;
     }
