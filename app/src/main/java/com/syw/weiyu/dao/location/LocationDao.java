@@ -26,7 +26,7 @@ public class LocationDao {
                 FinalDb finalDb = FinalDb.create(AppContext.getCtx());
                 finalDb.deleteAll(MLocation.class);
                 finalDb.save(mLocation);
-                AppContext.put(AppContext.KEY_LOCATION, mLocation);
+                AppContext.putCache(AppContext.KEY_LOCATION, mLocation);
             }
 
             @Override
@@ -43,7 +43,7 @@ public class LocationDao {
      * @return
      */
     public MLocation get() {
-        MLocation location = (MLocation) AppContext.get(AppContext.KEY_LOCATION);
+        MLocation location = (MLocation) AppContext.getCache(AppContext.KEY_LOCATION);
         if (location == null) {
             FinalDb finalDb = FinalDb.create(AppContext.getCtx());
             List<MLocation> locations = finalDb.findAll(MLocation.class);

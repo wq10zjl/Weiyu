@@ -18,6 +18,18 @@ import com.syw.weiyu.ui.user.ProfileActivity;
 public class ExploreActivity extends FragmentActivity implements View.OnClickListener {
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.wy_activity_explore);
+
+        findViewById(R.id.explore_item_shuoshuo).setOnClickListener(this);
+        findViewById(R.id.explore_item_profile).setOnClickListener(this);
+        findViewById(R.id.explore_item_aboutinfo).setOnClickListener(this);
+
+        ((TextView) findViewById(R.id.header_title)).setText("发现");
+    }
+
+    @Override
     public void onClick(View v) {
         Class activity = null;
         switch (v.getId()) {
@@ -35,22 +47,6 @@ public class ExploreActivity extends FragmentActivity implements View.OnClickLis
         startActivity(intent);
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.wy_activity_explore);
-
-        final Context ctx = ExploreActivity.this;
-
-        findViewById(R.id.explore_item_shuoshuo).setOnClickListener(this);
-
-        findViewById(R.id.explore_item_profile).setOnClickListener(this);
-
-        findViewById(R.id.explore_item_aboutinfo).setOnClickListener(this);
-
-        TextView tvTitle = (TextView) findViewById(R.id.header_title);
-        tvTitle.setText("发现");
-    }
 
 //    /**
 //     * 两次返回键退出，间隔2秒

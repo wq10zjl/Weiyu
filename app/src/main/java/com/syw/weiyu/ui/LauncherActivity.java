@@ -65,7 +65,7 @@ public class LauncherActivity extends Activity {
                 WeiyuApi.get().showSplashAd(LauncherActivity.this, new AdListener() {
                     @Override
                     public void onFailedReceiveAd() {
-                        gotoMainPage();
+                        //do nothing
                     }
 
                     @Override

@@ -13,10 +13,12 @@ import com.syw.weiyu.api.WeiyuApi;
 import com.syw.weiyu.bean.Comment;
 import com.syw.weiyu.bean.Shuoshuo;
 import com.syw.weiyu.ui.adapter.CommentsAdapter;
+import com.syw.weiyu.ui.adapter.ShuoshuosAdapter;
 import com.syw.weiyu.util.StringUtil;
 import com.syw.weiyu.util.Msger;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -108,50 +110,10 @@ public class ShuoshuoDetailActivity extends FragmentActivity {
     }
 
     private View getShuoshuoView(Shuoshuo shuoshuo) {
-        View shuoshuoView = LayoutInflater.from(this).inflate(R.layout.wy_shuoshuo_lv_item,null);
-
-        TextView name = (TextView) shuoshuoView.findViewById(R.id.shuoshuo_tv_name);
-        TextView time = (TextView) shuoshuoView.findViewById(R.id.shuoshuo_tv_time);
-        TextView content = (TextView) shuoshuoView.findViewById(R.id.shuoshuo_tv_content);
-        TextView address = (TextView) shuoshuoView.findViewById(R.id.shuoshuo_tv_address);
-//        TextView comment_count = (TextView) findViewById(R.id.shuoshuo_tv_comment_count);
-
-        name.setText(shuoshuo.getUserName());
-        time.setText(new SimpleDateFormat("MM-dd kk:mm").format(new Date(shuoshuo.getTimestamp())));
-        content.setText(shuoshuo.getContent());
-        address.setText(shuoshuo.getLocation().getProvince()+shuoshuo.getLocation().getCity()+shuoshuo.getLocation().getDistrict());
-//        comment_count.setText
-
-
-        /*设置背景色*/
-        //1/2白色
-        if (shuoshuo.getTimestamp()%2 == 0) {
-            shuoshuoView.setBackgroundResource(R.drawable.s_1);
-            name.setTextColor(Color.BLACK);
-            address.setTextColor(Color.BLACK);
-            time.setTextColor(Color.BLACK);
-            content.setTextColor(Color.BLACK);
-        } else {
-            //随机背景图
-            int[] bgs = new int[]{
-                    R.drawable.s_2,
-                    R.drawable.s_3,
-                    R.drawable.s_4,
-                    R.drawable.s_5,
-                    R.drawable.s_6,
-                    R.drawable.s_7,
-                    R.drawable.s_8,
-                    R.drawable.s_9,
-                    R.drawable.s_10,
-            };
-            int i = Math.abs((int)shuoshuo.getTimestamp()%9);//0~8
-            shuoshuoView.setBackgroundResource(bgs[i]);
-            name.setTextColor(Color.WHITE);
-            address.setTextColor(Color.WHITE);
-            time.setTextColor(Color.WHITE);
-            content.setTextColor(Color.WHITE);
-        }
-
-        return shuoshuoView;
+        ShuoshuosAdapter adapter = new ShuoshuosAdapter(this);
+        List<Shuoshuo> list = new ArrayList<>();
+        list.add(shuoshuo);
+        adapter.set(list);
+        return adapter.getView(0,null,null);
     }
 }

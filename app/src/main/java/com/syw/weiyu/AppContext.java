@@ -8,11 +8,10 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.util.LruCache;
 import cn.bmob.v3.Bmob;
-import com.devspark.appmsg.AppMsg;
 import com.orhanobut.logger.Logger;
 import com.syw.weiyu.api.WeiyuApi;
 import com.syw.weiyu.bean.Account;
-import com.syw.weiyu.dao.user.AccountDao;
+import com.syw.weiyu.dao.user.LocalAccountDao;
 import com.syw.weiyu.third.RongCloudEvent;
 
 import com.syw.weiyu.third.LocSDK;
@@ -49,10 +48,10 @@ public class AppContext extends Application {
     public static final String KEY_NEARBYUSERS = "key_nearbyusers";
     static final int cacheSize = (int) (Runtime.getRuntime().maxMemory()/2);//最大heap size的一半吧
     static LruCache<String, Object> lruCache = new LruCache<>(cacheSize);
-    public static void put(String k,Object v) {
+    public static void putCache(String k, Object v) {
         lruCache.put(k,v);
     }
-    public static Object get(String k) {
+    public static Object getCache(String k) {
         return lruCache.get(k);
     }
 
@@ -73,8 +72,8 @@ public class AppContext extends Application {
         WeiyuApi.get().locate();
         //账户数据
         try {
-            Account account = new AccountDao().get();
-            put(KEY_ACCOUNT,account);
+            Account account = new LocalAccountDao().get();
+            putCache(KEY_ACCOUNT, account);
         } catch (AppException e) {
             //do nothing
         }

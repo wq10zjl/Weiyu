@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,7 +12,6 @@ import com.syw.weiyu.R;
 import com.syw.weiyu.bean.User;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -22,22 +20,22 @@ import java.util.List;
 public class NearByUsersAdapter extends PagingBaseAdapter {
 
     public void set(List<User> data) {
-        nearbyusermapList.clear();
-        nearbyusermapList.addAll(data);
+        users.clear();
+        users.addAll(data);
         notifyDataSetChanged();
     }
 
     public void append(List<User> data) {
-        nearbyusermapList.addAll(data);
+        users.addAll(data);
         notifyDataSetChanged();
     }
 
     public List<User> getData() {
-        return nearbyusermapList;
+        return users;
     }
 
     LayoutInflater mInflater;
-    List<User> nearbyusermapList = new ArrayList<>();
+    List<User> users = new ArrayList<>();
 //
     public NearByUsersAdapter(Context ctx) {
         mInflater = LayoutInflater.from(ctx);
@@ -52,7 +50,7 @@ public class NearByUsersAdapter extends PagingBaseAdapter {
 
 //    @Override
     public int getCount() {
-        return nearbyusermapList.size();
+        return users.size();
     }
 
     @Override
@@ -79,13 +77,14 @@ public class NearByUsersAdapter extends PagingBaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
+        User user = users.get(position);
         holder.portrait.setImageResource(
-                nearbyusermapList.get(position).getGender().equals("男")?
-                        R.drawable.wy_icon_male:
+                user.getGender().equals("男") ?
+                        R.drawable.wy_icon_male :
                         R.drawable.wy_icon_female
         );
-        holder.name.setText(nearbyusermapList.get(position).getName());
-        holder.address.setText(nearbyusermapList.get(position).getLocation().getAddress());
+        holder.name.setText(user.getName());
+        holder.address.setText(user.getLocation()==null?user.getAddressStr():user.getLocation().getAddress());
 
         return convertView;
     }

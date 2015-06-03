@@ -32,6 +32,10 @@ public class MLocation implements Serializable {
                 '}';
     }
 
+    public MLocation() {
+        new MLocation(null);
+    }
+
     public MLocation(BDLocation bdLocation) {
         if (bdLocation == null) {
             //定位失效时使用默认位置

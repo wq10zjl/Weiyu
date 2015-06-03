@@ -69,7 +69,7 @@ public class ShuoshuoActivity extends FragmentActivity {
             }
         }.sendEmptyMessageDelayed(1, 500);
 
-        //add banner ad
+        //create banner ad
         if (listView.getHeaderViewsCount() == 0) {
             listView.addHeaderView(WeiyuApi.get().getBannerAdView(this, null));
         }
@@ -94,7 +94,7 @@ public class ShuoshuoActivity extends FragmentActivity {
         });
 
         TextView tvTitle = (TextView) findViewById(R.id.header_title);
-        tvTitle.setText("首页");
+        tvTitle.setText("说说");
     }
 
 
@@ -183,17 +183,21 @@ public class ShuoshuoActivity extends FragmentActivity {
                 .setPositiveButton("发送", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        WeiyuApi.get().publishShuoshuo(contentET.getText().toString(), new Listener<Null>() {
-                            @Override
-                            public void onSuccess(Null data) {
-                                Msger.i(ShuoshuoActivity.this, "发送成功");
-                            }
+                        try {
+                            WeiyuApi.get().publishShuoshuo(contentET.getText().toString(), new Listener<Null>() {
+                                @Override
+                                public void onSuccess(Null data) {
+                                    Msger.i(ShuoshuoActivity.this, "发送成功");
+                                }
 
-                            @Override
-                            public void onFailure(String msg) {
-                                Msger.e(ShuoshuoActivity.this, msg);
-                            }
-                        });
+                                @Override
+                                public void onFailure(String msg) {
+                                    Msger.e(ShuoshuoActivity.this, msg);
+                                }
+                            });
+                        } catch (AppException e) {
+                            Msger.e(ShuoshuoActivity.this, e.getMessage());
+                        }
 
                         new Handler() {
                             @Override

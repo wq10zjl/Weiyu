@@ -1,5 +1,8 @@
 package com.syw.weiyu.bean;
 
+import cn.bmob.v3.BmobObject;
+import cn.bmob.v3.datatype.BmobGeoPoint;
+
 import java.io.Serializable;
 
 /**
@@ -7,13 +10,15 @@ import java.io.Serializable;
  * 用户实体类
  * 用户对象包含的location为自己的MLocation对象
  */
-public class User implements Serializable {
+public class User extends BmobObject implements Serializable {
     private String id;
     private String name;
     private String gender;
     private String tags;
     private String organization;
     private MLocation location;
+    private BmobGeoPoint gpsAdd;//用于Bmob存储位置点
+    private String addressStr;//用于Bmob存储位置名
 
     public User() {}
     public User(String userId, String name, String gender, String tags, String organization, MLocation location) {
@@ -40,6 +45,13 @@ public class User implements Serializable {
                 ", organization='" + organization + '\'' +
                 ", location=" + location +
                 '}';
+    }
+
+    public BmobGeoPoint getGpsAdd() {
+        return gpsAdd;
+    }
+    public void setGpsAdd(BmobGeoPoint gpsAdd) {
+        this.gpsAdd = gpsAdd;
     }
 
     public MLocation getLocation() {
@@ -88,5 +100,13 @@ public class User implements Serializable {
 
     public void setOrganization(String organization) {
         this.organization = organization;
+    }
+
+    public String getAddressStr() {
+        return addressStr;
+    }
+
+    public void setAddressStr(String addressStr) {
+        this.addressStr = addressStr;
     }
 }

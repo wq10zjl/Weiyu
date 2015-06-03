@@ -12,14 +12,13 @@ import com.syw.weiyu.adp.WeiyuCustomEventPlatformEnum;
 import com.syw.weiyu.av.WeiyuLayout;
 import com.syw.weiyu.bean.*;
 import com.syw.weiyu.controller.listener.WeiyuListener;
-import com.syw.weiyu.dao.im.RongCloud;
+import com.syw.weiyu.third.RongCloud;
 import com.syw.weiyu.dao.im.TokenDao;
 import com.syw.weiyu.dao.location.LocationDao;
-import com.syw.weiyu.dao.location.UserPoiDao;
-import com.syw.weiyu.dao.shuoshuo.CommentDao;
-import com.syw.weiyu.dao.shuoshuo.ShuoshuoDao;
-import com.syw.weiyu.dao.user.AccountDao;
+import com.syw.weiyu.dao.shuoshuo.*;
+import com.syw.weiyu.dao.user.LocalAccountDao;
 import com.syw.weiyu.dao.user.UserDao;
+import com.syw.weiyu.dao.user.UserDao4Bmob;
 import com.syw.weiyu.splash.WeiyuSplash;
 import com.syw.weiyu.splash.WeiyuSplashListener;
 import com.syw.weiyu.util.WeiyuSize;
@@ -34,7 +33,18 @@ import java.util.List;
  */
 public class WeiyuApi {
 
-    private WeiyuApi(){}
+    private LocationDao locationDao;
+    private LocalAccountDao localAccountDao;
+    private UserDao userDao;
+    private CommentDao commentDao;
+    private ShuoshuoDao shuoshuoDao;
+    private WeiyuApi(){
+        locationDao = new LocationDao();
+        localAccountDao = new LocalAccountDao();
+        userDao = new UserDao4Bmob();
+        commentDao = new CommentDao4Bomb();
+        shuoshuoDao = new ShuoshuoDao4Bmob();
+    }
     private static WeiyuApi api;
     public static WeiyuApi get() {
         if (api == null) api = new WeiyuApi();
@@ -42,47 +52,10 @@ public class WeiyuApi {
     }
 
     /**
-     * =========================================
-     * ----------------账户部分------------------
-     * =========================================
+     * =============================================================
+     * ------------------------账户部分---------------------------
+     * =============================================================
      */
-
-    /**
-     * 注册接口
-     * 1.使用账户信息在LBS云创建POI节点
-     * 2.获取token
-     * 3.设置账户信息到本地
-     * @param id
-     * @param name
-     * @param gender
-     * @param listener 包含返回token
-     */
-    public void register(final String id,final String name,final String gender,final Listener<String> listener) {
-        new UserPoiDao().create(new User(id, name, gender), new LocationDao().get(), new Listener<Null>() {
-            @Override
-            public void onSuccess(Null data) {
-                //拿token
-                new TokenDao().get(id, name, null, new Listener<String>() {
-                    @Override
-                    public void onSuccess(String data) {
-                        Account account = new Account(id, name, gender, data);
-                        new AccountDao().set(account);
-                        listener.onSuccess(data);
-                    }
-
-                    @Override
-                    public void onFailure(String msg) {
-                        listener.onFailure(msg);
-                    }
-                });
-            }
-
-            @Override
-            public void onFailure(String msg) {
-                listener.onFailure(msg);
-            }
-        });
-    }
 
     /**
      * 获取当前账户
@@ -90,7 +63,7 @@ public class WeiyuApi {
      * @throws AppException 暂无账户
      */
     public Account getAccount() throws AppException {
-        return new AccountDao().get();
+        return localAccountDao.get();
     }
 
     /**
@@ -113,6 +86,101 @@ public class WeiyuApi {
 
     }
 
+
+    /**
+     * =============================================================
+     * ------------------------用户部分---------------------------
+     * =============================================================
+     */
+
+    /**
+     * 注册接口
+     * 1.使用账户信息在LBS云创建POI节点
+     * 2.获取token
+     * 3.设置账户信息到本地
+     * @param id
+     * @param name
+     * @param gender
+     * @param listener 包含返回token
+     */
+    public void register(final String id,final String name,final String gender,final Listener<String> listener) {
+        userDao.create(id, name, gender, locationDao.get(), new Listener<Null>() {
+            @Override
+            public void onSuccess(Null data) {
+                //拿token
+                new TokenDao().get(id, name, null, new Listener<String>() {
+                    @Override
+                    public void onSuccess(String data) {
+                        Account account = new Account(id, name, gender, data);
+                        localAccountDao.set(account);
+                        listener.onSuccess(data);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        listener.onFailure(msg);
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                listener.onFailure(msg);
+            }
+        });
+    }
+
+    /**
+     * 修改资料
+     * @param name
+     * @param gender
+     * @param listener
+     */
+    public void updateProfile(final String name,final String gender,final Listener<Null> listener) {
+        try {
+            final String id = localAccountDao.get().getId();
+            userDao.update(id,name,gender,locationDao.get(),listener);
+            //刷新RongCloud用户信息
+            //也就是拿token
+            new TokenDao().get(id, name, null, new Listener<String>() {
+                @Override
+                public void onSuccess(String data) {
+                    Account account = new Account(id, name, gender, data);
+                    localAccountDao.set(account);
+                    listener.onSuccess(null);
+                }
+
+                @Override
+                public void onFailure(String msg) {
+                    listener.onFailure(msg);
+                }
+            });
+        } catch (AppException e) {
+            listener.onFailure(e.getMessage());
+        }
+    }
+
+    /**
+     * 查看附近的人
+     * @param pageIndex
+     * @param listener
+     */
+    public void getNearbyUsers(int pageIndex,Listener<UserList> listener) {
+        MLocation location = locationDao.get();
+        int pageSize = AppConstants.page_size_default;
+        userDao.getNearbyUsers(location, pageSize, pageIndex, listener);
+    }
+
+    /**
+     * 获取用户资料
+     * @param id
+     * @return
+     */
+    public User getUser(String id) throws AppException {
+        return userDao.getUser(id);
+    }
+
+
     /**
      * 是否在线
      * @param id
@@ -131,45 +199,17 @@ public class WeiyuApi {
         return 0;
     }
 
-
     /**
-     * 更新用户资料
-     */
-    public void updateUserProfile(User user) {
-
-    }
-
-
-    /**
-     * =========================================
-     * ----------------用户部分------------------
-     * =========================================
-     */
-
-    public void getNearbyUsers(int pageIndex,Listener<UserList> listener) {
-        new UserDao().getNearbyUsers(pageIndex,listener);
-    }
-
-    /**
-     * 获取用户资料
-     * @param id
-     * @return
-     */
-    public User getUser(String id) throws AppException {
-        return new UserDao().getUser(id);
-    }
-
-    /**
-     * =========================================
-     * ----------------位置部分------------------
-     * =========================================
+     * =============================================================
+     * ------------------------位置部分---------------------------
+     * =============================================================
      */
 
     /**
      * 定位，保存位置数据
      */
     public void locate() {
-        new LocationDao().set();
+        locationDao.set();
     }
 
     /**
@@ -177,14 +217,14 @@ public class WeiyuApi {
      * @return
      */
     public MLocation getSavedLocation() {
-        return new LocationDao().get();
+        return locationDao.get();
     }
 
 
     /**
-     * =========================================
-     * ----------------说说部分------------------
-     * =========================================
+     * =============================================================
+     * ------------------------说说部分---------------------------
+     * =============================================================
      */
 
     /**
@@ -193,7 +233,7 @@ public class WeiyuApi {
      * @throws AppException 无缓存数据
      */
     public ShuoshuoList getCachedNearbyShuoshuo() throws AppException {
-        ShuoshuoList list = (ShuoshuoList) AppContext.get(AppContext.KEY_NEARBYSHUOSHUOS);
+        ShuoshuoList list = (ShuoshuoList) AppContext.getCache(AppContext.KEY_NEARBYSHUOSHUOS);
         if (list!=null && list.getShuoshuos()!=null && list.getShuoshuos().size()>0) return list;
         else throw new AppException("无缓存数据");
     }
@@ -204,7 +244,18 @@ public class WeiyuApi {
      * @return
      */
     public void getNearbyShuoshuo(int pageIndex,Listener<ShuoshuoList> listener) {
-        new ShuoshuoDao().getNearByList(pageIndex, listener);
+        shuoshuoDao.getNearbyShuoshuos(locationDao.get(),AppConstants.page_size_default,pageIndex,listener);
+    }
+
+    
+    /**
+     * 发布说说
+     * @param content
+     * @param listener
+     */
+    public void publishShuoshuo(String content,Listener<Null> listener) throws AppException {
+        Account account = localAccountDao.get();
+        shuoshuoDao.create(account,locationDao.get(),content,System.currentTimeMillis(),listener);
     }
 
     /**
@@ -214,47 +265,27 @@ public class WeiyuApi {
      * @throws AppException
      */
     public void getShuoshuoComments(final long ssId, final Listener<List<Comment>> listener) {
-        new CommentDao().getComments(ssId, new Listener<List<Comment>>() {
-            @Override
-            public void onSuccess(List<Comment> data) {
-                listener.onSuccess(data);
-            }
-
-            @Override
-            public void onFailure(String msg) {
-                listener.onFailure(msg);
-            }
-        });
+        commentDao.getComments(ssId, listener);
     }
 
     public void addComment(long ssId,String content,Listener<Comment> listener) {
-        new CommentDao().addComment(ssId,content,listener);
+        commentDao.addComment(ssId, content, listener);
     }
 
     /**
-     * 发布说说
-     * @param content
-     * @param listener
-     */
-    public void publishShuoshuo(String content,Listener<Null> listener) {
-        new ShuoshuoDao().add(content, listener);
-    }
-
-    /**
-     * =========================================
-     * ----------------广告部分------------------
-     * =========================================
+     * =============================================================
+     * ------------------------广告部分---------------------------
+     * =============================================================
      */
 
     //adsmogo
-    WeiyuLayout weiyuLayoutCode;
-
+    private WeiyuLayout weiyuLayoutCode;
     /**
      * 在Activity的onDestroy方法下调用
      */
     public void onBannerDestory() {
         WeiyuLayout.clear();
-        weiyuLayoutCode.clearThread();
+        if (weiyuLayoutCode!=null) weiyuLayoutCode.clearThread();
     }
 
     public View getBannerAdView(Activity activity,final AdListener listener) {

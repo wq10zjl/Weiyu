@@ -75,7 +75,7 @@
                     android:id="@+id/timeline_gps_iv"
                     android:layout_width="22dp"
                     android:layout_height="22dp"
-                    android:src="@drawable/wy_icon_gps"
+                    android:src="@drawable/wy_ic_card_location"
                     />
             <TextView
                     android:layout_marginTop="3dp"

@@ -12,7 +12,7 @@
         android:layout_centerInParent="true"
         android:drawableTop="@drawable/ic_tab_home"
         android:gravity="center_horizontal"
-        android:text="首页"
+        android:text="说说"
         android:textColor="@color/maintab_text_color"
         android:textSize="11sp"
         android:shadowDx="0.0"

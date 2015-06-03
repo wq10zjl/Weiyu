@@ -47,21 +47,11 @@ public class NearByUserActivity extends FragmentActivity {
         new Handler(){
             @Override
             public void handleMessage(Message msg) {
-                WeiyuApi.get().getNearbyUsers(1, new Listener<UserList>() {
-                    @Override
-                    public void onSuccess(UserList data) {
-                        adapter.set(data.getUsers());
-                    }
-
-                    @Override
-                    public void onFailure(String msg) {
-
-                    }
-                });
+                mPtrFrame.autoRefresh();
             }
         }.sendEmptyMessageDelayed(1, 500);
 
-        //add banner ad
+        //create banner ad
         if (listView.getHeaderViewsCount() == 0) {
             listView.addHeaderView(WeiyuApi.get().getBannerAdView(this, null));
         }
@@ -80,8 +70,7 @@ public class NearByUserActivity extends FragmentActivity {
                 onBackPressed();
             }
         });
-        TextView tvTitle = (TextView) findViewById(R.id.header_title);
-        tvTitle.setText("附近的人");
+        ((TextView) findViewById(R.id.header_title)).setText("附近的人");
     }
 
 
@@ -94,19 +83,17 @@ public class NearByUserActivity extends FragmentActivity {
         mPtrFrame.setPtrHandler(new PtrHandler() {
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {
-                pageIndex = 0;
-                WeiyuApi.get().getNearbyUsers(0, new Listener<UserList>() {
+                pageIndex = 1;
+                WeiyuApi.get().getNearbyUsers(pageIndex, new Listener<UserList>() {
                     @Override
                     public void onSuccess(UserList data) {
                         //结束下拉刷新
                         mPtrFrame.refreshComplete();
                         adapter.set(data.getUsers());
                         //set totalPage
-                        if (totalPage == 0) {
-                            totalPage = (int) Math.ceil(data.getTotal() / data.getUsers().size());
-                        }
+                        totalPage = (int)Math.ceil((double)data.getTotal()/(double)data.getUsers().size());
                         //set has more page
-                        listView.setHasMoreItems(pageIndex + 1 < totalPage);
+                        listView.setHasMoreItems(pageIndex < totalPage);
                     }
 
                     @Override
@@ -137,28 +124,24 @@ public class NearByUserActivity extends FragmentActivity {
         listView.setPagingableListener(new PagingListView.Pagingable() {
             @Override
             public void onLoadMoreItems() {
-                if (pageIndex + 1 < totalPage) {
-                    WeiyuApi.get().getNearbyUsers(++pageIndex, new Listener<UserList>() {
-                        @Override
-                        public void onSuccess(UserList data) {
-                            //结束下拉刷新
-                            mPtrFrame.refreshComplete();
-                            adapter.append(data.getUsers());
-                            //set has more page
-                            listView.onFinishLoading(pageIndex + 1 < totalPage, null);
-                        }
+                WeiyuApi.get().getNearbyUsers(++pageIndex, new Listener<UserList>() {
+                    @Override
+                    public void onSuccess(UserList data) {
+                        //结束下拉刷新
+                        mPtrFrame.refreshComplete();
+                        adapter.append(data.getUsers());
+                        //set has more page
+                        listView.onFinishLoading(pageIndex < totalPage, null);
+                    }
 
-                        @Override
-                        public void onFailure(String msg) {
-                            //结束下拉刷新
-                            mPtrFrame.refreshComplete();
-                            Msger.e(NearByUserActivity.this, msg);
-                            pageIndex--;
-                        }
-                    });
-                } else {
-                    listView.onFinishLoading(false, null);
-                }
+                    @Override
+                    public void onFailure(String msg) {
+                        //结束下拉刷新
+                        mPtrFrame.refreshComplete();
+                        Msger.e(NearByUserActivity.this, msg);
+                        pageIndex--;
+                    }
+                });
             }
         });
     }

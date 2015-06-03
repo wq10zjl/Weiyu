@@ -41,7 +41,7 @@ public class AppConstants {
     public static final String longitude_default = "116.4038740000";
     public static final String latitude_default = "39.9148890000";
 //  默认页大小
-    public static final String page_size_default = "20";
+    public static final int page_size_default = 20;
 
 //  AdsMoGo
     public static final String adsmogo_appid = "5dc8eb0ca17f4663b43dcd7f811fba95";

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
+import android.widget.TextView;
 import com.syw.weiyu.R;
 
 public class AboutInfoActivity extends FragmentActivity {
@@ -19,6 +20,7 @@ public class AboutInfoActivity extends FragmentActivity {
                 onBackPressed();
             }
         });
+        ((TextView) findViewById(R.id.header_title)).setText("¹ØÓÚ");
     }
 
 }

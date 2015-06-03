@@ -6,11 +6,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.dd.processbutton.iml.ActionProcessButton;
-import com.syw.weiyu.AppContext;
+import com.syw.weiyu.AppException;
+import com.syw.weiyu.api.Listener;
+import com.syw.weiyu.api.Null;
+import com.syw.weiyu.api.WeiyuApi;
 import com.syw.weiyu.bean.Account;
 import com.syw.weiyu.R;
+import com.syw.weiyu.dao.user.LocalAccountDao;
 import com.syw.weiyu.third.RongCloud;
-import com.syw.weiyu.bean.User;
+import com.syw.weiyu.util.Msger;
 
 /**
  * Created by songyouwei on 2015/2/25.
@@ -30,46 +34,41 @@ public class ProfileActivity extends LoginBaseActivity {
                 onBackPressed();
             }
         });
+        //setTitle
+
         //set progress button
         ActionProcessButton button = (ActionProcessButton) findViewById(R.id.btnSignIn);
         button.setText("修改");
         //set name tv
         EditText nameEditText = (EditText)findViewById(R.id.et_name);
-        Account account = (Account) AppContext.get(AppContext.KEY_ACCOUNT);
-        if (account != null) {
+        try {
+            Account account = new LocalAccountDao().get();
             nameEditText.setText(account.getName());
+        } catch (AppException e) {
+            Msger.e(this,e.getMessage());
         }
     }
 
+    /**
+     * 修改资料
+     * @param userId
+     * @param name
+     * @param gender
+     */
     @Override
     public void doOnClickWork(String userId, String name, String gender) {
-        final User newUser = new User(userId,name,gender,null,null,null);
+        WeiyuApi.get().updateProfile(name, gender, new Listener<Null>() {
+            @Override
+            public void onSuccess(Null data) {
+                Msger.i(ProfileActivity.this,"修改成功");
+                showOnSuccessMsg("修改成功");
+            }
 
-        //在LBS云更新POI
-//        LBSCloud.getInstance().updateUserProfile(newUser,new AjaxCallBack<String>() {
-//            @Override
-//            public void onSuccess(String s) {
-//                Log.d("Weiyu","LBSCloud updateUserProfile return: "+s);
-//                if (JSON.parseObject(s).getString("status").equals("0")){
-//                    //save new user
-//                    AppContext.getInstance().setUser(newUser);
-//                    ACache.getPermanence(ProfileActivity.this).put(AppContext.USER,newUser);
-//                    //show
-//                    showOnSuccessMsg("修改成功");
-//                }
-//                else {
-//                    showOnErrorMsg("修改错误");
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Throwable t, int errorNo, String strMsg) {
-//                Log.w("Weiyu",strMsg);
-//                showOnErrorMsg("网络异常");
-//            }
-//        });
-
-        //刷新RongCloud用户信息
-        RongCloud.getInstance(this).refresh(userId,name,null,null);
+            @Override
+            public void onFailure(String msg) {
+                Msger.e(ProfileActivity.this,"修改出错:"+msg);
+                showOnErrorMsg("修改出错");
+            }
+        });
     }
 }

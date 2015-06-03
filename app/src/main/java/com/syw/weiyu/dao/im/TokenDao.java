@@ -3,16 +3,11 @@ package com.syw.weiyu.dao.im;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.syw.weiyu.AppConstants;
-import com.syw.weiyu.AppContext;
-import com.syw.weiyu.AppException;
 
 import com.syw.weiyu.api.Listener;
-import com.syw.weiyu.bean.Account;
-import net.tsz.afinal.FinalDb;
+import com.syw.weiyu.third.RongCloud;
 import net.tsz.afinal.http.AjaxCallBack;
 import net.tsz.afinal.http.AjaxParams;
-
-import java.util.List;
 
 /**
  * author: youwei
@@ -26,7 +21,7 @@ public class TokenDao {
      * <p/>
      * Post请求：userId必选，其余两项可选
      * 请求示例：
-     * POST /user/get.json HTTP/1.1
+     * POST /user/getCache.json HTTP/1.1
      * Host: api.cn.rong.io
      * AppContext-Key: uwd1c0sxdlx2
      * Nonce: 14314

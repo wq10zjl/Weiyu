@@ -49,16 +49,16 @@ public class LBSCloud {
 //
 //        AjaxParams params = getInitializedParams();
 //        //user info
-//        params.put("userId", user.getUid());
-//        params.put("name", user.getName());
-//        params.put("gender", user.getGender());
-//        params.put("tags", user.getTags());
-//        params.put("organization", user.getOrganization());
+//        params.putCache("userId", user.getUid());
+//        params.putCache("name", user.getName());
+//        params.putCache("gender", user.getGender());
+//        params.putCache("tags", user.getTags());
+//        params.putCache("organization", user.getOrganization());
 //        //location info
-//        params.put("title", user.getName());//title使用user.name
-//        params.put("address", location.getAddress());
-//        params.put("longitude", location.getLongitude());
-//        params.put("latitude", location.getLatitude());
+//        params.putCache("title", user.getName());//title使用user.name
+//        params.putCache("address", location.getAddress());
+//        params.putCache("longitude", location.getLongitude());
+//        params.putCache("latitude", location.getLatitude());
 //
 //        //post
 //        final String url = context.getString(R.string.url_create_poi);
@@ -72,10 +72,10 @@ public class LBSCloud {
 //    public void updateUserLocation() {
 //        //build params
 //        AjaxParams params = getInitializedParams();
-//        params.put("userId", AppContext.getInstance().getUser().getUid());
-//        params.put("latitude", AppContext.getInstance().getLocation().getLatitude());
-//        params.put("longitude", AppContext.getInstance().getLocation().getLongitude());
-//        params.put("address",AppContext.getInstance().getLocation().getAddress());
+//        params.putCache("userId", AppContext.getInstance().getUser().getUid());
+//        params.putCache("latitude", AppContext.getInstance().getLocation().getLatitude());
+//        params.putCache("longitude", AppContext.getInstance().getLocation().getLongitude());
+//        params.putCache("address",AppContext.getInstance().getLocation().getAddress());
 //
 //        Log.d("Weiyu", "updateUserLocation params: " + params.getParamString());
 //        //post
@@ -100,7 +100,7 @@ public class LBSCloud {
 //    public void updateLastOnlineTime() {
 //        //build params
 //        AjaxParams params = getInitializedParams();
-//        params.put("userId", AppContext.getInstance().getUser().getUid());
+//        params.putCache("userId", AppContext.getInstance().getUser().getUid());
 //        //post
 //        String url = context.getString(R.string.url_update_poi);
 //        FinalHttp http = new FinalHttp();
@@ -146,15 +146,15 @@ public class LBSCloud {
 //
 //        AjaxParams params = getInitializedParams(context.getString(R.string.geotable_id_shuoshuo));
 //        //user info
-//        params.put("userId", user.getUid());
-//        params.put("userName", user.getName());
+//        params.putCache("userId", user.getUid());
+//        params.putCache("userName", user.getName());
 //        //location info
-//        params.put("longitude", location.getLongitude());
-//        params.put("latitude", location.getLatitude());
+//        params.putCache("longitude", location.getLongitude());
+//        params.putCache("latitude", location.getLatitude());
 //        //content
-//        params.put("content",content);
+//        params.putCache("content",content);
 //        //timestamp, same as create_time
-//        params.put("timestamp",System.currentTimeMillis()+"");
+//        params.putCache("timestamp",System.currentTimeMillis()+"");
 //
 //        //post
 //        final String url = context.getString(R.string.url_create_poi);
@@ -179,16 +179,16 @@ public class LBSCloud {
 //        String url = context.getString(R.string.url_nearby_search);
 //
 //        AjaxParams params = getInitializedParams();
-//        params.put("q",q);
-//        params.put("location",location);
-//        params.put("tags",tags);
-//        params.put("radius",radius);
-//        params.put("sortby",sortby);
-//        params.put("page_index",pageIndex+"");
-//        params.put("page_size",context.getString(R.string.page_size_default));
-//        //get
+//        params.putCache("q",q);
+//        params.putCache("location",location);
+//        params.putCache("tags",tags);
+//        params.putCache("radius",radius);
+//        params.putCache("sortby",sortby);
+//        params.putCache("page_index",pageIndex+"");
+//        params.putCache("page_size",context.getString(R.string.page_size_default));
+//        //getCache
 //        FinalHttp http = new FinalHttp();
-//        http.get(url, params, callBack);
+//        http.getCache(url, params, callBack);
 //
 //        Log.d("Weiyu","nearbyUserSearch params: "+params.getParamString());
 //    }
@@ -220,17 +220,17 @@ public class LBSCloud {
 //        String url = context.getString(R.string.url_nearby_search);
 //
 //        AjaxParams params = getInitializedParams(context.getString(R.string.geotable_id_shuoshuo));
-//        params.put("q","");
-//        params.put("location",AppContext.getInstance().getLocation().getLongitude()+","+AppContext.getInstance().getLocation().getLatitude());
-//        params.put("tags","");
-//        params.put("radius",context.getString(R.string.default_radius));
+//        params.putCache("q","");
+//        params.putCache("location",AppContext.getInstance().getLocation().getLongitude()+","+AppContext.getInstance().getLocation().getLatitude());
+//        params.putCache("tags","");
+//        params.putCache("radius",context.getString(R.string.default_radius));
 //        //按时间|距离排序，优先显示时间靠前的
-//        params.put("sortby","timestamp:-1|distance:1");
-//        params.put("page_index",pageIndex+"");
-//        params.put("page_size",context.getString(R.string.page_size_default));
-//        //get
+//        params.putCache("sortby","timestamp:-1|distance:1");
+//        params.putCache("page_index",pageIndex+"");
+//        params.putCache("page_size",context.getString(R.string.page_size_default));
+//        //getCache
 //        FinalHttp http = new FinalHttp();
-//        http.get(url, params, callBack);
+//        http.getCache(url, params, callBack);
 //
 //        Log.d("Weiyu","nearbyShuoshuoSearch params: "+params.getParamString());
 //    }
@@ -245,11 +245,11 @@ public class LBSCloud {
 //        String url = context.getString(R.string.url_list_poi);
 //
 //        AjaxParams params = getInitializedParams();
-//        params.put("tags",tags);
+//        params.putCache("tags",tags);
 //
-//        //get
+//        //getCache
 //        FinalHttp http = new FinalHttp();
-//        http.get(url, params, callBack);
+//        http.getCache(url, params, callBack);
 //    }
 //
 //
@@ -262,11 +262,11 @@ public class LBSCloud {
 //        String url = context.getString(R.string.url_list_poi);
 //
 //        AjaxParams params = getInitializedParams();
-//        params.put("organization",organization);
+//        params.putCache("organization",organization);
 //
-//        //get
+//        //getCache
 //        FinalHttp http = new FinalHttp();
-//        http.get(url, params, callBack);
+//        http.getCache(url, params, callBack);
 //    }
 //
 //    public void getDetail(String userId,AjaxCallBack<String> callBack) {
@@ -274,11 +274,11 @@ public class LBSCloud {
 //
 //        AjaxParams params = getInitializedParams();
 //        params.remove("coord_type");
-//        params.put("userId",userId);
+//        params.putCache("userId",userId);
 //
-//        //get
+//        //getCache
 //        FinalHttp http = new FinalHttp();
-//        http.get(url,params,callBack);
+//        http.getCache(url,params,callBack);
 //    }
 //
 //    /**
