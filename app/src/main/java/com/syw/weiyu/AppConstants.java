@@ -9,6 +9,10 @@ public class AppConstants {
     //bmob
     public static final String bmob_app_key = "9f9d56837bd74761d707beb13869ec22";
 
+    //XGpush
+    public static final long xgpush_access_id = 2100119897;
+    public static final String xgpush_secret_key = "228ba691381761cfa70fd3d11c765e54";
+
 //  Rong Cloud
     public static final String rongcloud_app_key = "uwd1c0sxdj831";
     public static final String rongcloud_app_secret = "s3RAbMx2TkaUl";
