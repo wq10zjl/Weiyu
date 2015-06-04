@@ -32,6 +32,5 @@ Thumbs.db
 /.idea
 
 /.gradle
-/app/build
-/build
+/*build
 /*.iml
