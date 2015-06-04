@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.syw.weiyu">
+    package="com.syw.weiyu" >
 
     <!-- Baidu LocSDK -->
     <!-- 这个权限用于进行网络定位 -->
@@ -37,6 +37,13 @@
     <!-- 广点通 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_UPDATES" />
 
+    <!-- 【必须】 信鸽SDK所需权限 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+
     <application
         android:name=".AppContext"
         android:allowBackup="true"
@@ -47,35 +54,36 @@
         <!-- AdMoGo MobAd -->
         <!-- 声明Mogo的Activity -->
         <activity
-            android:name="com.syw.weiyu.av.WeiyuWebView"
+            android:name=".av.WeiyuWebView"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name" />
         <!-- 注册Service，自主广告不交换广告的应用下载功能所需 -->
-        <service android:name="com.syw.weiyu.controller.service.UpdateService"
-                 android:exported="true"
-                 android:process=":remote" />
+        <service
+            android:name=".controller.service.UpdateService"
+            android:exported="true"
+            android:process=":remote" />
         <!-- 注册Service，安装应用所用 -->
-        <service android:name="com.syw.weiyu.controller.service.CountService"
-                 android:exported="true"
-                 android:process=":remote" />
+        <service
+            android:name=".controller.service.CountService"
+            android:exported="true"
+            android:process=":remote" />
 
         <!-- Baidu LocSDK -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="mUv2tjv4ZdI06Enf9E6GEsZ6" />
-
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" >
         </service>
 
-        <!--Baidu Mob Union-->
-        <!--<meta-data android:name="BaiduMobAd_APP_ID" android:value="@string/baidu_mobad_appid" />-->
-        <!--<meta-data android:name="BaiduMobAd_APP_SEC" android:value="@string/baidu_mobad_appid" />-->
-        <activity android:name="com.baidu.mobads.AppActivity"
-                  android:configChanges="keyboard|keyboardHidden|orientation" />
-
+        <!-- Baidu Mob Union -->
+        <!-- <meta-data android:name="BaiduMobAd_APP_ID" android:value="@string/baidu_mobad_appid" /> -->
+        <!-- <meta-data android:name="BaiduMobAd_APP_SEC" android:value="@string/baidu_mobad_appid" /> -->
+        <activity
+            android:name="com.baidu.mobads.AppActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation" />
 
         <!-- 广点通SDK 所需Service和Activity声明 -->
         <service
@@ -88,10 +96,69 @@
             android:theme="@android:style/Theme.Translucent" >
         </activity>
 
+        <!-- Bmob自动更新组件 -->
+        <activity
+            android:name="cn.bmob.v3.update.UpdateDialogActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
+
+        <!--信鸽push-->
+        <!-- 【必须】 信鸽receiver广播接收 -->
+        <receiver android:name="com.tencent.android.tpush.XGPushReceiver"
+                android:process=":xg_service_v2" >
+            <intent-filter android:priority="0x7fffffff" >
+                <!-- 【必须】 信鸽SDK的内部广播 -->
+                <action android:name="com.tencent.android.tpush.action.SDK" />
+                <action android:name="com.tencent.android.tpush.action.INTERNAL_PUSH_MESSAGE" />
+                <!-- 【必须】 系统广播：开屏和网络切换 -->
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <!-- 【可选】 一些常用的系统广播，增强信鸽service的复活机会，请根据需要选择。当然，你也可以添加APP自定义的一些广播让启动service -->
+                <action android:name="android.bluetooth.adapter.action.STATE_CHANGED" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </receiver>
+        <!-- 【必须】 (2.30及以上版新增)展示通知的activity -->
+        <!-- 【注意】 如果被打开的activity是启动模式为SingleTop，SingleTask或SingleInstance，请根据通知的异常自查列表第8点处理-->
+        <activity android:name="com.tencent.android.tpush.XGPushActivity"
+                android:exported="true" >
+            <intent-filter>
+                <!-- 若使用AndroidStudio，请设置android:name="android.intent.action"-->
+                <action android:name="android.intent.action" />
+            </intent-filter>
+        </activity>
+        <!-- 【必须】 信鸽service -->
+        <service
+                android:name="com.tencent.android.tpush.service.XGPushService"
+                android:exported="true"
+                android:persistent="true"
+                android:process=":xg_service_v2" />
+        <!-- 【必须】 通知service，此选项有助于提高抵达率 -->
+        <service
+                android:name="com.tencent.android.tpush.rpc.XGRemoteService"
+                android:exported="true" >
+            <intent-filter>
+                <action android:name="com.syw.weiyu.PUSH_ACTION" />
+            </intent-filter>
+        </service>
+        <!-- 【必须】 请将YOUR_ACCESS_ID修改为APP的AccessId，“21”开头的10位数字，中间没空格 -->
+        <meta-data
+                android:name="XG_V2_ACCESS_ID"
+                android:value="2100119897" />
+        <!-- 【必须】 请将YOUR_ACCESS_KEY修改为APP的AccessKey，“A”开头的12位字符串，中间没空格 -->
+        <meta-data
+                android:name="XG_V2_ACCESS_KEY"
+                android:value="A6EE7G1S4Z2J" />
+
+
+
+
         <!-- 启动页 -->
         <activity android:name=".ui.LauncherActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -103,24 +170,29 @@
         <activity android:name=".ui.explore.NearByUserActivity" />
 
         <!-- 消息列表 -->
-        <activity android:name=".ui.session.SessionListActivity">
+        <activity android:name=".ui.session.SessionListActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:host="com.syw.weiyu"
-                        android:path="/conversationlist"
-                        android:scheme="rong" />
+
+                <data
+                    android:host="com.syw.weiyu"
+                    android:path="/conversationlist"
+                    android:scheme="rong" />
             </intent-filter>
         </activity>
-        <!--消息-->
-        <activity android:name=".ui.session.SessionActivity">
+        <!-- 消息 -->
+        <activity android:name=".ui.session.SessionActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data
-                        android:host="com.syw.weiyu"
-                        android:pathPrefix="/conversation/"
-                        android:scheme="rong" />
+                    android:host="com.syw.weiyu"
+                    android:pathPrefix="/conversation/"
+                    android:scheme="rong" />
             </intent-filter>
         </activity>
 
@@ -133,16 +205,16 @@
         <!-- 修改资料 -->
         <activity android:name=".ui.user.ProfileActivity" />
 
-        <!--关于信息-->
-        <activity android:name=".ui.explore.AboutInfoActivity"/>
+        <!-- 关于信息 -->
+        <activity android:name=".ui.explore.AboutInfoActivity" />
 
-        <!--附近说说-->
-        <activity android:name=".ui.shuoshuo.ShuoshuoActivity"/>
+        <!-- 附近说说 -->
+        <activity android:name=".ui.shuoshuo.ShuoshuoActivity" />
 
-        <!--说说详情-->
-        <activity android:name=".ui.shuoshuo.ShuoshuoDetailActivity"
-                android:windowSoftInputMode="stateHidden"/>
-
+        <!-- 说说详情 -->
+        <activity
+            android:name=".ui.shuoshuo.ShuoshuoDetailActivity"
+            android:windowSoftInputMode="stateHidden" />
     </application>
 
 </manifest>

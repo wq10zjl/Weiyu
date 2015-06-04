@@ -14,6 +14,7 @@ import com.syw.weiyu.api.AdListener;
 import com.syw.weiyu.api.WeiyuApi;
 import com.syw.weiyu.bean.Account;
 import com.syw.weiyu.ui.user.LoginActivity;
+import com.tencent.android.tpush.XGPushManager;
 
 
 public class LauncherActivity extends Activity {
@@ -33,6 +34,7 @@ public class LauncherActivity extends Activity {
                 showSplashAdThenGotoMainPage();
                 AppContext.setIsFirstLaunch(false);
             } else {
+                //有账户信息
                 gotoMainPage();
             }
         } catch (AppException e) {

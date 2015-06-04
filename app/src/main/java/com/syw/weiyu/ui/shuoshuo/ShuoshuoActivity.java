@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import cn.bmob.v3.update.BmobUpdateAgent;
 import com.paging.listview.PagingListView;
 import com.syw.weiyu.AppException;
 import com.syw.weiyu.api.Listener;
@@ -23,6 +24,7 @@ import com.syw.weiyu.ui.adapter.ShuoshuosAdapter;
 
 import com.syw.weiyu.util.Msger;
 
+import com.tencent.android.tpush.XGPushManager;
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
@@ -47,6 +49,13 @@ public class ShuoshuoActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wy_activity_shuoshuo);
+
+        //检查自动更新，默认仅wifi
+        BmobUpdateAgent.update(this);
+        //注册push
+        try { XGPushManager.registerPush(this, WeiyuApi.get().getAccount().getId()); } catch (AppException e) {}
+
+
         initViews();
         initUltraPullToRefresh();
         initListView();

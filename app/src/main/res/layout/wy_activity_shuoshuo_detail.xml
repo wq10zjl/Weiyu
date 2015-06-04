@@ -19,8 +19,10 @@
             <!--<TextView android:text="全部评论" android:textSize="18dp" android:layout_width="match_parent"-->
                       <!--android:layout_height="wrap_content"/>-->
             <!--<ImageView android:layout_width="match_parent" android:layout_height="2dp" android:src="#dddddd"/>-->
-            <ListView android:id="@+id/comments" android:layout_width="match_parent"
-                      android:layout_height="match_parent"/>
+            <ListView android:id="@+id/comments"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:listSelector="@android:color/transparent"/>
         </LinearLayout>
 
     </LinearLayout>

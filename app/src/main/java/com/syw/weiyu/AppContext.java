@@ -90,21 +90,19 @@ public class AppContext extends Application {
         String TAG = "Weiyu";
         Logger.init(TAG);
 
-        //初始化百度云
-//        LBSCloud.init(this);
         //初始化定位SDK
         LocSDK.init(this);
 
-        //初始化融云IMKit SDK，should not init RongIM in sub process
+        //初始化BmobSDK
+        Bmob.initialize(this, AppConstants.bmob_app_key);
+
         if (isMainThread()) {
             Logger.d("init RongIM");
+            //初始化融云IMKit SDK，should not init RongIM in sub process
             RongIM.init(this);
             //初始化融云SDK事件监听处理
             RongCloudEvent.init(this);
         }
-
-        //初始化Bmob
-        Bmob.initialize(this, AppConstants.bmob_app_key);
     }
 
     @Override

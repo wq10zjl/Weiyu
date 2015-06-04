@@ -116,14 +116,19 @@ public class UserDao4Bmob implements UserDao {
             public void doSthAsync(final Listener<User> listener) {
                 BmobQuery<User> bmobQuery = new BmobQuery<>();
                 bmobQuery.addWhereEqualTo("id",id);
+                bmobQuery.setLimit(1);
                 bmobQuery.findObjects(AppContext.getCtx(), new FindListener<User>() {
                     @Override
                     public void onSuccess(List<User> list) {
                         User u = list.get(0);
-                        listener.onSuccess(u);
-                        //save to db
-                        FinalDb finalDb = FinalDb.create(AppContext.getCtx());
-                        if (finalDb.findById(u.getId(),User.class) == null) finalDb.save(u);
+                        if (u == null) {
+                            listener.onFailure("无该用户信息");
+                        } else {
+                            listener.onSuccess(u);
+                            //save to db
+                            FinalDb finalDb = FinalDb.create(AppContext.getCtx());
+                            if (finalDb.findById(u.getId(), User.class) == null) finalDb.save(u);
+                        }
                     }
 
                     @Override

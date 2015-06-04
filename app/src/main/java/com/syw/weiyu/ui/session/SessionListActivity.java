@@ -21,8 +21,7 @@ public class SessionListActivity extends FragmentActivity {
     }
 
     private void initViews() {
-        TextView tvTitle = (TextView) findViewById(R.id.header_title);
-        tvTitle.setText("消息");
+        ((TextView) findViewById(R.id.header_title)).setText("消息");
     }
 
 }

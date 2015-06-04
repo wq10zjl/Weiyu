@@ -13,35 +13,34 @@ import java.util.concurrent.CountDownLatch;
  */
 public abstract class Async2Sync<T> {
 
+    private T t = null;
+    private CountDownLatch latch = new CountDownLatch(1);
+    private Listener<T> listener = new Listener<T>() {
+        @Override
+        public void onSuccess(T data) {
+            t = data;
+            latch.countDown();
+        }
+
+        @Override
+        public void onFailure(String msg) {
+            latch.countDown();
+        }
+    };
+
     /**
      * 获取异步方法中返回的数据
      * @return
      */
     public final T get() {
-        final List<T> list = new ArrayList<>();
-        final CountDownLatch latch = new CountDownLatch(2);
-        Thread asyncTask = new Thread(){
+        new Runnable(){
             @Override
             public void run(){
                 // do something
-                doSthAsync(new Listener<T>() {
-                    @Override
-                    public void onSuccess(T data) {
-                        list.add(data);
-                        latch.countDown();
-                    }
-
-                    @Override
-                    public void onFailure(String msg) {
-                        latch.countDown();
-                    }
-                });
+                doSthAsync(listener);
             }
-        };
-        asyncTask.start();
-        latch.countDown();
-
-        return list.get(0);
+        }.run();
+        return t;
     }
 
     /**
