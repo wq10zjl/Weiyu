@@ -22,7 +22,8 @@ public class SessionActivity extends FragmentActivity {
     }
 
     private void initViews() {
-        ((TextView) findViewById(R.id.header_title)).setText("私聊");
+        String title = getIntent().getData().getQueryParameter("title");
+        ((TextView) findViewById(R.id.header_title)).setText(title);
         findViewById(R.id.header_left).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

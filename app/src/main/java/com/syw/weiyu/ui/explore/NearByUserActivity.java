@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.TextView;
 import com.paging.listview.PagingListView;
 import com.syw.weiyu.R;
-import com.syw.weiyu.api.Listener;
-import com.syw.weiyu.api.WeiyuApi;
+import com.syw.weiyu.core.Listener;
+import com.syw.weiyu.core.WeiyuApi;
 import com.syw.weiyu.bean.UserList;
 import com.syw.weiyu.ui.adapter.NearByUsersAdapter;
 import com.syw.weiyu.util.Msger;
@@ -37,12 +37,6 @@ public class NearByUserActivity extends FragmentActivity {
         initViews();
         initUltraPullToRefresh();
         initListView();
-    }
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
 
         new Handler(){
             @Override

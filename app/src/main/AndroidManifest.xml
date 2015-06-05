@@ -45,7 +45,7 @@
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
 
     <application
-        android:name=".AppContext"
+        android:name=".core.AppContext"
         android:allowBackup="true"
         android:icon="@drawable/wy_ic_launcher"
         android:label="@string/app_name"
@@ -150,12 +150,22 @@
         <meta-data
                 android:name="XG_V2_ACCESS_KEY"
                 android:value="A6EE7G1S4Z2J" />
-
+        <!--【非必须】透传消息-->
+        <!-- APP实现的Receiver，用于接收消息和结果反馈 -->
+        <!-- com.tencent.android.xgpushdemo.CustomPushReceiver需要改为自己的Receiver -->
+        <receiver android:name=".third.XGPushMessageReceiver" >
+            <intent-filter>
+                <!-- 接收消息透传 -->
+                <action android:name="com.tencent.android.tpush.action.PUSH_MESSAGE" />
+                <!-- 监听注册、反注册、设置/删除标签、通知被点击等处理结果 -->
+                <action android:name="com.tencent.android.tpush.action.FEEDBACK" />
+            </intent-filter>
+        </receiver>
 
 
 
         <!-- 启动页 -->
-        <activity android:name=".ui.LauncherActivity" >
+        <activity android:name=".ui.LauncherActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -164,18 +174,16 @@
         </activity>
 
         <!-- 主界面 -->
-        <activity android:name=".ui.MainTabsActivity" />
+        <activity android:name=".ui.MainTabsActivity" android:screenOrientation="portrait"/>
 
         <!-- 附近 -->
-        <activity android:name=".ui.explore.NearByUserActivity" />
+        <activity android:name=".ui.explore.NearByUserActivity" android:screenOrientation="portrait"/>
 
         <!-- 消息列表 -->
-        <activity android:name=".ui.session.SessionListActivity" >
+        <activity android:name=".ui.session.SessionListActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
-
                 <data
                     android:host="com.syw.weiyu"
                     android:path="/conversationlist"
@@ -183,12 +191,10 @@
             </intent-filter>
         </activity>
         <!-- 消息 -->
-        <activity android:name=".ui.session.SessionActivity" >
+        <activity android:name=".ui.session.SessionActivity" android:windowSoftInputMode="stateHidden" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
-
                 <data
                     android:host="com.syw.weiyu"
                     android:pathPrefix="/conversation/"
@@ -197,24 +203,27 @@
         </activity>
 
         <!-- 发现 -->
-        <activity android:name=".ui.explore.ExploreActivity" />
+        <activity android:name=".ui.explore.ExploreActivity" android:screenOrientation="portrait"/>
+
+        <!-- 发现 -->
+        <activity android:name=".ui.mine.MineActivity" android:screenOrientation="portrait"/>
 
         <!-- 登录 -->
-        <activity android:name=".ui.user.LoginActivity" />
+        <activity android:name=".ui.user.LoginActivity" android:screenOrientation="portrait"/>
 
         <!-- 修改资料 -->
-        <activity android:name=".ui.user.ProfileActivity" />
+        <activity android:name=".ui.user.ProfileActivity" android:screenOrientation="portrait"/>
 
         <!-- 关于信息 -->
-        <activity android:name=".ui.explore.AboutInfoActivity" />
+        <activity android:name=".ui.explore.AboutInfoActivity" android:screenOrientation="portrait"/>
 
         <!-- 附近说说 -->
-        <activity android:name=".ui.shuoshuo.ShuoshuoActivity" />
+        <activity android:name=".ui.shuoshuo.ShuoshuoActivity" android:screenOrientation="portrait"/>
 
         <!-- 说说详情 -->
         <activity
             android:name=".ui.shuoshuo.ShuoshuoDetailActivity"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

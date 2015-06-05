@@ -2,10 +2,9 @@ package com.syw.weiyu.third;
 
 import android.support.annotation.NonNull;
 import com.orhanobut.logger.Logger;
-import com.syw.weiyu.AppConstants;
-import com.syw.weiyu.AppException;
+import com.syw.weiyu.core.AppConstants;
+import com.syw.weiyu.core.AppException;
 
-import com.syw.weiyu.third.RongCloudEvent;
 import com.syw.weiyu.util.StringUtil;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.RongIMClient;
@@ -28,6 +27,11 @@ public class RongCloud {
         try {
             RongIM.connect(token, new RongIMClient.ConnectCallback() {
                 @Override
+                public void onTokenIncorrect() {
+                    Logger.d("Connect rongcloud failure, onTokenIncorrect");
+                }
+
+                @Override
                 public void onSuccess(String s) {
                     // 此处处理连接成功。
                     Logger.d("Connect rongcloud success.");
@@ -45,6 +49,10 @@ public class RongCloud {
             Logger.e("Connect rongcloud exception:"+e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    public static void logout() {
+
     }
 
     /**

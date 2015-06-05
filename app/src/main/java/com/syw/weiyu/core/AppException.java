@@ -1,8 +1,7 @@
-package com.syw.weiyu;
+package com.syw.weiyu.core;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
-import android.os.Looper;
 import com.orhanobut.logger.Logger;
 
 /**

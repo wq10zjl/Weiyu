@@ -1,6 +1,5 @@
 package com.syw.weiyu.ui.shuoshuo;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
@@ -8,8 +7,8 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.*;
 import com.syw.weiyu.R;
-import com.syw.weiyu.api.Listener;
-import com.syw.weiyu.api.WeiyuApi;
+import com.syw.weiyu.core.Listener;
+import com.syw.weiyu.core.WeiyuApi;
 import com.syw.weiyu.bean.Comment;
 import com.syw.weiyu.bean.Shuoshuo;
 import com.syw.weiyu.ui.adapter.CommentsAdapter;
@@ -17,9 +16,7 @@ import com.syw.weiyu.ui.adapter.ShuoshuosAdapter;
 import com.syw.weiyu.util.StringUtil;
 import com.syw.weiyu.util.Msger;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**

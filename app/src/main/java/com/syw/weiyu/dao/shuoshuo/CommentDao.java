@@ -1,6 +1,6 @@
 package com.syw.weiyu.dao.shuoshuo;
 
-import com.syw.weiyu.api.Listener;
+import com.syw.weiyu.core.Listener;
 import com.syw.weiyu.bean.Comment;
 
 import java.util.List;

@@ -1,9 +1,9 @@
 package com.syw.weiyu.dao.user;
 
 import android.support.annotation.NonNull;
-import com.syw.weiyu.AppException;
-import com.syw.weiyu.api.Listener;
-import com.syw.weiyu.api.Null;
+import com.syw.weiyu.core.AppException;
+import com.syw.weiyu.core.Listener;
+import com.syw.weiyu.core.Null;
 import com.syw.weiyu.bean.MLocation;
 import com.syw.weiyu.bean.User;
 import com.syw.weiyu.bean.UserList;
@@ -15,7 +15,7 @@ import com.syw.weiyu.bean.UserList;
  */
 public interface UserDao {
     /**
-     * 在LBS云创建用户POI数据
+     * 创建用户
      * @param id
      * @param name
      * @param gender

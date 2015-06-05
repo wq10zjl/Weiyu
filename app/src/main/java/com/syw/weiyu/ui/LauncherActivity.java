@@ -7,14 +7,13 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.KeyEvent;
 
-import com.syw.weiyu.AppContext;
-import com.syw.weiyu.AppException;
+import com.syw.weiyu.core.AppContext;
+import com.syw.weiyu.core.AppException;
 import com.syw.weiyu.R;
-import com.syw.weiyu.api.AdListener;
-import com.syw.weiyu.api.WeiyuApi;
+import com.syw.weiyu.core.AdListener;
+import com.syw.weiyu.core.WeiyuApi;
 import com.syw.weiyu.bean.Account;
 import com.syw.weiyu.ui.user.LoginActivity;
-import com.tencent.android.tpush.XGPushManager;
 
 
 public class LauncherActivity extends Activity {
@@ -27,8 +26,9 @@ public class LauncherActivity extends Activity {
 //        有账户信息→MainTabs主页面
 //        无账户信息→Login登入页
         try {
-            Account account = WeiyuApi.get().getAccount();
-            WeiyuApi.get().login(account.getToken());
+            WeiyuApi.get().getAccount();
+//            Account account = WeiyuApi.get().getAccount();
+//            WeiyuApi.get().login(account.getToken());
             if (AppContext.isFirstLaunch()) {
                 //未作初始化时，加载开屏广告
                 showSplashAdThenGotoMainPage();

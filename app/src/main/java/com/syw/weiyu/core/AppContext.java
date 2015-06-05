@@ -1,4 +1,4 @@
-package com.syw.weiyu;
+package com.syw.weiyu.core;
 
 import android.app.ActivityManager;
 import android.app.Application;
@@ -9,12 +9,12 @@ import android.content.pm.PackageManager;
 import android.util.LruCache;
 import cn.bmob.v3.Bmob;
 import com.orhanobut.logger.Logger;
-import com.syw.weiyu.api.WeiyuApi;
 import com.syw.weiyu.bean.Account;
 import com.syw.weiyu.dao.user.LocalAccountDao;
 import com.syw.weiyu.third.RongCloudEvent;
 
 import com.syw.weiyu.third.LocSDK;
+import com.syw.weiyu.third.XGPush;
 import io.rong.imkit.RongIM;
 
 /**
@@ -60,38 +60,17 @@ public class AppContext extends Application {
         super.onCreate();
         setAppContext(this);
 
-        initSDKs();
-        initData();
-    }
-
-    /**
-     * 初始化数据
-     */
-    private void initData() {
-        //定位并保存
-        WeiyuApi.get().locate();
-        //账户数据
-        try {
-            Account account = new LocalAccountDao().get();
-            putCache(KEY_ACCOUNT, account);
-        } catch (AppException e) {
-            //do nothing
-        }
-    }
-
-    /**
-     * 初始化SDK组件
-     */
-    private void initSDKs() {
-        // 注册App异常崩溃处理器（防crash）
-//        Thread.setDefaultUncaughtExceptionHandler(AppException.getAppExceptionHandler(this));
-
         //初始化日志工具类
         String TAG = "Weiyu";
         Logger.init(TAG);
 
+        // 注册App异常崩溃处理器（防crash）
+//        Thread.setDefaultUncaughtExceptionHandler(AppException.getAppExceptionHandler(this));
+
         //初始化定位SDK
         LocSDK.init(this);
+        //定位并保存
+        WeiyuApi.get().locate();
 
         //初始化BmobSDK
         Bmob.initialize(this, AppConstants.bmob_app_key);
@@ -102,6 +81,20 @@ public class AppContext extends Application {
             RongIM.init(this);
             //初始化融云SDK事件监听处理
             RongCloudEvent.init(this);
+        }
+
+        //拿账户数据，登录IM&推送
+        try {
+            Account account = new LocalAccountDao().get();
+            putCache(KEY_ACCOUNT, account);
+            if (isMainThread()) {
+                //注册信鸽Push
+                XGPush.register(this,account.getId());
+                //login IM
+                WeiyuApi.get().login(account.getToken());
+            }
+        } catch (AppException e) {
+            //do nothing
         }
     }
 

@@ -2,9 +2,9 @@ package com.syw.weiyu.dao.im;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.syw.weiyu.AppConstants;
+import com.syw.weiyu.core.AppConstants;
 
-import com.syw.weiyu.api.Listener;
+import com.syw.weiyu.core.Listener;
 import com.syw.weiyu.third.RongCloud;
 import net.tsz.afinal.http.AjaxCallBack;
 import net.tsz.afinal.http.AjaxParams;

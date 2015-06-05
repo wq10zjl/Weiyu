@@ -7,7 +7,7 @@ package com.syw.weiyu.util;
  */
 public class DistanceUtil {
     /**
-     * google mapsµÄ½Å±¾Àï´úÂë
+     * google mapsçš„è„šæœ¬é‡Œä»£ç 
      */
     private static final double EARTH_RADIUS = 6378.137;
 
@@ -16,7 +16,7 @@ public class DistanceUtil {
     }
 
     /**
-     * ¸ù¾İÁ½µã¼ä¾­Î³¶È×ø±ê£¨doubleÖµ£©£¬¼ÆËãÁ½µã¼ä¾àÀë£¬µ¥Î»ÎªÃ×
+     * æ ¹æ®ä¸¤ç‚¹é—´ç»çº¬åº¦åæ ‡ï¼ˆdoubleå€¼ï¼‰ï¼Œè®¡ç®—ä¸¤ç‚¹é—´è·ç¦»ï¼Œå•ä½ä¸ºç±³
      */
     public static double getDistanceMeter(double lat1, double lng1, double lat2, double lng2) {
         double radLat1 = rad(lat1);
@@ -30,7 +30,7 @@ public class DistanceUtil {
         return s;
     }
     /**
-     * ¸ù¾İÁ½µã¼ä¾­Î³¶È×ø±ê£¨doubleÖµ£©£¬¼ÆËãÁ½µã¼ä¾àÀë£¬µ¥Î»ÎªÇ§Ã×
+     * æ ¹æ®ä¸¤ç‚¹é—´ç»çº¬åº¦åæ ‡ï¼ˆdoubleå€¼ï¼‰ï¼Œè®¡ç®—ä¸¤ç‚¹é—´è·ç¦»ï¼Œå•ä½ä¸ºåƒç±³
      */
     public static double getDistanceKiloMeter(double lat1, double lng1, double lat2, double lng2) {
         return getDistanceMeter(lat1,lng1,lat2,lng2) / 1000;

@@ -21,14 +21,6 @@ public class User extends BmobObject implements Serializable {
     private String addressStr;//用于Bmob存储位置名
 
     public User() {}
-    public User(String userId, String name, String gender, String tags, String organization, MLocation location) {
-        this.id = userId;
-        this.name = name;
-        this.gender = gender;
-        this.tags = tags;
-        this.organization = organization;
-        this.location = location;
-    }
     public User(String id, String name, String gender) {
         this.id = id;
         this.name = name;

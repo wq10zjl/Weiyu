@@ -1,26 +1,19 @@
 <resources>
-    <string name="rc_name">融云</string>
-    <string name="rc_voice_dialog_collect">手指上滑，取消发送</string>
-    <string name="rc_voice_dialog_cancel_send">松开手指，取消发送</string>
-    <string name="rc_voice_dialog_time_short">说话时间太短</string>
-
-    <string name="rc_notification_send">发来了</string>
+<string name="rc_notification_send">发来了</string>
     <string name="rc_notification_msg">条消息</string>
     <string name="rc_notification_contact">个联系人</string>
     <string name="rc_notification_ticker_text">您有了一条新消息</string>
 
-    <string name="rc_plugins_voip">语音通话</string>
-
-    <!-- discussion_notification_msg -->
-    <string name="rc_discussion_nt_msg_for_rename">"%1$s修改讨论组名称为%2$s"</string>
-    <string name="rc_discussion_nt_msg_for_added">"%1$s邀请%2$s加入了讨论组"</string>
-    <string name="rc_discussion_nt_msg_for_add">"%1$s邀请了%2$s位成员加入了讨论组"</string>
-    <string name="rc_discussion_nt_msg_for_exit">"%1$s退出了讨论组"</string>
-    <string name="rc_discussion_nt_msg_for_removed">"你被%1$s移出了讨论组"</string>
-    <string name="rc_discussion_nt_msg_for_who_removed">"%1$s被%2$s 移出了讨论组"</string>
+ <!-- discussion_notification_msg -->
+    <string name="rc_discussion_nt_msg_for_rename">"%1$s 修改讨论组名称为 %2$s"</string>
+    <string name="rc_discussion_nt_msg_for_added">"%1$s 邀请 %2$s 加入了讨论组"</string>
+    <string name="rc_discussion_nt_msg_for_add">"%1$s 邀请了%2$s位成员加入了讨论组"</string>
+    <string name="rc_discussion_nt_msg_for_exit">"%1$s 退出了讨论组"</string>
+    <string name="rc_discussion_nt_msg_for_removed">"你被 %1$s 移出了讨论组"</string>
+    <string name="rc_discussion_nt_msg_for_who_removed">"%1$s 被 %2$s 移出了讨论组"</string>
     <string name="rc_discussion_nt_msg_for_you">"你"</string>
-    <string name="rc_discussion_nt_msg_for_is_open_invite_open">"%1$s开放了成员邀请"</string>
-    <string name="rc_discussion_nt_msg_for_is_open_invite_close">"%1$s关闭了成员邀请"</string>
+    <string name="rc_discussion_nt_msg_for_is_open_invite_open">"%1$s 开放了成员邀请"</string>
+    <string name="rc_discussion_nt_msg_for_is_open_invite_close">"%1$s 关闭了成员邀请"</string>
 
     <string name="rc_group_list_my_private_conversation">我的私人会话</string>
     <string name="rc_group_list_my_group">我的群组</string>
@@ -74,7 +67,7 @@
     <string name="rc_voice_short">录音时间太短</string>
 
 
-    <string name="rc_pub_service_info_func">功能介绍</string>
+    <string name="rc_pub_service_info_description">功能介绍</string>
     <string name="rc_pub_service_info_enter">进入公众号</string>
     <string name="rc_pub_service_info_follow">关注</string>
     <string name="rc_pub_service_info_unfollow">取消关注</string>
@@ -86,6 +79,16 @@
     <string name="rc_notice_create_discussion">正在创建讨论组</string>
     <string name="rc_notice_enter_chatroom">进入聊天室</string>
     <string name="rc_notice_input_conversation_error">会话尚未创建</string>
-    <string name="rc_message_unknow">当前版本暂不支持查看此消息</string>
+    <string name="rc_message_unknown">当前版本暂不支持查看此消息</string>
 
-</resources>
+    <string name="rc_info_not_in_discussion">你不在该讨论组</string>
+    <string name="rc_info_not_in_group">你不在该群</string>
+    <string name="rc_info_not_in_chatroom">你不在该聊天室</string>
+
+<string name="rc_name">融云</string>
+    <string name="rc_voice_dialog_swipe">手指上滑，取消发送</string>
+    <string name="rc_voice_dialog_cancel_send">松开手指，取消发送</string>
+    <string name="rc_voice_dialog_time_short">说话时间太短</string>
+
+<string name="rc_plugins_voip">语音通话</string>
+  </resources>

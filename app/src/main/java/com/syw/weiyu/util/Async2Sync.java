@@ -1,9 +1,7 @@
 package com.syw.weiyu.util;
 
-import com.syw.weiyu.api.Listener;
+import com.syw.weiyu.core.Listener;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 /**

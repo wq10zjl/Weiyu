@@ -5,17 +5,15 @@ import cn.bmob.v3.datatype.BmobGeoPoint;
 import cn.bmob.v3.listener.CountListener;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
-import com.syw.weiyu.AppContext;
-import com.syw.weiyu.api.Listener;
-import com.syw.weiyu.api.Null;
+import com.syw.weiyu.core.AppContext;
+import com.syw.weiyu.core.Listener;
+import com.syw.weiyu.core.Null;
 import com.syw.weiyu.bean.Account;
 import com.syw.weiyu.bean.MLocation;
 import com.syw.weiyu.bean.Shuoshuo;
 import com.syw.weiyu.bean.ShuoshuoList;
-import net.tsz.afinal.FinalDb;
 
 import java.util.List;
-import java.util.UUID;
 
 /**
  * author: youwei

@@ -3,6 +3,7 @@ package com.syw.weiyu.ui.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 import com.syw.weiyu.R;
 import com.syw.weiyu.bean.Comment;
 import io.rong.imkit.RongIM;
+import io.rong.imlib.RongIMClient;
+import io.rong.imlib.model.Conversation;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -95,7 +98,7 @@ public class CommentsAdapter extends BaseAdapter {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RongIM.getInstance().startPrivateChat(ctx, comment.getUserId(), comment.getUserName()+"（私聊）");
+                RongIM.getInstance().startConversation(ctx, Conversation.ConversationType.PRIVATE,comment.getUserId(),comment.getUserName());
             }
         });
 

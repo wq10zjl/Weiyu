@@ -2,6 +2,7 @@ package com.syw.weiyu.ui;
 
 import android.app.TabActivity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,8 +10,10 @@ import android.widget.TabHost;
 
 import com.syw.weiyu.R;
 import com.syw.weiyu.ui.explore.ExploreActivity;
+import com.syw.weiyu.ui.mine.MineActivity;
 import com.syw.weiyu.ui.session.SessionListActivity;
 import com.syw.weiyu.ui.shuoshuo.ShuoshuoActivity;
+import io.rong.imkit.RongIM;
 
 @SuppressWarnings("deprecation")
 public class MainTabsActivity extends TabActivity {
@@ -35,7 +38,7 @@ public class MainTabsActivity extends TabActivity {
 		LayoutInflater inflater = LayoutInflater.from(MainTabsActivity.this);
 
         /**
-         * 附近的说说
+         * 说说
          */
         //底部指示器视图，上面图标下面文字
 		View nearbyView = inflater.inflate(
@@ -56,8 +59,7 @@ public class MainTabsActivity extends TabActivity {
 		TabHost.TabSpec sessionListTabSpec = mTabHost.newTabSpec(
                 SessionListActivity.class.getName()).setIndicator(
 				sessionListView);
-		sessionListTabSpec.setContent(new Intent(MainTabsActivity.this,
-				SessionListActivity.class));
+		sessionListTabSpec.setContent(new Intent(MainTabsActivity.this,SessionListActivity.class));
 		mTabHost.addTab(sessionListTabSpec);
 
         /**
@@ -72,5 +74,16 @@ public class MainTabsActivity extends TabActivity {
                 ExploreActivity.class));
         mTabHost.addTab(exploreTabSpec);
 
+		/**
+		 * 我
+		 */
+		View mineView = inflater.inflate(
+				R.layout.common_bottombar_tab_mine, null);
+		TabHost.TabSpec mineTabSpec = mTabHost.newTabSpec(
+				MineActivity.class.getName()).setIndicator(
+				mineView);
+		mineTabSpec.setContent(new Intent(MainTabsActivity.this,
+				MineActivity.class));
+		mTabHost.addTab(mineTabSpec);
 	}
 }

@@ -1,16 +1,8 @@
 package com.syw.weiyu.third;
 
-import android.content.Context;
-import android.util.Log;
-
-import com.syw.weiyu.AppConstants;
-import com.syw.weiyu.AppContext;
-import com.syw.weiyu.R;
-import com.syw.weiyu.bean.MLocation;
+import com.syw.weiyu.core.AppConstants;
 import com.syw.weiyu.bean.User;
 
-import net.tsz.afinal.FinalHttp;
-import net.tsz.afinal.http.AjaxCallBack;
 import net.tsz.afinal.http.AjaxParams;
 
 /**

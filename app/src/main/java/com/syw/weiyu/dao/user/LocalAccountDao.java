@@ -2,8 +2,8 @@ package com.syw.weiyu.dao.user;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import com.syw.weiyu.AppContext;
-import com.syw.weiyu.AppException;
+import com.syw.weiyu.core.AppContext;
+import com.syw.weiyu.core.AppException;
 import com.syw.weiyu.bean.Account;
 import net.tsz.afinal.FinalDb;
 

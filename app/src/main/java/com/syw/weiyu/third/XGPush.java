@@ -1,21 +1,37 @@
 package com.syw.weiyu.third;
 
-import com.syw.weiyu.AppConstants;
+import android.content.Context;
+import com.syw.weiyu.bean.Account;
+import com.syw.weiyu.core.AppConstants;
+import com.syw.weiyu.core.AppException;
+import com.syw.weiyu.core.WeiyuApi;
+import com.tencent.android.tpush.XGPushManager;
+import com.tencent.xinge.Message;
 import com.tencent.xinge.XingeApp;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * author: youwei
  * date: 2015-06-04
- * desc: ĞÅ¸ëÍÆËÍ
+ * desc: ä¿¡é¸½æ¨é€
  */
 public class XGPush {
+
     /**
-     * ÏòÖ¸¶¨ÓÃ»§IDÍÆËÍÆÕÍ¨ÏûÏ¢
-     * {"ret_code":0}  //³É¹¦
-     * {"ret_code":-1, "err_msg":"error description"}  //Ê§°Ü
-     ×¢£ºret_codeÎª0±íÊ¾³É¹¦£¬ÆäËûÎªÊ§°Ü£¬¾ßÌåÇë²é¿´¸½Â¼¡£
+     * æ³¨å†Œæ¨é€
+     * @param context
+     */
+    public static void register(Context context, String accountId) {
+        //æ³¨å†Œpush
+        XGPushManager.registerPush(context,accountId);
+    }
+
+    /**
+     * å‘æŒ‡å®šç”¨æˆ·IDæ¨é€é€šçŸ¥
      * @param toUserId
      * @param title
      * @param content
@@ -23,12 +39,42 @@ public class XGPush {
      */
     public static boolean pushNotification(String toUserId,String title,String content) {
         JSONObject result = XingeApp.pushAccountAndroid(AppConstants.xgpush_access_id, AppConstants.xgpush_secret_key, title, content, toUserId);
+        return isPushed(result);
+    }
+
+    /**
+     * æ¨é€é€ä¼ æ¶ˆæ¯
+     * @param toUserId
+     * @param title
+     * @param content
+     * @param data json string data
+     * @return
+     */
+    public static boolean pushMessage(String toUserId,String title,String content,String data) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("data",data);//json string data
+        Message message = new Message();
+        message.setType(Message.TYPE_MESSAGE);
+        message.setTitle(title);
+        message.setContent(content);
+        message.setCustom(map);
+        XingeApp xingeApp = new XingeApp(AppConstants.xgpush_access_id, AppConstants.xgpush_secret_key);
+        JSONObject result = xingeApp.pushSingleAccount(0, toUserId, message);
+        return isPushed(result);
+    }
+
+    /**
+     * {"ret_code":0}  //æˆåŠŸ
+     * {"ret_code":-1, "err_msg":"error description"}  //å¤±è´¥
+     * æ³¨ï¼šret_codeä¸º0è¡¨ç¤ºæˆåŠŸï¼Œå…¶ä»–ä¸ºå¤±è´¥ï¼Œå…·ä½“è¯·æŸ¥çœ‹é™„å½•ã€‚
+     * @param result
+     * @return
+     */
+    private static boolean isPushed(JSONObject result) {
         try {
             return result.getInt("ret_code")==0;
         } catch (JSONException e) {
             return false;
         }
     }
-
-//    public static boolean push
 }

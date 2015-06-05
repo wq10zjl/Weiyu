@@ -1,39 +1,45 @@
-package com.syw.weiyu.ui.explore;
+package com.syw.weiyu.ui.mine;
 
 import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.TextView;
-
 import com.syw.weiyu.R;
+import com.syw.weiyu.ui.explore.AboutInfoActivity;
+import com.syw.weiyu.ui.explore.NearByUserActivity;
+import com.syw.weiyu.ui.user.ProfileActivity;
 
 /**
  * author: youwei
  * date: 2015-05-11
- * desc: 发现（更多）
+ * desc: 我
  */
-public class ExploreActivity extends FragmentActivity implements View.OnClickListener {
+public class MineActivity extends FragmentActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.wy_activity_explore);
+        setContentView(R.layout.wy_activity_mine);
 
-        findViewById(R.id.explore_item_nearby_people).setOnClickListener(this);
+        findViewById(R.id.explore_item_profile).setOnClickListener(this);
+        findViewById(R.id.explore_item_aboutinfo).setOnClickListener(this);
 
-        ((TextView) findViewById(R.id.header_title)).setText("发现");
+        ((TextView) findViewById(R.id.header_title)).setText("我");
     }
 
     @Override
     public void onClick(View v) {
         Class activity = null;
         switch (v.getId()) {
-            case R.id.explore_item_nearby_people:
-                activity = NearByUserActivity.class;
+            case R.id.explore_item_profile:
+                activity = ProfileActivity.class;
+                break;
+            case R.id.explore_item_aboutinfo:
+                activity = AboutInfoActivity.class;
                 break;
         }
-        Intent intent = new Intent(ExploreActivity.this, activity);
+        Intent intent = new Intent(MineActivity.this, activity);
         startActivity(intent);
     }
 

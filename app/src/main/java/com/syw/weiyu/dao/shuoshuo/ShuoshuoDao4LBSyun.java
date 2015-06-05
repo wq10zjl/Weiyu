@@ -1,15 +1,14 @@
 package com.syw.weiyu.dao.shuoshuo;
 
 import com.alibaba.fastjson.JSON;
-import com.syw.weiyu.AppConstants;
-import com.syw.weiyu.AppContext;
-import com.syw.weiyu.AppException;
-import com.syw.weiyu.api.Listener;
-import com.syw.weiyu.api.Null;
+import com.syw.weiyu.core.AppConstants;
+import com.syw.weiyu.core.AppContext;
+import com.syw.weiyu.core.AppException;
+import com.syw.weiyu.core.Listener;
+import com.syw.weiyu.core.Null;
 import com.syw.weiyu.bean.*;
 import com.syw.weiyu.bean.jsonobj.ShuoshuoItemJsonObj;
 import com.syw.weiyu.bean.jsonobj.NearbySearchListJsonObj;
-import com.syw.weiyu.dao.location.LocationDao;
 import com.syw.weiyu.third.LBSCloud;
 import net.tsz.afinal.FinalHttp;
 import net.tsz.afinal.http.AjaxCallBack;

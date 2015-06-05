@@ -6,14 +6,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.dd.processbutton.iml.ActionProcessButton;
-import com.syw.weiyu.AppException;
-import com.syw.weiyu.api.Listener;
-import com.syw.weiyu.api.Null;
-import com.syw.weiyu.api.WeiyuApi;
+import com.syw.weiyu.core.AppException;
+import com.syw.weiyu.core.Listener;
+import com.syw.weiyu.core.Null;
+import com.syw.weiyu.core.WeiyuApi;
 import com.syw.weiyu.bean.Account;
 import com.syw.weiyu.R;
 import com.syw.weiyu.dao.user.LocalAccountDao;
-import com.syw.weiyu.third.RongCloud;
 import com.syw.weiyu.util.Msger;
 
 /**
@@ -27,7 +26,7 @@ public class ProfileActivity extends LoginBaseActivity {
         super.onCreate(savedInstanceState);
         //set back icon
         ImageView imageView = (ImageView) findViewById(R.id.header_left);
-        imageView.setImageResource(R.drawable.wy_icon_back);
+        imageView.setImageResource(R.drawable.ic_back);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

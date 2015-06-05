@@ -1,12 +1,9 @@
-package com.syw.weiyu.api;
+package com.syw.weiyu.core;
 
 import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import com.syw.weiyu.AppConstants;
-import com.syw.weiyu.AppContext;
-import com.syw.weiyu.AppException;
 import com.syw.weiyu.adp.WeiyuBannerCustomEventPlatformAdapter;
 import com.syw.weiyu.adp.WeiyuCustomEventPlatformEnum;
 import com.syw.weiyu.av.WeiyuLayout;
@@ -69,6 +66,7 @@ public class WeiyuApi {
     /**
      * 登录接口
      * 连接IM服务器
+     * 更新地理位置信息
      * @param token
      * @throws AppException 无token
      */
@@ -140,21 +138,22 @@ public class WeiyuApi {
         try {
             final String id = localAccountDao.get().getId();
             userDao.update(id,name,gender,locationDao.get(),listener);
+            /*不用融云的昵称信息，保证用户ID不变就行*/
             //刷新RongCloud用户信息
             //也就是拿token
-            new TokenDao().get(id, name, null, new Listener<String>() {
-                @Override
-                public void onSuccess(String data) {
-                    Account account = new Account(id, name, gender, data);
-                    localAccountDao.set(account);
-                    listener.onSuccess(null);
-                }
-
-                @Override
-                public void onFailure(String msg) {
-                    listener.onFailure(msg);
-                }
-            });
+//            new TokenDao().get(id, name, null, new Listener<String>() {
+//                @Override
+//                public void onSuccess(String data) {
+//                    Account account = new Account(id, name, gender, data);
+//                    localAccountDao.set(account);
+//                    listener.onSuccess(null);
+//                }
+//
+//                @Override
+//                public void onFailure(String msg) {
+//                    listener.onFailure(msg);
+//                }
+//            });
         } catch (AppException e) {
             listener.onFailure(e.getMessage());
         }
@@ -195,8 +194,8 @@ public class WeiyuApi {
      * @param id
      * @return
      */
-    public int getLastOnlineTimestamp(String id) {
-        return 0;
+    public String getLastOnlineTime(String id) {
+        return null;
     }
 
     /**
@@ -343,7 +342,7 @@ public class WeiyuApi {
 
             @Override
             public boolean onCloseAd() {
-                listener.onCloseAd();
+                if (listener!=null)listener.onCloseAd();
                 return false;
             }
 

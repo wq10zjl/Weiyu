@@ -2,9 +2,9 @@ package com.syw.weiyu.ui.user;
 
 import android.content.Intent;
 
-import com.syw.weiyu.AppException;
-import com.syw.weiyu.api.Listener;
-import com.syw.weiyu.api.WeiyuApi;
+import com.syw.weiyu.core.AppException;
+import com.syw.weiyu.core.Listener;
+import com.syw.weiyu.core.WeiyuApi;
 import com.syw.weiyu.ui.MainTabsActivity;
 
 import com.syw.weiyu.util.Msger;

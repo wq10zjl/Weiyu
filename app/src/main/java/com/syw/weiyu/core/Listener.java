@@ -1,9 +1,4 @@
-package com.syw.weiyu.api;
-
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-
-import java.util.Objects;
+package com.syw.weiyu.core;
 
 /**
  * author: youwei

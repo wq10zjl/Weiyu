@@ -1,6 +1,8 @@
 package com.syw.weiyu.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import com.paging.listview.PagingBaseAdapter;
 import com.syw.weiyu.R;
 import com.syw.weiyu.bean.User;
 import io.rong.imkit.RongIM;
+import io.rong.imlib.model.Conversation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,7 +96,7 @@ public class NearByUsersAdapter extends PagingBaseAdapter {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RongIM.getInstance().startPrivateChat(ctx, user.getId(), user.getName() + "（私聊）");
+                RongIM.getInstance().startConversation(ctx, Conversation.ConversationType.PRIVATE, user.getId(), user.getName());
             }
         });
 

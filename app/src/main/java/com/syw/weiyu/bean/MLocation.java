@@ -1,7 +1,7 @@
 package com.syw.weiyu.bean;
 
 import com.baidu.location.BDLocation;
-import com.syw.weiyu.AppConstants;
+import com.syw.weiyu.core.AppConstants;
 
 import java.io.Serializable;
 

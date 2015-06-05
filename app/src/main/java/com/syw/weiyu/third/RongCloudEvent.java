@@ -1,33 +1,16 @@
 package com.syw.weiyu.third;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
-import android.util.Log;
-import android.view.View;
 
-import java.util.ArrayList;
-
-import com.syw.weiyu.AppException;
-import com.syw.weiyu.api.WeiyuApi;
+import com.syw.weiyu.core.AppException;
+import com.syw.weiyu.core.WeiyuApi;
 import com.syw.weiyu.bean.MLocation;
 import com.syw.weiyu.bean.User;
 import com.syw.weiyu.dao.location.LocationDao;
 import io.rong.imkit.RongIM;
-import io.rong.imkit.model.UIConversation;
-import io.rong.imlib.RongIMClient;
-import io.rong.imlib.model.Conversation;
-import io.rong.imlib.model.Group;
-import io.rong.imlib.model.Message;
-import io.rong.imlib.model.MessageContent;
 import io.rong.imlib.model.UserInfo;
-import io.rong.message.ContactNotificationMessage;
-import io.rong.message.ImageMessage;
-import io.rong.message.InformationNotificationMessage;
 import io.rong.message.LocationMessage;
-import io.rong.message.RichContentMessage;
-import io.rong.message.TextMessage;
-import io.rong.message.VoiceMessage;
 
 /**
  * Created by zhjchen on 1/29/15.
@@ -47,7 +30,7 @@ import io.rong.message.VoiceMessage;
  * 7、连接状态监听器，以获取连接相关状态：ConnectionStatusListener。
  * 8、地理位置提供者：LocationProvider。
  */
-public final class RongCloudEvent implements  RongIM.GetUserInfoProvider, RongIM.LocationProvider {
+public final class RongCloudEvent implements  RongIM.UserInfoProvider, RongIM.LocationProvider {
 
     private static final String TAG = RongCloudEvent.class.getSimpleName();
 
@@ -87,7 +70,7 @@ public final class RongCloudEvent implements  RongIM.GetUserInfoProvider, RongIM
      * RongIM.init(this) 后直接可注册的Listener。
      */
     private void initDefaultListener() {
-        RongIM.setGetUserInfoProvider(this, true);//设置用户信息提供者。
+        RongIM.setUserInfoProvider(this, true);//设置用户信息提供者。
         RongIM.setLocationProvider(this);//设置地理位置提供者,不用位置的同学可以注掉此行代码
     }
 

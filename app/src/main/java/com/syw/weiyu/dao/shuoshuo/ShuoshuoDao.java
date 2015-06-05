@@ -1,7 +1,7 @@
 package com.syw.weiyu.dao.shuoshuo;
 
-import com.syw.weiyu.api.Listener;
-import com.syw.weiyu.api.Null;
+import com.syw.weiyu.core.Listener;
+import com.syw.weiyu.core.Null;
 import com.syw.weiyu.bean.Account;
 import com.syw.weiyu.bean.MLocation;
 import com.syw.weiyu.bean.Shuoshuo;

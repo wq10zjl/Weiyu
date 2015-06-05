@@ -1,17 +1,16 @@
 package com.syw.weiyu.dao.user;
 
 import android.support.annotation.NonNull;
-import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobGeoPoint;
 import cn.bmob.v3.listener.CountListener;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
-import com.syw.weiyu.AppContext;
-import com.syw.weiyu.AppException;
-import com.syw.weiyu.api.Listener;
-import com.syw.weiyu.api.Null;
+import com.syw.weiyu.core.AppContext;
+import com.syw.weiyu.core.AppException;
+import com.syw.weiyu.core.Listener;
+import com.syw.weiyu.core.Null;
 import com.syw.weiyu.bean.MLocation;
 import com.syw.weiyu.bean.User;
 import com.syw.weiyu.bean.UserList;
@@ -47,27 +46,23 @@ public class UserDao4Bmob implements UserDao {
 
     @Override
     public void update(@NonNull String id, String name, String gender, MLocation location, final Listener<Null> listener) {
-        try {
-            User user = getUser(id);
-            user.setName(name);
-            user.setGender(gender);
-            BmobGeoPoint gpsAdd = new BmobGeoPoint(Double.parseDouble(location.getLongitude()),Double.parseDouble(location.getLatitude()));
-            user.setGpsAdd(gpsAdd);
-            user.setAddressStr(location.getAddress());
-            user.update(AppContext.getCtx(), new UpdateListener() {
-                @Override
-                public void onSuccess() {
-                    listener.onSuccess(null);
-                }
+        User user = getUserWithoutCache(id);
+        user.setName(name);
+        user.setGender(gender);
+        BmobGeoPoint gpsAdd = new BmobGeoPoint(Double.parseDouble(location.getLongitude()), Double.parseDouble(location.getLatitude()));
+        user.setGpsAdd(gpsAdd);
+        user.setAddressStr(location.getAddress());
+        user.update(AppContext.getCtx(), new UpdateListener() {
+            @Override
+            public void onSuccess() {
+                listener.onSuccess(null);
+            }
 
-                @Override
-                public void onFailure(int i, String s) {
-                    listener.onFailure("更新用户资料出错:"+s);
-                }
-            });
-        } catch (AppException e) {
-            listener.onFailure("更新用户资料出错:"+e.getMessage());
-        }
+            @Override
+            public void onFailure(int i, String s) {
+                listener.onFailure("更新用户资料出错:" + s);
+            }
+        });
     }
 
     @Override
@@ -89,7 +84,8 @@ public class UserDao4Bmob implements UserDao {
                         //save to db
                         FinalDb finalDb = FinalDb.create(AppContext.getCtx());
                         for (User user : list) {
-                            if (finalDb.findById(user.getId(),User.class) == null) finalDb.save(user);
+                            if (finalDb.findById(user.getId(),User.class) != null) finalDb.deleteById(User.class,user.getId());
+                            finalDb.save(user);
                         }
                     }
 
@@ -108,14 +104,25 @@ public class UserDao4Bmob implements UserDao {
     }
 
     @Override
-    public User getUser(final String id) throws AppException {
+    public User getUser(String id) throws AppException {
         FinalDb finalDb = FinalDb.create(AppContext.getCtx());
         User user = finalDb.findById(id, User.class);
-        if (user == null) user = new Async2Sync<User>(){
+        if (user == null) user = getUserWithoutCache(id);
+        if (user==null) throw new AppException("获取用户信息出错");
+        return user;
+    }
+
+    /**
+     * 通过网络拿用户数据，不走本地
+     * @param userId
+     * @return
+     */
+    private User getUserWithoutCache(final String userId) {
+        return new Async2Sync<User>(){
             @Override
             public void doSthAsync(final Listener<User> listener) {
                 BmobQuery<User> bmobQuery = new BmobQuery<>();
-                bmobQuery.addWhereEqualTo("id",id);
+                bmobQuery.addWhereEqualTo("id",userId);
                 bmobQuery.setLimit(1);
                 bmobQuery.findObjects(AppContext.getCtx(), new FindListener<User>() {
                     @Override
@@ -125,9 +132,11 @@ public class UserDao4Bmob implements UserDao {
                             listener.onFailure("无该用户信息");
                         } else {
                             listener.onSuccess(u);
+
                             //save to db
                             FinalDb finalDb = FinalDb.create(AppContext.getCtx());
-                            if (finalDb.findById(u.getId(), User.class) == null) finalDb.save(u);
+                            if (finalDb.findById(u.getId(),User.class) != null) finalDb.deleteById(User.class, u.getId());
+                            finalDb.save(u);
                         }
                     }
 
@@ -138,7 +147,5 @@ public class UserDao4Bmob implements UserDao {
                 });
             }
         }.get();
-        if (user==null) throw new AppException("获取用户信息出错");
-        return user;
     }
 }

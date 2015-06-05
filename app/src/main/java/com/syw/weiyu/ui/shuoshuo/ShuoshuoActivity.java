@@ -14,17 +14,17 @@ import android.widget.TextView;
 
 import cn.bmob.v3.update.BmobUpdateAgent;
 import com.paging.listview.PagingListView;
-import com.syw.weiyu.AppException;
-import com.syw.weiyu.api.Listener;
-import com.syw.weiyu.api.Null;
-import com.syw.weiyu.api.WeiyuApi;
+import com.syw.weiyu.core.AppException;
+import com.syw.weiyu.core.Listener;
+import com.syw.weiyu.core.Null;
+import com.syw.weiyu.core.WeiyuApi;
 import com.syw.weiyu.R;
 import com.syw.weiyu.bean.ShuoshuoList;
+import com.syw.weiyu.third.XGPush;
 import com.syw.weiyu.ui.adapter.ShuoshuosAdapter;
 
 import com.syw.weiyu.util.Msger;
 
-import com.tencent.android.tpush.XGPushManager;
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
@@ -49,12 +49,8 @@ public class ShuoshuoActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wy_activity_shuoshuo);
-
         //检查自动更新，默认仅wifi
         BmobUpdateAgent.update(this);
-        //注册push
-        try { XGPushManager.registerPush(this, WeiyuApi.get().getAccount().getId()); } catch (AppException e) {}
-
 
         initViews();
         initUltraPullToRefresh();
@@ -92,8 +88,7 @@ public class ShuoshuoActivity extends FragmentActivity {
 
     private void initViews() {
         ImageView btnAdd = (ImageView) findViewById(R.id.header_right);
-        btnAdd.setImageResource(R.drawable.wy_icon_add);
-        btnAdd.setVisibility(View.VISIBLE);
+        btnAdd.setImageResource(R.drawable.wy_ic_send_btn);
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,9 +96,10 @@ public class ShuoshuoActivity extends FragmentActivity {
                 dialog.show();
             }
         });
+//        ImageView btnMessage = (ImageView) findViewById(R.id.header_left);
+//        btnMessage.setImageResource();
 
-        TextView tvTitle = (TextView) findViewById(R.id.header_title);
-        tvTitle.setText("说说");
+                ((TextView) findViewById(R.id.header_title)).setText("说说");
     }
 
 

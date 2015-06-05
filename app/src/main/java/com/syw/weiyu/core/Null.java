@@ -1,4 +1,4 @@
-package com.syw.weiyu.api;
+package com.syw.weiyu.core;
 
 /**
  * author: youwei

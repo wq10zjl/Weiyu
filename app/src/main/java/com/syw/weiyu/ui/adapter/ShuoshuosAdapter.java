@@ -1,10 +1,8 @@
 package com.syw.weiyu.ui.adapter;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.paging.listview.PagingBaseAdapter;
 import com.syw.weiyu.R;
-import com.syw.weiyu.api.WeiyuApi;
+import com.syw.weiyu.core.WeiyuApi;
 import com.syw.weiyu.bean.Shuoshuo;
 import com.syw.weiyu.ui.shuoshuo.ShuoshuoDetailActivity;
 import io.rong.imkit.RongIM;
+import io.rong.imlib.model.Conversation;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -104,7 +103,7 @@ public class ShuoshuosAdapter extends PagingBaseAdapter {
             public void onClick(View v) {
                 if (shuoshuos.size() == 1) {
                     //如果是详情页,说说只有一条，就开启私聊
-                    RongIM.getInstance().startPrivateChat(ctx, shuoshuo.getUserId(), shuoshuo.getUserName()+"（私聊）");
+                    RongIM.getInstance().startConversation(ctx, Conversation.ConversationType.PRIVATE, shuoshuo.getUserId(), shuoshuo.getUserName());
                 } else {
                     //说说首页
                     Intent intent = new Intent(ctx, ShuoshuoDetailActivity.class);
