@@ -7,7 +7,7 @@
 
     <TextView
         android:text="微遇\n遇见你的新世界"
-        android:id="@+id/guide_content"
+        android:id="@+id/gide_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

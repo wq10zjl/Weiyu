@@ -1,64 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--android:background="@android:drawable/picture_frame"-->
 <LinearLayout
-    android:background="@android:drawable/picture_frame"
-    android:orientation="vertical"
-    android:id="@+id/nearby_shuoshuo_lv_item"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
-
-    <LinearLayout
-        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:id="@+id/nearby_shuoshuo_lv_item"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/shuoshuo_tv_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="name"
-            android:textSize="@dimen/px_to_sp_23"/>
+    <LinearLayout android:layout_marginTop="20dp" android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/shuoshuo_tv_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="23dip"
-            android:layout_marginLeft="23dip"
-            android:text="time"
-            android:textSize="@dimen/px_to_sp_23"/>
+                android:id="@+id/shuoshuo_tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="name"
+                android:layout_weight="3"
+                android:textSize="18dp"/>
+
+        <TextView
+                android:gravity="end"
+                android:id="@+id/shuoshuo_tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="time"
+                android:textSize="18dp"/>
     </LinearLayout>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/wy_bg_cell_divider_line"/>
+    <TextView android:layout_margin="10dp"
+              android:id="@+id/shuoshuo_tv_content"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:minHeight="128dip"
+              android:text="content"
+              android:gravity="center"
+              android:textSize="24dp"/>
 
-    <TextView
-        android:id="@+id/shuoshuo_tv_content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="86dip"
-        android:text="content"
-        android:layout_marginTop="18dip"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+    <LinearLayout android:orientation="horizontal" android:layout_marginBottom="20dp" android:layout_marginLeft="10dp"
+                  android:layout_marginRight="10dp"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
 
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/wy_bg_cell_divider_line"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/shuoshuo_tv_address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="address"
-            android:textSize="@dimen/px_to_sp_23"/>
-
+        <ImageView android:layout_width="25dp" android:layout_height="25dp" android:src="@drawable/wy_ic_card_location"/>
+        <TextView android:layout_gravity="center"
+                  android:layout_weight="3"
+                  android:id="@+id/shuoshuo_tv_address"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="address"
+                  android:textSize="15dp"/>
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:layout_weight="1">
+            <TextView android:layout_gravity="center" android:layout_weight="1" android:gravity="start" android:id="@+id/shuoshuo_tv_comment_count"
+                      android:text="0评论" android:textSize="15dp" android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"/>
+            <ImageView android:layout_gravity="center" android:layout_weight="1" android:id="@+id/ic_like" android:layout_width="25dp"
+                       android:layout_height="25dp" android:src="@drawable/wy_ic_card_like_grey"/>
+            <TextView android:layout_gravity="center" android:layout_weight="1" android:gravity="start" android:id="@+id/shuoshuo_tv_liked_count"
+                      android:text="0" android:textSize="15dp" android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"/>
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

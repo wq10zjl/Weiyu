@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.syw.weiyu"
-    android:versionCode="2"
-    android:versionName="2.0" >
-
-    <uses-sdk
-        android:minSdkVersion="14"
-        android:targetSdkVersion="22" />
+    package="com.syw.weiyu" >
 
     <!-- Baidu LocSDK -->
     <!-- 这个权限用于进行网络定位 -->
@@ -43,48 +37,53 @@
     <!-- 广点通 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_UPDATES" />
 
-    <!-- 豌豆荚AD -->
-    <!--<uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />-->
+    <!-- 【必须】 信鸽SDK所需权限 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
 
     <application
-        android:name=".App"
+        android:name=".core.AppContext"
         android:allowBackup="true"
         android:icon="@drawable/wy_ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/RcTheme" >
+        android:theme="@style/RCTheme" >
 
-        <!-- MoGo MobAd -->
+        <!-- AdMoGo MobAd -->
         <!-- 声明Mogo的Activity -->
         <activity
-            android:name="com.syw.weiyu.av.WeiyuWebView"
+            android:name=".av.WeiyuWebView"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name" />
         <!-- 注册Service，自主广告不交换广告的应用下载功能所需 -->
-        <service android:name="com.syw.weiyu.controller.service.UpdateService"
-                 android:exported="true"
-                 android:process=":remote" />
+        <service
+            android:name=".controller.service.UpdateService"
+            android:exported="true"
+            android:process=":remote" />
         <!-- 注册Service，安装应用所用 -->
-        <service android:name="com.syw.weiyu.controller.service.CountService"
-                 android:exported="true"
-                 android:process=":remote" />
+        <service
+            android:name=".controller.service.CountService"
+            android:exported="true"
+            android:process=":remote" />
 
         <!-- Baidu LocSDK -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="@string/locsdk_ak" />
-
+            android:value="mUv2tjv4ZdI06Enf9E6GEsZ6" />
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" >
         </service>
 
-        <!--Baidu Mob Union-->
-        <!--<meta-data android:name="BaiduMobAd_APP_ID" android:value="@string/baidu_mobad_appid" />-->
-        <!--<meta-data android:name="BaiduMobAd_APP_SEC" android:value="@string/baidu_mobad_appid" />-->
-        <activity android:name="com.baidu.mobads.AppActivity"
-                  android:configChanges="keyboard|keyboardHidden|orientation" />
-
+        <!-- Baidu Mob Union -->
+        <!-- <meta-data android:name="BaiduMobAd_APP_ID" android:value="@string/baidu_mobad_appid" /> -->
+        <!-- <meta-data android:name="BaiduMobAd_APP_SEC" android:value="@string/baidu_mobad_appid" /> -->
+        <activity
+            android:name="com.baidu.mobads.AppActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation" />
 
         <!-- 广点通SDK 所需Service和Activity声明 -->
         <service
@@ -97,187 +96,76 @@
             android:theme="@android:style/Theme.Translucent" >
         </activity>
 
-        <!-- for 多盟SDK -->
-        <!--<activity-->
-        <!--android:name="cn.domob.android.ads.DmActivity"-->
-        <!--android:theme="@android:style/Theme.Translucent" />-->
-
-        <!-- For 豌豆荚 AdsSdk. -->
-        <!--<activity-->
-            <!--android:name="com.wandoujia.ads.sdk.AppWallActivity"-->
-            <!--android:launchMode="singleTop"-->
-            <!--android:configChanges="orientation|keyboardHidden|screenSize"/>-->
-
-        <!--<activity-->
-            <!--android:name="com.wandoujia.ads.sdk.AppWidgetContainerActivity"-->
-            <!--android:theme="@android:style/Theme.Translucent.NoTitleBar"-->
-            <!--android:configChanges="orientation|keyboardHidden|screenSize"/>-->
-
-        <!--<activity android:name="com.wandoujia.ads.sdk.InterstitialAdActivity"-->
-                  <!--android:theme="@android:style/Theme.Translucent.NoTitleBar"-->
-                  <!--android:configChanges="orientation|keyboardHidden|screenSize"/>-->
-
-        <!--<service android:name="com.wandoujia.ads.sdk.DownloadService"/>-->
-
-        <!--<receiver android:name="com.wandoujia.ads.sdk.AppChangedReceiver">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.PACKAGE_ADDED"/>-->
-
-                <!--<data android:scheme="package"/>-->
-            <!--</intent-filter>-->
-        <!--</receiver>-->
-
-        <!-- Begin Rong Cloud -->
-        <meta-data
-            android:name="RONG_CLOUD_APP_KEY"
-            android:value="@string/rongcloud_app_key" />
-
+        <!-- Bmob自动更新组件 -->
         <activity
-            android:name="io.rong.imkit.RongActivity"
-            android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data
-                    android:host="com.syw.weiyu"
-                    android:pathPrefix="/conversationsetting/"
-                    android:scheme="rong" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data
-                    android:host="com.syw.weiyu"
-                    android:path="/grouplist"
-                    android:scheme="rong" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data
-                    android:host="com.syw.weiyu"
-                    android:path="/conversationgrouplist"
-                    android:scheme="rong" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data
-                    android:host="com.syw.weiyu"
-                    android:pathPrefix="/friend/"
-                    android:scheme="rong" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="io.rong.imkit.RongSingleActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data
-                    android:host="com.syw.weiyu"
-                    android:path="/conversationlist"
-                    android:scheme="rong" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="io.rong.imkit.RongSecActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data
-                    android:host="com.syw.weiyu"
-                    android:pathPrefix="/conversation/"
-                    android:scheme="rong" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="io.rong.voipkit.activity.CallSideActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="io.rong.voipkit.activity.CalledSideActivity"
-            android:excludeFromRecents="true"
-            android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="io.rong.voipkit.calledSideActivity.action" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data
-                    android:host="com.syw.weiyu"
-                    android:path="/calledsideactivity"
-                    android:scheme="rong" />
-            </intent-filter>
+            android:name="cn.bmob.v3.update.UpdateDialogActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
         </activity>
 
-        <service
-            android:name="io.rong.imkit.service.RongIMService"
-            android:enabled="true"
-            android:exported="false"
-            android:priority="1000" />
-        <service
-            android:name="io.rong.imlib.push.PushService"
-            android:process=":push" >
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <action android:name="io.rong.push" />
-            </intent-filter>
-        </service>
-        <service
-            android:name="io.rong.imlib.push.CommandService"
-            android:process=":push" >
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <action android:name="io.rong.command" />
-            </intent-filter>
-        </service>
-
-        <receiver
-            android:name="io.rong.imlib.push.PushReceiver"
-            android:process=":push" >
-            <intent-filter>
-                <action android:name="io.rong.imlib.action.push.heartbeat" />
-            </intent-filter>
-            <intent-filter>
+        <!--信鸽push-->
+        <!-- 【必须】 信鸽receiver广播接收 -->
+        <receiver android:name="com.tencent.android.tpush.XGPushReceiver"
+                android:process=":xg_service_v2" >
+            <intent-filter android:priority="0x7fffffff" >
+                <!-- 【必须】 信鸽SDK的内部广播 -->
+                <action android:name="com.tencent.android.tpush.action.SDK" />
+                <action android:name="com.tencent.android.tpush.action.INTERNAL_PUSH_MESSAGE" />
+                <!-- 【必须】 系统广播：开屏和网络切换 -->
+                <action android:name="android.intent.action.USER_PRESENT" />
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
-        <receiver android:name="io.rong.imlib.push.PushMessageReceiver" >
-            <intent-filter>
-                <action android:name="io.rong.push.message" />
+                <!-- 【可选】 一些常用的系统广播，增强信鸽service的复活机会，请根据需要选择。当然，你也可以添加APP自定义的一些广播让启动service -->
+                <action android:name="android.bluetooth.adapter.action.STATE_CHANGED" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
             </intent-filter>
         </receiver>
-
-        <service android:name="io.rong.imlib.RongService" />
-        <!-- End Rong Cloud -->
-
-        <activity
-            android:name=".activity.TestsActivity"
-            android:label="@string/app_name" >
+        <!-- 【必须】 (2.30及以上版新增)展示通知的activity -->
+        <!-- 【注意】 如果被打开的activity是启动模式为SingleTop，SingleTask或SingleInstance，请根据通知的异常自查列表第8点处理-->
+        <activity android:name="com.tencent.android.tpush.XGPushActivity"
+                android:exported="true" >
+            <intent-filter>
+                <!-- 若使用AndroidStudio，请设置android:name="android.intent.action"-->
+                <action android:name="android.intent.action" />
+            </intent-filter>
         </activity>
+        <!-- 【必须】 信鸽service -->
+        <service
+                android:name="com.tencent.android.tpush.service.XGPushService"
+                android:exported="true"
+                android:persistent="true"
+                android:process=":xg_service_v2" />
+        <!-- 【必须】 通知service，此选项有助于提高抵达率 -->
+        <service
+                android:name="com.tencent.android.tpush.rpc.XGRemoteService"
+                android:exported="true" >
+            <intent-filter>
+                <action android:name="com.syw.weiyu.PUSH_ACTION" />
+            </intent-filter>
+        </service>
+        <!-- 【必须】 请将YOUR_ACCESS_ID修改为APP的AccessId，“21”开头的10位数字，中间没空格 -->
+        <meta-data
+                android:name="XG_V2_ACCESS_ID"
+                android:value="2100119897" />
+        <!-- 【必须】 请将YOUR_ACCESS_KEY修改为APP的AccessKey，“A”开头的12位字符串，中间没空格 -->
+        <meta-data
+                android:name="XG_V2_ACCESS_KEY"
+                android:value="A6EE7G1S4Z2J" />
+        <!--【非必须】透传消息-->
+        <!-- APP实现的Receiver，用于接收消息和结果反馈 -->
+        <!-- com.tencent.android.xgpushdemo.CustomPushReceiver需要改为自己的Receiver -->
+        <receiver android:name=".third.XGPushMessageReceiver" >
+            <intent-filter>
+                <!-- 接收消息透传 -->
+                <action android:name="com.tencent.android.tpush.action.PUSH_MESSAGE" />
+                <!-- 监听注册、反注册、设置/删除标签、通知被点击等处理结果 -->
+                <action android:name="com.tencent.android.tpush.action.FEEDBACK" />
+            </intent-filter>
+        </receiver>
+
+
 
         <!-- 启动页 -->
-        <activity android:name=".activity.LauncherActivity" >
+        <activity android:name=".ui.LauncherActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -286,29 +174,56 @@
         </activity>
 
         <!-- 主界面 -->
-        <activity android:name=".activity.MainTabsActivity" />
+        <activity android:name=".ui.MainTabsActivity" android:screenOrientation="portrait"/>
 
         <!-- 附近 -->
-        <activity android:name=".activity.explore.NearByUserActivity" />
+        <activity android:name=".ui.explore.NearByUserActivity" android:screenOrientation="portrait"/>
 
+        <!-- 消息列表 -->
+        <activity android:name=".ui.session.SessionListActivity" android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="com.syw.weiyu"
+                    android:path="/conversationlist"
+                    android:scheme="rong" />
+            </intent-filter>
+        </activity>
         <!-- 消息 -->
-        <activity android:name=".activity.maintabs.SessionListActivity" />
+        <activity android:name=".ui.session.SessionActivity" android:windowSoftInputMode="stateHidden" android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="com.syw.weiyu"
+                    android:pathPrefix="/conversation/"
+                    android:scheme="rong" />
+            </intent-filter>
+        </activity>
 
         <!-- 发现 -->
-        <activity android:name=".activity.maintabs.ExploreActivity" />
+        <activity android:name=".ui.explore.ExploreActivity" android:screenOrientation="portrait"/>
+
+        <!-- 发现 -->
+        <activity android:name=".ui.mine.MineActivity" android:screenOrientation="portrait"/>
 
         <!-- 登录 -->
-        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".ui.user.LoginActivity" android:screenOrientation="portrait"/>
 
         <!-- 修改资料 -->
-        <activity android:name=".activity.explore.ProfileActivity" />
+        <activity android:name=".ui.user.ProfileActivity" android:screenOrientation="portrait"/>
 
-        <!--关于信息-->
-        <activity android:name=".activity.explore.AboutInfoActivity"/>
+        <!-- 关于信息 -->
+        <activity android:name=".ui.explore.AboutInfoActivity" android:screenOrientation="portrait"/>
 
-        <!--附近说说-->
-        <activity android:name=".activity.maintabs.ShuoshuoActivity"/>
+        <!-- 附近说说 -->
+        <activity android:name=".ui.shuoshuo.ShuoshuoActivity" android:screenOrientation="portrait"/>
 
+        <!-- 说说详情 -->
+        <activity
+            android:name=".ui.shuoshuo.ShuoshuoDetailActivity"
+            android:windowSoftInputMode="stateHidden" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

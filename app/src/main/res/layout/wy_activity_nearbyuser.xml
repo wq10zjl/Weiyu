@@ -13,11 +13,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>
 
-    <!--<RelativeLayout-->
-        <!--android:id="@+id/banner_ad_container"-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="wrap_content" >-->
-    <!--</RelativeLayout>-->
 
     <LinearLayout
         android:id="@+id/nearby_container"
@@ -38,7 +33,7 @@
             cube_ptr:ptr_resistance="1.7">
 
             <com.paging.listview.PagingListView
-                android:id="@+id/lv_nearby"
+                android:id="@+id/lv_nearby_users"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:choiceMode="singleChoice"

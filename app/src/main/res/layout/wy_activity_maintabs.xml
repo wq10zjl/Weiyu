@@ -20,15 +20,15 @@
 
             <ImageView
                 android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="#bbbbbb"
+                android:layout_height="2dp"
+                android:background="#dddddd"
                 android:layout_above="@android:id/tabs"/>
 
             <TabWidget
-                android:background="@android:color/white"
+                android:background="#ffffff"
                 android:id="@android:id/tabs"
                 android:layout_width="fill_parent"
-                android:layout_height="48dip"
+                android:layout_height="56dip"
                 android:layout_alignParentBottom="true"
                 android:divider="@null" />
         </RelativeLayout>

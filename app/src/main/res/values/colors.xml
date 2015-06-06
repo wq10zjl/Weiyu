@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="wy_theme">#e91e63</color>
+    <!--<color name="wy_theme">#e91e63</color>-->
+    <color name="wy_theme">#eeeeee</color>
 
     <color name="background_window">#FFE5E5E5</color>
     <color name="greenDark">#3E5F22</color>
