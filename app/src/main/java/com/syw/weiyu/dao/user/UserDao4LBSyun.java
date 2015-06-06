@@ -15,7 +15,7 @@ import com.syw.weiyu.bean.UserList;
 import com.syw.weiyu.bean.jsonobj.NearbySearchListJsonObj;
 import com.syw.weiyu.bean.jsonobj.SinglePoiJsonObj;
 import com.syw.weiyu.bean.jsonobj.UserItemJsonObj;
-import com.syw.weiyu.third.LBSCloud;
+import com.syw.weiyu.dao.location.LBSCloud;
 import com.syw.weiyu.util.StringUtil;
 import net.tsz.afinal.FinalDb;
 import net.tsz.afinal.FinalHttp;

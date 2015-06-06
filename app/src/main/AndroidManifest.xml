@@ -47,7 +47,7 @@
     <application
         android:name=".core.AppContext"
         android:allowBackup="true"
-        android:icon="@drawable/wy_ic_launcher"
+        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/RCTheme" >
 
@@ -153,7 +153,7 @@
         <!--【非必须】透传消息-->
         <!-- APP实现的Receiver，用于接收消息和结果反馈 -->
         <!-- com.tencent.android.xgpushdemo.CustomPushReceiver需要改为自己的Receiver -->
-        <receiver android:name=".third.XGPushMessageReceiver" >
+        <receiver android:name=".dao.push.XGPushMessageReceiver" >
             <intent-filter>
                 <!-- 接收消息透传 -->
                 <action android:name="com.tencent.android.tpush.action.PUSH_MESSAGE" />

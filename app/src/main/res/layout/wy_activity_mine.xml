@@ -44,7 +44,7 @@
             <ImageView android:layout_weight="1"
                        android:layout_width="62dp"
                        android:layout_height="62dp"
-                       android:src="@drawable/wy_ic_launcher"/>
+                       android:src="@drawable/ic_launcher"/>
             <TextView android:layout_weight="2"
                       android:paddingLeft="15dp"
                       android:layout_width="fill_parent"

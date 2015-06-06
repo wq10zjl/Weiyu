@@ -1,4 +1,4 @@
-package com.syw.weiyu.third;
+package com.syw.weiyu.dao.im;
 
 import android.content.Context;
 import android.net.Uri;
@@ -71,6 +71,8 @@ public final class RongCloudEvent implements  RongIM.UserInfoProvider, RongIM.Lo
      */
     private void initDefaultListener() {
         RongIM.setUserInfoProvider(this, true);//设置用户信息提供者。
+//        RongIM.setGroupInfoProvider(this);//设置群组信息提供者。
+//        RongIM.setConversationBehaviorListener(this);//设置会话界面操作的监听器。
         RongIM.setLocationProvider(this);//设置地理位置提供者,不用位置的同学可以注掉此行代码
     }
 
@@ -94,6 +96,13 @@ public final class RongCloudEvent implements  RongIM.UserInfoProvider, RongIM.Lo
         return mRongCloudInstance;
     }
 
+    /**
+     * 如果在聊天中遇到的聊天对象是没有登录过的用户（即没有通过融云服务器鉴权过的），
+     * RongIM 是不知道用户信息的，
+     * RongIM 将调用此 Provider 获取用户信息。
+     * @param userId
+     * @return
+     */
     @Override
     public UserInfo getUserInfo(String userId) {
         UserInfo userInfo;
@@ -117,7 +126,7 @@ public final class RongCloudEvent implements  RongIM.UserInfoProvider, RongIM.Lo
         final MLocation location = new LocationDao().get();
         final double lat = Double.parseDouble(location.getLatitude());
         final double lng = Double.parseDouble(location.getLongitude());
-        final StringBuffer uri = new StringBuffer("http://api.map.baidu.com/staticimage?width=300&height=150&&zoom=11&markers=").append(lng).append(",").append(lat).append("&center=").append(location.getCity());
+        final StringBuffer uri = new StringBuffer("http://api.map.baidu.com/staticimage?width=400&height=200&&zoom=11&markers=").append(lng).append(",").append(lat).append("&center=").append(location.getCity());
         new Runnable(){
             @Override
             public void run() {

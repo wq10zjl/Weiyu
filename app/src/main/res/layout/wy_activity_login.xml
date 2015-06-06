@@ -4,7 +4,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:context="com.syw.weiyu.ui.user.LoginBaseActivity"
-                android:background="#EEE9E9"
+                android:background="@drawable/bg_login"
         >
 
     <include
@@ -49,8 +49,7 @@
                         android:padding="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/wy_ic_gender_male"
-                        android:button="@drawable/wy_radio"
+                        android:button="@drawable/wy_radio_male"
                         android:id="@+id/rb_man"
                         android:checked="false"/>
                 <RadioButton
@@ -58,8 +57,7 @@
                         android:padding="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/wy_ic_gender_female"
-                        android:button="@drawable/wy_radio"
+                        android:button="@drawable/wy_radio_female"
                         android:id="@+id/rb_woman"
                         android:checked="true"/>
             </RadioGroup>

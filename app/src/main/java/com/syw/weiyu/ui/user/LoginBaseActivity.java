@@ -6,10 +6,10 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import com.dd.processbutton.iml.ActionProcessButton;
 import com.syw.weiyu.R;
 import com.syw.weiyu.util.StringUtil;
@@ -22,6 +22,7 @@ public abstract class LoginBaseActivity extends FragmentActivity {
 
     protected ActionProcessButton btnSignIn;
 
+    protected TextView nameTV;
     protected RadioGroup genderRG;
     protected RadioButton maleRD;
     protected RadioButton femaleRD;
@@ -31,15 +32,15 @@ public abstract class LoginBaseActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wy_activity_login);
 
-        initGenderRadio();
+        initInputViews();
         initSignInButton();
     }
 
     /**
      * 初始化性别选择Radio
      */
-
-    private void initGenderRadio() {
+    private void initInputViews() {
+        nameTV = (TextView) findViewById(R.id.et_name);
         genderRG = (RadioGroup) findViewById(R.id.rg_gender);
         maleRD = (RadioButton) findViewById(R.id.rb_man);
         femaleRD = (RadioButton) findViewById(R.id.rb_woman);
@@ -80,7 +81,11 @@ public abstract class LoginBaseActivity extends FragmentActivity {
                 btnSignIn.setEnabled(false);
 
                 userId = getUniqueID();
-                if (StringUtil.isEmpty(name)) name = "匿名";
+                name = nameTV.getText().toString();
+                if (StringUtil.isEmpty(name)) {
+                    name = "匿名";
+                    nameTV.setText(name);
+                }
                 gender = genderRG.getCheckedRadioButtonId() == maleRD.getId() ? "男" : "女";
                 doOnClickWork(userId, name, gender);
             }

@@ -1,35 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:custom="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context="com.syw.weiyu.ui.explore.AboutInfoActivity"
-    android:orientation="vertical">
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="@drawable/bg_launcher"
+              android:orientation="vertical" >
 
-    <include
-        layout="@layout/wy_header_withbackbtn"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
+    <include android:layout_weight="0"
+             layout="@layout/wy_header_withbackbtn"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"/>
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:background="@drawable/wy_bg_launcher"
-                    android:orientation="vertical" >
+    <!--<ImageView android:layout_gravity="center" android:layout_marginTop="60dp" android:layout_width="88dp" android:layout_height="88dp" android:src="@drawable/ic_launcher"/>-->
 
-        <TextView
+    <TextView
+            android:layout_weight="1"
+            android:gravity="bottom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#000000"
+            android:textColor="#666666"
             android:textSize="16.0sp"
             android:textStyle="bold"
-            android:text="微遇2.0\nsongyouwei.github.com\n&#169;2015 芜湖博旺凌网络CO.,LTD"
-            android:id="@+id/textView3"
-            android:layout_marginBottom="81dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"/>
-
-    </RelativeLayout>
+            android:text="微遇\nhttp://youwei.ml\n&#169;2015 芜湖博旺凌网络CO.,LTD"/>
 
 </LinearLayout>

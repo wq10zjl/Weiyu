@@ -1,10 +1,7 @@
-package com.syw.weiyu.third;
+package com.syw.weiyu.dao.push;
 
 import android.content.Context;
-import com.syw.weiyu.bean.Account;
 import com.syw.weiyu.core.AppConstants;
-import com.syw.weiyu.core.AppException;
-import com.syw.weiyu.core.WeiyuApi;
 import com.tencent.android.tpush.XGPushManager;
 import com.tencent.xinge.Message;
 import com.tencent.xinge.XingeApp;

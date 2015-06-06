@@ -20,7 +20,6 @@ import com.syw.weiyu.core.Null;
 import com.syw.weiyu.core.WeiyuApi;
 import com.syw.weiyu.R;
 import com.syw.weiyu.bean.ShuoshuoList;
-import com.syw.weiyu.third.XGPush;
 import com.syw.weiyu.ui.adapter.ShuoshuosAdapter;
 
 import com.syw.weiyu.util.Msger;

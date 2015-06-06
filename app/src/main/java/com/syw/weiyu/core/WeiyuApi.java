@@ -9,8 +9,7 @@ import com.syw.weiyu.adp.WeiyuCustomEventPlatformEnum;
 import com.syw.weiyu.av.WeiyuLayout;
 import com.syw.weiyu.bean.*;
 import com.syw.weiyu.controller.listener.WeiyuListener;
-import com.syw.weiyu.third.RongCloud;
-import com.syw.weiyu.dao.im.TokenDao;
+import com.syw.weiyu.dao.im.RongCloud;
 import com.syw.weiyu.dao.location.LocationDao;
 import com.syw.weiyu.dao.shuoshuo.*;
 import com.syw.weiyu.dao.user.LocalAccountDao;
@@ -81,7 +80,7 @@ public class WeiyuApi {
      * @param id
      */
     public void logout(String id) {
-
+        RongCloud.disconnect();
     }
 
 
@@ -106,7 +105,7 @@ public class WeiyuApi {
             @Override
             public void onSuccess(Null data) {
                 //拿token
-                new TokenDao().get(id, name, null, new Listener<String>() {
+                RongCloud.getToken(id, name, gender.equals("男")? AppConstants.url_user_icon_male:AppConstants.url_user_icon_female, new Listener<String>() {
                     @Override
                     public void onSuccess(String data) {
                         Account account = new Account(id, name, gender, data);
@@ -137,23 +136,19 @@ public class WeiyuApi {
     public void updateProfile(final String name,final String gender,final Listener<Null> listener) {
         try {
             final String id = localAccountDao.get().getId();
-            userDao.update(id,name,gender,locationDao.get(),listener);
-            /*不用融云的昵称信息，保证用户ID不变就行*/
-            //刷新RongCloud用户信息
-            //也就是拿token
-//            new TokenDao().get(id, name, null, new Listener<String>() {
-//                @Override
-//                public void onSuccess(String data) {
-//                    Account account = new Account(id, name, gender, data);
-//                    localAccountDao.set(account);
-//                    listener.onSuccess(null);
-//                }
-//
-//                @Override
-//                public void onFailure(String msg) {
-//                    listener.onFailure(msg);
-//                }
-//            });
+            //更新用户信息
+            userDao.update(id, name, gender, locationDao.get(), new Listener<Null>() {
+                @Override
+                public void onSuccess(Null data) {
+                    //再刷新RongCloud用户信息
+                    RongCloud.refreshUserInfo(id, name, gender.equals("男") ? AppConstants.url_user_icon_male : AppConstants.url_user_icon_female, listener);
+                }
+
+                @Override
+                public void onFailure(String msg) {
+                    listener.onFailure(msg);
+                }
+            });
         } catch (AppException e) {
             listener.onFailure(e.getMessage());
         }

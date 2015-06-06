@@ -22,6 +22,9 @@ public class LauncherActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wy_activity_launcher);
+        try {
+            Thread.sleep(1500);
+        } catch (InterruptedException e) {}
 
 //        有账户信息→MainTabs主页面
 //        无账户信息→Login登入页

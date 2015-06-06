@@ -17,6 +17,7 @@ public class User extends BmobObject implements Serializable {
     private String tags;
     private String organization;
     private MLocation location;
+//    private String bmobObjectId;//在bmob中操作数据经常使用这个唯一id，但使用finalDB不能保存它，这里
     private BmobGeoPoint gpsAdd;//用于Bmob存储位置点
     private String addressStr;//用于Bmob存储位置名
 

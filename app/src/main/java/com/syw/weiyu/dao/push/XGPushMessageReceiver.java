@@ -1,4 +1,4 @@
-package com.syw.weiyu.third;
+package com.syw.weiyu.dao.push;
 
 import android.content.Context;
 import com.tencent.android.tpush.*;

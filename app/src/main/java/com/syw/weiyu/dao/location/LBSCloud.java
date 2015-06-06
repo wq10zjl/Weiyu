@@ -1,4 +1,4 @@
-package com.syw.weiyu.third;
+package com.syw.weiyu.dao.location;
 
 import com.syw.weiyu.core.AppConstants;
 import com.syw.weiyu.bean.User;

@@ -11,10 +11,10 @@ import cn.bmob.v3.Bmob;
 import com.orhanobut.logger.Logger;
 import com.syw.weiyu.bean.Account;
 import com.syw.weiyu.dao.user.LocalAccountDao;
-import com.syw.weiyu.third.RongCloudEvent;
+import com.syw.weiyu.dao.im.RongCloudEvent;
 
-import com.syw.weiyu.third.LocSDK;
-import com.syw.weiyu.third.XGPush;
+import com.syw.weiyu.dao.location.LocSDK;
+import com.syw.weiyu.dao.push.XGPush;
 import io.rong.imkit.RongIM;
 
 /**

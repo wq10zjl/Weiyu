@@ -3,7 +3,6 @@ package com.syw.weiyu.dao.location;
 import com.baidu.location.BDLocation;
 import com.syw.weiyu.core.AppContext;
 import com.syw.weiyu.bean.MLocation;
-import com.syw.weiyu.third.LocSDK;
 import net.tsz.afinal.FinalDb;
 
 import java.util.List;

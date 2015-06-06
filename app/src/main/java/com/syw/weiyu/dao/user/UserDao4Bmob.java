@@ -18,6 +18,7 @@ import com.syw.weiyu.util.Async2Sync;
 import net.tsz.afinal.FinalDb;
 
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * author: youwei
@@ -27,7 +28,12 @@ import java.util.List;
 public class UserDao4Bmob implements UserDao {
     @Override
     public void create(String id, String name, String gender, MLocation location, final Listener<Null> listener) {
-        User user = new User(id,name,gender);
+        User user = getUserWithoutCache(id);
+        if (user != null) {
+            update(id,name,gender,location,listener);
+            return;
+        }
+        user = new User(id,name,gender);
         BmobGeoPoint gpsAdd = new BmobGeoPoint(Double.parseDouble(location.getLongitude()), Double.parseDouble(location.getLatitude()));
         user.setGpsAdd(gpsAdd);
         user.setAddressStr(location.getAddress());
@@ -117,10 +123,12 @@ public class UserDao4Bmob implements UserDao {
      * @param userId
      * @return
      */
+    User user = null;
     private User getUserWithoutCache(final String userId) {
-        return new Async2Sync<User>(){
+        final CountDownLatch latch = new CountDownLatch(1);
+        new Runnable() {
             @Override
-            public void doSthAsync(final Listener<User> listener) {
+            public void run() {
                 BmobQuery<User> bmobQuery = new BmobQuery<>();
                 bmobQuery.addWhereEqualTo("id",userId);
                 bmobQuery.setLimit(1);
@@ -128,24 +136,58 @@ public class UserDao4Bmob implements UserDao {
                     @Override
                     public void onSuccess(List<User> list) {
                         User u = list.get(0);
-                        if (u == null) {
-                            listener.onFailure("无该用户信息");
+                        if (u != null) {
+                            user = u;
+                            latch.countDown();
                         } else {
-                            listener.onSuccess(u);
-
-                            //save to db
-                            FinalDb finalDb = FinalDb.create(AppContext.getCtx());
-                            if (finalDb.findById(u.getId(),User.class) != null) finalDb.deleteById(User.class, u.getId());
-                            finalDb.save(u);
+                            latch.countDown();
                         }
                     }
 
                     @Override
                     public void onError(int i, String s) {
-                        listener.onFailure(s);
+                        latch.countDown();
                     }
                 });
             }
-        }.get();
+        }.run();
+        try {
+            latch.await();
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return user;
+
+
+//        return new Async2Sync<User>(){
+//            @Override
+//            public void doSthAsync(final Listener<User> listener) {
+//                BmobQuery<User> bmobQuery = new BmobQuery<>();
+//                bmobQuery.addWhereEqualTo("id",userId);
+//                bmobQuery.setLimit(1);
+//                bmobQuery.findObjects(AppContext.getCtx(), new FindListener<User>() {
+//                    @Override
+//                    public void onSuccess(List<User> list) {
+//                        User u = list.get(0);
+//                        if (u == null) {
+//                            listener.onFailure("无该用户信息");
+//                        } else {
+//                            listener.onSuccess(u);
+//
+//                            //save to db
+////                            FinalDb finalDb = FinalDb.create(AppContext.getCtx());
+////                            if (finalDb.findById(u.getId(),User.class) != null) finalDb.deleteById(User.class, u.getId());
+////                            finalDb.save(u);
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onError(int i, String s) {
+//                        listener.onFailure(s);
+//                    }
+//                });
+//            }
+//        }.get();
     }
 }
