@@ -20,14 +20,13 @@
 
             <ImageView
                 android:layout_width="fill_parent"
-                android:layout_height="2dp"
+                android:layout_height="1dp"
                 android:background="#dddddd"
                 android:layout_above="@android:id/tabs"/>
 
             <TabWidget
                 android:background="#ffffff"
-                android:id="@android:id/tabs"
-                android:layout_width="fill_parent"
+                android:id="@android:id/tabs"                android:layout_width="fill_parent"
                 android:layout_height="56dip"
                 android:layout_alignParentBottom="true"
                 android:divider="@null" />

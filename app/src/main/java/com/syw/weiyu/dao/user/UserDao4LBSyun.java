@@ -30,7 +30,7 @@ import java.util.List;
  * date: 2015-05-29
  * desc: 用户存取类，使用百度LBS云存储
  */
-public class UserDao4LBSyun implements UserDao {
+public abstract class UserDao4LBSyun implements UserDao {
 
     /**
      * 在LBS云创建用户POI数据
@@ -81,8 +81,13 @@ public class UserDao4LBSyun implements UserDao {
     }
 
     @Override
-    public void update(@NonNull String id, String name, String gender, MLocation location, Listener<Null> listener) {
-        listener.onFailure("停用百度LBS云存储的资料修改");
+    public void update(@NonNull String objectId, @NonNull String id, String name, String gender, MLocation location, Listener<Null> listener) {
+
+    }
+
+    @Override
+    public void updateLastOnlineTimestamp(@NonNull String objectId, @NonNull long lastUpdateTimestamp) {
+
     }
 
     /**
@@ -151,6 +156,11 @@ public class UserDao4LBSyun implements UserDao {
             return parseUserFromJson(s);
         }
         return user;
+    }
+
+    @Override
+    public void getUserWithoutCache(String userId, Listener<User> listener) {
+        listener.onFailure("停用百度LBS云存储");
     }
 
     /**

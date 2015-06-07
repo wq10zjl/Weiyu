@@ -1,11 +1,14 @@
 package com.syw.weiyu.ui.mine;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.TextView;
 import com.syw.weiyu.R;
+import com.syw.weiyu.core.WeiyuApi;
 import com.syw.weiyu.ui.explore.AboutInfoActivity;
 import com.syw.weiyu.ui.explore.NearByUserActivity;
 import com.syw.weiyu.ui.user.ProfileActivity;
@@ -23,6 +26,21 @@ public class MineActivity extends FragmentActivity implements View.OnClickListen
         setContentView(R.layout.wy_activity_mine);
 
         findViewById(R.id.explore_item_profile).setOnClickListener(this);
+        findViewById(R.id.explore_item_exit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MineActivity.this,AlertDialog.THEME_HOLO_LIGHT);
+                builder.setMessage("退出后将无法收到消息，确定要退出嘛？")
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                WeiyuApi.get().logout();
+                            }
+                        })
+                        .setNegativeButton("取消",null)
+                        .create().show();
+            }
+        });
         findViewById(R.id.explore_item_aboutinfo).setOnClickListener(this);
 
         ((TextView) findViewById(R.id.header_title)).setText("我");

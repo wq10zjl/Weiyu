@@ -31,7 +31,26 @@
                       android:layout_width="fill_parent"
                       android:layout_height="fill_parent"
                       android:gravity="center_vertical"
-                      android:text="个人资料修改"
+                      android:text="修改资料"
+                      android:textSize="20dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/explore_item_exit"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/section_list_bg"
+                android:orientation="horizontal">
+            <ImageView android:layout_weight="1"
+                       android:layout_width="62dp"
+                       android:layout_height="62dp"
+                       android:src="@drawable/ic_exit"/>
+            <TextView android:layout_weight="2"
+                      android:paddingLeft="15dp"
+                      android:layout_width="fill_parent"
+                      android:layout_height="fill_parent"
+                      android:gravity="center_vertical"
+                      android:text="退出"
                       android:textSize="20dp"/>
         </LinearLayout>
 

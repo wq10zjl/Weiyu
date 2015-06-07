@@ -56,18 +56,24 @@ public class ProfileActivity extends LoginBaseActivity {
      */
     @Override
     public void doOnClickWork(String userId, String name, String gender) {
-        WeiyuApi.get().updateProfile(name, gender, new Listener<Null>() {
-            @Override
-            public void onSuccess(Null data) {
-                Msger.i(ProfileActivity.this,"修改成功");
-                showOnSuccessMsg("修改成功");
-            }
+        try {
+            String id = WeiyuApi.get().getAccount().getId();
+            WeiyuApi.get().updateProfile(id, name, gender, new Listener<Null>() {
+                @Override
+                public void onSuccess(Null data) {
+                    Msger.i(ProfileActivity.this,"修改成功");
+                    showOnSuccessMsg("修改成功");
+                }
 
-            @Override
-            public void onFailure(String msg) {
-                Msger.e(ProfileActivity.this,"修改出错:"+msg);
-                showOnErrorMsg("修改出错");
-            }
-        });
+                @Override
+                public void onFailure(String msg) {
+                    Msger.e(ProfileActivity.this,"修改出错:"+msg);
+                    showOnErrorMsg("修改出错");
+                }
+            });
+        } catch (AppException e) {
+            Msger.e(ProfileActivity.this,"修改出错:"+e.getMessage());
+            showOnErrorMsg("修改出错");
+        }
     }
 }

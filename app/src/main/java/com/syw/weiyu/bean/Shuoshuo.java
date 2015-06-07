@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.datatype.BmobGeoPoint;
+import cn.bmob.v3.datatype.BmobRelation;
 
 import java.io.Serializable;
 import java.util.List;
@@ -20,9 +21,11 @@ public class Shuoshuo extends BmobObject implements Serializable {
     private String content;
     private String userName;
     private String userId;
+//    private User user;
     private BmobGeoPoint gpsAdd;//用于Bmob存储位置点
     private String addressStr;//用于Bmob存储位置名
     private int commentCount;//评论数
+//    private BmobRelation comments;
     private int likedCount;//喜欢数
 
     public long getId() {

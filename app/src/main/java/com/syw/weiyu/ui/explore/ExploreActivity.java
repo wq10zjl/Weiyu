@@ -21,6 +21,7 @@ public class ExploreActivity extends FragmentActivity implements View.OnClickLis
         setContentView(R.layout.wy_activity_explore);
 
         findViewById(R.id.explore_item_nearby_people).setOnClickListener(this);
+        findViewById(R.id.explore_item_message_center).setOnClickListener(this);
 
         ((TextView) findViewById(R.id.header_title)).setText("发现");
     }
@@ -31,6 +32,9 @@ public class ExploreActivity extends FragmentActivity implements View.OnClickLis
         switch (v.getId()) {
             case R.id.explore_item_nearby_people:
                 activity = NearByUserActivity.class;
+                break;
+            case R.id.explore_item_message_center:
+                activity =MessageCenterActivity.class;
                 break;
         }
         Intent intent = new Intent(ExploreActivity.this, activity);

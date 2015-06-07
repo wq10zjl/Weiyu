@@ -17,7 +17,8 @@ public class User extends BmobObject implements Serializable {
     private String tags;
     private String organization;
     private MLocation location;
-//    private String bmobObjectId;//在bmob中操作数据经常使用这个唯一id，但使用finalDB不能保存它，这里
+    private long lastOnlineTimestamp;//最后更新时间
+    private String bmobObjectId;//在bmob中操作数据经常使用这个唯一id，但使用finalDB不能保存它，这里作另外保存
     private BmobGeoPoint gpsAdd;//用于Bmob存储位置点
     private String addressStr;//用于Bmob存储位置名
 
@@ -101,5 +102,21 @@ public class User extends BmobObject implements Serializable {
 
     public void setAddressStr(String addressStr) {
         this.addressStr = addressStr;
+    }
+
+    public long getLastOnlineTimestamp() {
+        return lastOnlineTimestamp;
+    }
+
+    public void setLastOnlineTimestamp(long lastOnlineTimestamp) {
+        this.lastOnlineTimestamp = lastOnlineTimestamp;
+    }
+
+    public String getBmobObjectId() {
+        return bmobObjectId;
+    }
+
+    public void setBmobObjectId(String bmobObjectId) {
+        this.bmobObjectId = bmobObjectId;
     }
 }

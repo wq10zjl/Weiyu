@@ -12,9 +12,11 @@ import android.widget.TextView;
 import com.paging.listview.PagingBaseAdapter;
 import com.syw.weiyu.R;
 import com.syw.weiyu.bean.User;
+import com.syw.weiyu.util.TimeUtil;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.model.Conversation;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +54,7 @@ public class NearByUsersAdapter extends PagingBaseAdapter {
         public ImageView portrait;
         public TextView name;
         public TextView address;
+        public TextView time;
     }
 
 //    @Override
@@ -79,6 +82,7 @@ public class NearByUsersAdapter extends PagingBaseAdapter {
             holder.portrait = (ImageView) convertView.findViewById(R.id.nearbyuser_iv_portrait);
             holder.name = (TextView) convertView.findViewById(R.id.nearbyuser_tv_name);
             holder.address = (TextView) convertView.findViewById(R.id.nearbyuser_tv_address);
+            holder.time = (TextView) convertView.findViewById(R.id.nearbyuser_tv_time);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -91,6 +95,9 @@ public class NearByUsersAdapter extends PagingBaseAdapter {
         );
         holder.name.setText(user.getName());
         holder.address.setText(user.getLocation()==null?user.getAddressStr():user.getLocation().getAddress());
+        long lastUpdateTime = user.getLastOnlineTimestamp();
+        if (lastUpdateTime!=0)holder.time.setText(TimeUtil.timeDiff(System.currentTimeMillis(),lastUpdateTime));
+        else holder.time.setVisibility(View.INVISIBLE);
 
         //点击用户时开启私聊
         convertView.setOnClickListener(new View.OnClickListener() {

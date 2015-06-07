@@ -88,6 +88,7 @@ public class ShuoshuoActivity extends FragmentActivity {
     private void initViews() {
         ImageView btnAdd = (ImageView) findViewById(R.id.header_right);
         btnAdd.setImageResource(R.drawable.wy_ic_send_btn);
+        btnAdd.setPadding(2,2,2,2);
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

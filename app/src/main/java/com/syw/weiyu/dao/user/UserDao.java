@@ -32,7 +32,11 @@ public interface UserDao {
      * @param location
      * @param listener
      */
-    void update(@NonNull String id,String name,String gender,MLocation location,Listener<Null> listener);
+    void update(@NonNull String objectId, @NonNull String id, String name, String gender, MLocation location, Listener<Null> listener);
+
+    void updateLastOnlineTimestamp(@NonNull String objectId, @NonNull long lastUpdateTimestamp);
+
+    void updateLocation(@NonNull String objectId, MLocation location);
 
     /**
      * 获取附近的人，获取了数据之后，把用户数据存在DB里
@@ -50,4 +54,6 @@ public interface UserDao {
      * @throws AppException
      */
     User getUser(String id) throws AppException;
+
+    void getUserWithoutCache(String userId, Listener<User> listener);
 }

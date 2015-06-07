@@ -28,6 +28,6 @@
                 android:layout_width="48dip"
                 android:layout_height="48dip"/>
     </LinearLayout>
-    <ImageView android:layout_width="fill_parent" android:layout_height="2dp" android:src="#dddddd"/>
+    <ImageView android:layout_width="fill_parent" android:layout_height="1dp" android:src="#dddddd"/>
 
 </LinearLayout>

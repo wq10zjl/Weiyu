@@ -14,6 +14,7 @@ import com.syw.weiyu.bean.Shuoshuo;
 import com.syw.weiyu.bean.ShuoshuoList;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * author: youwei
@@ -30,6 +31,7 @@ public class ShuoshuoDao4Bmob implements ShuoshuoDao {
                 BmobGeoPoint gpsAdd = new BmobGeoPoint(Double.parseDouble(location.getLongitude()), Double.parseDouble(location.getLatitude()));
                 BmobQuery<Shuoshuo> bmobQuery = new BmobQuery<>();
                 bmobQuery.addWhereNear("gpsAdd", gpsAdd);
+                bmobQuery.order("-timestamp");//时间近的靠前
                 bmobQuery.setLimit(pageSize);//获取最接近用户地点的n条数据
                 bmobQuery.setSkip((pageIndex - 1) * pageSize);
                 bmobQuery.findObjects(AppContext.getCtx(), new FindListener<Shuoshuo>() {

@@ -28,6 +28,14 @@ public class XGPush {
     }
 
     /**
+     * 反注册推送
+     */
+    public static void unregister(Context context) {
+        //注册push
+        XGPushManager.unregisterPush(context);
+    }
+
+    /**
      * 向指定用户ID推送通知
      * @param toUserId
      * @param title

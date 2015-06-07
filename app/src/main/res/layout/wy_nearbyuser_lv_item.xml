@@ -28,7 +28,7 @@
         <LinearLayout
             android:layout_marginLeft="12dip"
             android:orientation="vertical"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent">
 
             <TextView
@@ -45,11 +45,14 @@
                 android:layout_width="fill_parent"
                 android:layout_height="26dip"
                 android:singleLine="true"
-                android:text="other info"
+                android:text="address"
                 android:textSize="14sp"
                 android:gravity="bottom"
                 android:layout_gravity="bottom"/>
         </LinearLayout>
+
+        <TextView android:id="@+id/nearbyuser_tv_time" android:layout_marginRight="12dp" android:gravity="end" android:layout_weight="1" android:text="time"
+                  android:textSize="16sp" android:layout_width="0dp" android:layout_height="wrap_content"/>
 
     </LinearLayout>
 

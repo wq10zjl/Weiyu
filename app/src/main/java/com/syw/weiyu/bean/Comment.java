@@ -11,8 +11,10 @@ public class Comment extends BmobObject {
     private String userName;
     private String userId;
     private String userGender;
+//    private User user;
     private String content;
     private long ssId;
+//    private Shuoshuo shuoshuo;
     private long timestamp;
 
     public String getUserName() {

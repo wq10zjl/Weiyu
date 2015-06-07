@@ -12,7 +12,6 @@ import com.syw.weiyu.core.AppException;
 import com.syw.weiyu.R;
 import com.syw.weiyu.core.AdListener;
 import com.syw.weiyu.core.WeiyuApi;
-import com.syw.weiyu.bean.Account;
 import com.syw.weiyu.ui.user.LoginActivity;
 
 
@@ -22,9 +21,6 @@ public class LauncherActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wy_activity_launcher);
-        try {
-            Thread.sleep(1500);
-        } catch (InterruptedException e) {}
 
 //        有账户信息→MainTabs主页面
 //        无账户信息→Login登入页
@@ -42,16 +38,21 @@ public class LauncherActivity extends Activity {
             }
         } catch (AppException e) {
             //没有账户信息，进入登录页
-            gotoLoginPage();
+            showSplashGotoLoginPage();
         }
     }
 
-    private void gotoLoginPage() {
-        //进入注册页
-        Intent intent = new Intent(LauncherActivity.this, LoginActivity.class);
-        startActivity(intent);
-        //销毁
-        finish();
+    private void showSplashGotoLoginPage() {
+        new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                //进入注册页
+                Intent intent = new Intent(LauncherActivity.this, LoginActivity.class);
+                startActivity(intent);
+                //销毁
+                finish();
+            }
+        }.sendEmptyMessageDelayed(0, 2000);
     }
 
     private void gotoMainPage() {
@@ -63,7 +64,7 @@ public class LauncherActivity extends Activity {
     }
 
     private void showSplashAdThenGotoMainPage() {
-        //[1s]后加载开屏广告页
+        //[2s]后加载开屏广告页
         new Handler(){
             @Override
             public void handleMessage(Message msg) {
@@ -79,7 +80,7 @@ public class LauncherActivity extends Activity {
                     }
                 });
             }
-        }.sendEmptyMessageDelayed(0, 1000);
+        }.sendEmptyMessageDelayed(0, 2000);
     }
 
 

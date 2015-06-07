@@ -30,7 +30,11 @@ import io.rong.message.LocationMessage;
  * 7、连接状态监听器，以获取连接相关状态：ConnectionStatusListener。
  * 8、地理位置提供者：LocationProvider。
  */
-public final class RongCloudEvent implements  RongIM.UserInfoProvider, RongIM.LocationProvider {
+public final class RongCloudEvent implements
+        RongIM.UserInfoProvider,
+        RongIM.LocationProvider
+//        RongIM.OnReceiveUnreadCountChangedListener
+{
 
     private static final String TAG = RongCloudEvent.class.getSimpleName();
 
@@ -82,6 +86,7 @@ public final class RongCloudEvent implements  RongIM.UserInfoProvider, RongIM.Lo
      * 在RongIM-connect-onSuccess后调用。
      */
     public void setOtherListener() {
+//        RongIM.getInstance().setOnReceiveUnreadCountChangedListener(this);////在api中设置了
 //        RongIM.getInstance().setReceiveMessageListener(this);//设置消息接收监听器。
 //        RongIM.getInstance().setSendMessageListener(this);//设置发出消息接收监听器.
 //        RongIM.getInstance().setConnectionStatusListener(this);//设置连接状态监听器。

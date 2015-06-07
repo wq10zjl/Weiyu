@@ -205,8 +205,11 @@
         <!-- 发现 -->
         <activity android:name=".ui.explore.ExploreActivity" android:screenOrientation="portrait"/>
 
-        <!-- 发现 -->
+        <!-- 我 -->
         <activity android:name=".ui.mine.MineActivity" android:screenOrientation="portrait"/>
+
+        <!-- 消息中心 -->
+        <activity android:name=".ui.explore.MessageCenterActivity" android:screenOrientation="portrait"/>
 
         <!-- 登录 -->
         <activity android:name=".ui.user.LoginActivity" android:screenOrientation="portrait"/>

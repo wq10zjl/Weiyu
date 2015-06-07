@@ -33,19 +33,18 @@ public abstract class Async2Sync<T> {
                     @Override
                     public void onSuccess(T data) {
                         t = data;
-                        startSignal.countDown();
+                        doneSignal.countDown();
                     }
 
                     @Override
                     public void onFailure(String msg) {
-                        startSignal.countDown();
+                        doneSignal.countDown();
                     }
                 });
             }
         });
         wordThread.start();
         startSignal.countDown();
-
         try {
             doneSignal.await();
         } catch (InterruptedException e) {

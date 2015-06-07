@@ -13,6 +13,7 @@ import com.syw.weiyu.R;
 import com.syw.weiyu.core.WeiyuApi;
 import com.syw.weiyu.bean.Shuoshuo;
 import com.syw.weiyu.ui.shuoshuo.ShuoshuoDetailActivity;
+import com.syw.weiyu.util.TimeUtil;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.model.Conversation;
 
@@ -92,7 +93,8 @@ public class ShuoshuosAdapter extends PagingBaseAdapter {
         final Shuoshuo shuoshuo = shuoshuos.get(position);
         holder.name.setText(shuoshuo.getUserName());
         holder.address.setText(shuoshuo.getLocation()==null?shuoshuo.getAddressStr():shuoshuo.getLocation().getProvince()+shuoshuo.getLocation().getCity()+shuoshuo.getLocation().getDistrict());
-        holder.time.setText(new SimpleDateFormat("MM-dd kk:mm").format(new Date(shuoshuo.getTimestamp())));
+//        holder.time.setText(new SimpleDateFormat("MM-dd kk:mm").format(new Date(shuoshuo.getTimestamp())));
+        holder.time.setText(TimeUtil.timeDiff(System.currentTimeMillis(),shuoshuo.getTimestamp()));
         holder.content.setText(shuoshuo.getContent());
         holder.commentCount.setText(String.valueOf(shuoshuo.getCommentCount())+"评论");
         holder.likedCount.setText(String.valueOf(shuoshuo.getLikedCount()));

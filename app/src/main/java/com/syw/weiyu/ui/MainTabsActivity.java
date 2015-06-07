@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TabHost;
 
 import com.syw.weiyu.R;
+import com.syw.weiyu.core.WeiyuApi;
 import com.syw.weiyu.ui.explore.ExploreActivity;
 import com.syw.weiyu.ui.mine.MineActivity;
 import com.syw.weiyu.ui.session.SessionListActivity;
@@ -61,6 +62,8 @@ public class MainTabsActivity extends TabActivity {
 				sessionListView);
 		sessionListTabSpec.setContent(new Intent(MainTabsActivity.this,SessionListActivity.class));
 		mTabHost.addTab(sessionListTabSpec);
+		//设置消息未读提示红点
+		WeiyuApi.get().setBottomChatTabUnreadIndicator(sessionListView.findViewById(R.id.iv_msg_unread));
 
         /**
          * 发现
