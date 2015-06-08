@@ -32,6 +32,11 @@
                     android:gravity="center_vertical"
                     android:text="附近的人"
                     android:textSize="20dp"/>
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_arrow_foward"
+                    android:gravity="center_vertical"/>
         </LinearLayout>
 
         <LinearLayout android:id="@+id/explore_item_message_center"
@@ -50,6 +55,11 @@
                       android:gravity="center_vertical"
                       android:text="通知中心"
                       android:textSize="20dp"/>
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_arrow_foward"
+                    android:gravity="center_vertical"/>
         </LinearLayout>
 
     </LinearLayout>

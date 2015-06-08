@@ -14,7 +14,7 @@ import java.util.List;
  * date: 2015-05-11
  * desc: 说说实体类
  */
-public class Shuoshuo extends BmobObject implements Serializable {
+public class Shuoshuo extends BmobObject {
     private long id;
     private MLocation location;
     private long timestamp;

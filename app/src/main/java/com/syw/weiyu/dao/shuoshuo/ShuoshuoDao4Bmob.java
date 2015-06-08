@@ -5,6 +5,7 @@ import cn.bmob.v3.datatype.BmobGeoPoint;
 import cn.bmob.v3.listener.CountListener;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
+import com.syw.weiyu.core.AppConstants;
 import com.syw.weiyu.core.AppContext;
 import com.syw.weiyu.core.Listener;
 import com.syw.weiyu.core.Null;
@@ -30,7 +31,8 @@ public class ShuoshuoDao4Bmob implements ShuoshuoDao {
             public void onSuccess(final int i) {
                 BmobGeoPoint gpsAdd = new BmobGeoPoint(Double.parseDouble(location.getLongitude()), Double.parseDouble(location.getLatitude()));
                 BmobQuery<Shuoshuo> bmobQuery = new BmobQuery<>();
-                bmobQuery.addWhereNear("gpsAdd", gpsAdd);
+//                bmobQuery.addWhereNear("gpsAdd", gpsAdd);
+                bmobQuery.addWhereWithinKilometers("gpsAdd", gpsAdd, Integer.parseInt(AppConstants.default_kilometers));
                 bmobQuery.order("-timestamp");//时间近的靠前
                 bmobQuery.setLimit(pageSize);//获取最接近用户地点的n条数据
                 bmobQuery.setSkip((pageIndex - 1) * pageSize);

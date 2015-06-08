@@ -10,7 +10,7 @@ import java.io.Serializable;
  * 用户实体类
  * 用户对象包含的location为自己的MLocation对象
  */
-public class User extends BmobObject implements Serializable {
+public class User extends BmobObject {
     private String id;
     private String name;
     private String gender;
@@ -18,7 +18,6 @@ public class User extends BmobObject implements Serializable {
     private String organization;
     private MLocation location;
     private long lastOnlineTimestamp;//最后更新时间
-    private String bmobObjectId;//在bmob中操作数据经常使用这个唯一id，但使用finalDB不能保存它，这里作另外保存
     private BmobGeoPoint gpsAdd;//用于Bmob存储位置点
     private String addressStr;//用于Bmob存储位置名
 
@@ -110,13 +109,5 @@ public class User extends BmobObject implements Serializable {
 
     public void setLastOnlineTimestamp(long lastOnlineTimestamp) {
         this.lastOnlineTimestamp = lastOnlineTimestamp;
-    }
-
-    public String getBmobObjectId() {
-        return bmobObjectId;
-    }
-
-    public void setBmobObjectId(String bmobObjectId) {
-        this.bmobObjectId = bmobObjectId;
     }
 }

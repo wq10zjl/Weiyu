@@ -63,7 +63,7 @@ public class MainTabsActivity extends TabActivity {
 		sessionListTabSpec.setContent(new Intent(MainTabsActivity.this,SessionListActivity.class));
 		mTabHost.addTab(sessionListTabSpec);
 		//设置消息未读提示红点
-		WeiyuApi.get().setBottomChatTabUnreadIndicator(sessionListView.findViewById(R.id.iv_msg_unread));
+//		WeiyuApi.get().setBottomChatTabUnreadIndicator(sessionListView.findViewById(R.id.iv_msg_unread));
 
         /**
          * 发现

@@ -1,5 +1,8 @@
 package com.syw.weiyu.util;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 /**
  * author: songyouwei
  * date: 2015-06-07
@@ -24,5 +27,15 @@ public class TimeUtil {
         else if (hour!=0) return hour+"小时前";
         else if (min!=0) return min+"分钟前";
         else return "刚刚";
+    }
+
+    public static long parse2Timestamp(String formattedTimeStr) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
+        try {
+            return dateFormat.parse(formattedTimeStr).getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 }

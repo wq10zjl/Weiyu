@@ -22,12 +22,13 @@
 
         <TextView
                 android:gravity="end"
+                android:layout_gravity="center_vertical"
                 android:id="@+id/shuoshuo_tv_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="time"
-                android:textSize="18dp"/>
+                android:textSize="15dp"/>
     </LinearLayout>
 
     <TextView android:layout_margin="10dp"

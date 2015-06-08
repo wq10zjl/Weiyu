@@ -1,15 +1,23 @@
 package com.syw.weiyu.dao.im;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 
+import android.view.View;
+import com.syw.weiyu.R;
+import com.syw.weiyu.core.AppContext;
 import com.syw.weiyu.core.AppException;
 import com.syw.weiyu.core.WeiyuApi;
 import com.syw.weiyu.bean.MLocation;
 import com.syw.weiyu.bean.User;
 import com.syw.weiyu.dao.location.LocationDao;
+import com.syw.weiyu.ui.session.PhotoActivity;
 import io.rong.imkit.RongIM;
+import io.rong.imlib.model.Conversation;
+import io.rong.imlib.model.Message;
 import io.rong.imlib.model.UserInfo;
+import io.rong.message.ImageMessage;
 import io.rong.message.LocationMessage;
 
 /**
@@ -32,7 +40,8 @@ import io.rong.message.LocationMessage;
  */
 public final class RongCloudEvent implements
         RongIM.UserInfoProvider,
-        RongIM.LocationProvider
+        RongIM.LocationProvider,
+        RongIM.ConversationBehaviorListener
 //        RongIM.OnReceiveUnreadCountChangedListener
 {
 
@@ -76,7 +85,7 @@ public final class RongCloudEvent implements
     private void initDefaultListener() {
         RongIM.setUserInfoProvider(this, true);//设置用户信息提供者。
 //        RongIM.setGroupInfoProvider(this);//设置群组信息提供者。
-//        RongIM.setConversationBehaviorListener(this);//设置会话界面操作的监听器。
+        RongIM.setConversationBehaviorListener(this);//设置会话界面操作的监听器。
         RongIM.setLocationProvider(this);//设置地理位置提供者,不用位置的同学可以注掉此行代码
     }
 
@@ -116,12 +125,14 @@ public final class RongCloudEvent implements
             userInfo = new UserInfo(
                     user.getId(),
                     user.getName(),
-                    user.getGender().equals("男")?Uri.parse("http://com-syw-weiyu.qiniudn.com/wy_icon_male.jpg"):Uri.parse("http://com-syw-weiyu.qiniudn.com/wy_icon_female.jpg"));
+                    user.getGender().equals("男")?
+                            Uri.parse("file:///android_asset/wy_icon_male.png"):
+                            Uri.parse("file:///android_asset/wy_icon_female.png"));
         } catch (AppException e) {
             userInfo = new UserInfo(
                     userId,
                     "未知",
-                    null);
+                    Uri.parse("file:///android_asset/wy_icon_nogender.png"));
         }
         return userInfo;
     }
@@ -140,5 +151,36 @@ public final class RongCloudEvent implements
                         Uri.parse(uri.toString())));
             }
         }.run();
+    }
+
+
+    @Override
+    public boolean onUserPortraitClick(Context context, Conversation.ConversationType conversationType, UserInfo userInfo) {
+        return false;
+    }
+
+    @Override
+    public boolean onUserPortraitLongClick(Context context, Conversation.ConversationType conversationType, UserInfo userInfo) {
+        return false;
+    }
+
+    @Override
+    public boolean onMessageClick(Context context, View view, Message message) {
+        if (message.getContent() instanceof ImageMessage) {
+            ImageMessage imageMessage = (ImageMessage) message.getContent();
+            Intent intent = new Intent(context, PhotoActivity.class);
+
+            intent.putExtra("photo", imageMessage.getLocalUri() == null ? imageMessage.getRemoteUri() : imageMessage.getLocalUri());
+            if (imageMessage.getThumUri() != null)
+                intent.putExtra("thumbnail", imageMessage.getThumUri());
+
+            context.startActivity(intent);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean onMessageLongClick(Context context, View view, Message message) {
+        return false;
     }
 }

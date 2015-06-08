@@ -33,6 +33,11 @@
                       android:gravity="center_vertical"
                       android:text="修改资料"
                       android:textSize="20dp"/>
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_arrow_foward"
+                    android:gravity="center_vertical"/>
         </LinearLayout>
 
         <LinearLayout
@@ -52,6 +57,11 @@
                       android:gravity="center_vertical"
                       android:text="退出"
                       android:textSize="20dp"/>
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_arrow_foward"
+                    android:gravity="center_vertical"/>
         </LinearLayout>
 
         <LinearLayout
@@ -71,6 +81,11 @@
                       android:gravity="center_vertical"
                       android:text="关于"
                       android:textSize="20dp"/>
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_arrow_foward"
+                    android:gravity="center_vertical"/>
         </LinearLayout>
 
     </LinearLayout>

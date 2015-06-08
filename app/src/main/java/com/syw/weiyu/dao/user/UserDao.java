@@ -22,7 +22,7 @@ public interface UserDao {
      * @param location
      * @param listener
      */
-    void create(String id,String name,String gender,MLocation location,Listener<Null> listener);
+    void create(String id,String name,String gender,MLocation location,Listener<String> listener);
 
     /**
      * 修改用户资料
@@ -34,9 +34,7 @@ public interface UserDao {
      */
     void update(@NonNull String objectId, @NonNull String id, String name, String gender, MLocation location, Listener<Null> listener);
 
-    void updateLastOnlineTimestamp(@NonNull String objectId, @NonNull long lastUpdateTimestamp);
-
-    void updateLocation(@NonNull String objectId, MLocation location);
+    void updateLastOnlineTimestamp(@NonNull String objectId, @NonNull long lastOnlineTimestamp);
 
     /**
      * 获取附近的人，获取了数据之后，把用户数据存在DB里

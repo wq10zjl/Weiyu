@@ -10,6 +10,7 @@ public class Account {
     private String name;
     private String gender;
     private String token;
+    private String bmobObjectId;//用户账户有很多数据操作需要这个id才行
 
     public Account() {}
     public Account(String id, String name, String gender, String token) {
@@ -49,5 +50,13 @@ public class Account {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getBmobObjectId() {
+        return bmobObjectId;
+    }
+
+    public void setBmobObjectId(String bmobObjectId) {
+        this.bmobObjectId = bmobObjectId;
     }
 }

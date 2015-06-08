@@ -30,7 +30,7 @@ import java.util.List;
  * date: 2015-05-29
  * desc: 用户存取类，使用百度LBS云存储
  */
-public abstract class UserDao4LBSyun implements UserDao {
+public class UserDao4LBSyun {
 
     /**
      * 在LBS云创建用户POI数据
@@ -40,7 +40,6 @@ public abstract class UserDao4LBSyun implements UserDao {
      * @param location
      * @param listener
      */
-    @Override
     public void create(String id, String name, String gender, MLocation location, final Listener<Null> listener) {
 
         AjaxParams params = LBSCloud.getInitializedParams(AppConstants.geotable_id_user);
@@ -80,16 +79,6 @@ public abstract class UserDao4LBSyun implements UserDao {
         });
     }
 
-    @Override
-    public void update(@NonNull String objectId, @NonNull String id, String name, String gender, MLocation location, Listener<Null> listener) {
-
-    }
-
-    @Override
-    public void updateLastOnlineTimestamp(@NonNull String objectId, @NonNull long lastUpdateTimestamp) {
-
-    }
-
     /**
      * 获取附近的人，获取了数据之后，把用户数据存在DB里
      * @param location
@@ -97,7 +86,6 @@ public abstract class UserDao4LBSyun implements UserDao {
      * @param pageIndex
      * @param listener
      */
-    @Override
     public void getNearbyUsers(MLocation location, int pageSize, int pageIndex, final Listener<UserList> listener) {
         final String url = AppConstants.url_nearby_search;
 
@@ -141,7 +129,6 @@ public abstract class UserDao4LBSyun implements UserDao {
      * @return
      * @throws AppException
      */
-    @Override
     public User getUser(String id) throws AppException {
         FinalDb finalDb = FinalDb.create(AppContext.getCtx());
         User user = finalDb.findById(id, User.class);
@@ -158,7 +145,6 @@ public abstract class UserDao4LBSyun implements UserDao {
         return user;
     }
 
-    @Override
     public void getUserWithoutCache(String userId, Listener<User> listener) {
         listener.onFailure("停用百度LBS云存储");
     }

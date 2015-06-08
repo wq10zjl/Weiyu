@@ -67,11 +67,6 @@ public class AppContext extends Application {
         // 注册App异常崩溃处理器（防crash）
 //        Thread.setDefaultUncaughtExceptionHandler(AppException.getAppExceptionHandler(this));
 
-        //初始化定位SDK
-        LocSDK.init(this);
-        //定位并保存
-        WeiyuApi.get().locate();
-
         //初始化BmobSDK
         Bmob.initialize(this, AppConstants.bmob_app_key);
 
@@ -91,11 +86,16 @@ public class AppContext extends Application {
                 //注册信鸽Push
                 XGPush.register(this,account.getId());
                 //login IM
-                WeiyuApi.get().login(account.getToken());
+//                WeiyuApi.get().login(account.getToken());
             }
         } catch (AppException e) {
             //do nothing
         }
+
+        //初始化定位SDK
+        LocSDK.init(this);
+        //定位并保存
+        WeiyuApi.get().locate();
     }
 
     @Override
@@ -103,7 +103,7 @@ public class AppContext extends Application {
         super.onLowMemory();
         Logger.d("onLowMemory,do im disconnect");
         //低內存臨近被清除時，取消鏈接但接收push
-        RongIM.getInstance().disconnect(true);
+        RongIM.getInstance().logout();
     }
 
     /**

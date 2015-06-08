@@ -227,6 +227,10 @@
         <activity
             android:name=".ui.shuoshuo.ShuoshuoDetailActivity"
             android:windowSoftInputMode="stateHidden" android:screenOrientation="portrait"/>
+
+        <!--大图-->
+        <activity android:name=".ui.session.PhotoActivity" android:theme="@style/Theme.AppCompat"/>
+
     </application>
 
 </manifest>

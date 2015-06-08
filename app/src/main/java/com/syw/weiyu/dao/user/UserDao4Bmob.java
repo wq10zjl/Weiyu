@@ -7,10 +7,7 @@ import cn.bmob.v3.listener.CountListener;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
-import com.syw.weiyu.core.AppContext;
-import com.syw.weiyu.core.AppException;
-import com.syw.weiyu.core.Listener;
-import com.syw.weiyu.core.Null;
+import com.syw.weiyu.core.*;
 import com.syw.weiyu.bean.MLocation;
 import com.syw.weiyu.bean.User;
 import com.syw.weiyu.bean.UserList;
@@ -28,15 +25,15 @@ import java.util.List;
  */
 public class UserDao4Bmob implements UserDao {
     /**
-     * 创建用户数据(可重复，应检验是否存在)
+     * 创建用户数据
      * @param id
      * @param name
      * @param gender
      * @param location
-     * @param listener
+     * @param listener 含bmobObjectId
      */
     @Override
-    public void create(final String id, final String name, final String gender, final MLocation location, final Listener<Null> listener) {
+    public void create(final String id, final String name, final String gender, final MLocation location, final Listener<String> listener) {
         User user = new User(id, name, gender);
         BmobGeoPoint gpsAdd = new BmobGeoPoint(Double.parseDouble(location.getLongitude()), Double.parseDouble(location.getLatitude()));
         user.setGpsAdd(gpsAdd);
@@ -45,21 +42,16 @@ public class UserDao4Bmob implements UserDao {
         user.save(AppContext.getCtx(), new SaveListener() {
             @Override
             public void onSuccess() {
-                listener.onSuccess(null);
-
-                //save bmobObjectId
+                //get bmobObjectId
                 getUserWithoutCache(id, new Listener<User>() {
                     @Override
                     public void onSuccess(User data) {
-                        data.setBmobObjectId(data.getObjectId());//set objId
-                        FinalDb finalDb = FinalDb.create(AppContext.getCtx());
-                        if (finalDb.findById(data.getId(), User.class) != null) finalDb.deleteById(User.class, data.getId());
-                        finalDb.save(data);
+                        listener.onSuccess(data.getObjectId());
                     }
 
                     @Override
                     public void onFailure(String msg) {
-
+                        listener.onFailure(msg);
                     }
                 });
             }
@@ -90,6 +82,7 @@ public class UserDao4Bmob implements UserDao {
             user.setGpsAdd(gpsAdd);
             user.setAddressStr(location.getAddress());
         }
+        user.setLastOnlineTimestamp(System.currentTimeMillis());
         user.update(AppContext.getCtx(), new UpdateListener() {
             @Override
             public void onSuccess() {
@@ -115,16 +108,16 @@ public class UserDao4Bmob implements UserDao {
         user.setLastOnlineTimestamp(lastOnlineTimestamp);
         user.update(AppContext.getCtx());
     }
-
-    @Override
-    public void updateLocation(@NonNull String objectId, MLocation location) {
-        User user = new User();
-        user.setObjectId(objectId);
-        BmobGeoPoint gpsAdd = new BmobGeoPoint(Double.parseDouble(location.getLongitude()), Double.parseDouble(location.getLatitude()));
-        user.setGpsAdd(gpsAdd);
-        user.setAddressStr(location.getAddress());
-        user.update(AppContext.getCtx());
-    }
+//
+//    @Override
+//    public void updateLocation(@NonNull String objectId, MLocation location) {
+//        User user = new User();
+//        user.setObjectId(objectId);
+//        BmobGeoPoint gpsAdd = new BmobGeoPoint(Double.parseDouble(location.getLongitude()), Double.parseDouble(location.getLatitude()));
+//        user.setGpsAdd(gpsAdd);
+//        user.setAddressStr(location.getAddress());
+//        user.update(AppContext.getCtx());
+//    }
 
     @Override
     public void getNearbyUsers(final MLocation location,final int pageSize, final int pageIndex, final Listener<UserList> listener) {
@@ -134,23 +127,24 @@ public class UserDao4Bmob implements UserDao {
             public void onSuccess(final int i) {
                 BmobGeoPoint gpsAdd = new BmobGeoPoint(Double.parseDouble(location.getLongitude()), Double.parseDouble(location.getLatitude()));
                 BmobQuery<User> bmobQuery = new BmobQuery<>();
-                bmobQuery.addWhereNear("gpsAdd", gpsAdd);
+//                bmobQuery.addWhereNear("gpsAdd", gpsAdd);
+                bmobQuery.addWhereWithinKilometers("gpsAdd", gpsAdd, Integer.parseInt(AppConstants.default_kilometers));
                 bmobQuery.order("-lastOnlineTimestamp");
                 bmobQuery.setLimit(pageSize);//获取最接近用户地点的n条数据
                 bmobQuery.setSkip((pageIndex - 1) * pageSize);
                 bmobQuery.findObjects(AppContext.getCtx(), new FindListener<User>() {
                     @Override
                     public void onSuccess(List<User> list) {
-                        if (list==null || i==0) listener.onFailure("无附近的用户");
+                        if (list == null || i == 0) listener.onFailure("无附近的用户");
                         else listener.onSuccess(new UserList(i, list));
 
-                        //save to db
-//                        FinalDb finalDb = FinalDb.create(AppContext.getCtx());
-//                        for (User user : list) {
-//                            if (finalDb.findById(user.getId(), User.class) != null)
-//                                finalDb.deleteById(User.class, user.getId());
-//                            finalDb.save(user);
-//                        }
+//                        save to db
+                        FinalDb finalDb = FinalDb.create(AppContext.getCtx());
+                        for (User user : list) {
+                            if (finalDb.findById(user.getId(), User.class) != null)
+                                finalDb.deleteById(User.class, user.getId());
+                            finalDb.save(user);
+                        }
                     }
 
                     @Override
@@ -178,22 +172,19 @@ public class UserDao4Bmob implements UserDao {
         FinalDb finalDb = FinalDb.create(AppContext.getCtx());
         User user = finalDb.findById(id, User.class);
 //        if (user == null) user = getUserWithoutCache(id);
-        if (user==null) {
-            getUserWithoutCache(id, new Listener<User>() {
-                @Override
-                public void onSuccess(User data) {
-                    FinalDb finalDb = FinalDb.create(AppContext.getCtx());
-                    if (finalDb.findById(data.getId(), User.class) != null) finalDb.deleteById(User.class, data.getId());
-                    finalDb.save(data);
-                }
+        getUserWithoutCache(id, new Listener<User>() {
+            @Override
+            public void onSuccess(User data) {
+                FinalDb finalDb = FinalDb.create(AppContext.getCtx());
+                if (finalDb.findById(data.getId(), User.class) != null) finalDb.deleteById(User.class, data.getId());
+                finalDb.save(data);
+            }
 
-                @Override
-                public void onFailure(String msg) {
+            @Override
+            public void onFailure(String msg) {
 
-                }
-            });
-            throw new AppException("获取用户信息出错");
-        }
+            }
+        });
         return user;
     }
 

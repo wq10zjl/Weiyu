@@ -39,8 +39,6 @@
                 android:choiceMode="singleChoice"
                 android:fadingEdge="none"
                 android:listSelector="@android:color/transparent"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
                 android:scrollbarStyle="outsideOverlay"/>
 
         </in.srain.cube.views.ptr.PtrClassicFrameLayout>

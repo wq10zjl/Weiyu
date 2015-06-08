@@ -97,7 +97,11 @@ public class NearByUsersAdapter extends PagingBaseAdapter {
         holder.address.setText(user.getLocation()==null?user.getAddressStr():user.getLocation().getAddress());
         long lastUpdateTime = user.getLastOnlineTimestamp();
         if (lastUpdateTime!=0)holder.time.setText(TimeUtil.timeDiff(System.currentTimeMillis(),lastUpdateTime));
-        else holder.time.setVisibility(View.INVISIBLE);
+        else {
+            long updatedAt = TimeUtil.parse2Timestamp(user.getUpdatedAt());
+            if (updatedAt!=0) holder.time.setText(TimeUtil.timeDiff(System.currentTimeMillis(),updatedAt));
+            else holder.time.setVisibility(View.INVISIBLE);
+        }
 
         //点击用户时开启私聊
         convertView.setOnClickListener(new View.OnClickListener() {

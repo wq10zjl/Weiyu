@@ -1,8 +1,6 @@
 package com.syw.weiyu.core;
 
 import android.app.Activity;
-import android.app.ActivityManager;
-import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -78,11 +76,10 @@ public class WeiyuApi {
     public void login(String token) throws AppException {
         RongCloud.connect(token);
         try {
-            userDao.updateLastOnlineTimestamp(userDao.getUser(localAccountDao.get().getId()).getBmobObjectId(), System.currentTimeMillis());
+            userDao.update(localAccountDao.get().getBmobObjectId(),null,null,null,locationDao.get(),null);
         } catch (AppException e) {
             Logger.e(e.getMessage());
         }
-        locate();
     }
 
     /**
@@ -120,13 +117,12 @@ public class WeiyuApi {
         //拿用户信息
         userDao.getUserWithoutCache(id, new Listener<User>() {
             @Override
-            public void onSuccess(User user) {
+            public void onSuccess(final User user) {
                 //老用户，直接修改资料
                 userDao.update(user.getObjectId(), id, name, gender, locationDao.get(), new Listener<Null>() {
                     @Override
                     public void onSuccess(Null data) {
-                        //还是要拿token，本地没有嘛
-                        getToken(id, name, gender, listener);
+                        getTokenAndSetLocalAccount(user.getObjectId(), id, name, gender, listener);
                     }
 
                     @Override
@@ -139,11 +135,10 @@ public class WeiyuApi {
             @Override
             public void onFailure(String msg) {
                 //新用户，创建用户资料
-                userDao.create(id, name, gender, locationDao.get(), new Listener<Null>() {
+                userDao.create(id, name, gender, locationDao.get(), new Listener<String>() {
                     @Override
-                    public void onSuccess(Null data) {
-                        //拿token
-                        getToken(id, name, gender, listener);
+                    public void onSuccess(String data) {
+                        getTokenAndSetLocalAccount(data, id, name, gender, listener);
                     }
 
                     @Override
@@ -156,18 +151,21 @@ public class WeiyuApi {
     }
 
     /**
-     * 拿token
+     * 设置本地账户
+     * 包括基础资料，token，bmobObjectId
+     * @param bmobObjectId
      * @param id
      * @param name
      * @param gender
      * @param listener
      */
-    private void getToken(final String id,final String name,final String gender,final Listener<String> listener) {
+    private void getTokenAndSetLocalAccount(final String bmobObjectId, final String id, final String name, final String gender, final Listener<String> listener) {
         //拿token
         RongCloud.getToken(id, name, gender.equals("男") ? AppConstants.url_user_icon_male : AppConstants.url_user_icon_female, new Listener<String>() {
             @Override
             public void onSuccess(String data) {
                 Account account = new Account(id, name, gender, data);
+                account.setBmobObjectId(bmobObjectId);
                 localAccountDao.set(account);
                 if (listener != null) listener.onSuccess(data);
             }
@@ -187,9 +185,7 @@ public class WeiyuApi {
      */
     public void updateProfile(final String id, final String name,final String gender,final Listener<Null> listener) {
         try {
-            User user = getUser(id);
-            //老用户，直接修改资料
-            userDao.update(user.getObjectId(), id, name, gender, locationDao.get(), new Listener<Null>() {
+            userDao.update(localAccountDao.get().getBmobObjectId(), id, name, gender, locationDao.get(), new Listener<Null>() {
                 @Override
                 public void onSuccess(Null data) {
                     //再刷新RongCloud用户信息
@@ -243,15 +239,10 @@ public class WeiyuApi {
      */
 
     /**
-     * 定位，保存位置数据，更新用户的位置信息
+     * 定位，保存位置数据
      */
     public void locate() {
         locationDao.set();
-        try {
-            userDao.update(userDao.getUser(localAccountDao.get().getId()).getBmobObjectId(),null,null,null,locationDao.get(),null);
-        } catch (AppException e) {
-            Logger.e(e.getMessage());
-        }
     }
 
     /**
@@ -340,15 +331,15 @@ public class WeiyuApi {
      * 设置底部聊天未读显示
      * @param unreadIndicator
      */
-    public void setBottomChatTabUnreadIndicator(final View unreadIndicator) {
-        RongIM.getInstance().setOnReceiveUnreadCountChangedListener(new RongIM.OnReceiveUnreadCountChangedListener() {
-            @Override
-            public void onMessageIncreased(int i) {
-                if (i == 0) unreadIndicator.setVisibility(View.INVISIBLE);
-                else unreadIndicator.setVisibility(View.VISIBLE);
-            }
-        });
-    }
+//    public void setBottomChatTabUnreadIndicator(final View unreadIndicator) {
+//        RongIM.getInstance().setOnReceiveUnreadCountChangedListener(new RongIM.OnReceiveUnreadCountChangedListener() {
+//            @Override
+//            public void onMessageIncreased(int i) {
+//                if (i == 0) unreadIndicator.setVisibility(View.INVISIBLE);
+//                else unreadIndicator.setVisibility(View.VISIBLE);
+//            }
+//        });
+//    }
 
 
     /**
