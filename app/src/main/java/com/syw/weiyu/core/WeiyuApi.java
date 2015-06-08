@@ -91,7 +91,7 @@ public class WeiyuApi {
     public void logout() {
 
         RongCloud.disconnect();
-        XGPush.unregister(AppContext.getCtx());
+        XGPush.unregister(App.getCtx());
 
         System.exit(0);
     }
@@ -266,7 +266,7 @@ public class WeiyuApi {
      * @throws AppException 无缓存数据
      */
     public ShuoshuoList getCachedNearbyShuoshuo() throws AppException {
-        ShuoshuoList list = (ShuoshuoList) AppContext.getCache(AppContext.KEY_NEARBYSHUOSHUOS);
+        ShuoshuoList list = (ShuoshuoList) App.getCache(App.KEY_NEARBYSHUOSHUOS);
         if (list!=null && list.getShuoshuos()!=null && list.getShuoshuos().size()>0) return list;
         else throw new AppException("无缓存数据");
     }
@@ -278,6 +278,10 @@ public class WeiyuApi {
      */
     public void getNearbyShuoshuo(int pageIndex,Listener<ShuoshuoList> listener) {
         shuoshuoDao.getNearbyShuoshuos(locationDao.get(),AppConstants.page_size_default,pageIndex,listener);
+    }
+
+    public void getUserShuoshuo(String userId,int pageIndex,Listener<ShuoshuoList> listener) {
+        shuoshuoDao.getUserShuoshuos(userId,AppConstants.page_size_default,pageIndex,listener);
     }
 
     
@@ -331,15 +335,16 @@ public class WeiyuApi {
      * 设置底部聊天未读显示
      * @param unreadIndicator
      */
-//    public void setBottomChatTabUnreadIndicator(final View unreadIndicator) {
-//        RongIM.getInstance().setOnReceiveUnreadCountChangedListener(new RongIM.OnReceiveUnreadCountChangedListener() {
-//            @Override
-//            public void onMessageIncreased(int i) {
-//                if (i == 0) unreadIndicator.setVisibility(View.INVISIBLE);
-//                else unreadIndicator.setVisibility(View.VISIBLE);
-//            }
-//        });
-//    }
+    public void setBottomChatTabUnreadIndicator(final View unreadIndicator) {
+        RongIM.getInstance().setOnReceiveUnreadCountChangedListener(new RongIM.OnReceiveUnreadCountChangedListener() {
+            @Override
+            public void onMessageIncreased(int i) {
+                Logger.d("RongIM OnReceiveUnreadCountChanged onMessageIncreased:"+i);
+                if (i == 0) unreadIndicator.setVisibility(View.INVISIBLE);
+                else unreadIndicator.setVisibility(View.VISIBLE);
+            }
+        });
+    }
 
 
     /**

@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 
 import android.view.View;
-import com.syw.weiyu.R;
-import com.syw.weiyu.core.AppContext;
 import com.syw.weiyu.core.AppException;
 import com.syw.weiyu.core.WeiyuApi;
 import com.syw.weiyu.bean.MLocation;
@@ -14,6 +12,7 @@ import com.syw.weiyu.bean.User;
 import com.syw.weiyu.dao.location.LocationDao;
 import com.syw.weiyu.ui.session.PhotoActivity;
 import io.rong.imkit.RongIM;
+import io.rong.imlib.RongIMClient;
 import io.rong.imlib.model.Conversation;
 import io.rong.imlib.model.Message;
 import io.rong.imlib.model.UserInfo;

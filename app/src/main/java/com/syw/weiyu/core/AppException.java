@@ -27,10 +27,10 @@ public class AppException extends Exception implements Thread.UncaughtExceptionH
      * 系统默认的UncaughtException处理类
      */
     private Thread.UncaughtExceptionHandler mDefaultHandler;
-    private AppContext mContext;
+    private App mContext;
     private AppException(Context context) {
         this.mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
-        this.mContext = (AppContext) context;
+        this.mContext = (App) context;
     }
     /**
      * 获取APP异常崩溃处理对象
@@ -82,7 +82,7 @@ public class AppException extends Exception implements Thread.UncaughtExceptionH
      * @return
      */
     private String getCrashReport(Context context, Throwable ex) {
-        PackageInfo pinfo = ((AppContext) context.getApplicationContext()).getPackageInfo();
+        PackageInfo pinfo = ((App) context.getApplicationContext()).getPackageInfo();
         StringBuffer exceptionStr = new StringBuffer();
         exceptionStr.append("Version: " + pinfo.versionName + " (" + pinfo.versionCode + ")\n");
         exceptionStr.append("API Level: " + android.os.Build.VERSION.SDK_INT + "\n");

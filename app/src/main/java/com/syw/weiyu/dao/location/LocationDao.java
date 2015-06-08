@@ -1,7 +1,7 @@
 package com.syw.weiyu.dao.location;
 
 import com.baidu.location.BDLocation;
-import com.syw.weiyu.core.AppContext;
+import com.syw.weiyu.core.App;
 import com.syw.weiyu.bean.MLocation;
 import net.tsz.afinal.FinalDb;
 
@@ -22,10 +22,10 @@ public class LocationDao {
             @Override
             public void onSuccess(BDLocation location) {
                 MLocation mLocation = new MLocation(location);
-                FinalDb finalDb = FinalDb.create(AppContext.getCtx());
+                FinalDb finalDb = FinalDb.create(App.getCtx());
                 finalDb.deleteAll(MLocation.class);
                 finalDb.save(mLocation);
-                AppContext.putCache(AppContext.KEY_LOCATION, mLocation);
+                App.putCache(App.KEY_LOCATION, mLocation);
             }
 
             @Override
@@ -42,9 +42,9 @@ public class LocationDao {
      * @return
      */
     public MLocation get() {
-        MLocation location = (MLocation) AppContext.getCache(AppContext.KEY_LOCATION);
+        MLocation location = (MLocation) App.getCache(App.KEY_LOCATION);
         if (location == null) {
-            FinalDb finalDb = FinalDb.create(AppContext.getCtx());
+            FinalDb finalDb = FinalDb.create(App.getCtx());
             List<MLocation> locations = finalDb.findAll(MLocation.class);
             if (locations == null || locations.size() == 0) {
                 location = new MLocation(null);

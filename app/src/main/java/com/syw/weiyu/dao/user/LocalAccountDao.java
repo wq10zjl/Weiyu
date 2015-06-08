@@ -2,7 +2,7 @@ package com.syw.weiyu.dao.user;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import com.syw.weiyu.core.AppContext;
+import com.syw.weiyu.core.App;
 import com.syw.weiyu.core.AppException;
 import com.syw.weiyu.bean.Account;
 import net.tsz.afinal.FinalDb;
@@ -22,9 +22,9 @@ public class LocalAccountDao {
      * @throws AppException 暂无账户
      */
     public Account get() throws AppException {
-        Account account = (Account) AppContext.getCache(AppContext.KEY_ACCOUNT);
+        Account account = (Account) App.getCache(App.KEY_ACCOUNT);
         if (account == null) {
-            Context ctx = AppContext.getCtx();
+            Context ctx = App.getCtx();
             FinalDb finalDb = FinalDb.create(ctx);
             List<Account> accounts = finalDb.findAll(Account.class);
             if (accounts != null && accounts.size() > 0) account = accounts.get(0);
@@ -38,10 +38,10 @@ public class LocalAccountDao {
      * @param account
      */
     public void set(@NonNull Account account) {
-        Context ctx = AppContext.getCtx();
+        Context ctx = App.getCtx();
         FinalDb finalDb = FinalDb.create(ctx);
         finalDb.deleteAll(Account.class);
         finalDb.save(account);
-        AppContext.putCache(AppContext.KEY_ACCOUNT, account);
+        App.putCache(App.KEY_ACCOUNT, account);
     }
 }

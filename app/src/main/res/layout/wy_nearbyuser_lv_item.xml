@@ -41,11 +41,12 @@
                         android:layout_height="wrap_content"
                         android:text="name"
                         android:textAppearance="@android:style/TextAppearance.Holo.Large"
-                        android:textSize="18sp"
+                        android:textSize="17dp"
+                        android:maxLines="1"
                         android:gravity="top"/>
 
                 <TextView android:id="@+id/nearbyuser_tv_time" android:text="time" android:layout_gravity="end" android:gravity="end"
-                          android:textSize="15sp" android:maxLines="1" android:layout_marginRight="12dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+                          android:textSize="15dp" android:maxLines="1" android:layout_marginRight="12dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
 
 
             </LinearLayout>
@@ -57,7 +58,7 @@
                     android:singleLine="true"
                     android:text="address"
                     android:maxLines="1"
-                    android:textSize="15sp"
+                    android:textSize="15dp"
                     android:gravity="center_vertical"
                     android:layout_gravity="bottom"/>
 

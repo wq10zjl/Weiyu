@@ -12,6 +12,7 @@ import com.syw.weiyu.core.WeiyuApi;
 import com.syw.weiyu.ui.explore.AboutInfoActivity;
 import com.syw.weiyu.ui.explore.NearByUserActivity;
 import com.syw.weiyu.ui.user.ProfileActivity;
+import com.syw.weiyu.ui.user.UserHomeActivity;
 
 /**
  * author: youwei
@@ -25,6 +26,7 @@ public class MineActivity extends FragmentActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wy_activity_mine);
 
+        findViewById(R.id.explore_item_mine).setOnClickListener(this);
         findViewById(R.id.explore_item_profile).setOnClickListener(this);
         findViewById(R.id.explore_item_exit).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +52,9 @@ public class MineActivity extends FragmentActivity implements View.OnClickListen
     public void onClick(View v) {
         Class activity = null;
         switch (v.getId()) {
+            case R.id.explore_item_mine:
+                activity = UserHomeActivity.class;
+                break;
             case R.id.explore_item_profile:
                 activity = ProfileActivity.class;
                 break;

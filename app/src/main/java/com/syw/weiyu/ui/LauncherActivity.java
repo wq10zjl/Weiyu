@@ -8,7 +8,7 @@ import android.os.Message;
 import android.view.KeyEvent;
 
 import com.syw.weiyu.bean.Account;
-import com.syw.weiyu.core.AppContext;
+import com.syw.weiyu.core.App;
 import com.syw.weiyu.core.AppException;
 import com.syw.weiyu.R;
 import com.syw.weiyu.core.AdListener;
@@ -29,13 +29,12 @@ public class LauncherActivity extends Activity {
             Account account = WeiyuApi.get().getAccount();
 //            Account account = WeiyuApi.get().getAccount();
 //            WeiyuApi.get().login(account.getToken());
-            if (AppContext.isFirstLaunch()) {
+            if (App.isFirstLaunch()) {
                 //未作初始化时，加载开屏广告
                 showSplashAdThenGotoMainPage();
-                AppContext.setIsFirstLaunch(false);
+                App.setIsFirstLaunch(false);
             } else {
                 //有账户信息
-                WeiyuApi.get().login(account.getToken());
                 gotoMainPage();
             }
         } catch (AppException e) {

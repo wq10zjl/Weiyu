@@ -10,7 +10,7 @@ import net.tsz.afinal.http.AjaxParams;
  * LBS云：
  * 云存储（用户注册，资料更新，位置更新）
  * 云检索（附近、同城、标签搜索、公司学校搜索）
- * 注：所有检索的共同条件是只检索自己的“爱好”，即gender=AppContext.getUser().getHobby()
+ * 注：所有检索的共同条件是只检索自己的“爱好”，即gender=App.getUser().getHobby()
  * 官方SDK不好用，自己封装请求和解析返回数据
  */
 public class LBSCloud {
@@ -36,8 +36,8 @@ public class LBSCloud {
 //     * @param callBack
 //     */
 //    public void registerUser(AjaxCallBack<String> callBack) {
-//        User user = AppContext.getInstance().getUser();
-//        MLocation location = AppContext.getInstance().getLocation();
+//        User user = App.getInstance().getUser();
+//        MLocation location = App.getInstance().getLocation();
 //
 //        AjaxParams params = getInitializedParams();
 //        //user info
@@ -64,10 +64,10 @@ public class LBSCloud {
 //    public void updateUserLocation() {
 //        //build params
 //        AjaxParams params = getInitializedParams();
-//        params.putCache("userId", AppContext.getInstance().getUser().getUid());
-//        params.putCache("latitude", AppContext.getInstance().getLocation().getLatitude());
-//        params.putCache("longitude", AppContext.getInstance().getLocation().getLongitude());
-//        params.putCache("address",AppContext.getInstance().getLocation().getAddress());
+//        params.putCache("userId", App.getInstance().getUser().getUid());
+//        params.putCache("latitude", App.getInstance().getLocation().getLatitude());
+//        params.putCache("longitude", App.getInstance().getLocation().getLongitude());
+//        params.putCache("address",App.getInstance().getLocation().getAddress());
 //
 //        Log.d("Weiyu", "updateUserLocation params: " + params.getParamString());
 //        //post
@@ -92,7 +92,7 @@ public class LBSCloud {
 //    public void updateLastOnlineTime() {
 //        //build params
 //        AjaxParams params = getInitializedParams();
-//        params.putCache("userId", AppContext.getInstance().getUser().getUid());
+//        params.putCache("userId", App.getInstance().getUser().getUid());
 //        //post
 //        String url = context.getString(R.string.url_update_poi);
 //        FinalHttp http = new FinalHttp();
@@ -117,7 +117,7 @@ public class LBSCloud {
 //        String url = context.getString(R.string.url_update_poi);
 //
 //        AjaxParams params = getInitializedParams();
-//        params = getUpdateParamsByCompare(params, AppContext.getInstance().getUser(), newUser);
+//        params = getUpdateParamsByCompare(params, App.getInstance().getUser(), newUser);
 //        if (params != null) {
 //            Log.d("Weiyu","updateUserProfile params: "+params.getParamString());
 //            //post
@@ -133,8 +133,8 @@ public class LBSCloud {
 //     * @param content
 //     */
 //    public void publishShuoshuo(String content, AjaxCallBack<String> callBack) {
-//        User user = AppContext.getInstance().getUser();
-//        MLocation location = AppContext.getInstance().getLocation();
+//        User user = App.getInstance().getUser();
+//        MLocation location = App.getInstance().getLocation();
 //
 //        AjaxParams params = getInitializedParams(context.getString(R.string.geotable_id_shuoshuo));
 //        //user info
@@ -194,7 +194,7 @@ public class LBSCloud {
 //        nearbyUserSearch(
 //                null,
 //                //longitude经度,latitude纬度
-//                AppContext.getInstance().getLocation().getLongitude() + "," + AppContext.getInstance().getLocation().getLatitude(),
+//                App.getInstance().getLocation().getLongitude() + "," + App.getInstance().getLocation().getLatitude(),
 //                null,
 //                context.getString(R.string.default_radius),
 //                "distance:1",
@@ -213,7 +213,7 @@ public class LBSCloud {
 //
 //        AjaxParams params = getInitializedParams(context.getString(R.string.geotable_id_shuoshuo));
 //        params.putCache("q","");
-//        params.putCache("location",AppContext.getInstance().getLocation().getLongitude()+","+AppContext.getInstance().getLocation().getLatitude());
+//        params.putCache("location",App.getInstance().getLocation().getLongitude()+","+App.getInstance().getLocation().getLatitude());
 //        params.putCache("tags","");
 //        params.putCache("radius",context.getString(R.string.default_radius));
 //        //按时间|距离排序，优先显示时间靠前的

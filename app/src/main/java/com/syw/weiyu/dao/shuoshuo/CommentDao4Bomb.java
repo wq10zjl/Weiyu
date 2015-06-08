@@ -3,7 +3,7 @@ package com.syw.weiyu.dao.shuoshuo;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
-import com.syw.weiyu.core.AppContext;
+import com.syw.weiyu.core.App;
 import com.syw.weiyu.core.AppException;
 import com.syw.weiyu.core.Listener;
 import com.syw.weiyu.bean.Account;
@@ -38,7 +38,7 @@ public class CommentDao4Bomb implements CommentDao {
         comment.setUserGender(account.getGender());
         comment.setContent(content);
         comment.setTimestamp(System.currentTimeMillis());
-        comment.save(AppContext.getCtx(), new SaveListener() {
+        comment.save(App.getCtx(), new SaveListener() {
             @Override
             public void onSuccess() {
                 listener.onSuccess(comment);
@@ -62,7 +62,7 @@ public class CommentDao4Bomb implements CommentDao {
         BmobQuery<Comment> query = new BmobQuery<>();
         query.addWhereEqualTo("ssId",ssId);
         query.order("+timestamp");//时间早的靠前
-        query.findObjects(AppContext.getCtx(), new FindListener<Comment>() {
+        query.findObjects(App.getCtx(), new FindListener<Comment>() {
             @Override
             public void onSuccess(List<Comment> list) {
                 listener.onSuccess(list);

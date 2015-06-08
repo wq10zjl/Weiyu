@@ -14,7 +14,6 @@ import com.syw.weiyu.bean.UserList;
 import com.syw.weiyu.util.Async2Sync;
 import com.syw.weiyu.util.StringUtil;
 import net.tsz.afinal.FinalDb;
-import org.w3c.dom.ls.LSException;
 
 import java.util.List;
 
@@ -39,7 +38,7 @@ public class UserDao4Bmob implements UserDao {
         user.setGpsAdd(gpsAdd);
         user.setAddressStr(location.getAddress());
         user.setLastOnlineTimestamp(System.currentTimeMillis());
-        user.save(AppContext.getCtx(), new SaveListener() {
+        user.save(App.getCtx(), new SaveListener() {
             @Override
             public void onSuccess() {
                 //get bmobObjectId
@@ -83,7 +82,7 @@ public class UserDao4Bmob implements UserDao {
             user.setAddressStr(location.getAddress());
         }
         user.setLastOnlineTimestamp(System.currentTimeMillis());
-        user.update(AppContext.getCtx(), new UpdateListener() {
+        user.update(App.getCtx(), new UpdateListener() {
             @Override
             public void onSuccess() {
                 if (listener != null) listener.onSuccess(null);
@@ -106,7 +105,7 @@ public class UserDao4Bmob implements UserDao {
         User user = new User();
         user.setObjectId(objectId);
         user.setLastOnlineTimestamp(lastOnlineTimestamp);
-        user.update(AppContext.getCtx());
+        user.update(App.getCtx());
     }
 //
 //    @Override
@@ -116,13 +115,13 @@ public class UserDao4Bmob implements UserDao {
 //        BmobGeoPoint gpsAdd = new BmobGeoPoint(Double.parseDouble(location.getLongitude()), Double.parseDouble(location.getLatitude()));
 //        user.setGpsAdd(gpsAdd);
 //        user.setAddressStr(location.getAddress());
-//        user.update(AppContext.getCtx());
+//        user.update(App.getCtx());
 //    }
 
     @Override
     public void getNearbyUsers(final MLocation location,final int pageSize, final int pageIndex, final Listener<UserList> listener) {
         BmobQuery<User> countQuery = new BmobQuery<>();
-        countQuery.count(AppContext.getCtx(), User.class, new CountListener() {
+        countQuery.count(App.getCtx(), User.class, new CountListener() {
             @Override
             public void onSuccess(final int i) {
                 BmobGeoPoint gpsAdd = new BmobGeoPoint(Double.parseDouble(location.getLongitude()), Double.parseDouble(location.getLatitude()));
@@ -132,14 +131,14 @@ public class UserDao4Bmob implements UserDao {
                 bmobQuery.order("-lastOnlineTimestamp");
                 bmobQuery.setLimit(pageSize);//获取最接近用户地点的n条数据
                 bmobQuery.setSkip((pageIndex - 1) * pageSize);
-                bmobQuery.findObjects(AppContext.getCtx(), new FindListener<User>() {
+                bmobQuery.findObjects(App.getCtx(), new FindListener<User>() {
                     @Override
                     public void onSuccess(List<User> list) {
                         if (list == null || i == 0) listener.onFailure("无附近的用户");
                         else listener.onSuccess(new UserList(i, list));
 
 //                        save to db
-                        FinalDb finalDb = FinalDb.create(AppContext.getCtx());
+                        FinalDb finalDb = FinalDb.create(App.getCtx());
                         for (User user : list) {
                             if (finalDb.findById(user.getId(), User.class) != null)
                                 finalDb.deleteById(User.class, user.getId());
@@ -169,13 +168,13 @@ public class UserDao4Bmob implements UserDao {
      */
     @Override
     public User getUser(String id) throws AppException {
-        FinalDb finalDb = FinalDb.create(AppContext.getCtx());
+        FinalDb finalDb = FinalDb.create(App.getCtx());
         User user = finalDb.findById(id, User.class);
 //        if (user == null) user = getUserWithoutCache(id);
         getUserWithoutCache(id, new Listener<User>() {
             @Override
             public void onSuccess(User data) {
-                FinalDb finalDb = FinalDb.create(AppContext.getCtx());
+                FinalDb finalDb = FinalDb.create(App.getCtx());
                 if (finalDb.findById(data.getId(), User.class) != null) finalDb.deleteById(User.class, data.getId());
                 finalDb.save(data);
             }
@@ -201,7 +200,7 @@ public class UserDao4Bmob implements UserDao {
                 BmobQuery<User> bmobQuery = new BmobQuery<>();
                 bmobQuery.addWhereEqualTo("id",userId);
                 bmobQuery.setLimit(1);
-                bmobQuery.findObjects(AppContext.getCtx(), new FindListener<User>() {
+                bmobQuery.findObjects(App.getCtx(), new FindListener<User>() {
                     @Override
                     public void onSuccess(List<User> list) {
                         if (list==null || list.size()==0) {
@@ -230,7 +229,7 @@ public class UserDao4Bmob implements UserDao {
         BmobQuery<User> bmobQuery = new BmobQuery<>();
         bmobQuery.addWhereEqualTo("id",userId);
         bmobQuery.setLimit(1);
-        bmobQuery.findObjects(AppContext.getCtx(), new FindListener<User>() {
+        bmobQuery.findObjects(App.getCtx(), new FindListener<User>() {
             @Override
             public void onSuccess(List<User> list) {
                 if (list==null || list.size()==0) {

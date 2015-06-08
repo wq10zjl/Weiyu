@@ -1,11 +1,8 @@
 package com.syw.weiyu.dao.shuoshuo;
 
 import com.alibaba.fastjson.JSON;
-import com.syw.weiyu.core.AppConstants;
-import com.syw.weiyu.core.AppContext;
-import com.syw.weiyu.core.AppException;
-import com.syw.weiyu.core.Listener;
-import com.syw.weiyu.core.Null;
+import com.syw.weiyu.core.*;
+import com.syw.weiyu.core.App;
 import com.syw.weiyu.bean.*;
 import com.syw.weiyu.bean.jsonobj.ShuoshuoItemJsonObj;
 import com.syw.weiyu.bean.jsonobj.NearbySearchListJsonObj;
@@ -22,7 +19,7 @@ import java.util.List;
  * date: 2015-05-19
  * desc: 说说数据存取类
  */
-public class ShuoshuoDao4LBSyun implements ShuoshuoDao {
+public abstract class ShuoshuoDao4LBSyun implements ShuoshuoDao {
 
 
     /**
@@ -51,11 +48,11 @@ public class ShuoshuoDao4LBSyun implements ShuoshuoDao {
 
                     //cache
                     if (pageIndex == 1) {
-                        AppContext.putCache(AppContext.KEY_NEARBYSHUOSHUOS, shuoshuoList);
+                        App.putCache(App.KEY_NEARBYSHUOSHUOS, shuoshuoList);
                     } else {
-                        ShuoshuoList oldList = (ShuoshuoList)AppContext.getCache(AppContext.KEY_NEARBYSHUOSHUOS);
+                        ShuoshuoList oldList = (ShuoshuoList) App.getCache(App.KEY_NEARBYSHUOSHUOS);
                         oldList.getShuoshuos().addAll(shuoshuoList.getShuoshuos());
-                        AppContext.putCache(AppContext.KEY_NEARBYSHUOSHUOS, oldList);
+                        App.putCache(App.KEY_NEARBYSHUOSHUOS, oldList);
                     }
                 } catch (AppException e) {
                     listener.onFailure(e.getMessage());

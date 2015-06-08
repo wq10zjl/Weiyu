@@ -1,14 +1,10 @@
 package com.syw.weiyu.dao.user;
 
-import android.support.annotation.NonNull;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.orhanobut.logger.Logger;
-import com.syw.weiyu.core.AppConstants;
-import com.syw.weiyu.core.AppContext;
-import com.syw.weiyu.core.AppException;
-import com.syw.weiyu.core.Listener;
-import com.syw.weiyu.core.Null;
+import com.syw.weiyu.core.*;
+import com.syw.weiyu.core.App;
 import com.syw.weiyu.bean.MLocation;
 import com.syw.weiyu.bean.User;
 import com.syw.weiyu.bean.UserList;
@@ -107,7 +103,7 @@ public class UserDao4LBSyun {
                     listener.onSuccess(userList);
 
                     //save to db
-                    FinalDb finalDb = FinalDb.create(AppContext.getCtx());
+                    FinalDb finalDb = FinalDb.create(App.getCtx());
                     for (User user : userList.getUsers()) {
                         if (finalDb.findById(user.getId(),User.class) == null) finalDb.save(user);
                     }
@@ -130,7 +126,7 @@ public class UserDao4LBSyun {
      * @throws AppException
      */
     public User getUser(String id) throws AppException {
-        FinalDb finalDb = FinalDb.create(AppContext.getCtx());
+        FinalDb finalDb = FinalDb.create(App.getCtx());
         User user = finalDb.findById(id, User.class);
         if (user == null) {
             final String url = AppConstants.url_detail_poi;

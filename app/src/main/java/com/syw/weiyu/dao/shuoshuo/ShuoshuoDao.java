@@ -22,6 +22,8 @@ public interface ShuoshuoDao {
      */
     void getNearbyShuoshuos(MLocation location,int pageSize,int pageIndex,Listener<ShuoshuoList> listener);
 
+    void getUserShuoshuos(String userId, int pageSize, int pageIndex, Listener<ShuoshuoList> listener);
+
     /**
      * 发布说说
      * @param account
