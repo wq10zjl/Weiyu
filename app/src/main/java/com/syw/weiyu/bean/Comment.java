@@ -8,6 +8,7 @@ import cn.bmob.v3.BmobObject;
  * desc: 评论实体类
  */
 public class Comment extends BmobObject {
+    private long id;
     private String userName;
     private String userId;
     private String userGender;
@@ -63,5 +64,13 @@ public class Comment extends BmobObject {
 
     public void setUserGender(String userGender) {
         this.userGender = userGender;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

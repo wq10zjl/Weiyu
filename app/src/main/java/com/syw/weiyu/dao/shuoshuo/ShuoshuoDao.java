@@ -24,6 +24,8 @@ public interface ShuoshuoDao {
 
     void getUserShuoshuos(String userId, int pageSize, int pageIndex, Listener<ShuoshuoList> listener);
 
+    void getShuoshuo(String id, Listener<Shuoshuo> listener);
+
     /**
      * 发布说说
      * @param account

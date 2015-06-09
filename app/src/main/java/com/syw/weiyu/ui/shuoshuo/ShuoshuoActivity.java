@@ -24,6 +24,7 @@ import com.syw.weiyu.ui.adapter.ShuoshuosAdapter;
 
 import com.syw.weiyu.util.Msger;
 
+import com.syw.weiyu.util.StringUtil;
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
@@ -188,8 +189,10 @@ public class ShuoshuoActivity extends FragmentActivity {
                 .setPositiveButton("发送", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
+                        String content = contentET.getText().toString();
+                        if (StringUtil.isEmpty(content)) return;
                         try {
-                            WeiyuApi.get().publishShuoshuo(contentET.getText().toString(), new Listener<Null>() {
+                            WeiyuApi.get().publishShuoshuo(content, new Listener<Null>() {
                                 @Override
                                 public void onSuccess(Null data) {
                                     Msger.i(ShuoshuoActivity.this, "发送成功");

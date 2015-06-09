@@ -1,5 +1,6 @@
 package com.syw.weiyu.dao.shuoshuo;
 
+import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobGeoPoint;
 import cn.bmob.v3.listener.CountListener;
@@ -73,7 +74,7 @@ public class ShuoshuoDao4Bmob implements ShuoshuoDao {
             public void onSuccess(final int i) {
                 BmobQuery<Shuoshuo> bmobQuery = new BmobQuery<>();
 //                bmobQuery.addWhereNear("gpsAdd", gpsAdd);
-                bmobQuery.addWhereEqualTo("userId",userId);
+                bmobQuery.addWhereEqualTo("userId", userId);
                 bmobQuery.order("-timestamp");//时间近的靠前
                 bmobQuery.setLimit(pageSize);//获取最接近用户地点的n条数据
                 bmobQuery.setSkip((pageIndex - 1) * pageSize);
@@ -94,6 +95,24 @@ public class ShuoshuoDao4Bmob implements ShuoshuoDao {
             @Override
             public void onFailure(int i, String s) {
                 listener.onFailure("获取说说列表失败:"+s);
+            }
+        });
+    }
+
+    @Override
+    public void getShuoshuo(final String id, final Listener<Shuoshuo> listener) {
+        BmobQuery<Shuoshuo> query = new BmobQuery<>();
+        query.addWhereEqualTo("id",id);
+        query.findObjects(App.getCtx(), new FindListener<Shuoshuo>() {
+            @Override
+            public void onSuccess(List<Shuoshuo> list) {
+                if (list.size()>0) listener.onSuccess(list.get(0));
+                else listener.onFailure("该说说已删除");
+            }
+
+            @Override
+            public void onError(int i, String s) {
+                listener.onFailure("获取说说出错:"+s);
             }
         });
     }

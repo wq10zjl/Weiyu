@@ -90,13 +90,25 @@ public class UserHomeActivity extends Activity {
         ImageView btnAdd = (ImageView) findViewById(R.id.header_right);
         btnAdd.setImageResource(R.drawable.wy_ic_send_btn);
         btnAdd.setPadding(4, 4, 4, 4);
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog dialog = getAddShuoshuoAlertDialog();
-                dialog.show();
+        try {
+            if (userId.equals(WeiyuApi.get().getAccount().getId())) {
+                btnAdd.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        AlertDialog dialog = getAddShuoshuoAlertDialog();
+                        dialog.show();
+                    }
+                });
+
+                ((TextView) findViewById(R.id.header_title)).setText("我的说说");
+            } else {
+                btnAdd.setVisibility(View.INVISIBLE);
+
+                ((TextView) findViewById(R.id.header_title)).setText("TA的说说");
             }
-        });
+        } catch (AppException e) {
+            e.printStackTrace();
+        }
         ImageView btnBack = (ImageView) findViewById(R.id.header_left);
         btnBack.setImageResource(R.drawable.ic_back);
         btnBack.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +118,6 @@ public class UserHomeActivity extends Activity {
             }
         });
 
-        ((TextView) findViewById(R.id.header_title)).setText("个人主页");
     }
 
 
@@ -195,8 +206,10 @@ public class UserHomeActivity extends Activity {
                 .setPositiveButton("发送", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
+                        String content = contentET.getText().toString();
+                        if (StringUtil.isEmpty(content)) return;
                         try {
-                            WeiyuApi.get().publishShuoshuo(contentET.getText().toString(), new Listener<Null>() {
+                            WeiyuApi.get().publishShuoshuo(content, new Listener<Null>() {
                                 @Override
                                 public void onSuccess(Null data) {
                                     Msger.i(UserHomeActivity.this, "发送成功");

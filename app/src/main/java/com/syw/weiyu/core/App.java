@@ -7,14 +7,15 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.util.LruCache;
+import cn.bmob.push.BmobPush;
 import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobInstallation;
 import com.orhanobut.logger.Logger;
 import com.syw.weiyu.bean.Account;
 import com.syw.weiyu.dao.user.LocalAccountDao;
 import com.syw.weiyu.dao.im.RongCloudEvent;
 
 import com.syw.weiyu.dao.location.LocSDK;
-import com.syw.weiyu.dao.push.XGPush;
 import io.rong.imkit.RongIM;
 
 /**
@@ -70,16 +71,14 @@ public class App extends Application {
 //        Thread.setDefaultUncaughtExceptionHandler(AppException.getAppExceptionHandler(this));
 
         try {
-            //拿账户数据，登录IM&推送
-            Account account = new LocalAccountDao().get();
-            putCache(KEY_ACCOUNT, account);
             if (isMainThread()) {
+                //拿账户数据，登录IM&推送
+                Account account = new LocalAccountDao().get();
+                putCache(KEY_ACCOUNT, account);
+
                 //初始化日志工具类
                 String TAG = "Weiyu";
                 Logger.init(TAG);
-
-                //注册信鸽Push
-                XGPush.register(this, account.getId());
 
                 //初始化融云IMKit SDK，should not init RongIM in sub process
                 RongIM.init(this);
@@ -95,6 +94,12 @@ public class App extends Application {
 
                 //初始化BmobSDK
                 Bmob.initialize(this, AppConstants.bmob_app_key);
+                // 使用推送服务时的初始化操作
+                BmobInstallation bmobInstallation = BmobInstallation.getCurrentInstallation(this);
+                bmobInstallation.setInstallationId(account.getId());//使用accountId
+                bmobInstallation.save();
+                // 启动推送服务
+                BmobPush.startWork(this, AppConstants.bmob_app_key);
             }
         } catch (AppException e) {
             //do nothing

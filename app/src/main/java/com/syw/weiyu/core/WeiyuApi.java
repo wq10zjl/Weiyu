@@ -12,7 +12,6 @@ import com.syw.weiyu.bean.*;
 import com.syw.weiyu.controller.listener.WeiyuListener;
 import com.syw.weiyu.dao.im.RongCloud;
 import com.syw.weiyu.dao.location.LocationDao;
-import com.syw.weiyu.dao.push.XGPush;
 import com.syw.weiyu.dao.shuoshuo.*;
 import com.syw.weiyu.dao.user.LocalAccountDao;
 import com.syw.weiyu.dao.user.UserDao;
@@ -91,7 +90,7 @@ public class WeiyuApi {
     public void logout() {
 
         RongCloud.disconnect();
-        XGPush.unregister(App.getCtx());
+        //unregister push
 
         System.exit(0);
     }
@@ -280,10 +279,22 @@ public class WeiyuApi {
         shuoshuoDao.getNearbyShuoshuos(locationDao.get(),AppConstants.page_size_default,pageIndex,listener);
     }
 
+    /**
+     * 获取某个用户的说说
+     * @param userId
+     * @param pageIndex
+     * @param listener
+     */
     public void getUserShuoshuo(String userId,int pageIndex,Listener<ShuoshuoList> listener) {
-        shuoshuoDao.getUserShuoshuos(userId,AppConstants.page_size_default,pageIndex,listener);
+        shuoshuoDao.getUserShuoshuos(userId, AppConstants.page_size_default, pageIndex, listener);
     }
 
+    /**
+     * 获取某一个说说
+     */
+    public void getShuoshuo(String id, Listener<Shuoshuo> listener) {
+        shuoshuoDao.getShuoshuo(id,listener);
+    }
     
     /**
      * 发布说说
@@ -319,9 +330,22 @@ public class WeiyuApi {
      * @param content
      * @param listener
      */
-    public void addComment(Shuoshuo shuoshuo,String content,Listener<Comment> listener) {
-        commentDao.addComment(shuoshuo.getId(), content, listener);
-        shuoshuoDao.addCommentCount(shuoshuo);
+    public void addComment(final Shuoshuo shuoshuo,String content, final Listener<Comment> listener) {
+        commentDao.addComment(shuoshuo.getId(), content, new Listener<Comment>() {
+            @Override
+            public void onSuccess(Comment data) {
+                listener.onSuccess(data);
+                //++
+                shuoshuoDao.addCommentCount(shuoshuo);
+                //push
+
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                listener.onFailure(msg);
+            }
+        });
     }
 
 

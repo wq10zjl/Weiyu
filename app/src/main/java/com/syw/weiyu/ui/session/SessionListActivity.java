@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.syw.weiyu.R;
-import com.syw.weiyu.ui.explore.CommentMessageActivity;
 
 /**
  * author: youwei

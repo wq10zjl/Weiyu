@@ -37,12 +37,11 @@
     <!-- 广点通 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_UPDATES" />
 
-    <!-- 【必须】 信鸽SDK所需权限 -->
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
-    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
-    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
-    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <!--bmob push-->
+    <permission android:protectionLevel="normal" android:name="cn.bmob.permission.push"></permission>
+    <uses-permission android:name="cn.bmob.permission.push"/><!-- 添加自定义的权限-->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT"/>
 
     <application
         android:name=".core.App"
@@ -102,63 +101,31 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" >
         </activity>
 
-        <!--信鸽push-->
-        <!-- 【必须】 信鸽receiver广播接收 -->
-        <receiver android:name="com.tencent.android.tpush.XGPushReceiver"
-                android:process=":xg_service_v2" >
-            <intent-filter android:priority="0x7fffffff" >
-                <!-- 【必须】 信鸽SDK的内部广播 -->
-                <action android:name="com.tencent.android.tpush.action.SDK" />
-                <action android:name="com.tencent.android.tpush.action.INTERNAL_PUSH_MESSAGE" />
-                <!-- 【必须】 系统广播：开屏和网络切换 -->
-                <action android:name="android.intent.action.USER_PRESENT" />
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-                <!-- 【可选】 一些常用的系统广播，增强信鸽service的复活机会，请根据需要选择。当然，你也可以添加APP自定义的一些广播让启动service -->
-                <action android:name="android.bluetooth.adapter.action.STATE_CHANGED" />
-                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
-                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
-            </intent-filter>
-        </receiver>
-        <!-- 【必须】 (2.30及以上版新增)展示通知的activity -->
-        <!-- 【注意】 如果被打开的activity是启动模式为SingleTop，SingleTask或SingleInstance，请根据通知的异常自查列表第8点处理-->
-        <activity android:name="com.tencent.android.tpush.XGPushActivity"
-                android:exported="true" >
-            <intent-filter>
-                <!-- 若使用AndroidStudio，请设置android:name="android.intent.action"-->
-                <action android:name="android.intent.action" />
-            </intent-filter>
-        </activity>
-        <!-- 【必须】 信鸽service -->
+        <!--Bmob push-->
         <service
-                android:name="com.tencent.android.tpush.service.XGPushService"
-                android:exported="true"
-                android:persistent="true"
-                android:process=":xg_service_v2" />
-        <!-- 【必须】 通知service，此选项有助于提高抵达率 -->
-        <service
-                android:name="com.tencent.android.tpush.rpc.XGRemoteService"
-                android:exported="true" >
+                android:label="PushService"
+                android:name="cn.bmob.push.lib.service.PushService"
+                android:process="cn.bmob.push"
+                android:permission="cn.bmob.permission.push"
+                android:exported="true">
             <intent-filter>
-                <action android:name="com.syw.weiyu.PUSH_ACTION" />
+                <action android:name="cn.bmob.push.lib.service.PushService"/>
             </intent-filter>
         </service>
-        <!-- 【必须】 请将YOUR_ACCESS_ID修改为APP的AccessId，“21”开头的10位数字，中间没空格 -->
-        <meta-data
-                android:name="XG_V2_ACCESS_ID"
-                android:value="2100119897" />
-        <!-- 【必须】 请将YOUR_ACCESS_KEY修改为APP的AccessKey，“A”开头的12位字符串，中间没空格 -->
-        <meta-data
-                android:name="XG_V2_ACCESS_KEY"
-                android:value="A6EE7G1S4Z2J" />
-        <!--【非必须】透传消息-->
-        <!-- APP实现的Receiver，用于接收消息和结果反馈 -->
-        <!-- com.tencent.android.xgpushdemo.CustomPushReceiver需要改为自己的Receiver -->
-        <receiver android:name=".dao.push.XGPushMessageReceiver" >
-            <intent-filter>
-                <!-- 接收消息透传 -->
-                <action android:name="com.tencent.android.tpush.action.PUSH_MESSAGE" />
-                <!-- 监听注册、反注册、设置/删除标签、通知被点击等处理结果 -->
-                <action android:name="com.tencent.android.tpush.action.FEEDBACK" />
+        <receiver android:name="cn.bmob.push.PushReceiver">
+            <intent-filter android:priority="2147483647"><!--优先级加最高-->
+                <!-- 系统启动完成后会调用 -->
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <!-- 解锁完成后会调用 -->
+                <action android:name="android.intent.action.USER_PRESENT"/>
+                <!-- 监听网络连通性 -->
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+        </receiver>
+        <!-- 第四步中创建的消息接收器，在这里进行注册 -->
+        <receiver android:name="com.syw.weiyu.dao.push.BmobPushMessageReceiver">
+            <intent-filter >
+                <action android:name="cn.bmob.push.action.MESSAGE"/>
             </intent-filter>
         </receiver>
 
@@ -208,8 +175,8 @@
         <!-- 我 -->
         <activity android:name=".ui.mine.MineActivity" android:screenOrientation="portrait"/>
 
-        <!-- 消息中心 -->
-        <activity android:name=".ui.explore.CommentMessageActivity" android:screenOrientation="portrait"/>
+        <!-- 评论消息 -->
+        <activity android:name=".ui.session.CommentMessageActivity" android:screenOrientation="portrait"/>
 
         <!-- 登录 -->
         <activity android:name=".ui.user.LoginActivity" android:screenOrientation="portrait"/>
