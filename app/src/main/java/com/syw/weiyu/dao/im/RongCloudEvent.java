@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 
 import android.view.View;
+import com.syw.weiyu.core.AppConstants;
 import com.syw.weiyu.core.AppException;
 import com.syw.weiyu.core.WeiyuApi;
 import com.syw.weiyu.bean.MLocation;
@@ -118,22 +119,18 @@ public final class RongCloudEvent implements
      */
     @Override
     public UserInfo getUserInfo(String userId) {
-        UserInfo userInfo;
-        try {
-            User user = WeiyuApi.get().getUser(userId);
-            userInfo = new UserInfo(
-                    user.getId(),
-                    user.getName(),
-                    user.getGender().equals("男")?
-                            Uri.parse("file:///android_asset/wy_icon_male.png"):
-                            Uri.parse("file:///android_asset/wy_icon_female.png"));
-        } catch (AppException e) {
-            userInfo = new UserInfo(
-                    userId,
-                    "未知",
-                    Uri.parse("file:///android_asset/wy_icon_nogender.png"));
-        }
-        return userInfo;
+        User user = WeiyuApi.get().getUser(userId);
+        return user==null?
+                new UserInfo(
+                userId,
+                "未知",
+                Uri.parse(AppConstants.url_user_icon_nogender_local)):
+                new UserInfo(
+                        user.getId(),
+                        user.getName(),
+                        user.getGender().equals("男")?
+                                Uri.parse(AppConstants.url_user_icon_male_local):
+                                Uri.parse(AppConstants.url_user_icon_female_local));
     }
 
     @Override

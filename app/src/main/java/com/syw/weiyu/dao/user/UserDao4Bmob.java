@@ -167,7 +167,7 @@ public class UserDao4Bmob implements UserDao {
      * @throws AppException
      */
     @Override
-    public User getUser(String id) throws AppException {
+    public User getUser(String id) {
         FinalDb finalDb = FinalDb.create(App.getCtx());
         User user = finalDb.findById(id, User.class);
 //        if (user == null) user = getUserWithoutCache(id);

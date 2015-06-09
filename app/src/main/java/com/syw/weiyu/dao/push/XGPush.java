@@ -1,9 +1,16 @@
 package com.syw.weiyu.dao.push;
 
 import android.content.Context;
+import com.alibaba.fastjson.JSON;
+import com.syw.weiyu.bean.Account;
+import com.syw.weiyu.bean.Comment;
+import com.syw.weiyu.core.App;
 import com.syw.weiyu.core.AppConstants;
+import com.syw.weiyu.ui.explore.CommentMessageActivity;
 import com.tencent.android.tpush.XGPushManager;
+import com.tencent.xinge.ClickAction;
 import com.tencent.xinge.Message;
+import com.tencent.xinge.Style;
 import com.tencent.xinge.XingeApp;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,16 +42,38 @@ public class XGPush {
         XGPushManager.unregisterPush(context);
     }
 
+    public static void pushNewComment(Account account, String toUserId,Comment comment) {
+        pushNotification(account,toUserId, App.getCtx().getApplicationInfo().name, account.getName()+"评论了你的说说", JSON.toJSONString(comment), Comment.class);
+    }
+
     /**
      * 向指定用户ID推送通知
+     * @param account
      * @param toUserId
      * @param title
      * @param content
      * @return
      */
-    public static boolean pushNotification(String toUserId,String title,String content) {
-        JSONObject result = XingeApp.pushAccountAndroid(AppConstants.xgpush_access_id, AppConstants.xgpush_secret_key, title, content, toUserId);
+    private static boolean pushNotification(Account account, String toUserId,String title,String content, String jsonData, Class clazz) {
+        Map<String,Object> customData = new HashMap<>();
+        customData.put("data", jsonData);//json string data
+        customData.put("clazz", clazz.getName());
+        Style style = new Style(0,1,0,1,-1,1,0,1);//依次为$builderId[,$ring][,$vibrate][,$clearable][,$nId][,$lights][,$iconType][,$styleId]
+        style.setIconRes("ic_launcher.png");
+        ClickAction clickAction = new ClickAction();
+        clickAction.setActivity(CommentMessageActivity.class.getName());
+        Message message = new Message();
+        message.setType(Message.TYPE_NOTIFICATION);
+        message.setAction(clickAction);
+        message.setTitle(title);
+        message.setContent(content);
+        message.setCustom(customData);
+        XingeApp xingeApp = new XingeApp(AppConstants.xgpush_access_id, AppConstants.xgpush_secret_key);
+        JSONObject result = xingeApp.pushSingleAccount(0, toUserId, message);
         return isPushed(result);
+
+//        JSONObject result = XingeApp.pushAccountAndroid(AppConstants.xgpush_access_id, AppConstants.xgpush_secret_key, title, content, toUserId);
+//        return isPushed(result);
     }
 
     /**
@@ -52,20 +81,23 @@ public class XGPush {
      * @param toUserId
      * @param title
      * @param content
-     * @param data json string data
+     * @param jsonData json string data
+     *        {type:hello/comment/,fromUserId:xx,toUserId:xx,}
      * @return
      */
-    public static boolean pushMessage(String toUserId,String title,String content,String data) {
-        Map<String,Object> map = new HashMap<>();
-        map.put("data",data);//json string data
-        Message message = new Message();
-        message.setType(Message.TYPE_MESSAGE);
-        message.setTitle(title);
-        message.setContent(content);
-        message.setCustom(map);
-        XingeApp xingeApp = new XingeApp(AppConstants.xgpush_access_id, AppConstants.xgpush_secret_key);
-        JSONObject result = xingeApp.pushSingleAccount(0, toUserId, message);
-        return isPushed(result);
+    @Deprecated
+    private static boolean pushMessage(String toUserId,String title,String content,String jsonData) {
+//        Map<String,Object> map = new HashMap<>();
+//        map.put("data",jsonData);//json string data
+//        Message message = new Message();
+//        message.setType(Message.TYPE_MESSAGE);
+//        message.setTitle(title);
+//        message.setContent(content);
+//        message.setCustom(map);
+//        XingeApp xingeApp = new XingeApp(AppConstants.xgpush_access_id, AppConstants.xgpush_secret_key);
+//        JSONObject result = xingeApp.pushSingleAccount(0, toUserId, message);
+//        return isPushed(result);
+        return false;
     }
 
     /**

@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 import com.syw.weiyu.R;
 
-public class MessageCenterActivity extends FragmentActivity {
+public class CommentMessageActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

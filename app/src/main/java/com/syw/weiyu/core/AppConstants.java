@@ -27,8 +27,12 @@ public class AppConstants {
     public static final String RC_ACTION_RECEIVE_MESSAGE = "rc_action_receive_message";
     public static final String RC_UNREAD_COUNT = "rc_unread_count";
     //默认头像url
-    public static final String url_user_icon_male = "http://com-syw-weiyu.qiniudn.com/wy_icon_male.jpg";
-    public static final String url_user_icon_female = "http://com-syw-weiyu.qiniudn.com/wy_icon_female.jpg";
+    public static final String url_user_icon_male = "http://com-syw-weiyu.qiniudn.com/wy_icon_male.png";
+    public static final String url_user_icon_female = "http://com-syw-weiyu.qiniudn.com/wy_icon_female.png";
+    public static final String url_user_icon_male_local = "file:///android_asset/wy_icon_male.png";
+    public static final String url_user_icon_female_local = "file:///android_asset/wy_icon_female.png";
+    public static final String url_user_icon_nogender_local = "file:///android_asset/wy_icon_nogender.png";
+
 
 //  Baidu LocSDK
     public static final String locsdk_ak = "mUv2tjv4ZdI06Enf9E6GEsZ6";

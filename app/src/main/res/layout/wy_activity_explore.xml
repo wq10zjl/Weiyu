@@ -39,29 +39,6 @@
                     android:gravity="center_vertical"/>
         </LinearLayout>
 
-        <LinearLayout android:id="@+id/explore_item_message_center"
-                      android:layout_width="fill_parent"
-                      android:layout_height="wrap_content"
-                      android:background="@drawable/section_list_bg"
-                      android:orientation="horizontal">
-            <ImageView android:layout_weight="1"
-                       android:layout_width="62dp"
-                       android:layout_height="62dp"
-                       android:src="@drawable/ic_message_center"/>
-            <TextView android:layout_weight="2"
-                      android:paddingLeft="15dp"
-                      android:layout_width="fill_parent"
-                      android:layout_height="fill_parent"
-                      android:gravity="center_vertical"
-                      android:text="通知中心"
-                      android:textSize="20dp"/>
-            <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ic_arrow_foward"
-                    android:gravity="center_vertical"/>
-        </LinearLayout>
-
     </LinearLayout>
 
 </LinearLayout>

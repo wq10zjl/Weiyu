@@ -7,6 +7,30 @@
 
     <include layout="@layout/wy_header_common"/>
 
+    <LinearLayout android:id="@+id/sessionlist_item_comment_message"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:background="@drawable/section_list_bg"
+                  android:orientation="horizontal"
+                  android:padding="10dp">
+        <ImageView android:layout_weight="1"
+                   android:layout_width="62dp"
+                   android:layout_height="62dp"
+                   android:src="@drawable/ic_message_center"/>
+        <TextView android:layout_weight="2"
+                  android:paddingLeft="15dp"
+                  android:layout_width="fill_parent"
+                  android:layout_height="fill_parent"
+                  android:gravity="center_vertical"
+                  android:text="收到的评论"
+                  android:textSize="20dp"/>
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_arrow_foward"
+                android:gravity="center_vertical"/>
+    </LinearLayout>
+
     <!-- 会话列表页面 Fragment -->
     <fragment
             android:layout_width="match_parent"

@@ -51,7 +51,7 @@ public interface UserDao {
      * @return
      * @throws AppException
      */
-    User getUser(String id) throws AppException;
+    User getUser(String id);
 
     void getUserWithoutCache(String userId, Listener<User> listener);
 }

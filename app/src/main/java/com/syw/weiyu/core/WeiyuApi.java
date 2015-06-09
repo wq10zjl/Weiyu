@@ -218,7 +218,7 @@ public class WeiyuApi {
      * @param id
      * @return
      */
-    public User getUser(String id) throws AppException {
+    public User getUser(String id) {
         return userDao.getUser(id);
     }
 
