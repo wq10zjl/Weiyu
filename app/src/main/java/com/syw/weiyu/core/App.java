@@ -6,12 +6,12 @@ import android.content.Context;
 
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
 import android.util.LruCache;
-import cn.bmob.push.BmobPush;
 import cn.bmob.v3.Bmob;
-import cn.bmob.v3.BmobInstallation;
 import com.orhanobut.logger.Logger;
 import com.syw.weiyu.bean.Account;
+import com.syw.weiyu.dao.push.BmobPushHelper;
 import com.syw.weiyu.dao.user.LocalAccountDao;
 import com.syw.weiyu.dao.im.RongCloudEvent;
 
@@ -71,40 +71,56 @@ public class App extends Application {
 //        Thread.setDefaultUncaughtExceptionHandler(AppException.getAppExceptionHandler(this));
 
         try {
+            //初始化日志工具类
+            String TAG = "Weiyu";
+            Logger.init(TAG);
+
             if (isMainThread()) {
-                //拿账户数据，登录IM&推送
-                Account account = new LocalAccountDao().get();
-                putCache(KEY_ACCOUNT, account);
-
-                //初始化日志工具类
-                String TAG = "Weiyu";
-                Logger.init(TAG);
-
                 //初始化融云IMKit SDK，should not init RongIM in sub process
                 RongIM.init(this);
                 //初始化融云SDK事件监听处理
                 RongCloudEvent.init(this);
-                //login IM
-                WeiyuApi.get().login(account.getToken());
-
-                //初始化定位SDK
-                LocSDK.init(this);
-                //定位并保存
-                WeiyuApi.get().locate();
-
-                //初始化BmobSDK
-                Bmob.initialize(this, AppConstants.bmob_app_key);
-                // 使用推送服务时的初始化操作
-                BmobInstallation bmobInstallation = BmobInstallation.getCurrentInstallation(this);
-                bmobInstallation.setInstallationId(account.getId());//使用accountId
-                bmobInstallation.save();
-                // 启动推送服务
-                BmobPush.startWork(this, AppConstants.bmob_app_key);
             }
-        } catch (AppException e) {
+
+            //初始化定位SDK
+            LocSDK.init(this);
+            //定位并保存
+            WeiyuApi.get().locate();
+
+            //初始化BmobSDK
+            Bmob.initialize(this, AppConstants.bmob_app_id);
+
+            //拿账户数据，登录IM&推送
+            Account account = new LocalAccountDao().get();
+            /*======有账户数据时会执行======*/
+            doThingsWithAccount(account);
+
+        } catch (Exception e) {
             //do nothing
+            Logger.e(e.getMessage());
         }
     }
+
+    /**
+     * 在有账户的时候要做的一些初始化操作
+     * 用户登录成功后要补充
+     * @param account
+     */
+    public void doThingsWithAccount(@NonNull final Account account) {
+        putCache(KEY_ACCOUNT, account);
+        //login IM
+        try { WeiyuApi.get().login(account.getToken()); } catch (AppException e) {}
+
+        // 使用推送服务
+        if (account.isHasInitedBmobPush()) {
+            BmobPushHelper.startPushClient(this);
+        } else {
+            BmobPushHelper.initAndStartPushClient(this, account);
+        }
+    }
+
+
+
 
     @Override
     public void onLowMemory() {

@@ -12,6 +12,7 @@ import com.syw.weiyu.bean.MLocation;
 import com.syw.weiyu.bean.User;
 import com.syw.weiyu.dao.location.LocationDao;
 import com.syw.weiyu.ui.session.PhotoActivity;
+import com.syw.weiyu.ui.user.UserHomeActivity;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.RongIMClient;
 import io.rong.imlib.model.Conversation;
@@ -152,6 +153,9 @@ public final class RongCloudEvent implements
 
     @Override
     public boolean onUserPortraitClick(Context context, Conversation.ConversationType conversationType, UserInfo userInfo) {
+        Intent intent = new Intent(context, UserHomeActivity.class);
+        intent.putExtra("userId", userInfo.getUserId());
+        context.startActivity(intent);
         return false;
     }
 

@@ -11,6 +11,7 @@ public class Account {
     private String gender;
     private String token;
     private String bmobObjectId;//用户账户有很多数据操作需要这个id才行
+    private boolean hasInitedBmobPush;//bmob push 设备是否已注册 最好只被save&update一次
 
     public Account() {}
     public Account(String id, String name, String gender, String token) {
@@ -58,5 +59,13 @@ public class Account {
 
     public void setBmobObjectId(String bmobObjectId) {
         this.bmobObjectId = bmobObjectId;
+    }
+
+    public boolean isHasInitedBmobPush() {
+        return hasInitedBmobPush;
+    }
+
+    public void setHasInitedBmobPush(boolean hasInitedBmobPush) {
+        this.hasInitedBmobPush = hasInitedBmobPush;
     }
 }

@@ -7,12 +7,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.KeyEvent;
 
+import cn.bmob.v3.Bmob;
 import com.syw.weiyu.bean.Account;
-import com.syw.weiyu.core.App;
-import com.syw.weiyu.core.AppException;
+import com.syw.weiyu.core.*;
 import com.syw.weiyu.R;
-import com.syw.weiyu.core.AdListener;
-import com.syw.weiyu.core.WeiyuApi;
 import com.syw.weiyu.ui.user.LoginActivity;
 
 
@@ -22,6 +20,9 @@ public class LauncherActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wy_activity_launcher);
+
+        //初始化BmobSDK
+//        Bmob.initialize(this, AppConstants.bmob_app_id);
 
 //        有账户信息→MainTabs主页面
 //        无账户信息→Login登入页

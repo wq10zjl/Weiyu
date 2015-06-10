@@ -12,6 +12,7 @@ import com.syw.weiyu.bean.*;
 import com.syw.weiyu.controller.listener.WeiyuListener;
 import com.syw.weiyu.dao.im.RongCloud;
 import com.syw.weiyu.dao.location.LocationDao;
+import com.syw.weiyu.dao.push.BmobPushHelper;
 import com.syw.weiyu.dao.shuoshuo.*;
 import com.syw.weiyu.dao.user.LocalAccountDao;
 import com.syw.weiyu.dao.user.UserDao;
@@ -121,7 +122,7 @@ public class WeiyuApi {
                 userDao.update(user.getObjectId(), id, name, gender, locationDao.get(), new Listener<Null>() {
                     @Override
                     public void onSuccess(Null data) {
-                        getTokenAndSetLocalAccount(user.getObjectId(), id, name, gender, listener);
+                        getTokenAndInitAccount(user.getObjectId(), id, name, gender, listener);
                     }
 
                     @Override
@@ -137,7 +138,7 @@ public class WeiyuApi {
                 userDao.create(id, name, gender, locationDao.get(), new Listener<String>() {
                     @Override
                     public void onSuccess(String data) {
-                        getTokenAndSetLocalAccount(data, id, name, gender, listener);
+                        getTokenAndInitAccount(data, id, name, gender, listener);
                     }
 
                     @Override
@@ -158,7 +159,7 @@ public class WeiyuApi {
      * @param gender
      * @param listener
      */
-    private void getTokenAndSetLocalAccount(final String bmobObjectId, final String id, final String name, final String gender, final Listener<String> listener) {
+    private void getTokenAndInitAccount(final String bmobObjectId, final String id, final String name, final String gender, final Listener<String> listener) {
         //拿token
         RongCloud.getToken(id, name, gender.equals("男") ? AppConstants.url_user_icon_male : AppConstants.url_user_icon_female, new Listener<String>() {
             @Override
@@ -167,6 +168,9 @@ public class WeiyuApi {
                 account.setBmobObjectId(bmobObjectId);
                 localAccountDao.set(account);
                 if (listener != null) listener.onSuccess(data);
+
+                //补充的初始化操作
+                App.getCtx().doThingsWithAccount(account);
             }
 
             @Override
@@ -338,7 +342,7 @@ public class WeiyuApi {
                 //++
                 shuoshuoDao.addCommentCount(shuoshuo);
                 //push
-
+                BmobPushHelper.pushCommentMessage(shuoshuo.getUserId(), data);
             }
 
             @Override

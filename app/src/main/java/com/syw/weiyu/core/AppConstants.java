@@ -7,7 +7,8 @@ package com.syw.weiyu.core;
  */
 public class AppConstants {
     //bmob
-    public static final String bmob_app_key = "9f9d56837bd74761d707beb13869ec22";
+    public static final String bmob_app_id = "9f9d56837bd74761d707beb13869ec22";
+    public static final String bmob_secrect_key = "eda88bf48ee2d1a6";
     public static final String default_kilometers = "5000";
 
     //XGpush

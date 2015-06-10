@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ListView;
 import com.syw.weiyu.R;
 import com.syw.weiyu.bean.Comment;
+import com.syw.weiyu.ui.adapter.CommentMessageAdapter;
 import net.tsz.afinal.FinalDb;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class CommentMessageActivity extends FragmentActivity {
 
     ListView commentMessageListView;
     List<Comment> data = new ArrayList<>();
+    CommentMessageAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,7 @@ public class CommentMessageActivity extends FragmentActivity {
     private void initData() {
         FinalDb finalDb = FinalDb.create(this);
         data = finalDb.findAll(Comment.class);
+        adapter.set(data);
     }
 
     private void initView() {
@@ -38,6 +41,8 @@ public class CommentMessageActivity extends FragmentActivity {
             }
         });
         commentMessageListView = (ListView) findViewById(R.id.lv_message_comment);
+        adapter = new CommentMessageAdapter(this);
+        commentMessageListView.setAdapter(adapter);
     }
 
 }

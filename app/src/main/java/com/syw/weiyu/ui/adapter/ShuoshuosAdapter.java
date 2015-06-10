@@ -114,6 +114,21 @@ public class ShuoshuosAdapter extends PagingBaseAdapter {
                 }
             }
         });
+        //点评论时跳转
+        holder.commentCount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (shuoshuos.size() == 1) {
+                    //如果是详情页,说说只有一条，就开启私聊
+                    RongIM.getInstance().startConversation(ctx, Conversation.ConversationType.PRIVATE, shuoshuo.getUserId(), shuoshuo.getUserName());
+                } else {
+                    //说说首页
+                    Intent intent = new Intent(ctx, ShuoshuoDetailActivity.class);
+                    intent.putExtra("shuoshuo", shuoshuo);
+                    ctx.startActivity(intent);
+                }
+            }
+        });
         //点❤
         holder.liked.setOnClickListener(new View.OnClickListener() {
             @Override

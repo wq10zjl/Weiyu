@@ -38,11 +38,14 @@ public class ShuoshuoDetailActivity extends FragmentActivity {
 
         shuoshuo = (Shuoshuo) getIntent().getSerializableExtra("shuoshuo");
         if (shuoshuo!=null) {
-
             initShuoshuoDetailData(shuoshuo);
-
         } else {
             String ssId = getIntent().getStringExtra("ssId");
+            if (StringUtil.isEmpty(ssId)) {
+                Msger.e(this,"说说不存在");
+                return;
+            }
+
             Msger.i(this, "正在加载说说");
             WeiyuApi.get().getShuoshuo(ssId, new Listener<Shuoshuo>() {
                 @Override

@@ -5,7 +5,7 @@
               android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp">
-    <ImageView android:id="@+id/comment_iv_gender" android:layout_width="46dp" android:layout_height="46dp"
+    <ImageView android:id="@+id/comment_iv_gender" android:layout_width="52dp" android:layout_height="52dp" android:padding="10dp"
                android:src="@drawable/wy_icon_female"/>
     <LinearLayout android:orientation="vertical" android:layout_margin="10dp" android:layout_width="match_parent"
                   android:layout_height="wrap_content">
