@@ -40,8 +40,8 @@ public class ShuoshuoDetailActivity extends FragmentActivity {
         if (shuoshuo!=null) {
             initShuoshuoDetailData(shuoshuo);
         } else {
-            String ssId = getIntent().getStringExtra("ssId");
-            if (StringUtil.isEmpty(ssId)) {
+            long ssId = getIntent().getLongExtra("ssId",-1);
+            if (ssId == -1) {
                 Msger.e(this,"说说不存在");
                 return;
             }
@@ -55,7 +55,7 @@ public class ShuoshuoDetailActivity extends FragmentActivity {
 
                 @Override
                 public void onFailure(String msg) {
-                    Msger.e(ShuoshuoDetailActivity.this, "加载说说出错");
+                    Msger.e(ShuoshuoDetailActivity.this, msg);
                 }
             });
         }

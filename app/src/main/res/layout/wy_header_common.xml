@@ -26,7 +26,8 @@
         <ImageView
                 android:id="@+id/header_right"
                 android:layout_width="48dip"
-                android:layout_height="48dip"/>
+                android:layout_height="48dip"
+                android:padding="6dp"/>
     </LinearLayout>
     <ImageView android:layout_width="fill_parent" android:layout_height="1dp" android:src="#dddddd"/>
 

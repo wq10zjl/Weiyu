@@ -296,7 +296,7 @@ public class WeiyuApi {
     /**
      * 获取某一个说说
      */
-    public void getShuoshuo(String id, Listener<Shuoshuo> listener) {
+    public void getShuoshuo(long id, Listener<Shuoshuo> listener) {
         shuoshuoDao.getShuoshuo(id,listener);
     }
     

@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.syw.weiyu.R;
 import com.syw.weiyu.bean.Comment;
+import com.syw.weiyu.util.TimeUtil;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.RongIMClient;
 import io.rong.imlib.model.Conversation;
@@ -91,7 +92,7 @@ public class CommentsAdapter extends BaseAdapter {
         holder.portrait.setImageResource(comment.getUserGender().equals("男")?R.drawable.wy_icon_male:R.drawable.wy_icon_female);
         holder.name.setText(comment.getUserName());
         holder.floor.setText(1+position+"楼");
-        holder.time.setText(new SimpleDateFormat("MM-dd kk:mm").format(new Date(comment.getTimestamp())));
+        holder.time.setText(TimeUtil.timeDiff(System.currentTimeMillis(),comment.getTimestamp()));
         holder.content.setText(comment.getContent());
 
         //点击评论时开启私聊

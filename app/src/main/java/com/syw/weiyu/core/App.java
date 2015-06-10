@@ -17,6 +17,7 @@ import com.syw.weiyu.dao.im.RongCloudEvent;
 
 import com.syw.weiyu.dao.location.LocSDK;
 import io.rong.imkit.RongIM;
+import net.tsz.afinal.FinalDb;
 
 /**
  * 自有的Application，程序入口，应用程序上下文环境
@@ -75,12 +76,12 @@ public class App extends Application {
             String TAG = "Weiyu";
             Logger.init(TAG);
 
-            if (isMainThread()) {
+//            if (isMainThread()) {
                 //初始化融云IMKit SDK，should not init RongIM in sub process
                 RongIM.init(this);
                 //初始化融云SDK事件监听处理
                 RongCloudEvent.init(this);
-            }
+//            }
 
             //初始化定位SDK
             LocSDK.init(this);
@@ -96,7 +97,7 @@ public class App extends Application {
             doThingsWithAccount(account);
 
         } catch (Exception e) {
-            //do nothing
+//            clearAppData();
             Logger.e(e.getMessage());
         }
     }
@@ -108,18 +109,16 @@ public class App extends Application {
      */
     public void doThingsWithAccount(@NonNull final Account account) {
         putCache(KEY_ACCOUNT, account);
+        // 使用推送服务
+        BmobPushHelper.initAndStartPushClient(this, account);
         //login IM
         try { WeiyuApi.get().login(account.getToken()); } catch (AppException e) {}
-
-        // 使用推送服务
-        if (account.isHasInitedBmobPush()) {
-            BmobPushHelper.startPushClient(this);
-        } else {
-            BmobPushHelper.initAndStartPushClient(this, account);
-        }
     }
 
 
+    private void clearAppData() {
+        FinalDb.create(this).dropDb();
+    }
 
 
     @Override

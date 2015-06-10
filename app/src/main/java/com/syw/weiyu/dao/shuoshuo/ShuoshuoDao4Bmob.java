@@ -100,14 +100,14 @@ public class ShuoshuoDao4Bmob implements ShuoshuoDao {
     }
 
     @Override
-    public void getShuoshuo(final String id, final Listener<Shuoshuo> listener) {
+    public void getShuoshuo(final long id, final Listener<Shuoshuo> listener) {
         BmobQuery<Shuoshuo> query = new BmobQuery<>();
         query.addWhereEqualTo("id",id);
         query.findObjects(App.getCtx(), new FindListener<Shuoshuo>() {
             @Override
             public void onSuccess(List<Shuoshuo> list) {
                 if (list.size()>0) listener.onSuccess(list.get(0));
-                else listener.onFailure("该说说已删除");
+                else listener.onFailure("该说说不存在");
             }
 
             @Override

@@ -18,6 +18,7 @@ public class Comment extends BmobObject {
 //    private Shuoshuo shuoshuo;
     private long timestamp;
 
+
     public String getUserName() {
         return userName;
     }

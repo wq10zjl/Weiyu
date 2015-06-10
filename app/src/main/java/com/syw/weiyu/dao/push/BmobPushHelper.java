@@ -9,10 +9,13 @@ import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 import com.alibaba.fastjson.JSON;
+import com.orhanobut.logger.Logger;
 import com.syw.weiyu.bean.Account;
 import com.syw.weiyu.bean.Comment;
 import com.syw.weiyu.core.*;
 import com.syw.weiyu.dao.user.LocalAccountDao;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -23,13 +26,16 @@ import java.util.List;
  */
 public class BmobPushHelper {
 
-    private static BmobPushManager bmobPushManager;
-
     public static void pushCommentMessage(String toUserId, Comment comment) {
-        pushMessage(toUserId, JSON.toJSONString(comment));
+        try {
+            JSONObject jsonObject = new JSONObject(JSON.toJSONString(comment));
+            pushJsonObject(toUserId, jsonObject);
+        } catch (JSONException e) {
+            Logger.e(e.getMessage());
+        }
     }
 
-    private static void pushMessage(String userId, String message) {
+    private static void pushStringMessage(String userId, String message) {
         BmobPushManager bmobPush = new BmobPushManager(App.getCtx());
         BmobQuery<BmobInstallation> query = BmobInstallation.getQuery();
         query.addWhereEqualTo("userId", userId);
@@ -37,22 +43,26 @@ public class BmobPushHelper {
         bmobPush.pushMessage(message);
     }
 
-    /**
-     * ø™∆ÙÕ∆ÀÕ
-     * @param context
-     */
-    public static void startPushClient(Context context) {
-        //start push
-        BmobPush.startWork(context, AppConstants.bmob_app_id);
+    private static void pushJsonObject(String userId, JSONObject jsonObject) {
+        BmobPushManager bmobPush = new BmobPushManager(App.getCtx());
+        BmobQuery<BmobInstallation> query = BmobInstallation.getQuery();
+        query.addWhereEqualTo("userId", userId);
+        bmobPush.setQuery(query);
+        bmobPush.pushMessage(jsonObject);
     }
 
     /**
-     * ’Àªß…Ë±∏µ⁄“ª¥Œ π”√Õ∆ÀÕ ±
-     * ≥ı ºªØbmobpushœ‡πÿ ˝æ›£¨≥…π¶∫Ûø™∆ÙÕ∆ÀÕ
+     * ÂàùÂßãÂåñbmobpushÁõ∏ÂÖ≥Êï∞ÊçÆÔºåÊàêÂäüÂêéÂºÄÂêØÊé®ÈÄÅ
      * @param context
      * @param account
      */
     public static void initAndStartPushClient(final Context context, final Account account) {
+        if (account.getHasInitedBmobPush() == 1) {
+            BmobInstallation.getCurrentInstallation(context).save();
+            //start push
+            BmobPush.startWork(context, AppConstants.bmob_app_id);
+            return;
+        }
         MyBmobInstallation installation = new MyBmobInstallation(context);
         installation.save(context, new SaveListener() {
             @Override
@@ -63,7 +73,7 @@ public class BmobPushHelper {
                         //start push
                         BmobPush.startWork(context, AppConstants.bmob_app_id);
                         //update account
-                        account.setHasInitedBmobPush(true);
+                        account.setHasInitedBmobPush(1);
                         new LocalAccountDao().set(account);
                     }
 
@@ -75,12 +85,19 @@ public class BmobPushHelper {
 
             @Override
             public void onFailure(int i, String s) {
+                if (i == 132) {//installation ID already token.
+                    //start push
+                    BmobPush.startWork(context, AppConstants.bmob_app_id);
+                    //update account
+                    account.setHasInitedBmobPush(1);
+                    new LocalAccountDao().set(account);
+                }
             }
         });
     }
 
     /**
-     * ∏¸–¬userId
+     * Êõ¥Êñ∞userId
      * @param context
      * @param userId
      * @param updateListener
