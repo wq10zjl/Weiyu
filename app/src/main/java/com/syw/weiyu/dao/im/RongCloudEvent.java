@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 
 import android.view.View;
+import com.syw.weiyu.R;
 import com.syw.weiyu.core.AppConstants;
 import com.syw.weiyu.core.AppException;
 import com.syw.weiyu.core.WeiyuApi;
@@ -84,7 +85,7 @@ public final class RongCloudEvent implements
      * RongIM.init(this) 后直接可注册的Listener。
      */
     private void initDefaultListener() {
-        RongIM.setUserInfoProvider(this, true);//设置用户信息提供者。
+        RongIM.setUserInfoProvider(this, false);//设置用户信息提供者。
 //        RongIM.setGroupInfoProvider(this);//设置群组信息提供者。
         RongIM.setConversationBehaviorListener(this);//设置会话界面操作的监听器。
         RongIM.setLocationProvider(this);//设置地理位置提供者,不用位置的同学可以注掉此行代码
@@ -121,17 +122,18 @@ public final class RongCloudEvent implements
     @Override
     public UserInfo getUserInfo(String userId) {
         User user = WeiyuApi.get().getUser(userId);
+        Uri male = Uri.parse("android.resource://" + mContext.getPackageName() + "/" + R.drawable.wy_icon_male);
+        Uri female = Uri.parse("android.resource://" + mContext.getPackageName() + "/" + R.drawable.wy_icon_female);
+        Uri nogender = Uri.parse("android.resource://" + mContext.getPackageName() + "/" + R.drawable.wy_icon_nogender);
         return user==null?
                 new UserInfo(
                 userId,
                 "未知",
-                Uri.parse(AppConstants.url_user_icon_nogender_local)):
+                nogender):
                 new UserInfo(
                         user.getId(),
                         user.getName(),
-                        user.getGender().equals("男")?
-                                Uri.parse(AppConstants.url_user_icon_male_local):
-                                Uri.parse(AppConstants.url_user_icon_female_local));
+                        user.getGender().equals("男")?male:female);
     }
 
     @Override

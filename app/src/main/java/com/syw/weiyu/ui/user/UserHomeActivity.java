@@ -87,12 +87,12 @@ public class UserHomeActivity extends Activity {
     }
 
     private void initViews() {
-        ImageView btnAdd = (ImageView) findViewById(R.id.header_right);
-        btnAdd.setImageResource(R.drawable.wy_ic_send_btn);
-        btnAdd.setPadding(4, 4, 4, 4);
+        final ImageView leftHeader = (ImageView) findViewById(R.id.header_right);
+        leftHeader.setImageResource(R.drawable.wy_ic_send_btn);
+        leftHeader.setPadding(4, 4, 4, 4);
         try {
             if (userId.equals(WeiyuApi.get().getAccount().getId())) {
-                btnAdd.setOnClickListener(new View.OnClickListener() {
+                leftHeader.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         AlertDialog dialog = getAddShuoshuoAlertDialog();
@@ -102,8 +102,26 @@ public class UserHomeActivity extends Activity {
 
                 ((TextView) findViewById(R.id.header_title)).setText("我的说说");
             } else {
-                btnAdd.setVisibility(View.INVISIBLE);
+                leftHeader.setImageResource(R.drawable.ic_action_hi);
+                leftHeader.setPadding(5,5,5,5);
+                leftHeader.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        WeiyuApi.get().sayHi(userId, new Listener<Null>() {
+                            @Override
+                            public void onSuccess(Null data) {
+                                Msger.i(UserHomeActivity.this, "TA收到了你的打招呼");
+                                leftHeader.setImageResource(R.drawable.ic_action_hi_completed);
+                                leftHeader.setOnClickListener(null);
+                            }
 
+                            @Override
+                            public void onFailure(String msg) {
+                                Msger.e(UserHomeActivity.this, "打招呼出错了:"+msg);
+                            }
+                        });
+                    }
+                });
                 ((TextView) findViewById(R.id.header_title)).setText("TA的说说");
             }
         } catch (AppException e) {

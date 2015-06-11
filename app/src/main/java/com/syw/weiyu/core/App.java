@@ -76,12 +76,12 @@ public class App extends Application {
             String TAG = "Weiyu";
             Logger.init(TAG);
 
-            if (isMainThread()) {
+//            if (isMainThread()) {
                 //初始化融云IMKit SDK，should not init RongIM in sub process
                 RongIM.init(this);
                 //初始化融云SDK事件监听处理
                 RongCloudEvent.init(this);
-            }
+//            }
 
             //初始化定位SDK
             LocSDK.init(this);

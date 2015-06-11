@@ -104,11 +104,11 @@ public class ShuoshuosAdapter extends PagingBaseAdapter {
         holder.content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (shuoshuos.size() == 1) {
-                    //如果是详情页,说说只有一条，就开启私聊
+                if (ctx instanceof ShuoshuoDetailActivity) {
+                    //如果是详情页，就开启私聊
                     RongIM.getInstance().startConversation(ctx, Conversation.ConversationType.PRIVATE, shuoshuo.getUserId(), shuoshuo.getUserName());
                 } else {
-                    //说说首页
+                    //进说说详情页
                     Intent intent = new Intent(ctx, ShuoshuoDetailActivity.class);
                     intent.putExtra("shuoshuo", shuoshuo);
                     ctx.startActivity(intent);
@@ -119,11 +119,11 @@ public class ShuoshuosAdapter extends PagingBaseAdapter {
         holder.commentCount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (shuoshuos.size() == 1) {
-                    //如果是详情页,说说只有一条，就开启私聊
+                if (ctx instanceof ShuoshuoDetailActivity) {
+                    //如果是详情页，就开启私聊
                     RongIM.getInstance().startConversation(ctx, Conversation.ConversationType.PRIVATE, shuoshuo.getUserId(), shuoshuo.getUserName());
                 } else {
-                    //说说首页
+                    //进说说详情页
                     Intent intent = new Intent(ctx, ShuoshuoDetailActivity.class);
                     intent.putExtra("shuoshuo", shuoshuo);
                     ctx.startActivity(intent);

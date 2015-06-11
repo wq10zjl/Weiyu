@@ -19,6 +19,10 @@ import io.rong.imkit.RongIM;
 @SuppressWarnings("deprecation")
 public class MainTabsActivity extends TabActivity {
 	private TabHost mTabHost;
+	View nearbyView;
+	View sessionListView;
+	View exploreView;
+	View mineView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +32,14 @@ public class MainTabsActivity extends TabActivity {
 		initTabs();
 	}
 
-    private void initViews() {
+	@Override
+	protected void onResume() {
+		super.onResume();
+		//设置消息未读提示红点
+		WeiyuApi.get().setBottomChatTabUnreadIndicator(sessionListView.findViewById(R.id.iv_msg_unread));
+	}
+
+	private void initViews() {
 		mTabHost = getTabHost();
 	}
 
@@ -42,7 +53,7 @@ public class MainTabsActivity extends TabActivity {
          * 说说
          */
         //底部指示器视图，上面图标下面文字
-		View nearbyView = inflater.inflate(
+		nearbyView = inflater.inflate(
 				R.layout.common_bottombar_tab_nearby_shuoshuo, null);
 		TabHost.TabSpec nearbyTabSpec = mTabHost.newTabSpec(
 				ShuoshuoActivity.class.getName()).setIndicator(nearbyView);
@@ -56,21 +67,19 @@ public class MainTabsActivity extends TabActivity {
         /**
          * 消息
          */
-		View sessionListView = inflater.inflate(
+		sessionListView = inflater.inflate(
 				R.layout.common_bottombar_tab_chat, null);
 		TabHost.TabSpec sessionListTabSpec = mTabHost.newTabSpec(
                 SessionListActivity.class.getName()).setIndicator(
 				sessionListView);
-		sessionListTabSpec.setContent(new Intent(MainTabsActivity.this,SessionListActivity.class));
+		sessionListTabSpec.setContent(new Intent(MainTabsActivity.this, SessionListActivity.class));
 		mTabHost.addTab(sessionListTabSpec);
-		//设置消息未读提示红点
-		WeiyuApi.get().setBottomChatTabUnreadIndicator(sessionListView.findViewById(R.id.iv_msg_unread));
 
 
         /**
          * 发现
          */
-        View exploreView = inflater.inflate(
+        exploreView = inflater.inflate(
                 R.layout.common_bottombar_tab_explore, null);
         TabHost.TabSpec exploreTabSpec = mTabHost.newTabSpec(
                 ExploreActivity.class.getName()).setIndicator(
@@ -82,7 +91,7 @@ public class MainTabsActivity extends TabActivity {
 		/**
 		 * 我
 		 */
-		View mineView = inflater.inflate(
+		mineView = inflater.inflate(
 				R.layout.common_bottombar_tab_mine, null);
 		TabHost.TabSpec mineTabSpec = mTabHost.newTabSpec(
 				MineActivity.class.getName()).setIndicator(

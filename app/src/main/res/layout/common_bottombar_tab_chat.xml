@@ -6,7 +6,13 @@
     android:paddingBottom="2dip" >
     <!--android:background="@drawable/bg_tb_item_center"-->
 
-    <ImageView android:id="@+id/iv_msg_unread" android:visibility="invisible" android:layout_alignParentRight="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_msg_unread_bg"/>
+    <ImageView android:layout_marginRight="20dp"
+               android:id="@+id/iv_msg_unread"
+               android:visibility="invisible"
+               android:layout_alignParentRight="true"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:src="@drawable/ic_msg_unread_bg"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

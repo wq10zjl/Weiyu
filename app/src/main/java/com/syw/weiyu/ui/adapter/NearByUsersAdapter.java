@@ -117,6 +117,7 @@ public class NearByUsersAdapter extends PagingBaseAdapter {
                     public void onSuccess(Null data) {
                         Msger.i((Activity)ctx, "打招呼消息发送完成");
                         holder.hi.setImageResource(R.drawable.ic_action_hi_completed);
+                        holder.hi.setOnClickListener(null);
                     }
 
                     @Override

@@ -30,9 +30,6 @@ public class AppConstants {
     //默认头像url
     public static final String url_user_icon_male = "http://com-syw-weiyu.qiniudn.com/wy_icon_male.png";
     public static final String url_user_icon_female = "http://com-syw-weiyu.qiniudn.com/wy_icon_female.png";
-    public static final String url_user_icon_male_local = "file:///android_asset/wy_icon_male.png";
-    public static final String url_user_icon_female_local = "file:///android_asset/wy_icon_female.png";
-    public static final String url_user_icon_nogender_local = "file:///android_asset/wy_icon_nogender.png";
 
 
 //  Baidu LocSDK
