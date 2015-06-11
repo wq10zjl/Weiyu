@@ -189,7 +189,10 @@ public class ShuoshuoActivity extends FragmentActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         String content = contentET.getText().toString();
-                        if (StringUtil.isEmpty(content)) return;
+                        if (StringUtil.isEmpty(content)) {
+                            Msger.e(ShuoshuoActivity.this, "←_←");
+                            return;
+                        }
                         try {
                             WeiyuApi.get().publishShuoshuo(content, new Listener<Null>() {
                                 @Override

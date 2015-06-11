@@ -1,5 +1,6 @@
 package com.syw.weiyu.ui.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -12,6 +13,10 @@ import android.widget.TextView;
 import com.paging.listview.PagingBaseAdapter;
 import com.syw.weiyu.R;
 import com.syw.weiyu.bean.User;
+import com.syw.weiyu.core.Listener;
+import com.syw.weiyu.core.Null;
+import com.syw.weiyu.core.WeiyuApi;
+import com.syw.weiyu.util.Msger;
 import com.syw.weiyu.util.TimeUtil;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.model.Conversation;
@@ -55,6 +60,7 @@ public class NearByUsersAdapter extends PagingBaseAdapter {
         public TextView name;
         public TextView address;
         public TextView time;
+        public ImageView hi;
     }
 
 //    @Override
@@ -75,7 +81,7 @@ public class NearByUsersAdapter extends PagingBaseAdapter {
     //然后重写getView
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
+        final ViewHolder holder;
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.wy_nearbyuser_lv_item, null);
             holder = new ViewHolder();
@@ -83,6 +89,7 @@ public class NearByUsersAdapter extends PagingBaseAdapter {
             holder.name = (TextView) convertView.findViewById(R.id.nearbyuser_tv_name);
             holder.address = (TextView) convertView.findViewById(R.id.nearbyuser_tv_address);
             holder.time = (TextView) convertView.findViewById(R.id.nearbyuser_tv_time);
+            holder.hi = (ImageView) convertView.findViewById(R.id.nearbyuser_iv_hi);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -102,6 +109,23 @@ public class NearByUsersAdapter extends PagingBaseAdapter {
             if (updatedAt!=0) holder.time.setText(TimeUtil.timeDiff(System.currentTimeMillis(),updatedAt));
             else holder.time.setVisibility(View.INVISIBLE);
         }
+        holder.hi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                WeiyuApi.get().sayHi(user.getId(), new Listener<Null>() {
+                    @Override
+                    public void onSuccess(Null data) {
+                        Msger.i((Activity)ctx, "打招呼消息发送完成");
+                        holder.hi.setImageResource(R.drawable.ic_action_hi_completed);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        Msger.e((Activity)ctx, "打招呼出错了:"+msg);
+                    }
+                });
+            }
+        });
 
         //点击用户时开启私聊
         convertView.setOnClickListener(new View.OnClickListener() {

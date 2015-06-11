@@ -17,6 +17,7 @@ public class Comment extends BmobObject {
     private long ssId;
 //    private Shuoshuo shuoshuo;
     private long timestamp;
+    private String shuoshuo;//所评论的说说文字
 
 
     public String getUserName() {
@@ -73,5 +74,13 @@ public class Comment extends BmobObject {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getShuoshuo() {
+        return shuoshuo;
+    }
+
+    public void setShuoshuo(String shuoshuo) {
+        this.shuoshuo = shuoshuo;
     }
 }

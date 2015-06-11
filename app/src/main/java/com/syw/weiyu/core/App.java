@@ -76,12 +76,12 @@ public class App extends Application {
             String TAG = "Weiyu";
             Logger.init(TAG);
 
-//            if (isMainThread()) {
+            if (isMainThread()) {
                 //初始化融云IMKit SDK，should not init RongIM in sub process
                 RongIM.init(this);
                 //初始化融云SDK事件监听处理
                 RongCloudEvent.init(this);
-//            }
+            }
 
             //初始化定位SDK
             LocSDK.init(this);
@@ -112,7 +112,7 @@ public class App extends Application {
         // 使用推送服务
         BmobPushHelper.initAndStartPushClient(this, account);
         //login IM
-        try { WeiyuApi.get().login(account.getToken()); } catch (AppException e) {}
+        try { WeiyuApi.get().login(account.getToken()); } catch (AppException e) {Logger.e(e.getMessage());}
     }
 
 

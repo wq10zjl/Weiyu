@@ -1,5 +1,6 @@
 package com.syw.weiyu.ui.shuoshuo;
 
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
@@ -15,6 +16,8 @@ import com.syw.weiyu.ui.adapter.CommentsAdapter;
 import com.syw.weiyu.ui.adapter.ShuoshuosAdapter;
 import com.syw.weiyu.util.StringUtil;
 import com.syw.weiyu.util.Msger;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.model.Conversation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,6 +100,14 @@ public class ShuoshuoDetailActivity extends FragmentActivity {
         });
         TextView tvTitle = (TextView) findViewById(R.id.header_title);
         tvTitle.setText("详情");
+        ImageView chat = (ImageView) findViewById(R.id.header_right);
+        chat.setImageResource(R.drawable.ic_action_chat);
+        chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RongIM.getInstance().startConversation(ShuoshuoDetailActivity.this, Conversation.ConversationType.PRIVATE, shuoshuo.getUserId(), shuoshuo.getUserName());
+            }
+        });
 
         listView = (ListView) findViewById(R.id.comments);
         adapter = new CommentsAdapter(ShuoshuoDetailActivity.this);

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.syw.weiyu.R;
+import com.syw.weiyu.core.WeiyuApi;
 
 /**
  * author: youwei
@@ -24,7 +25,6 @@ public class SessionListActivity extends FragmentActivity implements View.OnClic
 
     private void initViews() {
         findViewById(R.id.sessionlist_item_comment_message).setOnClickListener(this);
-
         ((TextView) findViewById(R.id.header_title)).setText("消息");
     }
 

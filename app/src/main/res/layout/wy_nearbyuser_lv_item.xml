@@ -1,25 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:id="@+id/nearby_lv_item"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp">
-
-<ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="11dip"
-        android:layout_marginRight="11dip"
-        android:background="#bbbbbb"/>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:background="@drawable/section_list_bg">
 
         <ImageView
             android:id="@+id/nearbyuser_iv_portrait"
@@ -29,6 +17,7 @@
             android:src="@drawable/ic_launcher"/>
 
         <LinearLayout
+                android:layout_weight="1"
             android:layout_marginLeft="5dip"
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -47,13 +36,12 @@
 
                 <TextView android:id="@+id/nearbyuser_tv_time" android:text="time" android:layout_gravity="end" android:gravity="end"
                           android:textSize="15dp" android:maxLines="1" android:layout_marginRight="12dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
 
             <TextView
+                    android:layout_weight="1"
                     android:id="@+id/nearbyuser_tv_address"
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="26dip"
                     android:singleLine="true"
                     android:text="address"
@@ -64,7 +52,7 @@
 
         </LinearLayout>
 
-
-    </LinearLayout>
-
+        <ImageView android:id="@+id/nearbyuser_iv_hi" android:layout_width="32dp" android:layout_height="match_parent"
+               android:src="@drawable/ic_action_hi"
+               android:gravity="end"/>
 </LinearLayout>

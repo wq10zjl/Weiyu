@@ -28,12 +28,17 @@ public class CommentMessageActivity extends FragmentActivity {
         setContentView(R.layout.wy_activity_message_comment);
 
         initView();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         initData();
     }
 
     private void initData() {
         FinalDb finalDb = FinalDb.create(this);
-        data = finalDb.findAll(Comment.class);
+        data = finalDb.findAllByWhere(Comment.class, null, "timestamp desc");
         adapter.set(data);
     }
 

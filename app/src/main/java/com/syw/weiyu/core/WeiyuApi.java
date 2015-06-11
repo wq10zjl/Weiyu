@@ -22,6 +22,10 @@ import com.syw.weiyu.splash.WeiyuSplashListener;
 import com.syw.weiyu.util.WeiyuSize;
 import com.syw.weiyu.util.WeiyuSplashMode;
 import io.rong.imkit.RongIM;
+import io.rong.imlib.RongIMClient;
+import io.rong.imlib.model.Conversation;
+import io.rong.imlib.model.MessageContent;
+import io.rong.message.InformationNotificationMessage;
 
 import java.util.List;
 
@@ -235,6 +239,41 @@ public class WeiyuApi {
         return false;
     }
 
+
+    /**
+     * say hi
+     */
+    public void sayHi(final String targetUserId, final Listener<Null> listener) {
+        try {
+            final Account account = localAccountDao.get();
+            RongIMClient.getInstance().sendMessage(
+                    Conversation.ConversationType.PRIVATE,
+                    targetUserId,
+                    new InformationNotificationMessage(account.getName()+"向你打了个招呼"),
+                    null,
+                    new RongIMClient.SendMessageCallback() {
+                @Override
+                public void onError(Integer integer, RongIMClient.ErrorCode errorCode) {
+                    listener.onFailure(errorCode.getMessage());
+                }
+
+                @Override
+                public void onSuccess(Integer integer) {
+                    listener.onSuccess(null);
+                    RongIMClient.getInstance().insertMessage(
+                            Conversation.ConversationType.PRIVATE,
+                            targetUserId,
+                            account.getId(),
+                            new InformationNotificationMessage("你向对方打了个招呼"),
+                            null
+                    );
+                }
+            });
+        } catch (AppException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * =============================================================
      * ------------------------位置部分---------------------------
@@ -342,6 +381,7 @@ public class WeiyuApi {
                 //++
                 shuoshuoDao.addCommentCount(shuoshuo);
                 //push
+                data.setShuoshuo(shuoshuo.getContent());
                 BmobPushHelper.pushCommentMessage(shuoshuo.getUserId(), data);
             }
 
@@ -364,14 +404,9 @@ public class WeiyuApi {
      * @param unreadIndicator
      */
     public void setBottomChatTabUnreadIndicator(final View unreadIndicator) {
-        RongIM.getInstance().setOnReceiveUnreadCountChangedListener(new RongIM.OnReceiveUnreadCountChangedListener() {
-            @Override
-            public void onMessageIncreased(int i) {
-                Logger.d("RongIM OnReceiveUnreadCountChanged onMessageIncreased:"+i);
-                if (i == 0) unreadIndicator.setVisibility(View.INVISIBLE);
-                else unreadIndicator.setVisibility(View.VISIBLE);
-            }
-        });
+        int i = RongIMClient.getInstance().getTotalUnreadCount();
+        if (i == 0) unreadIndicator.setVisibility(View.INVISIBLE);
+        else unreadIndicator.setVisibility(View.VISIBLE);
     }
 
 

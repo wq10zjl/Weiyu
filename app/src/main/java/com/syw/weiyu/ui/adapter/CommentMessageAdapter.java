@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.syw.weiyu.R;
 import com.syw.weiyu.bean.Comment;
 import com.syw.weiyu.ui.shuoshuo.ShuoshuoDetailActivity;
+import com.syw.weiyu.util.RandomBg;
+import com.syw.weiyu.util.TimeUtil;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.model.Conversation;
 
@@ -50,6 +52,8 @@ public class CommentMessageAdapter extends BaseAdapter {
         public ImageView portrait;
         public TextView name;
         public TextView content;
+        public TextView time;
+        public TextView shuoshuo;
     }
 
     @Override
@@ -77,6 +81,8 @@ public class CommentMessageAdapter extends BaseAdapter {
             holder.portrait = (ImageView) convertView.findViewById(R.id.comment_iv_gender);
             holder.name = (TextView) convertView.findViewById(R.id.comment_tv_name);
             holder.content = (TextView) convertView.findViewById(R.id.comment_tv_content);
+            holder.time = (TextView) convertView.findViewById(R.id.comment_tv_time);
+            holder.shuoshuo = (TextView) convertView.findViewById(R.id.comment_tv_shuoshuo);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -85,6 +91,9 @@ public class CommentMessageAdapter extends BaseAdapter {
         holder.portrait.setImageResource(comment.getUserGender().equals("男")?R.drawable.wy_icon_male:R.drawable.wy_icon_female);
         holder.name.setText(comment.getUserName());
         holder.content.setText(comment.getContent());
+        holder.time.setText(TimeUtil.timeDiff(System.currentTimeMillis(), comment.getTimestamp()));
+        holder.shuoshuo.setText(comment.getShuoshuo());
+        holder.shuoshuo.setBackgroundResource(RandomBg.getBgResId(comment.getTimestamp()));
 
         //点击评论时进详情页
         convertView.setOnClickListener(new View.OnClickListener() {

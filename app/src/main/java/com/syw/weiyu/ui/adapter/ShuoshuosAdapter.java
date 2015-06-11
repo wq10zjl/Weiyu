@@ -13,6 +13,7 @@ import com.syw.weiyu.R;
 import com.syw.weiyu.core.WeiyuApi;
 import com.syw.weiyu.bean.Shuoshuo;
 import com.syw.weiyu.ui.shuoshuo.ShuoshuoDetailActivity;
+import com.syw.weiyu.util.RandomBg;
 import com.syw.weiyu.util.TimeUtil;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.model.Conversation;
@@ -144,7 +145,8 @@ public class ShuoshuosAdapter extends PagingBaseAdapter {
 
         /*设置背景色*/
         //1/2白色
-        if (shuoshuo.getTimestamp()%2 == 0) {
+        long n = shuoshuo.getTimestamp();
+        if (n%2 == 0) {
             convertView.setBackgroundResource(R.drawable.s_1);
             holder.name.setTextColor(Color.BLACK);
             holder.address.setTextColor(Color.BLACK);
@@ -155,19 +157,7 @@ public class ShuoshuosAdapter extends PagingBaseAdapter {
             holder.liked.setImageResource(R.drawable.wy_ic_card_like_grey);
         } else {
             //随机背景图[非白色]
-            int[] bgs = new int[]{
-                    R.drawable.s_2,
-                    R.drawable.s_3,
-                    R.drawable.s_4,
-                    R.drawable.s_5,
-                    R.drawable.s_6,
-                    R.drawable.s_7,
-                    R.drawable.s_8,
-                    R.drawable.s_9,
-                    R.drawable.s_10,
-            };
-            int i = Math.abs((int)shuoshuo.getTimestamp()%9);//0~8
-            convertView.setBackgroundResource(bgs[i]);
+            convertView.setBackgroundResource(RandomBg.getBgResId(n));
             holder.name.setTextColor(Color.WHITE);
             holder.address.setTextColor(Color.WHITE);
             holder.time.setTextColor(Color.WHITE);

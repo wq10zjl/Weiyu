@@ -8,7 +8,7 @@
     android:padding="16dip">
 
     <EditText
-        android:hint="和附近的人说说你的秘密"
+        android:hint="和附近的人说点什么..."
         android:id="@+id/et_shuoshuo_content"
         android:background="@null"
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
         android:inputType="textMultiLine"
         android:ems="10"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:minLines="5"
+        android:minLines="6"
         android:maxLength="314"
         android:maxLines="27"/>
 
