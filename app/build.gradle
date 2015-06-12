@@ -8,7 +8,7 @@ android {
         applicationId "com.syw.weiyu"
         minSdkVersion 14
         targetSdkVersion 22
-        versionCode 3
+        versionCode 20150611
         versionName "2.3"
     }
 

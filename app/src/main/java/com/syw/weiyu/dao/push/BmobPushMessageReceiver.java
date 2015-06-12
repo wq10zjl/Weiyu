@@ -67,6 +67,7 @@ public class BmobPushMessageReceiver extends BroadcastReceiver {
 //                .setVibrate(new long[]{1000, 1000})
                 .setLights(Color.BLUE, 3000, 3000)
                 .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
+                .setAutoCancel(true)
                 ;
 //        TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
 //        stackBuilder.add

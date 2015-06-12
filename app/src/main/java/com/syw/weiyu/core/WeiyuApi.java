@@ -72,15 +72,14 @@ public class WeiyuApi {
     /**
      * 登录接口
      * 连接IM服务器
-     * 更新最后在线时间
-     * 更新地理位置信息
+     * 更新最后在线时间&地理位置信息
      * @param token
      * @throws AppException 无token
      */
     public void login(String token) throws AppException {
         RongCloud.connect(token);
         try {
-            userDao.update(localAccountDao.get().getBmobObjectId(),null,null,null,locationDao.get(),null);
+            userDao.update(localAccountDao.get().getBmobObjectId(), null, null, null, locationDao.get(), null);
         } catch (AppException e) {
             Logger.e(e.getMessage());
         }
@@ -93,10 +92,8 @@ public class WeiyuApi {
      * 3.退出App
      */
     public void logout() {
-
+        updateLastOnlineTimestamp();
         RongCloud.disconnect();
-        //unregister push
-
         System.exit(0);
     }
 
@@ -192,9 +189,14 @@ public class WeiyuApi {
      */
     public void updateProfile(final String id, final String name,final String gender,final Listener<Null> listener) {
         try {
-            userDao.update(localAccountDao.get().getBmobObjectId(), id, name, gender, locationDao.get(), new Listener<Null>() {
+            final Account account = localAccountDao.get();
+            userDao.update(account.getBmobObjectId(), id, name, gender, locationDao.get(), new Listener<Null>() {
                 @Override
                 public void onSuccess(Null data) {
+                    //set local
+                    account.setName(name);
+                    account.setGender(gender);
+                    localAccountDao.set(account);
                     //再刷新RongCloud用户信息
                     RongCloud.refreshUserInfo(id, name, gender.equals("男") ? AppConstants.url_user_icon_male : AppConstants.url_user_icon_female, listener);
                 }
@@ -218,6 +220,7 @@ public class WeiyuApi {
         MLocation location = locationDao.get();
         int pageSize = AppConstants.page_size_default;
         userDao.getNearbyUsers(location, pageSize, pageIndex, listener);
+        updateLastOnlineTimestamp();
     }
 
     /**
@@ -237,6 +240,17 @@ public class WeiyuApi {
      */
     public boolean isOnline(String id) {
         return false;
+    }
+
+    /**
+     * 更新最后在线时间
+     */
+    public void updateLastOnlineTimestamp() {
+        try {
+            userDao.updateLastOnlineTimestamp(localAccountDao.get().getBmobObjectId(), System.currentTimeMillis());
+        } catch (AppException e) {
+            e.getMessage();
+        }
     }
 
 
@@ -320,6 +334,7 @@ public class WeiyuApi {
      */
     public void getNearbyShuoshuo(int pageIndex,Listener<ShuoshuoList> listener) {
         shuoshuoDao.getNearbyShuoshuos(locationDao.get(),AppConstants.page_size_default,pageIndex,listener);
+        updateLastOnlineTimestamp();
     }
 
     /**

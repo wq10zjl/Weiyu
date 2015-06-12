@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import android.widget.TextView;
 import com.dd.processbutton.iml.ActionProcessButton;
 import com.syw.weiyu.core.AppException;
 import com.syw.weiyu.core.Listener;
@@ -34,6 +35,7 @@ public class ProfileActivity extends LoginBaseActivity {
             }
         });
         //setTitle
+        ((TextView)findViewById(R.id.header_title)).setText("修改资料");
 
         //set progress button
         ActionProcessButton button = (ActionProcessButton) findViewById(R.id.btnSignIn);

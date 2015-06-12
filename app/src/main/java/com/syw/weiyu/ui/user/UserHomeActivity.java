@@ -88,8 +88,6 @@ public class UserHomeActivity extends Activity {
 
     private void initViews() {
         final ImageView leftHeader = (ImageView) findViewById(R.id.header_right);
-        leftHeader.setImageResource(R.drawable.wy_ic_send_btn);
-        leftHeader.setPadding(4, 4, 4, 4);
         try {
             if (userId.equals(WeiyuApi.get().getAccount().getId())) {
                 leftHeader.setOnClickListener(new View.OnClickListener() {
@@ -101,9 +99,9 @@ public class UserHomeActivity extends Activity {
                 });
 
                 ((TextView) findViewById(R.id.header_title)).setText("我的说说");
+                leftHeader.setImageResource(R.drawable.ic_action_new);
             } else {
                 leftHeader.setImageResource(R.drawable.ic_action_hi);
-                leftHeader.setPadding(5,5,5,5);
                 leftHeader.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

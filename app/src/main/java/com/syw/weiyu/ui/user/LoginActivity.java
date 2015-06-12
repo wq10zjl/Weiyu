@@ -2,6 +2,9 @@ package com.syw.weiyu.ui.user;
 
 import android.content.Intent;
 
+import android.os.Bundle;
+import android.widget.TextView;
+import com.syw.weiyu.R;
 import com.syw.weiyu.core.AppException;
 import com.syw.weiyu.core.Listener;
 import com.syw.weiyu.core.WeiyuApi;
@@ -14,6 +17,12 @@ import com.syw.weiyu.util.Msger;
  * 登录填资料的Activity
  */
 public class LoginActivity extends LoginBaseActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ((TextView)findViewById(R.id.header_title)).setText("登录");
+    }
+
     @Override
     public void doOnClickWork(String userId, String name, String gender) {
         //注册

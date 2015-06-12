@@ -83,13 +83,13 @@ public class App extends Application {
                 RongCloudEvent.init(this);
 //            }
 
+            //初始化BmobSDK
+            Bmob.initialize(this, AppConstants.bmob_app_id);
+
             //初始化定位SDK
             LocSDK.init(this);
             //定位并保存
             WeiyuApi.get().locate();
-
-            //初始化BmobSDK
-            Bmob.initialize(this, AppConstants.bmob_app_id);
 
             //拿账户数据，登录IM&推送
             Account account = new LocalAccountDao().get();
@@ -111,7 +111,7 @@ public class App extends Application {
         putCache(KEY_ACCOUNT, account);
         // 使用推送服务
         BmobPushHelper.initAndStartPushClient(this, account);
-        //login IM
+        //login
         try { WeiyuApi.get().login(account.getToken()); } catch (AppException e) {Logger.e(e.getMessage());}
     }
 

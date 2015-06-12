@@ -107,7 +107,7 @@ public class UserDao4Bmob implements UserDao {
         user.setLastOnlineTimestamp(lastOnlineTimestamp);
         user.update(App.getCtx());
     }
-//
+
 //    @Override
 //    public void updateLocation(@NonNull String objectId, MLocation location) {
 //        User user = new User();
