@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.syw.weiyu.R;
+import com.syw.weiyu.dao.img.BmobImageDao;
 
 /**
  * author: youwei

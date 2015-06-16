@@ -2,6 +2,7 @@ package com.syw.weiyu.ui.shuoshuo;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import cn.bmob.v3.update.BmobUpdateAgent;
 import com.paging.listview.PagingListView;
+import com.syw.weiyu.bean.Shuoshuo;
 import com.syw.weiyu.core.AppException;
 import com.syw.weiyu.core.Listener;
 import com.syw.weiyu.core.Null;
@@ -92,8 +94,10 @@ public class ShuoshuoActivity extends FragmentActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog dialog = getAddShuoshuoAlertDialog();
-                dialog.show();
+                Intent intent = new Intent(ShuoshuoActivity.this, AddShuoshuoActivity.class);
+                startActivity(intent);
+//                AlertDialog dialog = getAddShuoshuoAlertDialog();
+//                dialog.show();
             }
         });
 //        ImageView btnMessage = (ImageView) findViewById(R.id.header_left);
@@ -189,10 +193,6 @@ public class ShuoshuoActivity extends FragmentActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         String content = contentET.getText().toString();
-                        if (StringUtil.isEmpty(content)) {
-                            Msger.e(ShuoshuoActivity.this, "←_←");
-                            return;
-                        }
                         try {
                             WeiyuApi.get().publishShuoshuo(content, new Listener<Null>() {
                                 @Override

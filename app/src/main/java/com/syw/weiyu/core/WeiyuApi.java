@@ -19,6 +19,7 @@ import com.syw.weiyu.dao.user.UserDao;
 import com.syw.weiyu.dao.user.UserDao4Bmob;
 import com.syw.weiyu.splash.WeiyuSplash;
 import com.syw.weiyu.splash.WeiyuSplashListener;
+import com.syw.weiyu.util.StringUtil;
 import com.syw.weiyu.util.WeiyuSize;
 import com.syw.weiyu.util.WeiyuSplashMode;
 import io.rong.imkit.RongIM;
@@ -360,6 +361,7 @@ public class WeiyuApi {
      * @param listener
      */
     public void publishShuoshuo(String content,Listener<Null> listener) throws AppException {
+        if (StringUtil.isEmpty(content)) throw new AppException("什么都没写←_←");
         Account account = localAccountDao.get();
         shuoshuoDao.create(account, locationDao.get(), content, System.currentTimeMillis(), listener);
     }

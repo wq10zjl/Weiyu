@@ -94,7 +94,7 @@ public class LocSDK {
      * 定位成功的回调接口
      */
     public interface OnLocateCompleteListener {
-        public void onSuccess(BDLocation location);
-        public void onFailure();
+        void onSuccess(BDLocation location);
+        void onFailure();
     }
 }

@@ -135,7 +135,6 @@
         <activity android:name=".ui.LauncherActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -190,10 +189,11 @@
         <!-- 附近说说 -->
         <activity android:name=".ui.shuoshuo.ShuoshuoActivity" android:screenOrientation="portrait"/>
 
+        <!--发布说说-->
+        <activity android:name=".ui.shuoshuo.AddShuoshuoActivity" android:windowSoftInputMode="stateHidden" android:screenOrientation="portrait"/>
+
         <!-- 说说详情 -->
-        <activity
-            android:name=".ui.shuoshuo.ShuoshuoDetailActivity"
-            android:windowSoftInputMode="stateHidden" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.shuoshuo.ShuoshuoDetailActivity" android:windowSoftInputMode="stateHidden" android:screenOrientation="portrait"/>
 
         <!--大图-->
         <activity android:name=".ui.session.PhotoActivity" android:theme="@style/Theme.AppCompat"/>

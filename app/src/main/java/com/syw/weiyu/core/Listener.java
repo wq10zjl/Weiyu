@@ -11,4 +11,3 @@ public interface Listener<T> {
     void onFailure(String msg);
 
 }
-
