@@ -195,8 +195,11 @@
         <!-- 说说详情 -->
         <activity android:name=".ui.shuoshuo.ShuoshuoDetailActivity" android:windowSoftInputMode="stateHidden" android:screenOrientation="portrait"/>
 
-        <!--大图-->
+        <!--看聊天发送的大图-->
         <activity android:name=".ui.session.PhotoActivity" android:theme="@style/Theme.AppCompat"/>
+
+        <!--查看大图-->
+        <activity android:name=".ui.shuoshuo.ImgViewerActivity" android:screenOrientation="portrait"/>
 
         <!--用户个人主页-->
         <activity android:name=".ui.user.UserHomeActivity"/>

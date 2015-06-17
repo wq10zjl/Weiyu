@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--android:background="@android:drawable/picture_frame"-->
-<LinearLayout
+<LinearLayout android:layout_margin="10dp"
         android:background="@color/white"
         android:orientation="vertical"
         android:id="@+id/nearby_shuoshuo_lv_item"
@@ -8,8 +8,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
 
-    <LinearLayout android:layout_marginTop="20dp" android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
-                  android:layout_width="match_parent"
+    <LinearLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content">
 
         <TextView
@@ -18,7 +17,7 @@
                 android:layout_height="wrap_content"
                 android:text="name"
                 android:layout_weight="3"
-                android:textSize="18dp"
+                android:textSize="15dp"
                 android:textColor="@color/black"/>
 
         <TextView
@@ -33,25 +32,29 @@
                 android:textColor="@color/black"/>
     </LinearLayout>
 
-    <TextView android:layout_margin="10dp"
+    <TextView
+              android:layout_margin="10dp"
               android:id="@+id/shuoshuo_tv_content"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:minHeight="128dip"
-              android:text="content"
+              android:minHeight="200dip"
+              android:maxHeight="314dp"
               android:gravity="center"
-              android:textSize="24dp"
+              android:text="content"
+              android:textSize="20dp"
               android:textColor="@color/black"/>
 
-    <ImageView android:id="@+id/shuoshuo_iv_img" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    <!--<ImageView android:id="@+id/shuoshuo_iv_img"-->
+               <!--android:layout_width="wrap_content"-->
+               <!--android:layout_height="wrap_content"-->
+               <!--android:layout_marginLeft="10dp"-->
+               <!--android:scaleType="center"/>-->
 
-    <LinearLayout android:orientation="horizontal" android:layout_marginBottom="20dp" android:layout_marginLeft="10dp"
-                  android:layout_marginRight="10dp"
+    <LinearLayout android:orientation="horizontal"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content">
 
-        <TextView android:layout_gravity="center"
-                  android:layout_weight="3"
+        <TextView android:layout_weight="4"
                   android:id="@+id/shuoshuo_tv_address"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
