@@ -27,6 +27,7 @@ public class Shuoshuo extends BmobObject {
     private int commentCount;//评论数
 //    private BmobRelation comments;
     private int likedCount;//喜欢数
+    private String imgUrl;//图片url
 
     public long getId() {
         return id;
@@ -106,5 +107,13 @@ public class Shuoshuo extends BmobObject {
 
     public void setLikedCount(int likedCount) {
         this.likedCount = likedCount;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 }

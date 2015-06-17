@@ -37,6 +37,17 @@ public interface ShuoshuoDao {
     void create(Account account,MLocation location,String content,long timeStamp, final Listener<Null> listener);
 
     /**
+     * 发布带图说说
+     * @param account
+     * @param location
+     * @param content
+     * @param imgUrl
+     * @param timeStamp
+     * @param listener
+     */
+    void create(Account account,MLocation location,String content, String imgUrl,long timeStamp, final Listener<Null> listener);
+
+    /**
      * 评论数++
      * @param shuoshuo
      */

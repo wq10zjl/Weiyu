@@ -11,6 +11,7 @@ import com.syw.weiyu.av.WeiyuLayout;
 import com.syw.weiyu.bean.*;
 import com.syw.weiyu.controller.listener.WeiyuListener;
 import com.syw.weiyu.dao.im.RongCloud;
+import com.syw.weiyu.dao.img.BmobImageDao;
 import com.syw.weiyu.dao.location.LocationDao;
 import com.syw.weiyu.dao.push.BmobPushHelper;
 import com.syw.weiyu.dao.shuoshuo.*;
@@ -352,7 +353,7 @@ public class WeiyuApi {
      * 获取某一个说说
      */
     public void getShuoshuo(long id, Listener<Shuoshuo> listener) {
-        shuoshuoDao.getShuoshuo(id,listener);
+        shuoshuoDao.getShuoshuo(id, listener);
     }
     
     /**
@@ -364,6 +365,25 @@ public class WeiyuApi {
         if (StringUtil.isEmpty(content)) throw new AppException("什么都没写←_←");
         Account account = localAccountDao.get();
         shuoshuoDao.create(account, locationDao.get(), content, System.currentTimeMillis(), listener);
+    }
+
+    /**
+     * 发布带图片的说说
+     */
+    public void publishShuoshuoWithPic(final String content,String picPath, final Listener<Null> listener) throws AppException {
+        if (StringUtil.isEmpty(content)) throw new AppException("什么都没写←_←");
+        final Account account = localAccountDao.get();
+        BmobImageDao.getInstance(App.getCtx()).saveThumbnailPic(picPath, new Listener<String>() {
+            @Override
+            public void onSuccess(String data) {
+                shuoshuoDao.create(account, locationDao.get(), content, data, System.currentTimeMillis(), listener);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                listener.onFailure(msg);
+            }
+        });
     }
 
     /**

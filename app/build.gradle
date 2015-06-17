@@ -43,6 +43,7 @@ dependencies {
     compile 'com.github.nicolasjafelle:paginglistview:1.2'
     compile 'com.orhanobut:logger:1.8'
     compile 'com.github.johnkil.android-appmsg:appmsg:1.2.0'
+    compile 'com.squareup.picasso:picasso:2.5.2'
 
     compile project(':IMkit')
     //event bus 已经集成在融云里了

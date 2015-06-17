@@ -9,11 +9,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.paging.listview.PagingBaseAdapter;
+import com.squareup.picasso.Picasso;
 import com.syw.weiyu.R;
 import com.syw.weiyu.core.WeiyuApi;
 import com.syw.weiyu.bean.Shuoshuo;
+import com.syw.weiyu.dao.img.BmobImageDao;
 import com.syw.weiyu.ui.shuoshuo.ShuoshuoDetailActivity;
 import com.syw.weiyu.util.RandomBg;
+import com.syw.weiyu.util.StringUtil;
 import com.syw.weiyu.util.TimeUtil;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.model.Conversation;
@@ -56,6 +59,7 @@ public class ShuoshuosAdapter extends PagingBaseAdapter {
         public TextView commentCount;
         public ImageView liked;
         public TextView likedCount;
+        public ImageView img;
     }
 
     @Override
@@ -87,6 +91,7 @@ public class ShuoshuosAdapter extends PagingBaseAdapter {
             holder.commentCount = (TextView) convertView.findViewById(R.id.shuoshuo_tv_comment_count);
             holder.liked = (ImageView) convertView.findViewById(R.id.ic_like);
             holder.likedCount = (TextView) convertView.findViewById(R.id.shuoshuo_tv_liked_count);
+            holder.img = (ImageView) convertView.findViewById(R.id.shuoshuo_iv_img);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -95,10 +100,15 @@ public class ShuoshuosAdapter extends PagingBaseAdapter {
         holder.name.setText(shuoshuo.getUserName());
         holder.address.setText(shuoshuo.getLocation()==null?shuoshuo.getAddressStr():shuoshuo.getLocation().getProvince()+shuoshuo.getLocation().getCity()+shuoshuo.getLocation().getDistrict());
 //        holder.time.setText(new SimpleDateFormat("MM-dd kk:mm").format(new Date(shuoshuo.getTimestamp())));
-        holder.time.setText(TimeUtil.timeDiff(System.currentTimeMillis(),shuoshuo.getTimestamp()));
+        holder.time.setText(TimeUtil.timeDiff(System.currentTimeMillis(), shuoshuo.getTimestamp()));
         holder.content.setText(shuoshuo.getContent());
-        holder.commentCount.setText(String.valueOf(shuoshuo.getCommentCount())+"评论");
+        holder.commentCount.setText(String.valueOf(shuoshuo.getCommentCount()) + "评论");
         holder.likedCount.setText(String.valueOf(shuoshuo.getLikedCount()));
+        String imgUrl = shuoshuo.getImgUrl();
+        if (!StringUtil.isEmpty(imgUrl)) {
+            imgUrl = BmobImageDao.getSingedUrl(imgUrl);
+            Picasso.with(ctx).load(imgUrl).into(holder.img);
+        }
 
         //点内容时跳转
         holder.content.setOnClickListener(new View.OnClickListener() {
@@ -141,7 +151,6 @@ public class ShuoshuosAdapter extends PagingBaseAdapter {
                 holder.likedCount.setText(String.valueOf(shuoshuo.getLikedCount()));
             }
         });
-
 
         /*设置背景色*/
         //1/2白色

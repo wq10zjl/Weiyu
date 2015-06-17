@@ -26,19 +26,33 @@ public class BmobImageDao {
         }
         return imageDao;
     }
-    public void save(String filePath, final Listener<String> listener) {
+
+    /**
+     * è·å–ç­¾ååçš„å¯ç›´æ¥è®¿é—®çš„å›¾ç‰‡åœ°å€
+     * @param unsignedUrl
+     * @return
+     */
+    public static String getSingedUrl(String unsignedUrl) {
+        return unsignedUrl+"?t=2&a="+AppConstants.bmob_access_key;
+    }
+
+    /**
+     * ä¿å­˜å›¾ç‰‡åˆ°æœåŠ¡å™¨
+     * @param filePath æœ¬åœ°å›¾ç‰‡è·¯å¾„
+     * @param listener åŒ…å«è¿”å›çš„æœªç­¾åçš„å›¾ç‰‡è®¿é—®åœ°å€
+     */
+    public void savePic(String filePath, final Listener<String> listener) {
         bmobProFile.upload(filePath, new UploadListener() {
 
-            //ÎÄ¼şÃû£¨´øºó×º£©£¬Õâ¸öÎÄ¼şÃûÊÇÎ¨Ò»µÄ£¬¿ª·¢ÕßĞèÒª¼ÇÂ¼ÏÂ¸ÃÎÄ¼şÃû£¬·½±ãºóĞøÏÂÔØ»òÕß½øĞĞËõÂÔÍ¼µÄ´¦Àí¡£
-            //url£ºÎÄ¼ş·şÎñÆ÷µØÖ·£¨Èç¹ûÄãÉÏ´«µÄÊÇÍ¼Æ¬ÀàĞÍµÄÎÄ¼ş£¬´ËurlµØÖ·²¢²»ÄÜÖ±½ÓÔÚä¯ÀÀÆ÷²é¿´£¨»á³öÏÖ404´íÎó£©£¬
-            // Õâ¸öurlµØÖ·ĞèÒª¾­¹ıURLÇ©Ãûºó²Å¿ÉÒÔ±»·ÃÎÊµ½£¬¶øURLÇ©ÃûÓÖ·Ö¿ªÆôºÍ²»¿ªÆôÁ½ÖÖ·½Ê½£¬¶şÕßµÄÇø±ğÔÚÓÚÊ±Ğ§ĞÔ¡£¾ßÌå¿É²é¿´URLÇ©Ãû
-            //Î´¿ªÆôÇ©ÃûÈÏÖ¤µÄURLµØÖ·¸ñÊ½£º
-            // URL=url(ÎÄ¼şÉÏ´«³É¹¦Ö®ºó·µ»ØµÄurlµØÖ·)?t=£¨¿Í»§¶ËÀàĞÍ£©&a=(Ó¦ÓÃÃÜÔ¿ÖĞµÄAccessKey)
+            //æ–‡ä»¶åï¼ˆå¸¦åç¼€ï¼‰ï¼Œè¿™ä¸ªæ–‡ä»¶åæ˜¯å”¯ä¸€çš„ï¼Œå¼€å‘è€…éœ€è¦è®°å½•ä¸‹è¯¥æ–‡ä»¶åï¼Œæ–¹ä¾¿åç»­ä¸‹è½½æˆ–è€…è¿›è¡Œç¼©ç•¥å›¾çš„å¤„ç†ã€‚
+            //urlï¼šæ–‡ä»¶æœåŠ¡å™¨åœ°å€ï¼ˆå¦‚æœä½ ä¸Šä¼ çš„æ˜¯å›¾ç‰‡ç±»å‹çš„æ–‡ä»¶ï¼Œæ­¤urlåœ°å€å¹¶ä¸èƒ½ç›´æ¥åœ¨æµè§ˆå™¨æŸ¥çœ‹ï¼ˆä¼šå‡ºç°404é”™è¯¯ï¼‰ï¼Œ
+            // è¿™ä¸ªurlåœ°å€éœ€è¦ç»è¿‡URLç­¾ååæ‰å¯ä»¥è¢«è®¿é—®åˆ°ï¼Œè€ŒURLç­¾ååˆåˆ†å¼€å¯å’Œä¸å¼€å¯ä¸¤ç§æ–¹å¼ï¼ŒäºŒè€…çš„åŒºåˆ«åœ¨äºæ—¶æ•ˆæ€§ã€‚å…·ä½“å¯æŸ¥çœ‹URLç­¾å
+            //æœªå¼€å¯ç­¾åè®¤è¯çš„URLåœ°å€æ ¼å¼ï¼š
+            // URL=url(æ–‡ä»¶ä¸Šä¼ æˆåŠŸä¹‹åè¿”å›çš„urlåœ°å€)?t=ï¼ˆå®¢æˆ·ç«¯ç±»å‹,Androidä¸º2ï¼‰&a=(åº”ç”¨å¯†é’¥ä¸­çš„AccessKey)
             @Override
             public void onSuccess(String fileName, String url) {
-                String signedURL = bmobProFile.signURL(fileName, url, AppConstants.bmob_access_key, 0, null);
-                Logger.i("signedURL:" + signedURL);
-                listener.onSuccess(signedURL);
+                Logger.i("upload file success, fileName:" + fileName + ", url:" + url + ", signedURL:" + getSingedUrl(url));
+                listener.onSuccess(url);
             }
 
             @Override
@@ -47,25 +61,49 @@ public class BmobImageDao {
 
             @Override
             public void onError(int statuscode, String errormsg) {
-                listener.onFailure("ÉÏ´«³ö´í£º" + errormsg);
+                listener.onFailure("ä¸Šä¼ å‡ºé”™ï¼š" + errormsg);
             }
         });
     }
 
-    public void getThumbnail(String filePath, final Listener<String> listener) {
+    /**
+     * ä¿å­˜å›¾ç‰‡åˆ°æœåŠ¡å™¨ï¼ˆç»è¿‡å‹ç¼©å¤„ç†ï¼‰
+     * @param filePath æœ¬åœ°å›¾ç‰‡è·¯å¾„
+     * @param listener åŒ…å«è¿”å›çš„æœªç­¾åçš„å›¾ç‰‡è®¿é—®åœ°å€
+     */
+    public void saveThumbnailPic(String filePath, final Listener<String> listener) {
+        getLocalThumbnail(filePath, new Listener<String>() {
+            @Override
+            public void onSuccess(String data) {
+                savePic(data,listener);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                listener.onFailure(msg);
+            }
+        });
+    }
+
+    /**
+     * æœ¬åœ°ç”Ÿæˆç¼©ç•¥å›¾
+     * @param filePath
+     * @param listener åŒ…å«ç”Ÿæˆåçš„ç¼©ç•¥å›¾è·¯å¾„
+     */
+    private void getLocalThumbnail(String filePath, final Listener<String> listener) {
         bmobProFile.getLocalThumbnail(filePath, 1, new LocalThumbnailListener() {
 
             @Override
             public void onError(int statuscode, String errormsg) {
                 // TODO Auto-generated method stub
-                Logger.i("MainActivity -localThumbnail-->Éú³ÉËõÂÔÍ¼Ê§°Ü :" + statuscode + "," + errormsg);
-                listener.onFailure(errormsg);
+                Logger.i("localThumbnail-->ç”Ÿæˆç¼©ç•¥å›¾å¤±è´¥ :" + statuscode + "," + errormsg);
+                listener.onFailure("ç”Ÿæˆç¼©ç•¥å›¾å¤±è´¥:"+errormsg);
             }
 
             @Override
             public void onSuccess(String thumbnailPath) {
                 // TODO Auto-generated method stub
-                Logger.i("MainActivity -localThumbnail-->Éú³ÉºóµÄËõÂÔÍ¼Â·¾¶ :" + thumbnailPath);
+                Logger.i("localThumbnail-->ç”Ÿæˆåçš„ç¼©ç•¥å›¾è·¯å¾„ :" + thumbnailPath);
                 listener.onSuccess(thumbnailPath);
             }
         });

@@ -1,9 +1,7 @@
 package com.syw.weiyu.ui.shuoshuo;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -12,29 +10,16 @@ import android.net.Uri;
 import android.os.*;
 import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
-import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
 import android.widget.*;
 import com.syw.weiyu.R;
 import com.syw.weiyu.core.AppException;
 import com.syw.weiyu.core.Listener;
 import com.syw.weiyu.core.Null;
 import com.syw.weiyu.core.WeiyuApi;
-import com.syw.weiyu.dao.img.BmobImageDao;
 import com.syw.weiyu.util.Msger;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
+import com.syw.weiyu.util.StringUtil;
 
 /**
  * author: youwei
@@ -57,9 +42,9 @@ public class AddShuoshuoActivity extends FragmentActivity implements View.OnClic
     public static final int SELECT_PIC_BY_PICK_PHOTO = 2;
     /** 获取到的图片路径 */
     private String picPath = "";
-    private static ProgressDialog pd;
-    private String resultStr = "";	// 服务端返回结果集
-    private String imgUrl = "";
+//    private static ProgressDialog pd;
+//    private String resultStr = "";	// 服务端返回结果集
+//    private String imgUrl = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,8 +75,9 @@ public class AddShuoshuoActivity extends FragmentActivity implements View.OnClic
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.header_left:// 返回
-            case R.id.header_right:// 发布【没有处理】
-                sendShuoshuo();
+                onBackPressed();
+            case R.id.header_right:// 发布
+                publicShuoshuo();
                 break;
             case R.id.picImg:// 添加图片点击事件
                 // 从页面底部弹出一个窗体，选择拍照还是从相册选择已有图片
@@ -104,20 +90,38 @@ public class AddShuoshuoActivity extends FragmentActivity implements View.OnClic
         }
     }
 
-    private void sendShuoshuo() {
+    /**
+     * 发布说说
+     */
+    private void publicShuoshuo() {
         String content = contentET.getText().toString();
         try {
-            WeiyuApi.get().publishShuoshuo(content, new Listener<Null>() {
-                @Override
-                public void onSuccess(Null data) {
-                    Msger.i(mContext, "发送成功");
-                }
+            if (isValidPicPath(picPath)) {
+                WeiyuApi.get().publishShuoshuoWithPic(content, picPath, new Listener<Null>() {
+                    @Override
+                    public void onSuccess(Null data) {
+                        Msger.i(mContext, "发送成功");
+                    }
 
-                @Override
-                public void onFailure(String msg) {
-                    Msger.e(mContext, msg);
-                }
-            });
+                    @Override
+                    public void onFailure(String msg) {
+                        Msger.e(mContext, msg);
+                    }
+                });
+            } else {
+                WeiyuApi.get().publishShuoshuo(content, new Listener<Null>() {
+                    @Override
+                    public void onSuccess(Null data) {
+                        Msger.i(mContext, "发送成功");
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        Msger.e(mContext, msg);
+                    }
+                });
+            }
+
         } catch (AppException e) {
             Msger.e(mContext, e.getMessage());
         }
@@ -235,11 +239,7 @@ public class AddShuoshuoActivity extends FragmentActivity implements View.OnClic
         }
 
         // 如果图片符合要求将其上传到服务器
-        if (picPath != null && (	picPath.endsWith(".png") ||
-                picPath.endsWith(".PNG") ||
-                picPath.endsWith(".jpg") ||
-                picPath.endsWith(".JPG"))) {
-
+        if (isValidPicPath(picPath)) {
             BitmapFactory.Options option = new BitmapFactory.Options();
             // 压缩图片:表示缩略图大小为原始图片大小的几分之一，1为原图
             option.inSampleSize = 1;
@@ -248,130 +248,18 @@ public class AddShuoshuoActivity extends FragmentActivity implements View.OnClic
             // 显示在图片控件上
             picImg.setImageBitmap(bm);
 
-            BmobImageDao.getInstance(this).getThumbnail(picPath, new Listener<String>() {
-                @Override
-                public void onSuccess(String data) {
-                    BmobImageDao.getInstance(AddShuoshuoActivity.this).save(data, new Listener<String>() {
-                        @Override
-                        public void onSuccess(String data) {
-                            Msger.i(AddShuoshuoActivity.this, "上传OK:");
-                            contentET.setText(data);
-                        }
-
-                        @Override
-                        public void onFailure(String msg) {
-                            Msger.e(AddShuoshuoActivity.this, msg);
-                        }
-                    });
-                }
-
-                @Override
-                public void onFailure(String msg) {
-                    Msger.e(AddShuoshuoActivity.this, msg);
-                }
-            });
-//
-//            pd = ProgressDialog.show(mContext, null, "正在上传图片，请稍候...");
-//            new Thread(uploadImageRunnable).start();
         } else {
             Toast.makeText(this, "选择图片文件不正确", Toast.LENGTH_LONG).show();
         }
 
     }
 
-    /**
-     * 使用HttpUrlConnection模拟post表单进行文件
-     * 上传平时很少使用，比较麻烦
-     * 原理是： 分析文件上传的数据格式，然后根据格式构造相应的发送给服务器的字符串。
-     */
-//    Runnable uploadImageRunnable = new Runnable() {
-//        @Override
-//        public void run() {
-//
-//            if(TextUtils.isEmpty(imgUrl)){
-//                Toast.makeText(mContext, "还没有设置上传服务器的路径！", Toast.LENGTH_SHORT).show();
-//                return;
-//            }
-//
-//            Map<String, String> textParams = new HashMap<String, String>();
-//            Map<String, File> fileparams = new HashMap<String, File>();
-//
-//            try {
-//                // 创建一个URL对象
-//                URL url = new URL(imgUrl);
-//                textParams = new HashMap<String, String>();
-//                fileparams = new HashMap<String, File>();
-//                // 要上传的图片文件
-//                File file = new File(picPath);
-//                fileparams.put("image", file);
-//                // 利用HttpURLConnection对象从网络中获取网页数据
-//                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-//                // 设置连接超时（记得设置连接超时,如果网络不好,Android系统在超过默认时间会收回资源中断操作）
-//                conn.setConnectTimeout(5000);
-//                // 设置允许输出（发送POST请求必须设置允许输出）
-//                conn.setDoOutput(true);
-//                // 设置使用POST的方式发送
-//                conn.setRequestMethod("POST");
-//                // 设置不使用缓存（容易出现问题）
-//                conn.setUseCaches(false);
-//                // 在开始用HttpURLConnection对象的setRequestProperty()设置,就是生成HTML文件头
-//                conn.setRequestProperty("ser-Agent", "Fiddler");
-//                // 设置contentType
-//                conn.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + NetUtil.BOUNDARY);
-//                OutputStream os = conn.getOutputStream();
-//                DataOutputStream ds = new DataOutputStream(os);
-//                NetUtil.writeStringParams(textParams, ds);
-//                NetUtil.writeFileParams(fileparams, ds);
-//                NetUtil.paramsEnd(ds);
-//                // 对文件流操作完,要记得及时关闭
-//                os.close();
-//                // 服务器返回的响应吗
-//                int code = conn.getResponseCode(); // 从Internet获取网页,发送请求,将网页以流的形式读回来
-//                // 对响应码进行判断
-//                if (code == 200) {// 返回的响应码200,是成功
-//                    // 得到网络返回的输入流
-//                    InputStream is = conn.getInputStream();
-//                    resultStr = NetUtil.readString(is);
-//                } else {
-//                    Toast.makeText(mContext, "请求URL失败！", Toast.LENGTH_SHORT).show();
-//                }
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//            handler.sendEmptyMessage(0);// 执行耗时的方法之后发送消给handler
-//        }
-//    };
-//
-//    Handler handler = new Handler(new Handler.Callback() {
-//
-//        @Override
-//        public boolean handleMessage(Message msg) {
-//            switch (msg.what) {
-//                case 0:
-//                    pd.dismiss();
-//
-//                    try {
-//                        JSONObject jsonObject = new JSONObject(resultStr);
-//                        // 服务端以字符串“1”作为操作成功标记
-//                        if (jsonObject.optString("status").equals("1")) {
-//
-//                            // 用于拼接发布说说时用到的图片路径
-//                            // 服务端返回的JsonObject对象中提取到图片的网络URL路径
-//                            String imageUrl = jsonObject.optString("imageUrl");
-//                            // 获取缓存中的图片路径
-//                            Toast.makeText(mContext, imageUrl, Toast.LENGTH_SHORT).show();
-//                        } else {
-//                            Toast.makeText(mContext, jsonObject.optString("statusMessage"), Toast.LENGTH_SHORT).show();
-//                        }
-//
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//                    break;
-//                default:
-//                    break;
-//            }
-//            return false;
-//        }
-//    });
+    private boolean isValidPicPath(String picPath) {
+        return !StringUtil.isEmpty(picPath) &&
+                (picPath.endsWith(".png") ||
+                picPath.endsWith(".PNG") ||
+                picPath.endsWith(".jpg") ||
+                picPath.endsWith(".JPG"));
+    }
+
 }

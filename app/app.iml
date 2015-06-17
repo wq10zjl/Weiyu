@@ -87,6 +87,7 @@
     <orderEntry type="library" exported="" name="paginglistview-1.2" level="project" />
     <orderEntry type="library" exported="" name="fastjson-1.1.45.android" level="project" />
     <orderEntry type="library" exported="" name="commons-codec-1.4" level="project" />
+    <orderEntry type="library" exported="" name="picasso-2.5.2" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-22.1.1" level="project" />
     <orderEntry type="library" exported="" name="Bmob_Push_V0.6beta_20150408" level="project" />
     <orderEntry type="library" exported="" name="support-v4-22.1.1" level="project" />

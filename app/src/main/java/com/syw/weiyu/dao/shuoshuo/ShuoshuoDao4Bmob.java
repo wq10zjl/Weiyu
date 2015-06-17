@@ -142,6 +142,31 @@ public class ShuoshuoDao4Bmob implements ShuoshuoDao {
     }
 
     @Override
+    public void create(Account account, MLocation location, String content, String imgUrl, long timeStamp, final Listener<Null> listener) {
+        Shuoshuo shuoshuo = new Shuoshuo();
+        shuoshuo.setId(System.currentTimeMillis()+shuoshuo.hashCode());
+        shuoshuo.setUserId(account.getId());
+        shuoshuo.setUserName(account.getName());
+        BmobGeoPoint gpsAdd = new BmobGeoPoint(Double.parseDouble(location.getLongitude()), Double.parseDouble(location.getLatitude()));
+        shuoshuo.setGpsAdd(gpsAdd);
+        shuoshuo.setAddressStr(location.getAddress());
+        shuoshuo.setContent(content);
+        shuoshuo.setTimestamp(timeStamp);
+        shuoshuo.setImgUrl(imgUrl);
+        shuoshuo.save(App.getCtx(), new SaveListener() {
+            @Override
+            public void onSuccess() {
+                listener.onSuccess(null);
+            }
+
+            @Override
+            public void onFailure(int i, String s) {
+                listener.onFailure("发送说说出现错误:"+s);
+            }
+        });
+    }
+
+    @Override
     public void addCommentCount(Shuoshuo shuoshuo) {
         shuoshuo.increment("commentCount");
         shuoshuo.update(App.getCtx());
