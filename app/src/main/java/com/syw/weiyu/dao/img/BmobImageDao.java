@@ -91,7 +91,7 @@ public class BmobImageDao {
      * @param listener 包含生成后的缩略图路径
      */
     private void getLocalThumbnail(String filePath, final Listener<String> listener) {
-        bmobProFile.getLocalThumbnail(filePath, 1, new LocalThumbnailListener() {
+        bmobProFile.getLocalThumbnail(filePath, 1, 250, 250, new LocalThumbnailListener() {
 
             @Override
             public void onError(int statuscode, String errormsg) {

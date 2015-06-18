@@ -35,9 +35,11 @@
 
     <ImageView
         android:id="@+id/picImg"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_marginLeft="10dp"
-        android:src="@drawable/ic_add_img" />
+        android:src="@drawable/ic_add_img"
+        android:scaleType="centerCrop"/>
+    <ImageView android:id="@+id/selectedImg" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 
 </LinearLayout>

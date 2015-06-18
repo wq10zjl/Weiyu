@@ -1,81 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--android:background="@android:drawable/picture_frame"-->
-<LinearLayout android:layout_margin="10dp"
-        android:background="@color/white"
-        android:orientation="vertical"
-        android:id="@+id/nearby_shuoshuo_lv_item"
+<FrameLayout
+        android:background="@color/black"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="wrap_content">
+    <ImageView
+            android:id="@+id/shuoshuo_iv_img"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:scaleType="centerCrop"/>
+
+    <LinearLayout  android:padding="20dp" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content">
+
+            <TextView
+                    android:id="@+id/shuoshuo_tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="name"
+                    android:layout_weight="3"
+                    android:textSize="15dp"
+                    android:textColor="@color/white"/>
+
+            <TextView
+                    android:gravity="end"
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/shuoshuo_tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="time"
+                    android:textSize="15dp"
+                    android:textColor="@color/white"/>
+        </LinearLayout>
 
         <TextView
-                android:id="@+id/shuoshuo_tv_name"
-                android:layout_width="wrap_content"
+                android:layout_margin="10dp"
+                android:id="@+id/shuoshuo_tv_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="name"
-                android:layout_weight="3"
-                android:textSize="15dp"
-                android:textColor="@color/black"/>
+                android:minHeight="200dip"
+                android:maxHeight="314dp"
+                android:gravity="center"
+                android:text="content"
+                android:textSize="20dp"
+                android:textColor="@color/white"/>
 
-        <TextView
-                android:gravity="end"
-                android:layout_gravity="center_vertical"
-                android:id="@+id/shuoshuo_tv_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="time"
-                android:textSize="15dp"
-                android:textColor="@color/black"/>
-    </LinearLayout>
+        <!--<ImageView android:id="@+id/shuoshuo_iv_img"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:scaleType="center"/>-->
 
-    <TextView
-              android:layout_margin="10dp"
-              android:id="@+id/shuoshuo_tv_content"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:minHeight="200dip"
-              android:maxHeight="314dp"
-              android:gravity="center"
-              android:text="content"
-              android:textSize="20dp"
-              android:textColor="@color/black"/>
+        <LinearLayout android:orientation="horizontal"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content">
 
-    <!--<ImageView android:id="@+id/shuoshuo_iv_img"-->
-               <!--android:layout_width="wrap_content"-->
-               <!--android:layout_height="wrap_content"-->
-               <!--android:layout_marginLeft="10dp"-->
-               <!--android:scaleType="center"/>-->
-
-    <LinearLayout android:orientation="horizontal"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content">
-
-        <TextView android:layout_weight="4"
-                  android:id="@+id/shuoshuo_tv_address"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:text="address"
-                  android:textSize="15dp"
-                  android:drawableLeft="@drawable/wy_ic_card_location"
-                  android:drawablePadding="5dp"
-                  android:textColor="@color/black"/>
-        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:layout_weight="1">
-            <TextView android:layout_gravity="center" android:layout_weight="1" android:gravity="start" android:id="@+id/shuoshuo_tv_comment_count"
-                      android:text="0评论" android:textSize="15dp" android:layout_width="wrap_content"
+            <TextView android:layout_weight="4"
+                      android:id="@+id/shuoshuo_tv_address"
+                      android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:textColor="@color/black"/>
-            <ImageView android:layout_gravity="center" android:layout_weight="1" android:id="@+id/ic_like" android:layout_width="25dp"
-                       android:layout_height="25dp" android:src="@drawable/wy_ic_card_like_grey"/>
-            <TextView android:layout_gravity="center" android:layout_weight="1" android:gravity="start" android:id="@+id/shuoshuo_tv_liked_count"
-                      android:text="0" android:textSize="15dp" android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:textColor="@color/black"/>
+                      android:text="address"
+                      android:textSize="15dp"
+                      android:drawableLeft="@drawable/wy_ic_card_location"
+                      android:drawablePadding="5dp"
+                      android:textColor="@color/white"/>
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_weight="1">
+                <TextView android:layout_gravity="center" android:layout_weight="1" android:gravity="start" android:id="@+id/shuoshuo_tv_comment_count"
+                          android:text="0评论" android:textSize="15dp" android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:textColor="@color/white"/>
+                <ImageView android:layout_gravity="center" android:layout_weight="1" android:id="@+id/ic_like" android:layout_width="25dp"
+                           android:layout_height="25dp" android:src="@drawable/wy_ic_card_like"/>
+                <TextView android:layout_gravity="center" android:layout_weight="1" android:gravity="start" android:id="@+id/shuoshuo_tv_liked_count"
+                          android:text="0" android:textSize="15dp" android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:textColor="@color/white"/>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
-</LinearLayout>
+
+
+</FrameLayout>

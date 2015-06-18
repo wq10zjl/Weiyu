@@ -39,7 +39,7 @@
                     android:layout_height="match_parent"
                     android:choiceMode="singleChoice"
                     android:divider="@null"
-                    android:dividerHeight="8dip"
+                    android:dividerHeight="1dip"
                     android:fadingEdge="none"
                     android:listSelector="@android:color/transparent"
                     android:scrollbarStyle="outsideOverlay"/>

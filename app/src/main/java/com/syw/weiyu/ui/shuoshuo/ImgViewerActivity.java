@@ -20,7 +20,7 @@ public class ImgViewerActivity extends Activity {
         String imgUrl = getIntent().getStringExtra("imgUrl");
         ImageView img = (ImageView)this.findViewById(R.id.large_image );
         Picasso.with(this).load(imgUrl).into(img);
-        img.setOnClickListener(new View.OnClickListener() { // µã»÷·µ»Ø
+        img.setOnClickListener(new View.OnClickListener() { // ç‚¹å‡»è¿”å›ž
             public void onClick(View paramView) {
                 onBackPressed();
             }

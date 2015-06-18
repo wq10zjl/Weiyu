@@ -29,7 +29,7 @@ public class ShuoshuoDao4Bmob implements ShuoshuoDao {
         countQuery.count(App.getCtx(), Shuoshuo.class, new CountListener() {
             @Override
             public void onSuccess(final int i) {
-                BmobGeoPoint gpsAdd = new BmobGeoPoint(Double.parseDouble(location.getLongitude()), Double.parseDouble(location.getLatitude()));
+                final BmobGeoPoint gpsAdd = new BmobGeoPoint(Double.parseDouble(location.getLongitude()), Double.parseDouble(location.getLatitude()));
                 BmobQuery<Shuoshuo> bmobQuery = new BmobQuery<>();
 //                bmobQuery.addWhereNear("gpsAdd", gpsAdd);
                 bmobQuery.addWhereWithinKilometers("gpsAdd", gpsAdd, Integer.parseInt(AppConstants.default_kilometers));

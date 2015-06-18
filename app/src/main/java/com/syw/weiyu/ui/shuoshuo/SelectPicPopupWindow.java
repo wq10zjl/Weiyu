@@ -53,9 +53,9 @@ public class SelectPicPopupWindow extends PopupWindow {
 		this.setAnimationStyle(R.style.PopupAnimation);
 		// 实例化一个ColorDrawable颜色为半透明
 //		ColorDrawable dw = new ColorDrawable(0x80000000);
-//		ColorDrawable dw = new ColorDrawable(0000000000);
+		ColorDrawable dw = new ColorDrawable(0000000000);
 		// 设置SelectPicPopupWindow弹出窗体的背景
-//		this.setBackgroundDrawable(dw);
+		this.setBackgroundDrawable(dw);
 		// mMenuView添加OnTouchListener监听判断获取触屏位置如果在选择框外面则销毁弹出框
 		mMenuView.setOnTouchListener(new OnTouchListener() {
 

@@ -10,6 +10,13 @@ import com.syw.weiyu.R;
 public class RandomBg {
     public static int getBgResId(long n) {
         int[] bgs = new int[]{
+//                R.color.white,
+//                R.color.white,
+//                R.color.white,
+//                R.color.white,
+//                R.color.white,
+//                R.color.white,
+//                R.color.white,
                 R.drawable.s_2,
                 R.drawable.s_3,
                 R.drawable.s_4,
@@ -22,5 +29,9 @@ public class RandomBg {
         };
         int i = Math.abs((int)n % bgs.length);//0~8
         return bgs[i];
+    }
+
+    public static boolean isWhite(int resId) {
+        return resId==R.color.white;
     }
 }

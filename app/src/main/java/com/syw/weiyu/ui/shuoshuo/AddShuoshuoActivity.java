@@ -12,6 +12,7 @@ import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
 import android.view.Gravity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.*;
 import com.syw.weiyu.R;
 import com.syw.weiyu.core.AppException;
@@ -20,6 +21,9 @@ import com.syw.weiyu.core.Null;
 import com.syw.weiyu.core.WeiyuApi;
 import com.syw.weiyu.util.Msger;
 import com.syw.weiyu.util.StringUtil;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * author: youwei
@@ -76,14 +80,17 @@ public class AddShuoshuoActivity extends FragmentActivity implements View.OnClic
         switch (v.getId()) {
             case R.id.header_left:// 返回
                 onBackPressed();
+                break;
             case R.id.header_right:// 发布
+                ((InputMethodManager)getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(mContext.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 publicShuoshuo();
                 break;
             case R.id.picImg:// 添加图片点击事件
+                ((InputMethodManager)getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(mContext.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 // 从页面底部弹出一个窗体，选择拍照还是从相册选择已有图片
                 menuWindow = new SelectPicPopupWindow(mContext, itemsOnClick);
                 menuWindow.showAtLocation(findViewById(R.id.uploadLayout),
-                        Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 0);
+                        Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
                 break;
             default:
                 break;
@@ -97,10 +104,17 @@ public class AddShuoshuoActivity extends FragmentActivity implements View.OnClic
         String content = contentET.getText().toString();
         try {
             if (isValidPicPath(picPath)) {
+                Msger.iStickey(mContext, "正在发送...");
                 WeiyuApi.get().publishShuoshuoWithPic(content, picPath, new Listener<Null>() {
                     @Override
                     public void onSuccess(Null data) {
                         Msger.i(mContext, "发送成功");
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                onBackPressed();
+                            }
+                        },1000);
                     }
 
                     @Override
@@ -113,6 +127,12 @@ public class AddShuoshuoActivity extends FragmentActivity implements View.OnClic
                     @Override
                     public void onSuccess(Null data) {
                         Msger.i(mContext, "发送成功");
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                onBackPressed();
+                            }
+                        }, 1000);
                     }
 
                     @Override
@@ -240,14 +260,17 @@ public class AddShuoshuoActivity extends FragmentActivity implements View.OnClic
 
         // 如果图片符合要求将其上传到服务器
         if (isValidPicPath(picPath)) {
-            BitmapFactory.Options option = new BitmapFactory.Options();
-            // 压缩图片:表示缩略图大小为原始图片大小的几分之一，1为原图
-            option.inSampleSize = 1;
-            // 根据图片的SDCard路径读出Bitmap
-            Bitmap bm = BitmapFactory.decodeFile(picPath, option);
-            // 显示在图片控件上
-            picImg.setImageBitmap(bm);
+//            BitmapFactory.Options option = new BitmapFactory.Options();
+//            // 压缩图片:表示缩略图大小为原始图片大小的几分之一，1为原图
+//            option.inSampleSize = 1;
+//            // 根据图片的SDCard路径读出Bitmap
+//            Bitmap bm = BitmapFactory.decodeFile(picPath, option);
 
+            final Bitmap bm = BitmapFactory.decodeFile(picPath);
+
+//            // 显示在图片控件上
+            picImg.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+            picImg.setImageBitmap(bm);
         } else {
             Toast.makeText(this, "选择图片文件不正确", Toast.LENGTH_LONG).show();
         }
