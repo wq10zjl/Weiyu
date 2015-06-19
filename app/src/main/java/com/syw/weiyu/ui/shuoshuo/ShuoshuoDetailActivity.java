@@ -32,6 +32,8 @@ public class ShuoshuoDetailActivity extends FragmentActivity {
     private Shuoshuo shuoshuo;
     private CommentsAdapter adapter;
     private ListView listView;
+    private EditText et_comment;
+    private String atUserId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +66,7 @@ public class ShuoshuoDetailActivity extends FragmentActivity {
         }
     }
 
-    private void initShuoshuoDetailData(Shuoshuo shuoshuo) {
+    private void initShuoshuoDetailData(final Shuoshuo shuoshuo) {
         View shuoshuoView = getShuoshuoView(shuoshuo);
         View allCommentsTV = getAllCommentsTV();
         listView.addHeaderView(shuoshuoView);
@@ -75,10 +77,21 @@ public class ShuoshuoDetailActivity extends FragmentActivity {
         Msger.i(this, "正在加载评论");
         WeiyuApi.get().getShuoshuoComments(ssId, new Listener<List<Comment>>() {
             @Override
-            public void onSuccess(List<Comment> data) {
+            public void onSuccess(final List<Comment> data) {
                 if (data.size() > 0) {
                     adapter.set(data);
                     Msger.i(ShuoshuoDetailActivity.this, "评论加载完成");
+
+                    //回复添加@功能
+                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            String atStr = "@" + data.get(position - 2).getUserName() + " ";
+                            et_comment.setText(atStr);
+                            et_comment.setSelection(atStr.length());
+                            atUserId = data.get(position - 2).getUserId();
+                        }
+                    });
                 } else {
                     Msger.e(ShuoshuoDetailActivity.this, "暂无评论");
                 }
@@ -112,7 +125,7 @@ public class ShuoshuoDetailActivity extends FragmentActivity {
         listView = (ListView) findViewById(R.id.comments);
         adapter = new CommentsAdapter(ShuoshuoDetailActivity.this);
 
-        final EditText et_comment = (EditText) findViewById(R.id.et_comment);
+        et_comment = (EditText) findViewById(R.id.et_comment);
         ImageView btn_send = (ImageView) findViewById(R.id.btn_send);
         btn_send.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,31 +133,34 @@ public class ShuoshuoDetailActivity extends FragmentActivity {
                 //隐藏键盘
                 ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(ShuoshuoDetailActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
+                /*添加评论*/
                 String content = et_comment.getText().toString();
-                Msger.i(ShuoshuoDetailActivity.this, "正在添加评论...");
-                if (!StringUtil.isEmpty(content)) {
-                    WeiyuApi.get().addComment(shuoshuo, content, new Listener<Comment>() {
-                        @Override
-                        public void onSuccess(Comment data) {
-                            Msger.i(ShuoshuoDetailActivity.this, "评论成功");
-                            //添加adapter里的数据
-                            adapter.append(data);
-                            //评论数++
-                            ((TextView) findViewById(R.id.shuoshuo_tv_comment_count)).setText(String.valueOf(shuoshuo.getCommentCount() + 1));
-                            //定位到底部
-                            listView.smoothScrollToPosition(listView.getBottom());
-                            //清空输入框
-                            et_comment.setText("");
-                        }
+                if (!content.contains("@")) atUserId = null;
 
-                        @Override
-                        public void onFailure(String msg) {
-                            Msger.e(ShuoshuoDetailActivity.this, "评论出错啦:" + msg);
-                        }
-                    });
-                }
+                Msger.i(ShuoshuoDetailActivity.this, "正在添加评论...");
+                WeiyuApi.get().addComment(shuoshuo, content, atUserId, new Listener<Comment>() {
+                    @Override
+                    public void onSuccess(Comment data) {
+                        Msger.i(ShuoshuoDetailActivity.this, "评论成功");
+                        //添加adapter里的数据
+                        adapter.append(data);
+                        //评论数++
+                        ((TextView) findViewById(R.id.shuoshuo_tv_comment_count)).setText(String.valueOf(shuoshuo.getCommentCount() + 1));
+                        //定位到底部
+                        listView.smoothScrollToPosition(listView.getBottom());
+                        //清空输入框
+                        et_comment.setText("");
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        Msger.e(ShuoshuoDetailActivity.this, "评论出错啦:" + msg);
+                    }
+                });
+
             }
         });
+
     }
 
     private View getAllCommentsTV() {

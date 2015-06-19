@@ -54,7 +54,7 @@ public class BmobPushMessageReceiver extends BroadcastReceiver {
                 finalDb.save(comment);
 
                 Intent resultIntent = new Intent(context, CommentMessageActivity.class);
-                pushLocalNotify(context, "微遇", comment.getUserName()+"评论了你的说说", resultIntent);
+                pushLocalNotify(context, "微遇", comment.getUserName()+"在说说中评论了你", resultIntent);
             }
         }
     }

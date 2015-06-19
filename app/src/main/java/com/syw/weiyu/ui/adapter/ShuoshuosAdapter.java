@@ -2,9 +2,7 @@ package com.syw.weiyu.ui.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,14 +11,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.paging.listview.PagingBaseAdapter;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 import com.syw.weiyu.R;
 import com.syw.weiyu.core.WeiyuApi;
 import com.syw.weiyu.bean.Shuoshuo;
 import com.syw.weiyu.dao.img.BmobImageDao;
 import com.syw.weiyu.ui.shuoshuo.ShuoshuoDetailActivity;
 import com.syw.weiyu.util.RandomBg;
-import com.syw.weiyu.util.StringUtil;
 import com.syw.weiyu.util.TimeUtil;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.model.Conversation;
@@ -31,7 +27,17 @@ import java.util.*;
  * Created by songyouwei on 2015/4/27.
  */
 public class ShuoshuosAdapter extends PagingBaseAdapter {
+
     List<Shuoshuo> shuoshuos = new ArrayList<>();
+    Picasso picasso;
+    LayoutInflater mInflater;
+    Context ctx;
+
+    public ShuoshuosAdapter(Context ctx) {
+        this.ctx = ctx;
+        mInflater = LayoutInflater.from(ctx);
+        picasso = Picasso.with(ctx);
+    }
 
     public void set(List<Shuoshuo> list) {
         this.shuoshuos.clear();
@@ -44,22 +50,20 @@ public class ShuoshuosAdapter extends PagingBaseAdapter {
         notifyDataSetChanged();
     }
 
-    public void addOnTop(Shuoshuo shuoshuo) {
-        this.shuoshuos.add(0, shuoshuo);
-        notifyDataSetChanged();
-    }
+    @Override
+    public void notifyDataSetChanged() {
+        //pre load
+        for (Shuoshuo shuoshuo: shuoshuos) {
+            if (shuoshuo.getImgUrl() != null) picasso.load(shuoshuo.getImgUrl()).fetch();
+        }
 
-    LayoutInflater mInflater;
-    Context ctx;
-
-    public ShuoshuosAdapter(Context ctx) {
-        this.ctx = ctx;
-        mInflater = LayoutInflater.from(ctx);
+        super.notifyDataSetChanged();
     }
 
     //在外面先定义，ViewHolder静态类
     private class ViewHolder {
         public ViewHolder(View convertView) {
+            this.convertView = convertView;
             this.name = (TextView) convertView.findViewById(R.id.shuoshuo_tv_name);
             this.address = (TextView) convertView.findViewById(R.id.shuoshuo_tv_address);
             this.time = (TextView) convertView.findViewById(R.id.shuoshuo_tv_time);
@@ -69,6 +73,7 @@ public class ShuoshuosAdapter extends PagingBaseAdapter {
             this.likedCount = (TextView) convertView.findViewById(R.id.shuoshuo_tv_liked_count);
             this.img = (ImageView) convertView.findViewById(R.id.shuoshuo_iv_img);
         }
+        public View convertView;
         public TextView name;
         public TextView address;
         public TextView time;
@@ -99,7 +104,7 @@ public class ShuoshuosAdapter extends PagingBaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         final Shuoshuo shuoshuo = shuoshuos.get(position);
         final ViewHolder holder;
-        if (convertView == null) {
+        if (convertView == null || convertView.getTag() == null) {
             convertView = mInflater.inflate(R.layout.wy_shuoshuo_lv_item_v2, null);
             holder = new ViewHolder(convertView);
             convertView.setTag(holder);
@@ -117,59 +122,57 @@ public class ShuoshuosAdapter extends PagingBaseAdapter {
         String imgUrl = shuoshuo.getImgUrl();
         if (imgUrl!=null) {
             imgUrl = BmobImageDao.getSingedUrl(imgUrl);
-            Picasso.with(ctx).load(imgUrl).placeholder(R.color.black).error(R.color.black).into(holder.img);
+            picasso.load(imgUrl).placeholder(R.drawable.bg_preload).error(R.drawable.bg_preload).into(holder.img);
         } else {
-            int randomBg = RandomBg.getBgResId(shuoshuo.getTimestamp());
-            Picasso.with(ctx).load(randomBg).placeholder(randomBg).error(randomBg).into(holder.img);
+            Drawable randomBg = RandomBg.getBgColorDrawable(shuoshuo.getTimestamp());
+            picasso.load(imgUrl).placeholder(randomBg).error(randomBg).into(holder.img);
         }
 
-        //点主体时
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (ctx instanceof ShuoshuoDetailActivity) {
-                    //如果是详情页
-                    switchImgView(holder);
-                } else {
-                    //进说说详情页
-                    Intent intent = new Intent(ctx, ShuoshuoDetailActivity.class);
-                    intent.putExtra("shuoshuo", shuoshuo);
-                    ctx.startActivity(intent);
-                }
-            }
-        });
-        //点评论时跳转
-        holder.commentCount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (ctx instanceof ShuoshuoDetailActivity) {
-                    //如果是详情页，就开启私聊
-                    RongIM.getInstance().startConversation(ctx, Conversation.ConversationType.PRIVATE, shuoshuo.getUserId(), shuoshuo.getUserName());
-                } else {
-                    //进说说详情页
-                    Intent intent = new Intent(ctx, ShuoshuoDetailActivity.class);
-                    intent.putExtra("shuoshuo", shuoshuo);
-                    ctx.startActivity(intent);
-                }
-            }
-        });
-        //点❤
-        holder.liked.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                WeiyuApi.get().addLiked(shuoshuo);
-                holder.liked.setImageResource(R.drawable.wy_ic_card_liked);
-                holder.liked.setClickable(false);
-                shuoshuo.setLikedCount(shuoshuo.getLikedCount() + 1);
-                holder.likedCount.setText(String.valueOf(shuoshuo.getLikedCount()));
-            }
-        });
+        ItemOnClickListener itemOnClickListener = new ItemOnClickListener(holder,shuoshuo);
+        holder.convertView.setOnClickListener(itemOnClickListener);
+        holder.commentCount.setOnClickListener(itemOnClickListener);
+        holder.liked.setOnClickListener(itemOnClickListener);
 
         return convertView;
     }
 
-    boolean onlyhasImg = false;
+    private class ItemOnClickListener implements View.OnClickListener {
+        private ViewHolder holder;
+        private Shuoshuo shuoshuo;
 
+        public ItemOnClickListener(ViewHolder holder, Shuoshuo shuoshuo) {
+            this.holder = holder;
+            this.shuoshuo = shuoshuo;
+        }
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.shuoshuo_container:
+                case R.id.shuoshuo_tv_comment_count:
+                    if (ctx instanceof ShuoshuoDetailActivity) {
+                        //如果是详情页
+                        switchImgView(holder);
+                    } else {
+                        //进说说详情页
+                        Intent intent = new Intent(ctx, ShuoshuoDetailActivity.class);
+                        intent.putExtra("shuoshuo", shuoshuo);
+                        ctx.startActivity(intent);
+                    }
+                    break;
+                case R.id.ic_like:
+                    WeiyuApi.get().addLiked(shuoshuo);
+                    ((ImageView)v).setImageResource(R.drawable.wy_ic_card_liked);
+                    v.setClickable(false);
+                    shuoshuo.setLikedCount(shuoshuo.getLikedCount() + 1);
+                    holder.likedCount.setText(String.valueOf(shuoshuo.getLikedCount()));
+                    break;
+            }
+        }
+
+    }
+
+    boolean onlyhasImg = false;
     //切换只显示背景图片
     private void switchImgView(ViewHolder holder) {
         if (onlyhasImg) {

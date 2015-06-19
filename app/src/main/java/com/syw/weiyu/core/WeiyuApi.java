@@ -408,9 +408,14 @@ public class WeiyuApi {
      * 添加评论
      * @param shuoshuo
      * @param content
+     * @param atUserId
      * @param listener
      */
-    public void addComment(final Shuoshuo shuoshuo,String content, final Listener<Comment> listener) {
+    public void addComment(final Shuoshuo shuoshuo, String content, final String atUserId, final Listener<Comment> listener) {
+        if (StringUtil.isEmpty(content)) {
+            listener.onFailure("什么都没写←_←");
+            return;
+        }
         commentDao.addComment(shuoshuo.getId(), content, new Listener<Comment>() {
             @Override
             public void onSuccess(Comment data) {
@@ -420,6 +425,7 @@ public class WeiyuApi {
                 //push
                 data.setShuoshuo(shuoshuo.getContent());
                 BmobPushHelper.pushCommentMessage(shuoshuo.getUserId(), data);
+                if (!StringUtil.isEmpty(atUserId))BmobPushHelper.pushCommentMessage(atUserId, data);
             }
 
             @Override

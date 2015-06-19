@@ -96,12 +96,12 @@ public class CommentsAdapter extends BaseAdapter {
         holder.content.setText(comment.getContent());
 
         //点击评论时开启私聊
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                RongIM.getInstance().startConversation(ctx, Conversation.ConversationType.PRIVATE,comment.getUserId(),comment.getUserName());
-            }
-        });
+//        convertView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                RongIM.getInstance().startConversation(ctx, Conversation.ConversationType.PRIVATE,comment.getUserId(),comment.getUserName());
+//            }
+//        });
 
         return convertView;
     }

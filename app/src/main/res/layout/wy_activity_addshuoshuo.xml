@@ -3,7 +3,7 @@
     android:id="@+id/uploadLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#eeeeee"
+    android:background="#F8F8FF"
     android:orientation="vertical" >
 
     <include
@@ -15,29 +15,19 @@
         android:id="@+id/contentET"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="1dp"
+        android:layout_margin="10dp"
         android:background="@android:color/white"
         android:gravity="top"
-        android:hint="这一刻的想法..."
+        android:hint="和附近的人说点什么..."
         android:padding="10dp"
         android:textColor="#373447"
-        android:textSize="16sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="添加图片"
-        android:textColor="#000000"
-        android:textSize="16sp" />
+        android:textSize="16sp"/>
 
     <ImageView
         android:id="@+id/picImg"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_marginLeft="10dp"
+        android:layout_margin="10dp"
         android:src="@drawable/ic_add_img"
         android:scaleType="centerCrop"/>
     <ImageView android:id="@+id/selectedImg" android:layout_width="wrap_content" android:layout_height="wrap_content"/>

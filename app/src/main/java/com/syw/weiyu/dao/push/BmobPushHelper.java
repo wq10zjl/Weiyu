@@ -24,6 +24,11 @@ import java.util.List;
  * date: 2015-06-10
  * desc:
  */
+/**
+ * author: songyouwei
+ * date: 2015-06-10
+ * desc:
+ */
 public class BmobPushHelper {
 
     public static void pushCommentMessage(String toUserId, Comment comment) {

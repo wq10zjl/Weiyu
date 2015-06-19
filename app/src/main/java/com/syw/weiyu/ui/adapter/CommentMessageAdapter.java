@@ -93,7 +93,7 @@ public class CommentMessageAdapter extends BaseAdapter {
         holder.content.setText(comment.getContent());
         holder.time.setText(TimeUtil.timeDiff(System.currentTimeMillis(), comment.getTimestamp()));
         holder.shuoshuo.setText(comment.getShuoshuo());
-        holder.shuoshuo.setBackgroundResource(RandomBg.getBgResId(comment.getTimestamp()));
+        holder.shuoshuo.setBackgroundDrawable(RandomBg.getBgColorDrawable(comment.getTimestamp()));
 
         //点击评论时进详情页
         convertView.setOnClickListener(new View.OnClickListener() {

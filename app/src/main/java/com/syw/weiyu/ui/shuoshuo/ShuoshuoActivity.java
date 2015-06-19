@@ -9,6 +9,7 @@ import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -179,47 +180,47 @@ public class ShuoshuoActivity extends FragmentActivity {
         });
     }
 
-    private AlertDialog getAddShuoshuoAlertDialog() {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(ShuoshuoActivity.this,AlertDialog.THEME_HOLO_LIGHT);
-        // Get the layout inflater
-        final LayoutInflater inflater = ShuoshuoActivity.this.getLayoutInflater();
-        final View view = inflater.inflate(R.layout.wy_dialog_addshuoshuo, null);
-        final EditText contentET = (EditText)view.findViewById(R.id.et_shuoshuo_content);
-        // Inflate and set the layout for the dialog
-        // Pass null as the parent view because its going in the dialog layout
-        builder.setView(view)
-                // Add action buttons
-                .setPositiveButton("发送", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        String content = contentET.getText().toString();
-                        try {
-                            WeiyuApi.get().publishShuoshuo(content, new Listener<Null>() {
-                                @Override
-                                public void onSuccess(Null data) {
-                                    Msger.i(ShuoshuoActivity.this, "发送成功");
-                                }
-
-                                @Override
-                                public void onFailure(String msg) {
-                                    Msger.e(ShuoshuoActivity.this, msg);
-                                }
-                            });
-                        } catch (AppException e) {
-                            Msger.e(ShuoshuoActivity.this, e.getMessage());
-                        }
-
-                        new Handler() {
-                            @Override
-                            public void handleMessage(Message msg) {
-                                mPtrFrame.autoRefresh();
-                            }
-                        }.sendEmptyMessageDelayed(1, 1000);
-                    }
-                })
-                .setNegativeButton("取消", null);
-        return builder.create();
-    }
+//    private AlertDialog getAddShuoshuoAlertDialog() {
+//        final AlertDialog.Builder builder = new AlertDialog.Builder(ShuoshuoActivity.this,AlertDialog.THEME_HOLO_LIGHT);
+//        // Get the layout inflater
+//        final LayoutInflater inflater = ShuoshuoActivity.this.getLayoutInflater();
+//        final View view = inflater.inflate(R.layout.wy_dialog_addshuoshuo, null);
+//        final EditText contentET = (EditText)view.findViewById(R.id.et_shuoshuo_content);
+//        // Inflate and set the layout for the dialog
+//        // Pass null as the parent view because its going in the dialog layout
+//        builder.setView(view)
+//                // Add action buttons
+//                .setPositiveButton("发送", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int id) {
+//                        String content = contentET.getText().toString();
+//                        try {
+//                            WeiyuApi.get().publishShuoshuo(content, new Listener<Null>() {
+//                                @Override
+//                                public void onSuccess(Null data) {
+//                                    Msger.i(ShuoshuoActivity.this, "发送成功");
+//                                }
+//
+//                                @Override
+//                                public void onFailure(String msg) {
+//                                    Msger.e(ShuoshuoActivity.this, msg);
+//                                }
+//                            });
+//                        } catch (AppException e) {
+//                            Msger.e(ShuoshuoActivity.this, e.getMessage());
+//                        }
+//
+//                        new Handler() {
+//                            @Override
+//                            public void handleMessage(Message msg) {
+//                                mPtrFrame.autoRefresh();
+//                            }
+//                        }.sendEmptyMessageDelayed(1, 1000);
+//                    }
+//                })
+//                .setNegativeButton("取消", null);
+//        return builder.create();
+//    }
 
 
     /**
