@@ -283,6 +283,8 @@ public class WeiyuApi {
                             new InformationNotificationMessage("你向对方打了个招呼"),
                             null
                     );
+                    //push
+                    BmobPushHelper.pushNotification(targetUserId,account.getName()+"向你打了个招呼");
                 }
             });
         } catch (AppException e) {

@@ -40,6 +40,14 @@ public class BmobPushHelper {
         }
     }
 
+    public static void pushNotification(String userId, String message) {
+        BmobPushManager bmobPush = new BmobPushManager(App.getCtx());
+        BmobQuery<BmobInstallation> query = BmobInstallation.getQuery();
+        query.addWhereEqualTo("userId", userId);
+        bmobPush.setQuery(query);
+        bmobPush.pushMessage(message);
+    }
+
     private static void pushStringMessage(String userId, String message) {
         BmobPushManager bmobPush = new BmobPushManager(App.getCtx());
         BmobQuery<BmobInstallation> query = BmobInstallation.getQuery();
@@ -55,6 +63,7 @@ public class BmobPushHelper {
         bmobPush.setQuery(query);
         bmobPush.pushMessage(jsonObject);
     }
+
 
     /**
      * 初始化bmobpush相关数据，成功后开启推送

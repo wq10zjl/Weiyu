@@ -90,16 +90,7 @@ public class UserHomeActivity extends Activity {
         final ImageView leftHeader = (ImageView) findViewById(R.id.header_right);
         try {
             if (userId.equals(WeiyuApi.get().getAccount().getId())) {
-                leftHeader.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        AlertDialog dialog = getAddShuoshuoAlertDialog();
-                        dialog.show();
-                    }
-                });
-
                 ((TextView) findViewById(R.id.header_title)).setText("我的说说");
-                leftHeader.setImageResource(R.drawable.ic_action_new);
             } else {
                 leftHeader.setImageResource(R.drawable.ic_action_hi);
                 leftHeader.setOnClickListener(new View.OnClickListener() {
@@ -209,63 +200,4 @@ public class UserHomeActivity extends Activity {
         });
     }
 
-    private AlertDialog getAddShuoshuoAlertDialog() {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(UserHomeActivity.this,AlertDialog.THEME_HOLO_LIGHT);
-        // Get the layout inflater
-        final LayoutInflater inflater = UserHomeActivity.this.getLayoutInflater();
-        final View view = inflater.inflate(R.layout.wy_dialog_addshuoshuo, null);
-        final EditText contentET = (EditText)view.findViewById(R.id.et_shuoshuo_content);
-        // Inflate and set the layout for the dialog
-        // Pass null as the parent view because its going in the dialog layout
-        builder.setView(view)
-                // Add action buttons
-                .setPositiveButton("发送", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        String content = contentET.getText().toString();
-                        if (StringUtil.isEmpty(content)) return;
-                        try {
-                            WeiyuApi.get().publishShuoshuo(content, new Listener<Null>() {
-                                @Override
-                                public void onSuccess(Null data) {
-                                    Msger.i(UserHomeActivity.this, "发送成功");
-                                }
-
-                                @Override
-                                public void onFailure(String msg) {
-                                    Msger.e(UserHomeActivity.this, msg);
-                                }
-                            });
-                        } catch (AppException e) {
-                            Msger.e(UserHomeActivity.this, e.getMessage());
-                        }
-
-                        new Handler() {
-                            @Override
-                            public void handleMessage(Message msg) {
-                                mPtrFrame.autoRefresh();
-                            }
-                        }.sendEmptyMessageDelayed(1, 1000);
-                    }
-                })
-                .setNegativeButton("取消", null);
-        return builder.create();
-    }
-
-
-    /**
-     * 两次返回键退出，间隔2秒
-     */
-//    private long currentTime=0;
-//    private long oldTime=0;
-//    @Override
-//    public void onBackPressed() {
-//        currentTime = System.currentTimeMillis();
-//        if ((currentTime - oldTime) > 2000 || oldTime == 0) {
-//            Toast.makeText(this, "再按一次退出", 2000).show();
-//            oldTime = currentTime;
-//        } else {
-//            finish();
-//        }
-//    }
 }
