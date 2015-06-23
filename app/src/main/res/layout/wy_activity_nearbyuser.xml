@@ -38,7 +38,7 @@
                 android:layout_height="match_parent"
                 android:choiceMode="singleChoice"
                 android:fadingEdge="none"
-                android:listSelector="@android:color/transparent"
+                android:listSelector="@drawable/list_pressed_holo_light"
                 android:scrollbarStyle="outsideOverlay"/>
 
         </in.srain.cube.views.ptr.PtrClassicFrameLayout>

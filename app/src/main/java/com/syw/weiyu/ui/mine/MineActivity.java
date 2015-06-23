@@ -7,12 +7,21 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.TextView;
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.listener.FindListener;
+import com.orhanobut.logger.Logger;
 import com.syw.weiyu.R;
+import com.syw.weiyu.bean.Shuoshuo;
+import com.syw.weiyu.bean.ShuoshuoList;
+import com.syw.weiyu.bean.User;
+import com.syw.weiyu.core.App;
 import com.syw.weiyu.core.WeiyuApi;
 import com.syw.weiyu.ui.explore.AboutInfoActivity;
 import com.syw.weiyu.ui.explore.NearByUserActivity;
 import com.syw.weiyu.ui.user.ProfileActivity;
 import com.syw.weiyu.ui.user.UserHomeActivity;
+
+import java.util.List;
 
 /**
  * author: youwei

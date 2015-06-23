@@ -21,6 +21,7 @@ public class Shuoshuo extends BmobObject {
     private String content;
     private String userName;
     private String userId;
+    private String userGender;
 //    private User user;
     private BmobGeoPoint gpsAdd;//用于Bmob存储位置点
     private String addressStr;//用于Bmob存储位置名
@@ -115,5 +116,13 @@ public class Shuoshuo extends BmobObject {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public String getUserGender() {
+        return userGender;
+    }
+
+    public void setUserGender(String userGender) {
+        this.userGender = userGender;
     }
 }

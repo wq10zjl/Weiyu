@@ -118,7 +118,7 @@ public class ShuoshuoDetailActivity extends FragmentActivity {
         chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RongIM.getInstance().startConversation(ShuoshuoDetailActivity.this, Conversation.ConversationType.PRIVATE, shuoshuo.getUserId(), shuoshuo.getUserName());
+                RongIM.getInstance().startConversation(ShuoshuoDetailActivity.this, Conversation.ConversationType.PRIVATE, shuoshuo.getUserId(), shuoshuo.getUserName()+"("+shuoshuo.getUserGender()+")");
             }
         });
 

@@ -132,7 +132,7 @@ public class NearByUsersAdapter extends PagingBaseAdapter {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RongIM.getInstance().startConversation(ctx, Conversation.ConversationType.PRIVATE, user.getId(), user.getName());
+                RongIM.getInstance().startConversation(ctx, Conversation.ConversationType.PRIVATE, user.getId(), user.getName()+"("+user.getGender()+")");
             }
         });
 

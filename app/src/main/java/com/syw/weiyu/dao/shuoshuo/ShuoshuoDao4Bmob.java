@@ -123,6 +123,7 @@ public class ShuoshuoDao4Bmob implements ShuoshuoDao {
         shuoshuo.setId(System.currentTimeMillis()+shuoshuo.hashCode());
         shuoshuo.setUserId(account.getId());
         shuoshuo.setUserName(account.getName());
+        shuoshuo.setUserGender(account.getGender());
         BmobGeoPoint gpsAdd = new BmobGeoPoint(Double.parseDouble(location.getLongitude()), Double.parseDouble(location.getLatitude()));
         shuoshuo.setGpsAdd(gpsAdd);
         shuoshuo.setAddressStr(location.getAddress());
@@ -147,6 +148,7 @@ public class ShuoshuoDao4Bmob implements ShuoshuoDao {
         shuoshuo.setId(System.currentTimeMillis()+shuoshuo.hashCode());
         shuoshuo.setUserId(account.getId());
         shuoshuo.setUserName(account.getName());
+        shuoshuo.setUserGender(account.getGender());
         BmobGeoPoint gpsAdd = new BmobGeoPoint(Double.parseDouble(location.getLongitude()), Double.parseDouble(location.getLatitude()));
         shuoshuo.setGpsAdd(gpsAdd);
         shuoshuo.setAddressStr(location.getAddress());
