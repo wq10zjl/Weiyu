@@ -10,16 +10,16 @@
 
 **Screenshots:**
 
-<img src="/screenshots/Screenshot_0.png" height="640" width="360" />
+<img src="/screenshots/1.png" height="640" width="360" />
 
-<img src="/screenshots/Screenshot_1.png" height="640" width="360" />
+<img src="/screenshots/2.png" height="640" width="360" />
 
-<img src="/screenshots/Screenshot_2.png" height="640" width="360" />
+<img src="/screenshots/3.png" height="640" width="360" />
 
-<img src="/screenshots/Screenshot_3.png" height="640" width="360" />
+<img src="/screenshots/4.png" height="640" width="360" />
 
-<img src="/screenshots/Screenshot_4.png" height="640" width="360" />
+<img src="/screenshots/5.png" height="640" width="360" />
 
-<img src="/screenshots/Screenshot_5.png" height="640" width="360" />
+<img src="/screenshots/6.png" height="640" width="360" />
 
-<img src="/screenshots/Screenshot_6.png" height="640" width="360" />
+<img src="/screenshots/7.png" height="640" width="360" />
